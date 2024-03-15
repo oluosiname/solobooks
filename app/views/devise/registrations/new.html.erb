@@ -23,10 +23,14 @@
                 <%= render partial: "devise/shared/field_error_messages", locals: {field: :password, messages: resource.errors.messages[:password] } %>
               </ul>
           </div>
+          
 
           <div class="field mb-6">
             <%= f.label :password_confirmation, class: 'mb-2' %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-input', placeholder: "Enter your password again" %>
+            <ul class="text-danger-700">
+                <%= render partial: "devise/shared/field_error_messages", locals: {field: :password_confirmation, messages: resource.errors.messages[:password_confirmation] } %>
+              </ul>
           </div>
 
           <div class="flex items-center mb-8">

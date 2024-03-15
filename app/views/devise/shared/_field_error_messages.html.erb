@@ -1,5 +1,5 @@
 <ul class="text-danger-700">
   <% messages.each do |message| %>
-    <li class="text-sm mt-1"><%= field.capitalize %> <%= message %></li>
+    <li class="text-sm mt-1"><%= field.humanize.capitalize %> <%= message %></li>
   <% end %>
 </ul>

@@ -8,3 +8,9 @@ de:
               blank: "muss ausgefüllt werden"
             password:
               blank: "muss ausgefüllt werden"
+              too_short: "ist zu kurz (mindestens 6 Zeichen)"
+            password_confirmation:
+              blank: "muss ausgefüllt werden"
+              confirmation: "stimmt nicht mit dem Passwort überein"
+            current_password:
+              invalid: "ist nicht korrekt"

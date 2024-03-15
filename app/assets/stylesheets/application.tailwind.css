@@ -16,7 +16,7 @@
 */
 
 .card {
-  @apply relative flex h-fit flex-col break-words border border-grey-100 bg-grey bg-clip-border rounded-md border-solid;
+  @apply relative flex h-fit flex-col break-words border border-grey-100 bg-grey bg-clip-border border-solid;
 }
 
 /* Form */
