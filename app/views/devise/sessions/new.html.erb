@@ -5,7 +5,8 @@
         <a href="index.html" class="flex justify-center mb-8">
           <img class="h-6" src="" alt="">
         </a>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <h2 class="text-base text-center text-danger-800 mb-2"><%= flash[:alert] %></h2>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name))  do |f| %>
           <div class="field mb-6">
               <%= f.label :email, class: 'mb-2' %>
               <%= f.email_field :email, autofocus: true, class: 'form-input',  placeholder: 'Enter your email' %>
