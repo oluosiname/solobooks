@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800;900&display=swap");
+
 /*
 
 @layer components {
@@ -11,3 +14,35 @@
 }
 
 */
+
+.card {
+  @apply relative flex h-fit flex-col break-words border border-grey-100 bg-grey bg-clip-border rounded-md border-solid;
+}
+
+/* Form */
+label {
+  @apply inline-block cursor-pointer text-base leading-5 font-semibold text-grey-400;
+}
+
+.form-input {
+  @apply block w-full rounded border-grey-100 bg-white text-sm leading-5 font-normal focus:ring-offset-0 focus:ring-0;
+}
+
+.form-input:focus {
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+    var(--tw-shadow, 0 0 #0000);
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+    var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+    calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded border text-center text-base leading-5 font-medium transition-all ease-in-out px-3 py-1.5 border-transparent;
+}

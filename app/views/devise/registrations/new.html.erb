@@ -1,29 +1,42 @@
-<h2>Sign up</h2>
+<div class="bg-primary w-full h-screen flex items-center justify-center">
+  <div class="2xl:w-1/4 lg:w-1/3 md:w-1/2 w-full">
+    <div class="card overflow-hidden sm:rounded-md rounded-none">
+      <div class="px-6 py-8">
+        <a href="index.html" class="flex justify-center mb-8">
+          <img class="h-6" src="" alt="">
+        </a>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field mb-6">
+              <%= f.label :email, class: 'mb-2' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-input',  placeholder: 'Enter your email' %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="field mb-6">
+            <%= f.label :password, class: 'mb-2' %>
+              <% if @minimum_password_length %>
+              <em class="text-xs">(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password", class: 'form-input', placeholder: "Enter your password" %>
+          </div>
+
+          <div class="field mb-6">
+            <%= f.label :password_confirmation, class: 'mb-2' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-input', placeholder: "Enter your password again" %>
+          </div>
+
+          <div class="flex items-center mb-8">
+              <input type="checkbox" class="form-checkbox rounded" id="checkbox-signin">
+              <label class="ms-2 text-sm" for="checkbox-signin">I accept <a href="#" class="text-primary">Terms and Conditions</a></label>
+          </div>
+
+          <div class="flex justify-center mb-3 actions">
+            <%= f.submit "Sign up", class: "btn w-full text-white bg-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
