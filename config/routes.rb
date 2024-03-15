@@ -2,19 +2,20 @@
 
 Rails.application.routes.draw do
   # Defines the root path route ("/")
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   scope '(:locale)', locale: /en|de/ do
     devise_for :users,
-    path: '', # optional namespace or empty string for no space
-    path_names: {
-      sign_in: 'login',
-      sign_out: 'logout',
-      password: 'password',
-      confirmation: 'verification',
-      # registration: 'register',
-      sign_up: 'register',
-    }
+      path: '', # optional namespace or empty string for no space
+      path_names: {
+        sign_in: 'login',
+        sign_out: 'logout',
+        password: 'password',
+        confirmation: 'verification',
+        # registration: 'register',
+        sign_up: 'register',
+      }
     # controllers: { registrations: 'registrations' }
-  
 
     root 'home#index'
   end

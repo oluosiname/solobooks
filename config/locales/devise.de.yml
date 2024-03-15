@@ -17,9 +17,23 @@ de:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Anweisungen zur Bestätigung"
+        body:
+          heading: "Bestätigen Sie Ihre E-Mail-Adresse"
+          greeting: "Guten Tag %{email}"
+          main: "Vielen Dank für Ihre Anmeldung bei %{app_name}! Bitte klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen."
+          button_text: "E-Mail-Adresse bestätigen"
+          ignore: "Wenn Sie sich nicht für diesen Dienst angemeldet haben, ignorieren Sie bitte diese E-Mail."
+          closing: "Vielen Dank, %{app_name} Team"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "Anweisungen zum Zurücksetzen des Passworts"
+        body:
+          heading: "Setzen Sie Ihr Passwort zurück"
+          greeting: "Guten Tag %{email}"
+          main: "Jemand hat eine Anfrage gestellt, um Ihr Passwort zurückzusetzen. Sie können dies über den untenstehenden Link tun."
+          button_text: "Mein Passwort ändern"
+          ignore: "Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie bitte diese E-Mail."
+          closing: "Vielen Dank, %{app_name} Team"
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:
