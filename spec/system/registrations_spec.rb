@@ -13,7 +13,7 @@ RSpec.describe 'Registrations', type: :system do
 
     expect(page).to have_content("A message with a confirmation link has been sent to your email address. \
 Please follow the link to activate your account.")
-    expect(page).to have_current_path(root_path(locale: 'en'))
+    expect(page).to have_current_path(root_path)
   end
 
   context 'when password is too short' do
