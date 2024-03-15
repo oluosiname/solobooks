@@ -1,0 +1,10 @@
+de:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "muss ausgefüllt werden"
+            password:
+              blank: "muss ausgefüllt werden"

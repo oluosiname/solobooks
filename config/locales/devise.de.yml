@@ -1,5 +1,4 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
 de:
   devise:
     confirmations:
@@ -61,5 +60,5 @@ de:
       not_found: "not found"
       not_locked: "was not locked"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "Registrierung fehlgeschlagen: 1 Fehler aufgetreten."
+        other: "Registrierung fehlgeschlagen: %{count} Fehler aufgetreten."

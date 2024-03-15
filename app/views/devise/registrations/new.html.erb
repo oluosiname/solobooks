@@ -11,14 +11,17 @@
           <div class="field mb-6">
               <%= f.label :email, class: 'mb-2' %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-input',  placeholder: 'Enter your email' %>
+              <ul class="text-danger-700">
+                <%= render partial: "devise/shared/field_error_messages", locals: {field: :email, messages: resource.errors.messages[:email] } %>
+              </ul>
           </div>
 
           <div class="field mb-6">
             <%= f.label :password, class: 'mb-2' %>
-              <% if @minimum_password_length %>
-              <em class="text-xs">(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
               <%= f.password_field :password, autocomplete: "new-password", class: 'form-input', placeholder: "Enter your password" %>
+              <ul class="text-danger-700">
+                <%= render partial: "devise/shared/field_error_messages", locals: {field: :password, messages: resource.errors.messages[:password] } %>
+              </ul>
           </div>
 
           <div class="field mb-6">
