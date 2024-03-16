@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :authenticate_user!
 
+  layout :layout_by_resource
+
   private
 
   def set_locale
@@ -12,5 +14,13 @@ class ApplicationController < ActionController::Base
 
   def self.default_url_options
     { locale: I18n.locale }
+  end
+
+  def layout_by_resource
+    if devise_controller? # special definition in devise
+      'devise'
+    else
+      'application'
+    end
   end
 end

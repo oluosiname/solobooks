@@ -1,0 +1,29 @@
+de:
+  forms:
+    labels:
+      user:
+        email: "E-Mail-Adresse"
+        password: "Passwort"
+        password_confirmation: "Passwort bestätigen"
+        current_password: "Aktuelles Passwort"
+      invoice:
+        number: "Rechnungsnummer"
+        date: "Rechnungsdatum"
+        due_date: "Fälligkeitsdatum"
+        customer: "Kunde"
+        total: "Gesamtsumme"
+        paid: "Bezahlt"
+        notes: "Notizen"
+    placeholders:
+      user:
+        email: "E-Mail-Adresse"
+        password: "Passwort"
+        password_confirmation: "Passwort bestätigen"
+        current_password: "Aktuelles Passwort"
+      invoice:
+        number: "Rechnungsnummer"
+        date: "DD-MM-YYYY"
+        due_date: "DD-MM-YYYY"
+        total: "Gesamtsumme"
+        paid: "Bezahlt"
+        notes: "Notizen"

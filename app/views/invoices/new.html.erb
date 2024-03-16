@@ -1,0 +1,120 @@
+<div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
+  <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
+    <div class="field invoice-field">
+      <%= form.label :date, t("forms.labels.invoice.date") %>
+      <%= form.text_field :date,
+        placeholder: t("forms.placeholders.invoice.date"),
+        data: {
+          controller: "flatpickr",
+          flatpickr_min_date: Time.zone.now,
+          flatpickr_locale: I18n.locale,
+          flatpickr_date_format: "d-m-Y",
+        } %>
+    </div>
+
+    <div class="field invoice-field">
+      <%= form.label :due_date, t("forms.labels.invoice.due_date") %>
+      <%= form.text_field :due_date,
+        placeholder: t("forms.placeholders.invoice.due_date"),
+        data: {
+          controller: "flatpickr",
+          flatpickr_min_date: Time.zone.now,
+          flatpickr_locale: I18n.locale,
+          flatpickr_date_format: "d-m-Y",
+        } %>
+    </div>
+    <div class="field invoice-field">
+      <label class="">Client </label>
+      <div class="flex justify-start gap-x-3">
+        <div class="select  w-52">
+          <select>
+            <option value="1">Americano</option>
+            <option value="2">Latte</option>
+            <option value="3">Green Tea</option>
+          </select>
+        </div>
+        <div class="@apply flex flex-col justify-end">
+          <button class="btn btn-sm btn-primary">New Client</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex invoice-line-items-header">
+      <div>Description</div>
+
+      <div>Price</div>
+      <div>Unit</div>
+      <div>Quantity</div>
+      <div>Amount</div>
+      <div></div>
+    </div>
+
+    <!-- Other invoice fields -->
+
+
+    <template data-nested-form-target="template">
+      <%= form.fields_for :line_items, LineItem.new, child_index: 'NEW_RECORD' do |line_item_fields| %>
+        <%= render "invoices/line_item_form", f: line_item_fields %>
+      <% end %>
+    </template>
+  
+  <!-- Add fields for other invoice attributes -->
+
+    <div class="nested-form-wrapper" data-nested-form-target="wrapper">
+    
+      <%= form.fields_for :line_items do |line_item_fields| %>
+        <%= render "invoices/line_item_form", f: line_item_fields %>
+      <% end %>
+
+
+  <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <div class="mt-6">
+      <button type="button" class="btn btn-md  btn-primary " data-action="nested-form#add">Add Line Item</button>
+    </div>
+
+    <section class="flex justify-between mt-6">
+      <div class="payment-information">
+        Bank: <br>
+      </div>
+      <div class="totals">
+        <div class="flex justify-between items-center mb-4">
+          <label>Subtotal</label>
+          <div>0.00</div>
+        </div>
+        <div class="mb-4  ">
+          <label class="toggle-label !flex flex-row items-center justify-between"  style="display: flex" for="one">
+            <span>VAT charged?</span>
+            <input id="one" type="checkbox" class="toggle" />
+          </label>
+        </div>
+        <div class="flex flex-row items-center justify-between mb-4" >
+          <label class="">VAT </label>
+          <div class="select w-24">
+            <%= form.select :vat_rate, options_for_select(Invoice::VAT_RATES, 0) %>
+          </div>
+        </div>
+
+        <div class="mb-4  ">
+          <label class="toggle-label !flex flex-row items-center justify-between" style="display: flex" for="one">
+            <span>VAT included in Subtotal?</span>
+            <input id="one" type="checkbox" class="toggle" />
+          </label>
+        </div>
+        <div class="flex justify-between items-center">
+          <label>Total</label>
+          <div>0.00</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex justify-end mt-5">
+      <%= form.submit "Save", class: "btn btn-md btn-success"%>
+    </div>
+  
+    <% end %>
+  </div>
+</div>
+
+

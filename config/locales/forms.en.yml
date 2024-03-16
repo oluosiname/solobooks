@@ -1,0 +1,45 @@
+en:
+  forms:
+    labels:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        current_password: "Current password"
+      invoice:
+        number: "Invoice number"
+        date: "Invoice date"
+        due_date: "Due date"
+        customer: "Customer"
+        total: "Total"
+        paid: "Paid"
+        notes: "Notes"
+    placeholders:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        current_password: "Current password"
+      invoice:
+        number: "Invoice number"
+        date: "DD-MM-YYYY"
+        due_date: "DD-MM-YYYY"
+        total: "Total"
+        paid: "Paid"
+        notes: "Notes"
+    errors:
+      invoice:
+        number:
+          blank: "can't be blank"
+        date:
+          blank: "can't be blank"
+        due_date:
+          blank: "can't be blank"
+        customer:
+          blank: "can't be blank"
+        total:
+          blank: "can't be blank"
+        paid:
+          blank: "can't be blank"
+        notes:
+          blank: "can't be blank"

@@ -43,14 +43,221 @@ label {
     calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 }
 
-.btn {
-  @apply inline-flex items-center justify-center rounded border text-center text-sm leading-5 font-medium transition-all ease-in-out px-3 py-1.5 border-transparent;
-}
-
 .field_with_errors > input {
   @apply border-red-500;
 }
 
 .field_with_errors > label {
   @apply text-red-500;
+}
+
+select {
+  /* Reset Select */
+  @apply text-grey-500 bg-white;
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  @apply flex relative h-10 rounded overflow-hidden;
+}
+/* Arrow */
+.select::after {
+  @apply bg-white text-grey-500;
+  content: "\25BC";
+  position: absolute;
+  /* border-left: 1px solid #f39c12; */
+  top: 0.675rem;
+  right: 1rem;
+
+  transition: 0.25s all ease;
+  pointer-events: none;
+}
+
+/* switch */
+
+label.toggle-label {
+  @apply h-6 relative flex;
+}
+
+input.toggle {
+  @apply w-11 h-0 cursor-pointer inline-block;
+  @apply focus:outline-0 dark:focus:outline-0;
+  @apply border-0 dark:border-0;
+  @apply focus:ring-offset-transparent dark:focus:ring-offset-transparent;
+  @apply focus:ring-transparent dark:focus:ring-transparent;
+  @apply focus-within:ring-0 dark:focus-within:ring-0;
+  @apply focus:shadow-none dark:focus:shadow-none;
+
+  @apply after:absolute before:absolute;
+  @apply after:top-0 before:top-0 before-right-0;
+  @apply after:block before:inline-block;
+  @apply before:rounded-full after:rounded-full;
+
+  @apply after:content-[''] after:w-5 after:h-5 after:mt-0.5 after:ml-0.5;
+  @apply after:shadow-md after:duration-100;
+
+  @apply before:content-[''] before:w-10 before:h-full;
+  @apply before:shadow-[inset_0_0_#000];
+
+  @apply after:bg-white dark:after:bg-gray-50;
+  @apply before:bg-gray-300 dark:before:bg-gray-600;
+  @apply before:checked:bg-primary-500 dark:before:checked:bg-primary-500;
+  @apply checked:after:duration-300 checked:after:translate-x-4;
+
+  @apply disabled:after:bg-opacity-75 disabled:cursor-not-allowed;
+  @apply disabled:checked:before:bg-opacity-40;
+}
+
+/* App Wrapper */
+
+.app-wrapper {
+  @apply flex min-h-screen;
+}
+
+/* side menu */
+
+.app-menu {
+  @apply sticky w-64 bg-white border-r border-grey-100;
+}
+
+.app-menu > .menu-items {
+}
+
+.logo-wrapper {
+  @apply sticky flex items-center justify-center h-16;
+}
+
+.app-content {
+  @apply bg-white w-full p-6;
+}
+
+.invoice-form-wrapper {
+  box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
+}
+
+/* Invoice form */
+
+.invoice-line-items-header {
+  @apply flex items-center justify-start font-semibold mb-3 gap-x-4;
+}
+
+.invoice-line-items-header > div {
+  @apply font-bold;
+}
+
+.invoice-line-item-fields-wrapper {
+  @apply flex items-center justify-start gap-x-4 mb-3;
+}
+
+.invoice-line-item-fields-wrapper > div {
+}
+
+.invoice-line-items-header > div:first-child,
+.invoice-line-item-fields-wrapper > div:first-child {
+  flex: 0 0 40%;
+}
+.invoice-line-items-header > div:nth-child(2),
+.invoice-line-item-fields-wrapper > div:nth-child(2) {
+  @apply flex-[0_0_10%];
+}
+.invoice-line-items-header > div:nth-child(3),
+.invoice-line-item-fields-wrapper > div:nth-child(3) {
+  @apply flex-[0_0_10%];
+}
+.invoice-line-items-header > div:nth-child(4),
+.invoice-line-item-fields-wrapper > div:nth-child(4) {
+  @apply flex-[0_0_10%];
+}
+.invoice-line-items-header > div:nth-child(5),
+.invoice-line-item-fields-wrapper > div:nth-child(5) {
+  @apply flex-[0_0_10%];
+}
+.invoice-line-items-header > div:nth-child(6),
+.invoice-line-item-fields-wrapper > div:nth-child(6) {
+  @apply flex-[0_0_10%];
+}
+
+/* Buttons */
+
+.btn {
+  @apply inline-flex items-center justify-center rounded border text-center text-sm leading-5 
+transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
+}
+
+.btn-sm {
+  @apply text-xs;
+}
+
+.btn-md {
+  @apply text-base px-5 py-2;
+}
+
+.btn-lg {
+  @apply text-lg;
+}
+
+.btn-primary {
+  @apply bg-primary-500 text-white;
+}
+
+.btn-primary-soft {
+  @apply bg-primary-200 text-primary-700;
+}
+
+.btn-secondary {
+  @apply bg-secondary-400 text-white;
+}
+
+.btn-success {
+  @apply bg-green-500 text-white;
+}
+
+.btn-danger {
+  @apply bg-danger-700 text-white;
+}
+
+/* form inputs */
+
+.form-input {
+  @apply block w-full rounded border-grey-100 bg-white text-sm leading-5 font-normal focus:ring-offset-0 focus:ring-0;
+}
+
+.invoice-form-wrapper {
+  & .field {
+    @apply flex flex-col justify-start gap-y-1 mb-5;
+  }
+}
+
+.invoice-field {
+  & input {
+    @apply block w-full rounded border-grey-100 bg-white text-sm leading-5 font-normal focus:ring-offset-0 focus:ring-0;
+  }
+
+  & input:focus {
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+      var(--tw-shadow, 0 0 #0000);
+    --tw-border-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+      var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+      calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  }
 }

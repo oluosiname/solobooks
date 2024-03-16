@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     # controllers: { registrations: 'registrations' }
 
     root 'home#index'
+
+    resources :invoices
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

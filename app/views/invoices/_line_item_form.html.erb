@@ -1,0 +1,14 @@
+<div class="flex invoice-line-item-fields-wrapper nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div><%= f.text_field :description, class: 'form-input' %></div>
+  <div><%= f.number_field :unit_price, class: 'form-input unit_price' %></div>
+  <div><%= f.number_field :quantity, class: 'form-input quantity' %></div>
+  <div><%= f.number_field :total_price, class: 'form-input' %></div>
+
+  <div><%= f.number_field :total_price , class: 'form-input', readonly: true %></div>
+
+  <!-- Add fields for other line item attributes -->
+
+  <div><button type="button" class="btn btn-md  btn-secondary" data-action="nested-form#remove">Remove</button></div>
+
+  <%= f.hidden_field :_destroy %>
+</div>
