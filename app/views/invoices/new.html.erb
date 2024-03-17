@@ -1,18 +1,35 @@
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
   <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
+    <% if  @invoice.errors.any? %>
+    <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
+      <h2 class="font-medium mb-2"><%= pluralize( @invoice.errors.count, "error") %> prohibited this invoice from being created:</h2>
+
+      <ul>
+        <%  @invoice.errors.each do |error| %>
+          <li class="text-sm font-normal mb-1"><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
     <div class="flex justify-between">
       <div>
         <div class="field invoice-field">
-          <%= form.label :currency_id, t("forms.labels.invoice.currency") %>
-          <div class="select w-52">
+          <%= form.label :currency_id, class: "select" do %>
+            <%= t("forms.labels.invoice.currency") %>
             <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id } %>
-          </div>
+            <svg >
+              <use xlink:href="#select-arrow-down"></use>
+            </svg>
+          <% end %>
         </div>
         <div class="field invoice-field">
-          <%= form.label :language, t("forms.labels.invoice.language") %>
-           <div class="select w-52">
+          <%= form.label :language, class: "select"  do %>
+            <%= t("forms.labels.invoice.language") %>
             <%= form.select :language, options_for_select(Invoice::LANGUAGES, 'en') %>
-          </div>
+            <svg >
+              <use xlink:href="#select-arrow-down"></use>
+            </svg>
+          <% end %>
         </div>
         <div class="field invoice-field">
           <%= form.label :date, t("forms.labels.invoice.date") %>
@@ -41,14 +58,17 @@
       <div class="flex flex-col">
         
         <div class="field invoice-field">
-          <label class="">Client </label>
-          <div class="flex justify-start gap-x-3">
-            <div class="select  w-52">
+          <div class="flex justify-start gap-x-2">
+            <%= form.label :category_id, class: "select !flex-2", style: "flex: 2 2 0%" do %>
+              <%= t("forms.labels.invoice.category") %>
               <%= form.select :invoice_category_id, {}, prompt: true do %>
                 <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
               <% end %>
-            </div>
-            <div class="@apply flex flex-col justify-end">
+              <svg >
+                <use xlink:href="#select-arrow-down"></use>
+              </svg>
+            <% end %>
+            <div class="flex flex-col justify-end flex-1">
               <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } %>
             </div>
           </div>

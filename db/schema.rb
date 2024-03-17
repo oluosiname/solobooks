@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_153121) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_163208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -64,9 +64,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_153121) do
   create_table 'line_items', force: :cascade do |t|
     t.bigint 'invoice_id', null: false
     t.string 'description'
-    t.integer 'quantity', null: false
-    t.decimal 'unit_price', precision: 10, scale: 2
-    t.decimal 'total_price', precision: 10, scale: 2
+    t.integer 'quantity', default: 1, null: false
+    t.decimal 'unit_price', precision: 10, scale: 2, default: '0.0'
+    t.decimal 'total_price', precision: 10, scale: 2, default: '0.0'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'unit'

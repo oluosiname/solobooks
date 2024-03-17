@@ -1,34 +1,47 @@
 # frozen_string_literal: true
 
 class InvoicesController < ApplicationController
+  before_action :set_categories, only: [:new, :create]
+
   def show
   end
 
   def new
-    # t.bigint "invoice_category_id", null: false
-    # t.string "vat_id"
-    # t.string "invoice_number"
-    # t.string "tax_id"
-    # t.decimal "vat", precision: 5, scale: 2
-    # t.decimal "vat_rate", precision: 5, scale: 2
-    # t.boolean "vat_included", default: false
-
     @invoice = Invoice.new
     @invoice.line_items.build
-    @categories = InvoiceCategory.all
   end
 
   def create
-    Invoice.create(invoice_params.merge(user: current_user, invoice_category: InvoiceCategory.first))
+    @invoice = Invoice.new(invoice_params.merge(user: current_user))
+    if @invoice.save
+      redirect_to invoice_path(@invoice)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
   def invoice_params
-    params.require(:invoice).permit(:date, :due_date, :tax, :discount, :grand_total, line_items_attributes:)
+    params.require(:invoice).permit(
+      :date,
+      :due_date,
+      :tax,
+      :discount,
+      :grand_total,
+      :currency_id,
+      :language,
+      :invoice_category_id,
+      :vat_rate,
+      line_items_attributes:,
+    )
   end
 
   def line_items_attributes
     [:description, :quantity, :unit_price, :total_price, :_destroy]
+  end
+
+  def set_categories
+    @categories = InvoiceCategory.all
   end
 end

@@ -9,7 +9,11 @@ class Invoice < ApplicationRecord
   validates :due_date, presence: true
   validates :total_amount, presence: true
   validates :status, presence: true
+  validates_with InvoiceValidator::LineItemsValidator
+  validates_with InvoiceValidator::DatesValidator
   # validates :invoice_number, presence: true
+
+  before_validation :set_total_amount
 
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
 
@@ -33,4 +37,10 @@ class Invoice < ApplicationRecord
     refunded: 'refunded',
     due: 'due',
   }
+
+  private
+
+  def set_total_amount
+    self.total_amount = line_items.sum(&:total_price)
+  end
 end
