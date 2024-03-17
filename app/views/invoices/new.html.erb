@@ -32,7 +32,7 @@
           <% end %>
         </div>
         <div class="@apply flex flex-col justify-end">
-          <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-sm btn-primary", data: { turbo_frame: 'modal' } %>
+          <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } %>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
     <div data-nested-form-target="target"></div>
 
     <div class="mt-6">
-      <button type="button" class="btn btn-md  btn-primary " data-action="nested-form#add">Add Line Item</button>
+      <button type="button" class="btn btn-sm  btn-primary " data-action="nested-form#add">Add Line Item</button>
     </div>
 
     <section class="flex justify-between mt-6">

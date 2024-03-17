@@ -193,11 +193,14 @@ input.toggle {
 /* Buttons */
 
 .btn {
-  @apply inline-flex items-center justify-center rounded border text-center text-sm leading-5 
+  @apply inline-flex items-center justify-center rounded border text-center text-base leading-5 
 transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
 }
-
 .btn-sm {
+  @apply text-sm;
+}
+
+.btn-xs {
   @apply text-xs;
 }
 
