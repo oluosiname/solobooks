@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_16_192432) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_153121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_192432) do
     t.boolean 'active', default: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.boolean 'default', default: false
     t.index ['active'], name: 'index_currencies_on_active'
     t.index ['code'], name: 'index_currencies_on_code', unique: true
   end
@@ -49,6 +50,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_192432) do
     t.decimal 'vat', precision: 5, scale: 2
     t.decimal 'vat_rate', precision: 5, scale: 2
     t.boolean 'vat_included', default: false
+    t.bigint 'currency_id'
+    t.string 'language'
+    t.index ['currency_id'], name: 'index_invoices_on_currency_id'
     t.index ['date'], name: 'index_invoices_on_date'
     t.index ['due_date'], name: 'index_invoices_on_due_date'
     t.index ['invoice_category_id'], name: 'index_invoices_on_invoice_category_id'
@@ -91,6 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_192432) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
+  add_foreign_key 'invoices', 'currencies'
   add_foreign_key 'invoices', 'invoice_categories'
   add_foreign_key 'invoices', 'users'
   add_foreign_key 'line_items', 'invoices'

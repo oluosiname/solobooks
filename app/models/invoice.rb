@@ -20,6 +20,11 @@ class Invoice < ApplicationRecord
     '20%' => 20,
   }
 
+  LANGUAGES = {
+    'English' => 'en',
+    'Deutsch' => 'de',
+  }
+
   enum status: {
     pending: 'pending',
     sent: 'sent',

@@ -1,38 +1,57 @@
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
   <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
-    <div class="field invoice-field">
-      <%= form.label :date, t("forms.labels.invoice.date") %>
-      <%= form.text_field :date,
-        placeholder: t("forms.placeholders.invoice.date"),
-        data: {
-          controller: "flatpickr",
-          flatpickr_min_date: Time.zone.now,
-          flatpickr_locale: I18n.locale,
-          flatpickr_date_format: "d-m-Y",
-        } %>
-    </div>
-
-    <div class="field invoice-field">
-      <%= form.label :due_date, t("forms.labels.invoice.due_date") %>
-      <%= form.text_field :due_date,
-        placeholder: t("forms.placeholders.invoice.due_date"),
-        data: {
-          controller: "flatpickr",
-          flatpickr_min_date: Time.zone.now,
-          flatpickr_locale: I18n.locale,
-          flatpickr_date_format: "d-m-Y",
-        } %>
-    </div>
-    <div class="field invoice-field">
-      <label class="">Client </label>
-      <div class="flex justify-start gap-x-3">
-        <div class="select  w-52">
-          <%= form.select :invoice_category_id, {}, prompt: true do %>
-            <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
-          <% end %>
+    <div class="flex justify-between">
+      <div>
+        <div class="field invoice-field">
+          <%= form.label :currency_id, t("forms.labels.invoice.currency") %>
+          <div class="select w-52">
+            <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id } %>
+          </div>
         </div>
-        <div class="@apply flex flex-col justify-end">
-          <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } %>
+        <div class="field invoice-field">
+          <%= form.label :language, t("forms.labels.invoice.language") %>
+           <div class="select w-52">
+            <%= form.select :language, options_for_select(Invoice::LANGUAGES, 'en') %>
+          </div>
+        </div>
+        <div class="field invoice-field">
+          <%= form.label :date, t("forms.labels.invoice.date") %>
+          <%= form.text_field :date,
+            placeholder: t("forms.placeholders.invoice.date"),
+            data: {
+              controller: "flatpickr",
+              flatpickr_min_date: Time.zone.now,
+              flatpickr_locale: I18n.locale,
+              flatpickr_date_format: "d-m-Y",
+            } %>
+        </div>
+
+        <div class="field invoice-field">
+          <%= form.label :due_date, t("forms.labels.invoice.due_date") %>
+          <%= form.text_field :due_date,
+            placeholder: t("forms.placeholders.invoice.due_date"),
+            data: {
+              controller: "flatpickr",
+              flatpickr_min_date: Time.zone.now,
+              flatpickr_locale: I18n.locale,
+              flatpickr_date_format: "d-m-Y",
+            } %>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        
+        <div class="field invoice-field">
+          <label class="">Client </label>
+          <div class="flex justify-start gap-x-3">
+            <div class="select  w-52">
+              <%= form.select :invoice_category_id, {}, prompt: true do %>
+                <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
+              <% end %>
+            </div>
+            <div class="@apply flex flex-col justify-end">
+              <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
