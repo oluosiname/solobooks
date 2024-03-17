@@ -101,7 +101,7 @@ input.toggle {
   @apply focus:shadow-none dark:focus:shadow-none;
 
   @apply after:absolute before:absolute;
-  @apply after:top-0 before:top-0 before-right-0;
+  @apply after:top-0 before:top-0;
   @apply after:block before:inline-block;
   @apply before:rounded-full after:rounded-full;
 
@@ -218,7 +218,11 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
 }
 
 .btn-secondary {
-  @apply bg-secondary-400 text-white;
+  @apply bg-grey-400 text-white;
+}
+
+.btn-dark {
+  @apply bg-tertiary-400 text-white;
 }
 
 .btn-success {
@@ -260,4 +264,27 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
     --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
       calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   }
+}
+
+/* modal */
+.modal {
+  @apply fixed bg-white rounded-lg p-8 w-full md:w-1/2;
+  z-index: 2;
+  /* width: 400px; */
+  word-break: break-word;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 50%;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
 }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddVatToInvoice < ActiveRecord::Migration[7.1]
   def change
     add_column :invoices, :vat, :decimal, precision: 5, scale: 2

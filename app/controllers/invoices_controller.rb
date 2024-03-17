@@ -15,6 +15,7 @@ class InvoicesController < ApplicationController
 
     @invoice = Invoice.new
     @invoice.line_items.build
+    @categories = InvoiceCategory.all
   end
 
   def create

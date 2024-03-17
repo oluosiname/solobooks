@@ -27,14 +27,12 @@
       <label class="">Client </label>
       <div class="flex justify-start gap-x-3">
         <div class="select  w-52">
-          <select>
-            <option value="1">Americano</option>
-            <option value="2">Latte</option>
-            <option value="3">Green Tea</option>
-          </select>
+          <%= form.select :invoice_category_id, {}, prompt: true do %>
+            <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
+          <% end %>
         </div>
         <div class="@apply flex flex-col justify-end">
-          <button class="btn btn-sm btn-primary">New Client</button>
+          <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-sm btn-primary", data: { turbo_frame: 'modal' } %>
         </div>
       </div>
     </div>
@@ -116,5 +114,6 @@
     <% end %>
   </div>
 </div>
+
 
 

@@ -1,0 +1,16 @@
+<div>
+  <h2 class="text-xl font-semibold mb-6">New Invoice Category</h2>
+  <%= form_with(model: category, class: "contents") do |form| %>
+    <div class="field mb-6">
+        <%= form.label :name, t("forms.labels.invoice_category.name") %>
+        <%= form.text_field :name, class: "form-input" %>
+    </div>
+
+    <div class="field flex justify-end gap-2">
+      <%= form.submit t("forms.buttons.create"), class: "btn btn-primary" %>
+      <% if @modal %>
+        <%= button_tag "Cancel", data: { action: "turbo-modal#hideModal" }, type: "button", class: "btn btn-secondary modal-form-cancel" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

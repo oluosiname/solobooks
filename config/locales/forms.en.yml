@@ -14,6 +14,9 @@ en:
         total: "Total"
         paid: "Paid"
         notes: "Notes"
+      invoice_category:
+        name: "Name"
+        description: "Description"
     placeholders:
       user:
         email: "Email"
@@ -43,3 +46,9 @@ en:
           blank: "can't be blank"
         notes:
           blank: "can't be blank"
+    buttons:
+      save: "Save"
+      create: "Create"
+      update: "Update"
+      next: "Next"
+      cancel: "Cancel"

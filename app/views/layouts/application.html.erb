@@ -18,7 +18,9 @@
         <%= render "partials/menu" %>
       </section>
       <section class="app-content">
+         
         <%= yield %>
+        <%= turbo_frame_tag "modal" %>
       </section>
     </main>
   </body>
