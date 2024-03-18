@@ -41,6 +41,16 @@ class Invoice < ApplicationRecord
   private
 
   def set_total_amount
-    self.total_amount = line_items.sum(&:total_price)
+    initial_total_amount = line_items.sum(&:total_price)
+
+    self.total_amount = if vat_included
+      initial_total_amount
+    else
+      initial_total_amount * (1.0 + (vat_rate.to_f / 100.0))
+    end
+
+    self.subtotal = total_amount / (1 + (vat_rate / 100))
+
+    self.vat = total_amount - subtotal
   end
 end

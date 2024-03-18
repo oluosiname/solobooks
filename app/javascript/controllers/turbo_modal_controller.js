@@ -12,7 +12,6 @@ export default class extends Controller {
   // hide modal on successful form submission
   // action: "turbo:submit-end->turbo-modal#submitEnd"
   submitEnd(e) {
-    console.log({ e });
     if (e.detail.success) {
       this.hideModal();
     }

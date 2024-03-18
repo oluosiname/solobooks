@@ -14,3 +14,7 @@ de:
               confirmation: "stimmt nicht mit dem Passwort überein"
             current_password:
               invalid: "ist nicht korrekt"
+        line_item:
+          attributes:
+            total_price:
+              greater_than: "muss größer als 0 sein"

@@ -1,5 +1,5 @@
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
-  <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
+  <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" }) do |form| %>
     <% if  @invoice.errors.any? %>
     <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
       <h2 class="font-medium mb-2"><%= pluralize( @invoice.errors.count, "error") %> prohibited this invoice from being created:</h2>
@@ -17,7 +17,7 @@
           <%= form.label :currency_id, class: "select" do %>
             <%= t("forms.labels.invoice.currency") %>
             <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id } %>
-            <svg >
+            <svg  >
               <use xlink:href="#select-arrow-down"></use>
             </svg>
           <% end %>
@@ -118,30 +118,38 @@
       <div class="totals">
         <div class="flex justify-between items-center mb-4">
           <label>Subtotal</label>
-          <div>0.00</div>
+          <div data-invoice-target ="subTotal">0.00</div>
         </div>
         <div class="mb-4  ">
           <label class="toggle-label !flex flex-row items-center justify-between"  style="display: flex" for="one">
             <span>VAT charged?</span>
-            <input id="one" type="checkbox" class="toggle" />
+            <input id="one" type="checkbox" class="toggle" data-invoice-target="vatCharged" data-action="invoice#toggleVatFields" />
           </label>
         </div>
-        <div class="flex flex-row items-center justify-between mb-4" >
-          <label class="">VAT </label>
-          <div class="select w-24">
-            <%= form.select :vat_rate, options_for_select(Invoice::VAT_RATES, 0) %>
+        <div class="mb-4 vat-fields">
+          <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex" do %>
+            <%= t("forms.labels.invoice.vat_included_in_price") %>
+            <%= form.check_box :vat_included, class: "toggle", disabled: true, data: { invoice_target: "vatIncluded", action: "invoice#calculateTotal"} %>
+          <% end %>
+        </div>
+        <div class="flex flex-row items-center justify-between mb-4 gap-2 vat-fields">
+          
+          <%= form.label :vat, class: "select !flex-2 flex-row flex items-center gap-4", style: "flex: 2 2 0%" do %>
+          <%= t("forms.labels.invoice.vat") %>
+            <%= form.select :vat_rate, options_for_select(Invoice::VAT_RATES, @invoice.vat_rate || 0), {}, disabled: true, data: {action: "invoice#calculateTotal", invoice_target: "vatRate" } %>
+            <svg style="top: calc(50% - 3px)">
+              <use xlink:href="#select-arrow-down"></use>
+            </svg>
+          <% end %>
+          <div>
+            <%= form.number_field :vat, class: 'form-input basis-2/5 text-right pr-0', data: {invoice_target: 'vat'}, readonly: true %>
           </div>
         </div>
 
-        <div class="mb-4  ">
-          <label class="toggle-label !flex flex-row items-center justify-between" style="display: flex" for="one">
-            <span>VAT included in Subtotal?</span>
-            <input id="one" type="checkbox" class="toggle" />
-          </label>
-        </div>
+
         <div class="flex justify-between items-center">
           <label>Total</label>
-          <div>0.00</div>
+          <div data-invoice-target="total">0.00</div>
         </div>
       </div>
     </section>
