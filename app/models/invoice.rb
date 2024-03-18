@@ -3,6 +3,7 @@
 class Invoice < ApplicationRecord
   belongs_to :invoice_category
   belongs_to :user
+  belongs_to :client
   has_many :line_items, dependent: :destroy
 
   validates :date, presence: true

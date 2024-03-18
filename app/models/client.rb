@@ -2,7 +2,7 @@
 
 class Client < ApplicationRecord
   has_one :address, as: :addressable
-  has_many :addresses
-
+  
+  has_many :invoices
   accepts_nested_attributes_for :address, allow_destroy: true, reject_if: :all_blank
 end
