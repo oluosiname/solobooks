@@ -109,12 +109,35 @@ input.toggle {
   @apply bg-white w-full p-6;
 }
 
+.menu-item {
+}
+
+.menu-item:hover {
+}
+
+.menu-item a {
+  @apply text-grey-600 py-3 px-5 relative flex gap-3 items-center whitespace-nowrap bg-transparent transition-all ease-in-out rounded text-sm;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 150ms;
+
+  &:hover {
+    @apply bg-primary-100 text-primary-400;
+  }
+
+  & i {
+    @apply text-lg;
+  }
+}
+
+/* Invoice form */
+
 .invoice-form-wrapper {
   box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
   /* box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
 }
-
-/* Invoice form */
 
 .invoice-line-items-header {
   @apply flex items-center justify-start font-semibold mb-3 gap-x-4;
@@ -307,3 +330,5 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
 }
+
+/* menu */
