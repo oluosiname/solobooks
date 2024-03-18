@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_163208) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_190539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -48,10 +48,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_163208) do
     t.string 'invoice_number'
     t.string 'tax_id'
     t.decimal 'vat', precision: 5, scale: 2
-    t.decimal 'vat_rate', precision: 5, scale: 2
+    t.decimal 'vat_rate', precision: 5, scale: 2, default: '0.0'
     t.boolean 'vat_included', default: false
     t.bigint 'currency_id'
     t.string 'language'
+    t.decimal 'subtotal', precision: 10, scale: 2
     t.index ['currency_id'], name: 'index_invoices_on_currency_id'
     t.index ['date'], name: 'index_invoices_on_date'
     t.index ['due_date'], name: 'index_invoices_on_due_date'
