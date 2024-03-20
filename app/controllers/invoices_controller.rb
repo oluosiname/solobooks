@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class InvoicesController < ApplicationController
-  before_action :set_categories, only: [:new, :create]
+  before_action :set_select_options, only: [:new, :create]
 
   def show
   end
@@ -33,6 +33,8 @@ class InvoicesController < ApplicationController
       :language,
       :invoice_category_id,
       :vat_rate,
+      :client_id,
+      :vat_included,
       line_items_attributes:,
     )
   end
@@ -41,7 +43,8 @@ class InvoicesController < ApplicationController
     [:description, :quantity, :unit_price, :total_price, :_destroy]
   end
 
-  def set_categories
+  def set_select_options
     @categories = InvoiceCategory.all
+    @clients = Client.all
   end
 end

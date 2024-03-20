@@ -287,12 +287,12 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
 
 /* modal */
 .modal {
-  @apply fixed bg-white rounded-lg p-8 w-full md:w-1/2;
+  @apply fixed bg-white rounded-lg p-8  w-full md:w-5/12;
   z-index: 2;
   /* width: 400px; */
   word-break: break-word;
   transform: translate(-50%, -50%);
-  top: 30%;
+  top: 45%;
   left: 50%;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
