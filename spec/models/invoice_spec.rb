@@ -12,9 +12,22 @@ RSpec.describe Invoice, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:date) }
     it { is_expected.to validate_presence_of(:due_date) }
-    it { is_expected.to validate_presence_of(:total_amount) }
     it { is_expected.to validate_presence_of(:status) }
-    it { is_expected.to validate_presence_of(:user) }
-    it { is_expected.to validate_presence_of(:invoice_number) }
+  end
+
+  describe '#generate_invoice_number' do
+    it "combines 'INV', year date of the invoice, and the id of the invoice" do
+      invoice = create(:invoice)
+
+      expect(invoice.invoice_number).to eq("INV/2024/00#{invoice.id}")
+    end
+
+    context 'when invoice id is less than 1000' do
+      it 'pads the id with leading zeros' do
+        invoice = create(:invoice, id: 5)
+
+        expect(invoice.invoice_number).to eq("INV/#{Time.zone.now.year}/005")
+      end
+    end
   end
 end

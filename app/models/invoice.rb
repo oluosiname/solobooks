@@ -13,9 +13,10 @@ class Invoice < ApplicationRecord
   validates :status, presence: true
   validates_with InvoiceValidator::LineItemsValidator
   validates_with InvoiceValidator::DatesValidator
-  # validates :invoice_number, presence: true
 
   before_validation :set_total_amount
+
+  after_create :set_invoice_number
 
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
 
@@ -53,6 +54,10 @@ class Invoice < ApplicationRecord
     save
   end
 
+  def set_invoice_number
+    self.invoice_number = generate_invoice_number
+  end
+
   private
 
   def set_total_amount
@@ -67,5 +72,10 @@ class Invoice < ApplicationRecord
     self.subtotal = total_amount / (1 + (vat_rate / 100))
 
     self.vat = total_amount - subtotal
+  end
+
+  def generate_invoice_number
+    suffix = id.to_s.rjust(3, '0')
+    self.invoice_number = "INV/#{Time.zone.today.year}/#{suffix}"
   end
 end

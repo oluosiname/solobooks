@@ -23,7 +23,7 @@ FactoryBot.define do
       line_items_count { 3 }
     end
 
-    after_build do |invoice, evaluator|
+    after(:build) do |invoice, evaluator|
       invoice.line_items = build_list(:line_item, evaluator.line_items_count, invoice:)
     end
   end
