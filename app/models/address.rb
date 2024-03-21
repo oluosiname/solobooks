@@ -8,4 +8,8 @@ class Address < ApplicationRecord
   validates :state, presence: true
   validates :postal_code, presence: true
   validates :country, presence: true
+
+  def full_address
+    [street_address, city.capitalize, state.capitalize, postal_code, country].compact.join(', ')
+  end
 end

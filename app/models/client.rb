@@ -10,6 +10,14 @@ class Client < ApplicationRecord
 
   validates_with ClientValidator::AddressValidator
 
+  def display_name
+    business_name.presence || name
+  end
+
+  def full_address
+    address&.full_address
+  end
+
   private
 
   def name_xor_business_name

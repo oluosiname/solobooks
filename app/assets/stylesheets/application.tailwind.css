@@ -307,3 +307,7 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
 }
+
+.badge {
+  @apply items-center justify-center whitespace-nowrap text-xs font-normal px-3 py-0.5 rounded block text-center w-24 text-white;
+}

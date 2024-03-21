@@ -4,7 +4,10 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:edit, :show]
 
   def index
-    
+    @clients = current_user.clients
+  end
+
+  def show
   end
 
   def new
@@ -15,9 +18,6 @@ class ClientsController < ApplicationController
 
   def edit
     @client.build_address unless @client.address # This is especially easy to forget
-  end
-
-  def show
   end
 
   def create
@@ -32,7 +32,7 @@ class ClientsController < ApplicationController
             locals: { clients: @clients, selected: @client.id },
           )
         end
-        format.html { redirect_to client_url(@client), notice: 'client was successfully created.' }
+        format.html { redirect_to client_url(@client), notice: i18n.t('record.create.success', object: 'Client') }
       else
         @clients = Client.all
         format.turbo_stream do

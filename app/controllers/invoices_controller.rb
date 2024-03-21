@@ -3,6 +3,10 @@
 class InvoicesController < ApplicationController
   before_action :set_select_options, only: [:new, :create]
 
+  def index
+    @invoices = current_user.invoices
+  end
+
   def show
   end
 
@@ -27,8 +31,6 @@ class InvoicesController < ApplicationController
       :date,
       :due_date,
       :tax,
-      :discount,
-      :grand_total,
       :currency_id,
       :language,
       :invoice_category_id,

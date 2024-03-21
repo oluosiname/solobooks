@@ -5,6 +5,7 @@ class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :client
   has_many :line_items, dependent: :destroy
+  belongs_to :currency
 
   validates :date, presence: true
   validates :due_date, presence: true
@@ -32,12 +33,25 @@ class Invoice < ApplicationRecord
 
   enum status: {
     pending: 'pending',
-    sent: 'sent',
+    # sent: 'sent',
     paid: 'paid',
     cancelled: 'cancelled',
     refunded: 'refunded',
     due: 'due',
   }
+
+  def client_name
+    client.display_name
+  end
+
+  def currency_symbol
+    currency&.symbol || Currency.default_currency.symbol
+  end
+
+  def update_total_amount
+    set_total_amount
+    save
+  end
 
   private
 

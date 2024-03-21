@@ -29,3 +29,7 @@
 
 en:
   hello: "Hello world"
+  record:
+    create:
+      success: "%{object} was successfully created."
+      error: "%{object} could not be created."

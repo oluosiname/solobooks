@@ -1,0 +1,17 @@
+ <tr>
+  <td class="py-3 ps-4">
+    <div class="flex items-center h-5">
+      <input id="table-checkbox-1" type="checkbox" class="form-checkbox rounded">
+      <label for="table-checkbox-1" class="sr-only">Checkbox</label>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= invoice.invoice_number %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= invoice.client_name %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= invoice.date %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= invoice.due_date %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= number_to_currency(invoice.total_amount, unit: invoice.currency_symbol) %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= display_status(invoice.status)%></td>
+  <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex gap-6">
+    <a class="text-primary hover:text-sky-700" href="#">View</a>
+  </td>
+</tr>

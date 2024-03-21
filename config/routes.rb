@@ -19,9 +19,9 @@ Rails.application.routes.draw do
 
     root 'home#index'
 
-    resources :invoices, only: [:new, :create]
+    resources :invoices, only: [:new, :create, :index]
     resources :invoice_categories, only: [:new, :create]
-    resources :clients, only: [:new, :create], trailing_slash: true
+    resources :clients, only: [:new, :create, :index]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
