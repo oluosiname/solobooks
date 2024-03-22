@@ -311,3 +311,21 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
 .badge {
   @apply items-center justify-center whitespace-nowrap text-xs font-normal px-3 py-0.5 rounded block text-center w-24 text-white;
 }
+
+.ff {
+}
+
+.dropdown-body {
+  @apply opacity-100 absolute hidden text-grey-800 bg-white rounded-lg shadow-lg mt-1 top-full -left-32 text-base font-normal  border border-grey-100;
+  overflow-wrap: break-word;
+  z-index: 50;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
+}
+
+.dropdown.open {
+  & .dropdown-body {
+    @apply block;
+  }
+}

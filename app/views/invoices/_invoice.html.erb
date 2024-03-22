@@ -12,6 +12,26 @@
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= number_to_currency(invoice.total_amount, unit: invoice.currency_symbol) %></td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= display_status(invoice.status)%></td>
   <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex gap-6">
-    <a class="text-primary hover:text-sky-700" href="#">View</a>
+    <div class="flex flex-wrap gap-2 relative dropdown" data-controller="dropdown" data-dropdown-target="dropdownContainer">
+      <button data-fc-type="dropdown" type="button" class="btn btn-primary btn-sm ff" data-action="dropdown#actionToggle" data-dropdown-target="dropdownButton">
+          Actions <i class="fa-solid fa-chevron-down text-base ms-1"></i>
+      </button>
+      <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
+
+      <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown">
+          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+              <%= t('invoices.index.table.actions.download') %>
+          </a>
+          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+               <%= t('invoices.index.table.actions.mark_as_paid') %>
+          </a>
+          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+              <%= t('invoices.index.table.actions.send') %>
+          </a>
+          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+               <%= t('invoices.index.table.actions.send_reminder') %>
+          </a>
+      </div>
+    </div>
   </td>
 </tr>
