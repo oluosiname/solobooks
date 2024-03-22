@@ -3,7 +3,10 @@
 FactoryBot.define do
   factory :currency do
     name { Faker::Currency.name }
-    code { Faker::Currency.code }
+    sequence :code do |n|
+      "#{Faker::Currency.code}-#{n}"
+    end
+
     symbol { Faker::Currency.symbol }
     active { true }
     default { false }

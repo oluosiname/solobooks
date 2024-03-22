@@ -9,7 +9,6 @@ FactoryBot.define do
     status { 'pending' }
     invoice_category
     vat_id { Faker::Lorem.word }
-    invoice_number { Faker::Lorem.word }
     tax_id { Faker::Lorem.word }
     vat { Faker::Number.decimal(l_digits: 5, r_digits: 2) }
     vat_rate { Faker::Number.decimal(l_digits: 2, r_digits: 2) }

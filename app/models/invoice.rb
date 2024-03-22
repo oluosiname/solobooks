@@ -20,6 +20,15 @@ class Invoice < ApplicationRecord
 
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
 
+  scope :filtered, ->(params) {
+    return unless params
+
+    filter_by_status(params[:status]).filter_by_client(params[:client_id])
+  }
+
+  scope :filter_by_status, ->(status) { where(status: status) if status.present? }
+  scope :filter_by_client, ->(client_id) { where(client_id: client_id) if client_id.present? }
+
   VAT_RATES = {
     '0%' => 0,
     '7%' => 7,

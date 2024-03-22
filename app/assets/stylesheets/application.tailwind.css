@@ -329,3 +329,21 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
     @apply block;
   }
 }
+
+.pill {
+  display: block;
+
+  & input[type="radio"] {
+    display: none;
+  }
+
+  & input[type="radio"]:checked + label {
+    @apply bg-primary-100 text-grey-900;
+  }
+
+  & label {
+    @apply font-normal text-sm text-grey-700 block px-2.5 py-1 rounded-2xl;
+    cursor: pointer;
+    display: block;
+  }
+}

@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :invoice_category do
-    name { Faker::Lorem.word }
+    sequence :name do |n|
+      "#{Faker::Lorem.word}-#{n}"
+    end
   end
 end

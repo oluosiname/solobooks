@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   before_action :set_select_options, only: [:new, :create]
 
   def index
-    @invoices = current_user.invoices
+    @invoices = current_user.invoices.filtered(filter_params).includes(:client, :currency)
   end
 
   def show
@@ -39,6 +39,10 @@ class InvoicesController < ApplicationController
       :vat_included,
       line_items_attributes:,
     )
+  end
+
+  def filter_params
+    params.permit(:status, :client_id)
   end
 
   def line_items_attributes
