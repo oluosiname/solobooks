@@ -20,6 +20,8 @@ class Invoice < ApplicationRecord
 
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
 
+  has_one_attached :pdf
+
   scope :filtered, ->(params) {
     return unless params
 
@@ -85,6 +87,6 @@ class Invoice < ApplicationRecord
 
   def generate_invoice_number
     suffix = id.to_s.rjust(3, '0')
-    self.invoice_number = "INV/#{Time.zone.today.year}/#{suffix}"
+    self.invoice_number = "INV-#{Time.zone.today.year}-#{user_id}-#{suffix}"
   end
 end
