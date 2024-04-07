@@ -7,8 +7,21 @@ class InvoicesController < ApplicationController
     @invoices = current_user.invoices.filtered(filter_params).includes(:client, :currency)
   end
 
-  def show
-  end
+  # def show
+  #   @invoice = current_user.invoices.includes(:client, :currency, :line_items).find(params[:id])
+
+  #   prev_locale = I18n.locale
+  #   # I18n.locale = @invoice.language.to_sym
+  #   I18n.locale = :en
+  #   pdf = InvoiceService::PdfGenerator.call(invoice: @invoice)
+  #   I18n.locale = prev_locale
+  #   send_data(
+  #     pdf.render,
+  #     file_name: "Invoice - #{@invoice.invoice_number}",
+  #     type: 'application/pdf',
+  #     disposition: 'inline',
+  #   )
+  # end
 
   def new
     @invoice = Invoice.new
@@ -18,6 +31,14 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params.merge(user: current_user))
     if @invoice.save
+
+      prev_locale = I18n.locale
+      I18n.locale = @invoice.language.to_sym
+      pdf_file = InvoiceService::PdfGenerator.call(invoice: @invoice)
+      I18n.locale = prev_locale
+
+      InvoiceService::PdfAttacher.call(invoice: @invoice, pdf_path: StringIO.new(pdf_file.render))
+
       redirect_to invoice_path(@invoice)
     else
       render :new, status: :unprocessable_entity

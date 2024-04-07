@@ -2,22 +2,21 @@
 
 module InvoiceService
   class PdfAttacher < ApplicationService
-    def initialize(invoice:, pdf_path:)
+    def initialize(invoice:, pdf:)
       @invoice = invoice
-      @pdf_path = pdf_path
+      @pdf = pdf
     end
 
     def call
       invoice.pdf.attach(
-        io: File.open(pdf_path),
+        io: pdf,
         filename: "Invoice - #{@invoice.invoice_number}",
-        content_type: 'application/pdf'
+        content_type: 'application/pdf',
       )
     end
 
     private
 
-    attr_reader :invoice, :pdf_path
-
+    attr_reader :invoice, :pdf
   end
 end
