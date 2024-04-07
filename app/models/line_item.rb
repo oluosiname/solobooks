@@ -5,6 +5,8 @@ class LineItem < ApplicationRecord
 
   before_validation :calculate_total_price
 
+  after_save :update_invoice_total_amount
+
   validates :description, presence: true
   validates :quantity, presence: true
   validates :unit_price, presence: true
@@ -19,5 +21,9 @@ class LineItem < ApplicationRecord
 
   def calculate_total_price
     self.total_price = quantity * unit_price
+  end
+
+  def update_invoice_total_amount
+    invoice.update_total_amount
   end
 end

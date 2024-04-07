@@ -14,6 +14,17 @@
     <div class="flex justify-between">
       <div>
         <div class="field invoice-field">
+          <%= form.label :category_id, class: "select !flex-2", style: "flex: 2 2 0%" do %>
+            <%= t("forms.labels.invoice.category") %>
+            <%= form.select :invoice_category_id, {}, prompt: true do %>
+              <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
+            <% end %>
+            <svg >
+              <use xlink:href="#select-arrow-down"></use>
+            </svg>
+          <% end %>
+        </div>
+        <div class="field invoice-field">
           <%= form.label :currency_id, class: "select" do %>
             <%= t("forms.labels.invoice.currency") %>
             <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id } %>
@@ -59,17 +70,18 @@
         
         <div class="field invoice-field">
           <div class="flex justify-start gap-x-2">
-            <%= form.label :category_id, class: "select !flex-2", style: "flex: 2 2 0%" do %>
-              <%= t("forms.labels.invoice.category") %>
-              <%= form.select :invoice_category_id, {}, prompt: true do %>
-                <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
+            <%= form.label :client_id, class: "select !flex-2" do %>
+              <%= form.select :client_id, {}, prompt: "Select Client" do %>
+                <%= render "invoice_client_options", clients: @clients, selected: @invoice.client_id %> 
               <% end %>
-              <svg >
+              <svg style="top: calc(50% - 3px)">
                 <use xlink:href="#select-arrow-down"></use>
               </svg>
             <% end %>
             <div class="flex flex-col justify-end flex-1">
-              <%= link_to "New Client", new_invoice_category_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } %>
+              <%= link_to new_client_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } do %>
+                New
+              <% end %>
             </div>
           </div>
         </div>
@@ -161,6 +173,3 @@
     <% end %>
   </div>
 </div>
-
-
-

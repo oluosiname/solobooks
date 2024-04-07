@@ -1,0 +1,41 @@
+<h2 class="text-xl leading-6 font-semibold mb-6"><%= t("invoices.index.title") %></h2>
+<section class="invoices-filter mb-4">
+  <%= form_with url: invoices_path, method: :get, data: {controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list", search_fields_value: ["status"]} do %>
+    <div class="flex gap-4">
+      <span class="pill">
+        <%= radio_button_tag :status, '', id: 'status_all', data: {action: "click->search#call"}, checked: params[:status] == '' %>
+        <label for='status_all'><%= t("all") %></label>
+      </span>
+      <% Invoice.statuses.keys.each do |status| %>
+        <span class="pill">
+          <%= radio_button_tag :status, status, id: "status_#{status}", data: {action: "click->search#call"}, checked: params[:status] == status %>
+          <label for='status_<%= status %>'><%= t("invoices.statuses.#{status}") %></label>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+</section>
+<div class="border rounded-lg overflow-hidden">
+  <table class="min-w-full divide-y divide-gray-200" data-controller="invoice-table">
+    <thead class="bg-gray-50 ">
+      <tr>
+        <th scope="col" class="py-3 ps-4">
+          <div class="flex items-center h-5">
+            <input id="table-checkbox-all" type="checkbox" class="form-checkbox rounded">
+            <label for="table-checkbox-all" class="sr-only">Checkbox</label>
+          </div>
+        </th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.invoice_number") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.client") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.date") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.due_date") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.total_amount") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.status") %></th>
+        <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200" id="invoices-list">
+      <%= render @invoices %>
+    </tbody>
+  </table>
+</div>

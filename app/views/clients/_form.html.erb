@@ -1,0 +1,94 @@
+<div>
+  <h2 class="text-xl font-semibold mb-4">New Client</h2>
+  <%= form_with(model: client, url: clients_path, class: "contents") do |form| %>
+    <div id="client_errors">
+      <%= render "clients/client_errors", client: @client %>
+    </div>
+   
+    <div class="field mb-4">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-input' %>
+    </div>
+
+    <div class="field  mb-4">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: 'form-input' %>
+    </div>
+
+    <div class="field mb-4">
+      <%= form.label :phone_number %>
+      <%= form.telephone_field :phone_number, class: 'form-input' %>
+    </div>
+
+    <div class="field mb-4">
+      <%= form.label :business_name %>
+      <%= form.text_field :business_name, class: 'form-input' %>
+    </div>
+
+    <div class="flex gap-4">
+      <div class="field  mb-4">
+        <%= form.label :business_tax_id %>
+        <%= form.text_field :business_tax_id, class: 'form-input' %>
+      </div>
+
+      <div class="field mb-4">
+        <%= form.label :vat_number %>
+        <%= form.text_field :vat_number, class: 'form-input' %>
+      </div>
+    </div>
+
+    <fieldset class ="mt-6">
+      <legend class="font-bold">Address</legend>
+
+      <div class="field mb-4">
+        <%= form.fields_for :address do |address_form| %>
+          <%= address_form.label :street_address %>
+          <%= address_form.text_field :street_address, class: 'form-input' %>
+        <% end %>
+      </div>
+
+      <div class="flex gap-2">
+
+        <div class="field mb-4">
+          <%= form.fields_for :address do |address_form| %>
+            <%= address_form.label :city %>
+            <%= address_form.text_field :city, class: 'form-input' %>
+          <% end %>
+        </div>
+
+        <div class="field mb-4">
+          <%= form.fields_for :address do |address_form| %>
+            <%= address_form.label :state %>
+            <%= address_form.text_field :state, class: 'form-input' %>
+          <% end %>
+        </div>
+
+        <%= form.fields_for :address do |address_form| %> 
+          <div class="field mb-4">
+              <%= address_form.label :postal_code %>
+              <%= address_form.text_field :postal_code, class: 'form-input' %>
+          
+          </div>
+
+          <div class="field  mb-4">
+            <%= address_form.label :country, class: "select !flex-2", style: "flex: 2 2 0%" do %>
+              <%= t("forms.labels.address.country") %>
+              <%= address_form.country_select :country, class: 'form-input'  %>
+              <svg >
+                <use xlink:href="#select-arrow-down"></use>
+              </svg>
+            <% end %>
+          </div>
+          
+         <% end %>
+      </div>
+    </fieldset>
+
+    <div class="field flex justify-end gap-2">
+      <%= form.submit t("forms.buttons.create"), class: "btn btn-success" %>
+      <% if @modal %>
+        <%= button_tag "Cancel", data: { action: "turbo-modal#hideModal" }, type: "button", class: "btn btn-secondary modal-form-cancel" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

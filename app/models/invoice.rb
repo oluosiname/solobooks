@@ -3,7 +3,9 @@
 class Invoice < ApplicationRecord
   belongs_to :invoice_category
   belongs_to :user
+  belongs_to :client
   has_many :line_items, dependent: :destroy
+  belongs_to :currency
 
   validates :date, presence: true
   validates :due_date, presence: true
@@ -11,11 +13,23 @@ class Invoice < ApplicationRecord
   validates :status, presence: true
   validates_with InvoiceValidator::LineItemsValidator
   validates_with InvoiceValidator::DatesValidator
-  # validates :invoice_number, presence: true
 
   before_validation :set_total_amount
 
+  after_create :set_invoice_number
+
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
+
+  has_one_attached :pdf
+
+  scope :filtered, ->(params) {
+    return unless params
+
+    filter_by_status(params[:status]).filter_by_client(params[:client_id])
+  }
+
+  scope :filter_by_status, ->(status) { where(status: status) if status.present? }
+  scope :filter_by_client, ->(client_id) { where(client_id: client_id) if client_id.present? }
 
   VAT_RATES = {
     '0%' => 0,
@@ -31,12 +45,29 @@ class Invoice < ApplicationRecord
 
   enum status: {
     pending: 'pending',
-    sent: 'sent',
+    # sent: 'sent',
     paid: 'paid',
     cancelled: 'cancelled',
     refunded: 'refunded',
     due: 'due',
   }
+
+  def client_name
+    client.display_name
+  end
+
+  def currency_symbol
+    currency&.symbol || Currency.default_currency.symbol
+  end
+
+  def update_total_amount
+    set_total_amount
+    save
+  end
+
+  def set_invoice_number
+    self.invoice_number = generate_invoice_number
+  end
 
   private
 
@@ -52,5 +83,10 @@ class Invoice < ApplicationRecord
     self.subtotal = total_amount / (1 + (vat_rate / 100))
 
     self.vat = total_amount - subtotal
+  end
+
+  def generate_invoice_number
+    suffix = id.to_s.rjust(3, '0')
+    self.invoice_number = "INV-#{Time.zone.today.year}-#{user_id}-#{suffix}"
   end
 end

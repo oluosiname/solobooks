@@ -1,0 +1,11 @@
+<% if  client.errors.any? %>
+  <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
+    <h2 class="font-medium mb-2"><%= pluralize( client.errors.count, "error") %> prohibited this client from being created:</h2>
+
+    <ul>
+      <%  client.errors.each do |error| %>
+        <li class="text-sm font-normal mb-1"><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

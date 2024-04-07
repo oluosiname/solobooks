@@ -28,6 +28,8 @@ gem 'stimulus-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+gem 'country_select', '~> 8.0'
+
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '>= 4.0.1'
 
@@ -54,6 +56,11 @@ gem 'rubocop-rails'
 gem 'rubocop-rspec'
 gem 'rubocop-shopify', require: false
 
+gem 'prawn'
+gem 'prawn-table'
+
+
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: [:mri, :windows]
@@ -62,6 +69,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.1.0'
 end
+
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -74,6 +82,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 gem 'tailwindcss-rails', '~> 2.3'
