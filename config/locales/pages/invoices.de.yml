@@ -1,0 +1,31 @@
+de:
+  invoices:
+    show:
+      title: "Kunde"
+      description: "Kundendetails"
+      bill_to: "Rechnung an"
+      invoice_date: "Rechnungsdatum"
+      invoice_due_date: "Fälligkeitsdatum"
+      line_items_table:
+        heading:
+          item: "Artikel"
+          qty: "Menge"
+          rate: "Preis"
+          amount: "Gesamt"
+        total: "Gesamt"
+        subtotal: "Zwischensumme"
+        vat: "MwSt."
+      payment_terms: "Zahlungsbedingungen"
+      notes: "Notizen"
+      payment_details:
+        heading: "Zahlungsdetails"
+        bank_name: "Bankname"
+        account_number: "Kontonummer"
+        sort_code: "Sort Code"
+        iban: "IBAN"
+        swift: "SWIFT"
+      thanks:
+        title: "Vielen Dank!"
+        content: "Vielen Dank für Ihr Geschäft. Wenn Sie Fragen zu dieser Rechnung haben, verwenden Sie die folgenden Kontaktdaten:"
+      no_vat: "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."
+      reverse_vat: "Steuerschuldnerschaft des Leistungsempfängers (§13b Abs. 5 UStG)"

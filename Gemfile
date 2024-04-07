@@ -56,6 +56,11 @@ gem 'rubocop-rails'
 gem 'rubocop-rspec'
 gem 'rubocop-shopify', require: false
 
+gem 'prawn'
+gem 'prawn-table'
+
+
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: [:mri, :windows]
@@ -64,6 +69,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.1.0'
 end
+
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
