@@ -17,23 +17,24 @@
         </a>
       </li>
       <li class="menu-item">
-        <a href="calendar.html" class="menu-link waves-effect">
-         <i class="fa-solid fa-file-invoice"></i>
+        <%= link_to invoices_path, class: "menu-link waves-effect" do %>
+          <i class="fa-solid fa-file-invoice"></i>
         
-        <span class="menu-text"> Invoices </span>
-        </a>
+          <span class="menu-text"> <%= t("menu.invoices") %> </span>
+        <% end %>
       </li>
       <li class="menu-item">
         <a href="calendar.html" class="menu-link waves-effect">
           <i class="fa-regular fa-handshake"></i>
         
-        <span class="menu-text"> Clients </span>
+        <span class="menu-text">  <%= t("menu.clients") %> </span>
         </a>
       </li>
       <li class="menu-item">
         <a href="calendar.html" class="menu-link waves-effect">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
         
-        <span class="menu-text"> Expenses </span>
+        <span class="menu-text"> <%= t("menu.transactions") %> </span>
         </a>
       </li>
       <li class="menu-item">
@@ -44,8 +45,8 @@
       </li>
       <li class="menu-item">
         <a href="calendar.html" class="menu-link waves-effect">
-        
-        <span class="menu-text"> Taxes </span>
+        <i class="fa-solid fa-percent"></i>
+        <span class="menu-text">  <%= t("menu.taxes") %> </span>
         </a>
       </li>
     

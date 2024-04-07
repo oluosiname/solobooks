@@ -129,6 +129,12 @@ input.toggle {
 
   & i {
     @apply text-lg;
+    display: flex;
+    flex: 0.475;
+  }
+
+  & span {
+    flex: 4;
   }
 }
 
