@@ -17,6 +17,16 @@ de:
       invoice_category:
         name: "Name"
         description: "Beschreibung"
+      address:
+        country: "Land"
+      invoice:
+        category: "Kategorie"
+        currency: "Währung"
+        language: "Sprache"
+        vat: "MwSt."
+        vat_included_in_price: "MwSt. im Preis enthalten"
+        due_date: "Fälligkeitsdatum"
+        date: "Rechnungsdatum"
     placeholders:
       user:
         email: "E-Mail-Adresse"
@@ -36,3 +46,19 @@ de:
       update: "Aktualisieren"
       next: "Weiter"
       cancel: "Abbrechen"
+    errors:
+      invoice:
+        customer:
+          blank: "Kunde darf nicht leer sein"
+        number:
+          blank: "Rechnungsnummer darf nicht leer sein"
+        date:
+          blank: "Rechnungsdatum darf nicht leer sein"
+        due_date:
+          blank: "Fälligkeitsdatum darf nicht leer sein"
+        total:
+          blank: "Gesamtsumme darf nicht leer sein"
+        paid:
+          blank: "Bezahlt darf nicht leer sein"
+        notes:
+          blank: "Notizen darf nicht leer sein"

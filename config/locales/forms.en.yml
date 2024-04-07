@@ -17,6 +17,16 @@ en:
       invoice_category:
         name: "Name"
         description: "Description"
+      address:
+        country: "Country"
+      invoice:
+        category: "Category"
+        currency: "Currency"
+        language: "Language"
+        vat: "VAT"
+        vat_included_in_price: "VAT included in price"
+        due_date: "Due date"
+        date: "Date"
     placeholders:
       user:
         email: "Email"

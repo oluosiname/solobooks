@@ -76,6 +76,8 @@ group :development do
   gem 'web-console'
   gem "letter_opener"
   gem 'letter_opener_web', '~> 2.0'
+  gem 'i18n-tasks', '~> 1.0.13'
+  gem 'easy_translate'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

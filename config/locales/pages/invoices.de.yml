@@ -29,3 +29,23 @@ de:
         content: "Vielen Dank für Ihr Geschäft. Wenn Sie Fragen zu dieser Rechnung haben, verwenden Sie die folgenden Kontaktdaten:"
       no_vat: "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."
       reverse_vat: "Steuerschuldnerschaft des Leistungsempfängers (§13b Abs. 5 UStG)"
+    index:
+      table:
+        actions:
+          download: "Herunterladen"
+          mark_as_paid: "Als bezahlt markieren"
+          send: "Senden"
+          send_reminder: "Erinnerung senden"
+          view: "Anzeigen"
+        heading:
+          client: "Kunde"
+          date: "Datum"
+          due_date: "Fälligkeitsdatum"
+          invoice_number: "Rechnungsnummer"
+          status: "Status"
+          total_amount: "Gesamtbetrag"
+      title: "Titel"
+    record:
+      create:
+        error: "%{object} konnte nicht erstellt werden."
+        success: "%{object} wurde erfolgreich erstellt."

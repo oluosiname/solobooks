@@ -29,3 +29,23 @@ en:
         content: "Thank you for your business. If you have any questions concerning this invoice, use the following contact information:"
       no_vat: "According to § 19 UStG no sales tax is charged."
       reverse_vat: "Reverse VAT charge is applied (§13b Abs. 5 UStG)"
+    index:
+      table:
+        actions:
+          download: "Download"
+          mark_as_paid: "Mark as Paid"
+          send: "Send"
+          send_reminder: "Send Reminder"
+          view: "View"
+        heading:
+          client: "Client"
+          date: "Date"
+          due_date: "Due Date"
+          invoice_number: "Invoice Number"
+          status: "Status"
+          total_amount: "Total Amount"
+      title: "Title"
+    record:
+      create:
+        error: "%{object} could not be created."
+        success: "%{object} was successfully created."
