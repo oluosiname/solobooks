@@ -44,18 +44,7 @@ en:
         date: Date
         due_date: Due date
   hello: Hello world
-    
 
-      bill_to: Bill to
-      line_items_table:
-        heading:
-          amount: Amount
-          item: Item
-          qty: Qty
-          rate: Rate
-      reverse_vat: Reverse vat
-      thanks:
-        content: Content
   record:
     create:
       error: "%{object} could not be created."

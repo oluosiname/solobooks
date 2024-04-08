@@ -14,13 +14,19 @@ class Invoice < ApplicationRecord
   validates_with InvoiceValidator::LineItemsValidator
   validates_with InvoiceValidator::DatesValidator
 
+  validates :invoice_number, uniqueness: { scope: :user_id }
+
   before_validation :set_total_amount
 
-  after_create :set_invoice_number
+  before_create :set_invoice_number
 
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
 
   has_one_attached :pdf
+
+  scope :created_in_current_month, -> {
+    where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
+  }
 
   scope :filtered, ->(params) {
     return unless params
@@ -86,7 +92,8 @@ class Invoice < ApplicationRecord
   end
 
   def generate_invoice_number
-    suffix = id.to_s.rjust(3, '0')
-    self.invoice_number = "INV-#{Time.zone.today.year}-#{user_id}-#{suffix}"
+    suffix = user.invoices.created_in_current_month.size + 1
+    month = Date.today.month.to_s.rjust(2, '0')
+    self.invoice_number = "INV-#{Time.zone.today.year}-#{month}-#{suffix}"
   end
 end

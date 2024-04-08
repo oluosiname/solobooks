@@ -45,7 +45,3 @@ en:
           status: "Status"
           total_amount: "Total Amount"
       title: "Title"
-    record:
-      create:
-        error: "%{object} could not be created."
-        success: "%{object} was successfully created."

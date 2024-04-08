@@ -42,7 +42,7 @@
             </svg>
           <% end %>
         </div>
-        <div class="field invoice-field">
+        <div class="field invoice-field invoice_date_container">
           <%= form.label :date, t("forms.labels.invoice.date") %>
           <%= form.text_field :date,
             placeholder: t("forms.placeholders.invoice.date"),
@@ -54,7 +54,7 @@
             } %>
         </div>
 
-        <div class="field invoice-field">
+        <div class="field invoice-field invoice_due_date_container">
           <%= form.label :due_date, t("forms.labels.invoice.due_date") %>
           <%= form.text_field :due_date,
             placeholder: t("forms.placeholders.invoice.due_date"),
@@ -125,7 +125,6 @@
 
     <section class="flex justify-between mt-6">
       <div class="payment-information">
-        Bank: <br>
       </div>
       <div class="totals">
         <div class="flex justify-between items-center mb-4">

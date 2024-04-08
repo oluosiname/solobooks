@@ -37,9 +37,9 @@ class InvoicesController < ApplicationController
       pdf_file = InvoiceService::PdfGenerator.call(invoice: @invoice)
       I18n.locale = prev_locale
 
-      InvoiceService::PdfAttacher.call(invoice: @invoice, pdf_path: StringIO.new(pdf_file.render))
+      InvoiceService::PdfAttacher.call(invoice: @invoice, pdf: StringIO.new(pdf_file.render))
 
-      redirect_to invoice_path(@invoice)
+      redirect_to invoices_path, notice: I18n.t('record.create.success', object: 'Invoice')
     else
       render :new, status: :unprocessable_entity
     end
@@ -72,6 +72,6 @@ class InvoicesController < ApplicationController
 
   def set_select_options
     @categories = InvoiceCategory.all
-    @clients = Client.all
+    @clients = current_user.clients
   end
 end
