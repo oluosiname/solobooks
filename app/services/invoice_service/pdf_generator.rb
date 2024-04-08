@@ -14,15 +14,11 @@ module InvoiceService
 
     def call
       @pdf = Prawn::Document.new
-      pdf.font_families.update('Baloo' => {
-        normal: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-Regular.ttf'),
-        bold: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-Bold.ttf'),
-        semi_bold: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-SemiBold.ttf'),
-        medium: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-Medium.ttf'),
-      })
+      pdf.font_families.update('Baloo' => fonts)
       pdf.font 'Baloo'
       pdf.font_size FONT_SIZE_MD
       pdf.fill_color FONT_COLOUR
+
       last_measured_y = pdf.cursor
       pdf.image "#{Rails.root.join("app/assets/images/logo-dark.png")}", position: :left, width: 80
       pdf.text_box 'Invoice #', size: 16, style: :semi_bold, at: [0, last_measured_y], align: :right
@@ -46,9 +42,9 @@ module InvoiceService
       pdf.text "#{invoice.client.name}", size: 11, style: :semi_bold
 
       pdf.move_down 10
-      pdf.text '1274 Stark Hollow Road,'
-      pdf.text 'Binghamton, NY 13901'
-      pdf.text 'United States'
+      pdf.text client_address.street_address
+      pdf.text [client_address.city, client_address.state, client_address.postal_code].join(', ')
+      pdf.text client_address.country_name
       pdf.text "VAT ID: #{invoice.client.vat_number}" if invoice.client.vat_number.present?
       pdf.move_down 10
 
@@ -227,6 +223,19 @@ module InvoiceService
         size: 8,
       }
       pdf.number_pages 'Page <page> of <total>', options
+    end
+
+    def fonts
+      {
+        normal: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-Regular.ttf'),
+        bold: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-Bold.ttf'),
+        semi_bold: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-SemiBold.ttf'),
+        medium: Rails.root.join('app/assets/fonts/Baloo_2/static/Baloo2-Medium.ttf'),
+      }
+    end
+
+    def client_address
+      @client_address ||= invoice.client.address
     end
 
     attr_reader :invoice, :pdf

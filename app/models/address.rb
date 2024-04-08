@@ -10,6 +10,11 @@ class Address < ApplicationRecord
   validates :country, presence: true
 
   def full_address
-    [street_address, city.capitalize, state.capitalize, postal_code, country].compact.join(', ')
+    [street_address, city.capitalize, state.capitalize, postal_code, country_name].compact.join(', ')
+  end
+
+  def country_name
+    country = ISO3166::Country[country]
+    country.translations[I18n.locale.to_s] || country.name
   end
 end
