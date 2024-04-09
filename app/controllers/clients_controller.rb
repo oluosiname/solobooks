@@ -24,7 +24,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params.merge(user: current_user))
     respond_to do |format|
       if @client.save
-        @clients = Client.all
+        @clients = current_user.clients
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             'invoice_client_id',
@@ -34,7 +34,7 @@ class ClientsController < ApplicationController
         end
         format.html { redirect_to client_url(@client), notice: i18n.t('record.create.success', object: 'Client') }
       else
-        @clients = Client.all
+        @clients = current_user.clients
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             'client_errors',
@@ -51,7 +51,7 @@ class ClientsController < ApplicationController
   private
 
   def set_client
-    @client = Client.find(params[:id])
+    @client = current_user.clients.find(params[:id])
   end
 
   def client_params

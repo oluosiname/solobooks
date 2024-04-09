@@ -20,8 +20,10 @@
         <%= render "partials/menu" %>
       </section>
       <section class="app-content">
-         
-        <%= yield %>
+        <%= render "partials/header" %>
+        <section class="app-main">
+          <%= yield %>
+        </section>
         <%= turbo_frame_tag "modal" %>
       </section>
     </main>

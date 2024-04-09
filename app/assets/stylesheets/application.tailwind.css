@@ -16,7 +16,7 @@
 */
 
 .card {
-  @apply relative flex h-fit flex-col break-words border border-grey-100 bg-grey bg-clip-border border-solid;
+  @apply relative flex h-fit flex-col break-words border border-grey-100 bg-white bg-clip-border border-solid;
 }
 
 /* Form */
@@ -106,7 +106,11 @@ input.toggle {
 }
 
 .app-content {
-  @apply bg-white w-full p-6;
+  @apply w-full;
+}
+
+.app-main {
+  @apply bg-grey w-full p-6;
 }
 
 .menu-item {
@@ -141,7 +145,7 @@ input.toggle {
 /* Invoice form */
 
 .invoice-form-wrapper {
-  box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
+  /* box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2); */
   /* box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
 }
 
@@ -376,4 +380,12 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
     cursor: pointer;
     display: block;
   }
+}
+
+/* header */
+
+.app-header {
+  @apply sticky top-0 z-50 bg-white shadow-md;
+  height: 70px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
 }
