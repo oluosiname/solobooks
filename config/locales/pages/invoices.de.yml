@@ -44,8 +44,4 @@ de:
           invoice_number: "Rechnungsnummer"
           status: "Status"
           total_amount: "Gesamtbetrag"
-      title: "Titel"
-    record:
-      create:
-        error: "%{object} konnte nicht erstellt werden."
-        success: "%{object} wurde erfolgreich erstellt."
+      title: "Rechnungen"
