@@ -21,6 +21,12 @@
       </section>
       <section class="app-content">
         <%= render "partials/header" %>
+        <%- if flash[:notice] %>
+          <div class="text-green-600 bg-green-100 text-sm  py-4 px-3" role="alert">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
         <section class="app-main">
           <%= yield %>
         </section>
