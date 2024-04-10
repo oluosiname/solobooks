@@ -40,6 +40,12 @@ en:
         total: "Total"
         paid: "Paid"
         notes: "Notes"
+    legends:
+      profile:
+        address: "Address"
+        invoice_settings: "Invoice Settings"
+        personal_information: "Personal Information"
+        tax_information: "Tax Information"
     errors:
       invoice:
         number:
