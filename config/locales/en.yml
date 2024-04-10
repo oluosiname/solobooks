@@ -23,29 +23,18 @@ en:
   errors:
     messages:
       not_saved: Not saved
-  forms:
-    buttons:
-      create: Create
-    labels:
-      address:
-        country: Country
-      invoice:
-        category: Category
-        currency: Currency
-        date: Date
-        due_date: Due date
-        language: Language
-        vat: Vat
-        vat_included_in_price: Vat included in price
-      invoice_category:
-        name: Name
-    placeholders:
-      invoice:
-        date: Date
-        due_date: Due date
   hello: Hello world
 
   record:
     create:
-      error: "%{object} could not be created."
-      success: "%{object} was successfully created."
+      error: "%{resource} could not be created."
+      success: "%{resource} was successfully created."
+      form_error:
+        one: "Failed to save %{resource}: 1 error."
+        other: "Failed to save %{resource}: %{count} errors."
+    update:
+      error: "%{resource} could not be updated."
+      success: "%{resource} was successfully updated."
+      form_error:
+        one: "Failed to save %{resource}: 1 error."
+        other: "Failed to save %{resource}: %{count} errors."

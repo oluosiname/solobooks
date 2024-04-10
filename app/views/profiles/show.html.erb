@@ -1,0 +1,160 @@
+<div class="card p-6">
+  <%= form_with(model: @profile, url: create_profile_path, local: true) do |form| %>
+    <% if  @profile.errors.any? %>
+    <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
+      <h2 class="font-medium mb-2"><%= t("record.#{@profile.id.present?  ? 'update' : 'create'}.form_error", count: @profile.errors.count, resource: 'Profile') %></h2>
+
+      <ul>
+        <%  @profile.errors.each do |error| %>
+          <li class="text-sm font-normal mb-1"><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <!-- Full Name -->
+    <div class="field mb-4">
+      <%= form.label :full_name %>
+      <%= form.text_field :full_name, class: "form-input w-full" %>
+    </div>
+
+    <!-- Legal Status -->
+    <fieldset class="flex gap-4 md:mb-4 md:flex-nowrap flex-wrap">
+      <div class="field  w-full">
+        <%= form.label :legal_status, class: "select" do %>
+            <%= t('activerecord.attributes.profile.business_type') %>
+            <%= form.select :legal_status, options_for_select([['Individual', 0], ['Business', 1]]), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
+            <i class="fa-solid fa-angle-down" style="top: calc(50% + 5px)"></i>
+          <% end %>
+      </div>
+
+      <!-- Business Name -->
+      <div class="field mb-4 w-full">
+        <%= form.label :business_name %>
+        <%= form.text_field :business_name, class: "form-input w-full" %>
+      </div>
+    </fieldset>
+
+    <!-- Personal Info -->
+    <fieldset class="flex mb-4 gap-4 justify-between md:flex-nowrap flex-wrap">
+      <legend class="font-bold mb-3"><%= t('forms.legends.profile.personal_information') %></legend>
+      <!-- Phone Number -->
+      <div class="field w-full">
+        <%= form.label :phone_number %>
+        <%= form.text_field :phone_number, class: "form-input w-full" %>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="field w-full">
+        <%= form.label :date_of_birth %>
+        <%= form.date_field :date_of_birth, class: "form-input w-full" %>
+      </div>
+
+      <!-- Nationality -->
+      <div class="field w-full">
+        <%= form.label :nationality, class: "select !flex-2", style: "flex: 2 2 0%" do %>
+          <%= t('activerecord.attributes.profile.nationality') %>
+          <%= form.country_select :nationality,  {priority_countries: ["DE"]}, {class: "leading-5 px-3 py-2 h-9 mt-1"}  %>
+          <i class="fa-solid fa-angle-down"></i>
+        <% end %>
+      </div>
+    </fieldset>
+    
+
+    <fieldset class ="md:mt-6 mb-4">
+       <legend class="font-bold mb-3"><%= t('forms.legends.profile.tax_information') %></legend>
+
+      <!-- Country -->
+      <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
+
+        <!-- Tax Number -->
+        <div class="field   w-full">
+          <%= form.label :tax_number %>
+          <%= form.text_field :tax_number, class: "form-input w-full" %>
+        </div>
+
+        <!-- VAT ID -->
+        <div class="field  w-full">
+          <%= form.label :vat_id %>
+          <%= form.text_field :vat_id, class: "form-input w-full" %>
+        </div>
+
+        <div class="field w-full">
+          <%= form.label :country, class: "select !flex-2", style: "flex: 2 2 0%" do %>
+            <%=  t('activerecord.attributes.profile.country') %>
+            <%= form.country_select :country, {priority_countries: ["DE"]}, {class: "leading-5 px-3 py-2 h-9 mt-1"}  %>
+            <i class="fa-solid fa-angle-down"></i>
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Invoice Settings -->
+    <fieldset class ="md:mt-6 mb-4">
+      <legend class="font-bold mb-3"><%= t('forms.legends.profile.invoice_settings') %></legend>
+
+      <!-- Language -->
+      <div class="flex gap-4 md:flex-nowrap flex-wrap justify-between">
+        <div class="field w-full">
+          <%= form.label :language, class: "select"  do %>
+            <%= t('activerecord.attributes.profile.language') %>
+            <%= form.select :language, options_for_select(Invoice::LANGUAGES, 'en'), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
+             <i class="fa-solid fa-angle-down"></i>
+          <% end %>
+        </div>
+
+        <div class="field w-full">
+          <%= form.label :currency_id, class: "select" do %>
+            <%= t("forms.labels.invoice.currency") %>
+            <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id }, class: "leading-5 mt-1 px-3 h-9 py-2" %>
+            <i class="fa-solid fa-angle-down"></i>
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Nested Attributes for Address -->
+    <fieldset class ="md:mt-6">
+      <legend class="font-bold mb-3"><%= t('forms.legends.profile.address') %></legend>
+      <%= form.fields_for :address do |address_form| %>
+        <div class="field mb-4">
+          <%= address_form.label :street_address %>
+          <%= address_form.text_field :street_address, class: 'form-input' %>
+        </div>
+
+        <div class="flex gap-4 mb-4 flex-nowrap">
+          <div class="field md:w-full w-1/2">
+            <%= address_form.label :city %>
+            <%= address_form.text_field :city, class: 'form-input' %>
+          </div>
+          <div class="field md:w-full w-1/2">
+            <%= address_form.label :state %>
+            <%= address_form.text_field :state, class: 'form-input' %>
+          </div>
+        </div>
+
+        <div class="flex justify-between gap-4 flex-wrap md:flex-nowrap">
+          <div class="field  w-full">
+            <%= address_form.label :postal_code %>
+            <%= address_form.text_field :postal_code, class: 'form-input' %>
+          </div>
+
+          <div class="field  w-full">
+            <%= address_form.label :country, class: "select !flex-2", style: "flex: 2 2 0%" do %>
+              <%= t("forms.labels.address.country") %>
+              <%= address_form.country_select :country, {priority_countries: ["DE"]}, {class: "leading-5 px-3 py-2 h-9 mt-1"}   %>
+              <i class="fa-solid fa-angle-down"></i>
+            <% end %>
+          </div>
+
+
+        </div>
+          
+      <% end %>
+    </fieldset>
+
+    <!-- Submit Button -->
+    <div class="flex items-center mt-4 md:mt-6">
+      <%= form.submit t('forms.buttons.save'), class: "btn btn-md btn-primary"%>
+    </div>
+  <% end %>
+</div>

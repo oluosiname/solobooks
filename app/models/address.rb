@@ -5,7 +5,6 @@ class Address < ApplicationRecord
 
   validates :street_address, presence: true
   validates :city, presence: true
-  validates :state, presence: true
   validates :postal_code, presence: true
   validates :country, presence: true
 
@@ -15,6 +14,6 @@ class Address < ApplicationRecord
 
   def country_name
     country = ISO3166::Country[country]
-    country.translations[I18n.locale.to_s] || country.name
+    country&.translations&.[](I18n.locale.to_s) || country.name
   end
 end

@@ -17,8 +17,6 @@ de:
       invoice_category:
         name: "Name"
         description: "Beschreibung"
-      address:
-        country: "Land"
       invoice:
         category: "Kategorie"
         currency: "Währung"
@@ -27,6 +25,13 @@ de:
         vat_included_in_price: "MwSt. im Preis enthalten"
         due_date: "Fälligkeitsdatum"
         date: "Rechnungsdatum"
+
+    legends:
+      profile:
+        personal_information: "Persönliche Informationen"
+        business_information: "Firmeninformationen"
+        address: "Adresse"
+        invoice_settings: "Rechnungseinstellungen"
     placeholders:
       user:
         email: "E-Mail-Adresse"

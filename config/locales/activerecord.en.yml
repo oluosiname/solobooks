@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    attributes:
+      profile:
+        full_name: "Full name"
+        address: "Address"
+        country: "Country of residence"
+        currency: "Default Invoice Currency"
+        language: "Language"
+        tax_number: "Tax number"
+        business_name: "Business name"
+        business_type: "Business type"
+        language: "Invoice language"
+        currency: "Invoice currency"
+        phone_number: "Phone number"
+        post_code: "Zip code"
+        date_of_birth: "Date of birth"
+      address:
+        country: "Country"
+        state: "State"
+        city: "City"
+        street_address: "Street"
+        postal_code: "Zip code"
+

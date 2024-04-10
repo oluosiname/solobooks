@@ -11,7 +11,7 @@ FactoryBot.define do
     vat_number { Faker::Number.number(digits: 9) }
 
     after(:build) do |client|
-      client.address = build(:address, addressable: client)
+      client.address ||= build(:address, addressable: client)
     end
   end
 end
