@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_27_071943) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_190603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -132,6 +132,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_27_071943) do
     t.index ['invoice_id'], name: 'index_line_items_on_invoice_id'
   end
 
+  create_table 'profiles', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.integer 'legal_status', null: false
+    t.string 'full_name', null: false
+    t.string 'phone_number'
+    t.date 'date_of_birth'
+    t.string 'nationality'
+    t.string 'country'
+    t.string 'business_name'
+    t.string 'tax_number'
+    t.string 'vat_id'
+    t.bigint 'currency_id'
+    t.string 'language'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['currency_id'], name: 'index_profiles_on_currency_id'
+    t.index ['user_id'], name: 'index_profiles_on_user_id'
+  end
+
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
@@ -162,4 +181,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_27_071943) do
   add_foreign_key 'invoices', 'invoice_categories'
   add_foreign_key 'invoices', 'users'
   add_foreign_key 'line_items', 'invoices'
+  add_foreign_key 'profiles', 'users'
 end
