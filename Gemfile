@@ -68,6 +68,8 @@ group :development, :test do
   gem 'faker', '~> 2.18.0'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.1.0'
+  gem 'bundler-audit', require: false
+  gem 'brakeman', require: false
 end
 
 gem 'simplecov', require: false, group: :test

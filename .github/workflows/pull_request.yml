@@ -6,10 +6,10 @@
 # run tests and linters.
 name: "Pull Request"
 on:
-  # push:
-  #   branches: [ "main" ]
+  push:
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 jobs:
   test:
     runs-on: ubuntu-latest
