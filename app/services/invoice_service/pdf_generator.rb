@@ -6,7 +6,12 @@ module InvoiceService
 
     FONT_SIZE_MD = 10
     FONT_COLOUR = '2f333c'
-    TABLE_HEADING = ['ITEM', 'QTY', 'RATE', 'AMOUNT'].freeze
+    TABLE_HEADING = [
+      I18n.t('invoices.show.line_items_table.heading.item'),
+      I18n.t('invoices.show.line_items_table.heading.qty'),
+      I18n.t('invoices.show.line_items_table.heading.rate'),
+      I18n.t('invoices.show.line_items_table.heading.subtotal'),
+    ].freeze
 
     def initialize(invoice:)
       @invoice = invoice
@@ -31,9 +36,11 @@ module InvoiceService
 
       # User Address
       last_measured_y = pdf.cursor
-      pdf.formatted_text_box [{ text: 'Konrad Wolf-Str 90' }], align: :right, at: [0, last_measured_y]
-      pdf.formatted_text_box [{ text: '13055, Berlin' }], at: [0, last_measured_y - 17], align: :right
-      pdf.formatted_text_box [{ text: 'Germany' }], at: [480, last_measured_y - 34], align: :right
+      pdf.formatted_text_box [{ text: user_address.street_address }], align: :right, at: [0, last_measured_y]
+      pdf.formatted_text_box [{ text: [user_address.city, user_address.state, user_address.postal_code].join(', ') }],
+        at: [0, last_measured_y - 17],
+        align: :right
+      pdf.formatted_text_box [{ text: user_address.country_name }], at: [480, last_measured_y - 34], align: :right
       pdf.move_down 60
 
       # Client Info
@@ -51,7 +58,7 @@ module InvoiceService
       # Dates
       pdf.formatted_text_box(
         [
-          { text:  'Invoice Date:     ', styles: [:bold] },
+          { text:  "#{I18n.t("activerecord.attributes.invoice.date")}:     ", styles: [:bold] },
           { text:  invoice.date.strftime('%d/%m/%Y') },
         ],
         align: :right,
@@ -59,7 +66,7 @@ module InvoiceService
       )
       pdf.formatted_text_box(
         [
-          { text:  'Due Date:     ', styles: [:bold] },
+          { text:  "#{I18n.t("activerecord.attributes.invoice.due_date")}:     ", styles: [:bold] },
           { text:  invoice.due_date.strftime('%d/%m/%Y') },
         ],
         align: :right,
@@ -77,7 +84,7 @@ module InvoiceService
       pdf.move_down 20
 
       # Payment Details
-      pdf.text 'Payment Details', size: 12, style: :semi_bold
+      pdf.text I18n.t('invoices.show.payment_details'), size: 12, style: :semi_bold
 
       last_measured_y = pdf.cursor
       payment_table = pdf.make_table payments_details_table_data, payment_details_table_props do
@@ -140,9 +147,18 @@ module InvoiceService
 
     def totals_table_data
       [
-        ['Subtotal:', number_to_currency(invoice.subtotal, unit: invoice.currency_symbol)],
-        ["VAT (#{invoice.vat_rate.to_i}%):", number_to_currency(invoice.vat, unit: invoice.currency_symbol)],
-        ['Total:', number_to_currency(invoice.total_amount, unit: invoice.currency_symbol)],
+        [
+          "#{I18n.t("activerecord.attributes.invoice.subtotal")}:",
+          number_to_currency(invoice.subtotal, unit: invoice.currency_symbol),
+        ],
+        [
+          "#{I18n.t("activerecord.attributes.invoice.vat")} (#{invoice.vat_rate.to_i}%):",
+          number_to_currency(invoice.vat, unit: invoice.currency_symbol),
+        ],
+        [
+          "#{I18n.t("activerecord.attributes.invoice.total")}:",
+          number_to_currency(invoice.total_amount, unit: invoice.currency_symbol),
+        ],
         # ['Amount Due', number_to_currency(invoice.total, unit: invoice.currency_symbol)],
         # ['Amount Paid', number_to_currency(0, unit: invoice.currency_symbol)],
       ]
@@ -236,6 +252,18 @@ module InvoiceService
 
     def client_address
       @client_address ||= invoice.client.address
+    end
+
+    def user
+      @user ||= invoice.user
+    end
+
+    def user_profile
+      @user_profile ||= user.profile
+    end
+
+    def user_address
+      @user_address ||= user_profile.address
     end
 
     attr_reader :invoice, :pdf
