@@ -2,9 +2,9 @@
 de:
   devise:
     confirmations:
-      confirmed: "Your email address has been successfully confirmed."
-      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
-      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirmed: "Ihr E-Mail-Adresse wurde bestätigt. Vielen Dank!"
+      send_instructions: "Sie erhalten in Kürze eine E-Mail mit Anweisungen, wie Sie Ihre E-Mail-Adresse bestätigen können."
+      send_paranoid_instructions: "Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in Kürze eine E-Mail mit Anweisungen, wie Sie Ihre E-Mail-Adresse bestätigen können."
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."

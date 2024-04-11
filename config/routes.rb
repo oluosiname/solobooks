@@ -14,8 +14,8 @@ Rails.application.routes.draw do
         confirmation: 'verification',
         # registration: 'register',
         sign_up: 'register',
-      }
-    # controllers: { registrations: 'registrations' }
+      },
+    controllers: { confirmations: 'users/confirmations' }
 
     root 'home#index'
 
