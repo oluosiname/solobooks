@@ -1,22 +1,12 @@
+---
 de:
   clients:
-    index:
-      title: "Kunden"
-      description: "Liste der Kunden"
-      table:
-        heading:
-          name: "Name"
-          email: "E-Mail"
-          phone: "Telefon"
-          address: "Adresse"
-          vat_number: "USt-IdNr."
-          tax_id: "Steuernummer"
-    show:
-      title: "Kunde"
-      description: "Kundendetails"
-    new:
-      title: "Neuer Kunde"
-      description: "Neuen Kunden anlegen"
     edit:
-      title: "Kunden bearbeiten"
-      description: "Kundendetails bearbeiten"
+      description: Kundendetails bearbeiten
+      title: Kunden bearbeiten
+    index:
+      description: Liste der Kunden
+      title: Kunden
+    new:
+      description: Neuen Kunden anlegen
+      title: Neuer Kunde

@@ -1,70 +1,113 @@
+---
 de:
   activerecord:
     attributes:
-      profile:
-        full_name: "Vollständiger Name"
-        address: "Adresse"
-        country: "Land des Wohnsitzes"
-        currency: "Währung"
-        language: "Sprache"
-        tax_number: "Steuernummer"
-        business_name: "Firmenname"
-        business_type: "Firmenart"
-        city: "Stadt"
-        state: "Bundesland"
-        street: "Straße"
-        language: "Rechnungssprache"
-        currency: "Rechnungswährung"
-        phone_number: "Telefonnummer"
-        post_code: "Postleitzahl"
-        date_of_birth: "Geburtsdatum"
-        nationality: "Nationalität"
-        vat_id: "USt-IdNr."
       address:
-        country: "Land"
-        state: "Bundesland"
-        city: "Stadt"
-        street_address: "Straße"
-        postal_code: "Postleitzahl"
+        city: Stadt
+        country: Land
+        postal_code: Postleitzahl
+        state: Bundesland
+        street_address: Straße
+      client:
+        address: Adresse
+        business_tax_id: Steuernummer
+        email: E-Mail
+        name: Name
+        phone_number: Telefonnummer
+        post_code: Postleitzahl
+        vat_number: USt-IdNr.
+      invoice:
+        client: Kunde
+        currency: Währung
+        date: Rechnungsdatum
+        due_date: Fälligkeitsdatum
+        invoice_category: Kategorie
+        invoice_number: Rechnungsnummer
+        language: Sprache
+        notes: Notizen
+        paid: Bezahlt
+        status: Status
+        statuses:
+          cancelled: Storniert
+          draft: Entwurf
+          due: Überfällig
+          paid: Bezahlt
+          refunded: Erstattet
+          sent: Gesendet
+        subtotal: Zwischensumme
+        tax: Steuer
+        tax_id: Steuernummer
+        total: Gesamt
+        vat: MwSt.
+        vat_charged: MwSt. berechnet?
+        vat_included: MwSt. im Preis enthalten
+        vat_rate: MwSt.-Satz
+      invoice_category:
+        description: Beschreibung
+        name: Name
+      line_item:
+        description: Beschreibung
+        price: Preis
+        quantity: Menge
+        total_price: Gesamtpreis
+        unit: Einheit
+        unit_price: Einzelpreis
+      profile:
+        address: Adresse
+        business_name: Firmenname
+        business_type: Firmenart
+        city: Stadt
+        country: Land des Wohnsitzes
+        currency: Rechnungswährung
+        date_of_birth: Geburtsdatum
+        full_name: Vollständiger Name
+        language: Rechnungssprache
+        nationality: Nationalität
+        phone_number: Telefonnummer
+        post_code: Postleitzahl
+        state: Bundesland
+        street: Straße
+        tax_number: Steuernummer
+        vat_id: USt-IdNr.
     errors:
       models:
-        user:
+        address:
           attributes:
-            email:
-              blank: "muss ausgefüllt werden"
-            password:
-              blank: "muss ausgefüllt werden"
-              too_short: "ist zu kurz (mindestens 6 Zeichen)"
-            password_confirmation:
-              blank: "muss ausgefüllt werden"
-              confirmation: "stimmt nicht mit dem Passwort überein"
-            current_password:
-              invalid: "ist nicht korrekt"
+            city:
+              blank: muss ausgefüllt werden
+            country:
+              blank: muss ausgefüllt werden
+            postal_code:
+              blank: muss ausgefüllt werden
+            state:
+              blank: muss ausgefüllt werden
+            street_address:
+              blank: muss ausgefüllt werden
         line_item:
           attributes:
             total_price:
-              greater_than: "muss größer als 0 sein"
-        address:
-          attributes:
-            street_address:
-              blank: "muss ausgefüllt werden"
-            city:
-              blank: "muss ausgefüllt werden"
-            postal_code:
-              blank: "muss ausgefüllt werden"
-            country:
-              blank: "muss ausgefüllt werden"
-            state:
-              blank: "muss ausgefüllt werden"
+              greater_than: muss größer als 0 sein
         profile:
           attributes:
-            full_name:
-              blank: "muss ausgefüllt werden"
-            country:
-              blank: "muss ausgefüllt werden"
             business_type:
-              blank: "muss ausgefüllt werden"
+              blank: muss ausgefüllt werden
+            country:
+              blank: muss ausgefüllt werden
             date_of_birth:
-              blank: "muss ausgefüllt werden"
+              blank: muss ausgefüllt werden
+            full_name:
+              blank: muss ausgefüllt werden
             phone_number:
-              blank: "muss ausgefüllt werden"
+              blank: muss ausgefüllt werden
+        user:
+          attributes:
+            current_password:
+              invalid: ist nicht korrekt
+            email:
+              blank: muss ausgefüllt werden
+            password:
+              blank: muss ausgefüllt werden
+              too_short: ist zu kurz (mindestens 6 Zeichen)
+            password_confirmation:
+              blank: muss ausgefüllt werden
+              confirmation: stimmt nicht mit dem Passwort überein

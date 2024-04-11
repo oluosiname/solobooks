@@ -16,8 +16,8 @@
       <div>
         <div class="field invoice-field">
           <%= form.label :category_id, class: "select !flex-2", style: "flex: 2 2 0%" do %>
-            <%= t("forms.labels.invoice.category") %>
-            <%= form.select :invoice_category_id, {}, prompt: true do %>
+            <%= t("activerecord.attributes.invoice.invoice_category") %>
+            <%= form.select :invoice_category_id, {}, prompt: t("forms.placeholders.please_select") do %>
               <%= render "category_options", categories: @categories, selected: @invoice.invoice_category_id %> 
             <% end %>
             <svg >
@@ -27,7 +27,7 @@
         </div>
         <div class="field invoice-field">
           <%= form.label :currency_id, class: "select" do %>
-            <%= t("forms.labels.invoice.currency") %>
+             <%= t("activerecord.attributes.invoice.currency") %>
             <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id } %>
             <svg  >
               <use xlink:href="#select-arrow-down"></use>
@@ -36,7 +36,7 @@
         </div>
         <div class="field invoice-field">
           <%= form.label :language, class: "select"  do %>
-            <%= t("forms.labels.invoice.language") %>
+             <%= t("activerecord.attributes.invoice.language") %>
             <%= form.select :language, options_for_select(Invoice::LANGUAGES, 'en') %>
             <svg >
               <use xlink:href="#select-arrow-down"></use>
@@ -44,7 +44,7 @@
           <% end %>
         </div>
         <div class="field invoice-field invoice_date_container">
-          <%= form.label :date, t("forms.labels.invoice.date") %>
+          <%= form.label :date %>
           <%= form.text_field :date,
             placeholder: t("forms.placeholders.invoice.date"),
             data: {
@@ -56,7 +56,7 @@
         </div>
 
         <div class="field invoice-field invoice_due_date_container">
-          <%= form.label :due_date, t("forms.labels.invoice.due_date") %>
+          <%= form.label :due_date %>
           <%= form.text_field :due_date,
             placeholder: t("forms.placeholders.invoice.due_date"),
             data: {
@@ -72,7 +72,7 @@
         <div class="field invoice-field">
           <div class="flex justify-start gap-x-2">
             <%= form.label :client_id, class: "select !flex-2" do %>
-              <%= form.select :client_id, {}, prompt: "Select Client" do %>
+              <%= form.select :client_id, {}, prompt: t("forms.placeholders.invoice.select_client") do %>
                 <%= render "invoice_client_options", clients: @clients, selected: @invoice.client_id %> 
               <% end %>
               <svg style="top: calc(50% - 3px)">
@@ -81,7 +81,7 @@
             <% end %>
             <div class="flex flex-col justify-end flex-1">
               <%= link_to new_client_path(modal: true), class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } do %>
-                New
+                <%= t("forms.buttons.new") %>
               <% end %>
             </div>
           </div>
@@ -90,12 +90,12 @@
     </div>
 
     <div class="flex invoice-line-items-header">
-      <div>Description</div>
+      <div><%= t("activerecord.attributes.line_item.description") %></div>
 
-      <div>Price</div>
-      <div>Unit</div>
-      <div>Quantity</div>
-      <div>Amount</div>
+      <div><%= t("activerecord.attributes.line_item.price") %></div>
+      <div><%= t("activerecord.attributes.line_item.unit") %></div>
+      <div><%= t("activerecord.attributes.line_item.quantity") %></div>
+      <div><%= t("activerecord.attributes.line_item.total_price") %></div>
       <div></div>
     </div>
 
@@ -121,7 +121,7 @@
     <div data-nested-form-target="target"></div>
 
     <div class="mt-6">
-      <button type="button" class="btn btn-sm  btn-primary " data-action="nested-form#add">Add Line Item</button>
+      <button type="button" class="btn btn-sm  btn-primary " data-action="nested-form#add"><%= t("forms.buttons.invoice.add_line_item") %></button>
     </div>
 
     <section class="flex justify-between mt-6">
@@ -129,25 +129,25 @@
       </div>
       <div class="totals">
         <div class="flex justify-between items-center mb-4">
-          <label>Subtotal</label>
+          <label><%= t("activerecord.attributes.invoice.subtotal") %></label>
           <div data-invoice-target ="subTotal">0.00</div>
         </div>
         <div class="mb-4  ">
           <label class="toggle-label !flex flex-row items-center justify-between"  style="display: flex" for="one">
-            <span>VAT charged?</span>
+            <span><%= t("activerecord.attributes.invoice.vat_charged") %></span>
             <input id="one" type="checkbox" class="toggle" data-invoice-target="vatCharged" data-action="invoice#toggleVatFields" />
           </label>
         </div>
         <div class="mb-4 vat-fields">
           <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex" do %>
-            <%= t("forms.labels.invoice.vat_included_in_price") %>
+             <%= t("activerecord.attributes.invoice.vat_included") %>
             <%= form.check_box :vat_included, class: "toggle", disabled: true, data: { invoice_target: "vatIncluded", action: "invoice#calculateTotal"} %>
           <% end %>
         </div>
         <div class="flex flex-row items-center justify-between mb-4 gap-2 vat-fields">
           
           <%= form.label :vat, class: "select !flex-2 flex-row flex items-center gap-4", style: "flex: 2 2 0%" do %>
-          <%= t("forms.labels.invoice.vat") %>
+          <%= t("activerecord.attributes.invoice.vat_rate") %>
             <%= form.select :vat_rate, options_for_select(Invoice::VAT_RATES, @invoice.vat_rate || 0), {}, disabled: true, data: {action: "invoice#calculateTotal", invoice_target: "vatRate" } %>
             <svg style="top: calc(50% - 3px)">
               <use xlink:href="#select-arrow-down"></use>
@@ -160,14 +160,14 @@
 
 
         <div class="flex justify-between items-center">
-          <label>Total</label>
+          <label><%= t("activerecord.attributes.invoice.total") %></label>
           <div data-invoice-target="total">0.00</div>
         </div>
       </div>
     </section>
 
     <div class="flex justify-end mt-5">
-      <%= form.submit "Save", class: "btn btn-md btn-success"%>
+      <%= form.submit t('forms.buttons.save'), class: "btn btn-md btn-success"%>
     </div>
   
     <% end %>

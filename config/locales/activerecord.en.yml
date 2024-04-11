@@ -1,24 +1,67 @@
+---
 en:
   activerecord:
     attributes:
-      profile:
-        full_name: "Full name"
-        address: "Address"
-        country: "Country of residence"
-        currency: "Default Invoice Currency"
-        language: "Language"
-        tax_number: "Tax number"
-        business_name: "Business name"
-        business_type: "Business type"
-        language: "Invoice language"
-        currency: "Invoice currency"
-        phone_number: "Phone number"
-        post_code: "Zip code"
-        date_of_birth: "Date of birth"
       address:
-        country: "Country"
-        state: "State"
-        city: "City"
-        street_address: "Street"
-        postal_code: "Zip code"
-
+        city: City
+        country: Country
+        postal_code: Zip code
+        state: State
+        street_address: Street
+      client:
+        address: Address
+        business_tax_id: Tax number
+        email: Email
+        name: Name
+        phone_number: Phone number
+        post_code: Zip code
+        vat_number: VAT ID
+      invoice:
+        category: Category
+        client: Client
+        currency: Currency
+        date: Invoice date
+        due_date: Due date
+        invoice_category: Category
+        invoice_number: Invoice number
+        language: Language
+        notes: Notes
+        paid: Paid
+        status: Status
+        statuses:
+          cancelled: Cancelled
+          draft: Draft
+          due: Overdue
+          paid: Paid
+          refunded: Refunded
+          sent: Sent
+        subtotal: Subtotal
+        tax: Tax
+        tax_id: Tax ID
+        total: Total
+        vat: VAT
+        vat_charged: VAT charged?
+        vat_included: VAT included in price
+        vat_rate: VAT Rate
+      invoice_category:
+        description: Description
+        name: Name
+      line_item:
+        description: Description
+        price: Price
+        quantity: Quantity
+        total_price: Total price
+        unit: Unit
+        unit_price: Unit price
+      profile:
+        address: Address
+        business_name: Business name
+        business_type: Business type
+        country: Country of residence
+        currency: Invoice currency
+        date_of_birth: Date of birth
+        full_name: Full name
+        language: Invoice language
+        phone_number: Phone number
+        post_code: Zip code
+        tax_number: Tax number
