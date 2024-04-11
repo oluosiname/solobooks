@@ -80,7 +80,7 @@
     <p><%= I18n.t("devise.mailer.confirmation_instructions.body.main", app_name: 'SoloBooks')%></p>
 
     <div class="btn-container">
-      <%= link_to I18n.t("devise.mailer.confirmation_instructions.body.button_text"), confirmation_url(@resource, confirmation_token: @token), class: 'btn' %>
+      <%= link_to I18n.t("devise.mailer.confirmation_instructions.body.button_text"), confirmation_url(@resource, confirmation_token: @token, locale: I18n.locale), class: 'btn' %>
     </div>
 
     <p><%= I18n.t("devise.mailer.confirmation_instructions.body.ignore")%></p>

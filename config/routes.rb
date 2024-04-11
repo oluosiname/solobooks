@@ -14,8 +14,11 @@ Rails.application.routes.draw do
         confirmation: 'verification',
         # registration: 'register',
         sign_up: 'register',
+      },
+      controllers: {
+        confirmations: 'users/confirmations',
+        registrations: 'users/registrations',
       }
-    # controllers: { registrations: 'registrations' }
 
     root 'home#index'
 
@@ -24,6 +27,10 @@ Rails.application.routes.draw do
     resources :clients, only: [:new, :create, :index]
     resource :profile, only: [:show, :update]
     post :profile, to: 'profiles#create', as: :create_profile
+
+    devise_scope :user do
+      get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
