@@ -80,6 +80,12 @@
         <span class="menu-text"> Settings </span>
         </a>
       </li>
+      <li class="menu-item">
+        <%= link_to destroy_user_session_path, method: :delete, class: "menu-link waves-effect" do %>
+          <i class="fa-solid fa-power-off"></i>
+          <span class="menu-text"><%= t('menu.logout') %> </span>
+        <% end %>
+      </li>
     
     </ul>
   </div>

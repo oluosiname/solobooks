@@ -2,24 +2,6 @@
 en:
   all: All
 
-  devise:
-    mailer:
-      confirmation_instructions:
-        body:
-          button_text: Button text
-          closing: Closing
-          greeting: Greeting
-          heading: Heading
-          ignore: Ignore
-          main: Main
-      reset_password_instructions:
-        body:
-          button_text: Button text
-          closing: Closing
-          greeting: Greeting
-          heading: Heading
-          ignore: Ignore
-          main: Main
   errors:
     messages:
       not_saved: Not saved
