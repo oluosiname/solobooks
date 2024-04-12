@@ -20,31 +20,11 @@
     <i class="ph ph-microphone text-base hover:text-black"></i>
     </button>
   </div>
-  <!-- Language Dropdown Button -->
-  <div class="relative">
-    <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link p-2 waves-effect fc-dropdown">
-    <span class="flex items-center justify-center h-6 w-6">
-    <img src="assets/images/flags/us.jpg" alt="flags img" class="h-4 w-6">
-    </span>
-    </button>
-    <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 mt-3 transition-[margin,opacity] duration-300 bg-white shadow-lg border border-gray-200 rounded-lg p-2">
-      <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100">
-      <img src="assets/images/flags/germany.jpg" alt="flags img" class="h-4">
-      <span class="align-middle">German</span>
-      </a>
-      <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100">
-      <img src="assets/images/flags/italy.jpg" alt="flags img" class="h-4">
-      <span class="align-middle">Italian</span>
-      </a>
-      <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100">
-      <img src="assets/images/flags/spain.jpg" alt="flags img" class="h-4">
-      <span class="align-middle">Spanish</span>
-      </a>
-      <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100">
-      <img src="assets/images/flags/russia.jpg" alt="flags img" class="h-4">
-      <span class="align-middle">Russian</span>
-      </a>
-    </div>
+  <!-- Language selector -->
+  <div class="flex gap-2">
+    <%- I18n.available_locales.each do |locale| %>
+      <%= link_to locale.to_s.upcase, url_for(locale: ), class: locale_selector_class(locale) %>
+    <% end %>
   </div>
   <!-- Fullscreen Toggle Button -->
   <div class="md:flex hidden">
@@ -77,9 +57,10 @@
       <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
       Lock Account
       </a>
-      <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
-      Log Out
-      </a>
+      <%= link_to destroy_user_session_path, method: :delete, class: "menu-link waves-effect",  data: { turbo_method: :delete} do %>
+        <i class="fa-solid fa-power-off"></i>
+        <span class="menu-text"><%= t('menu.logout') %> </span>
+      <% end %>
     </div>
   </div>
 </header>

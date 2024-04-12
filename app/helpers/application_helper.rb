@@ -15,4 +15,10 @@ module ApplicationHelper
       class: "badge #{BADGE_STATUS[status]}",
     )
   end
+
+  def locale_selector_class(locale)
+    return  "text-grey-900 font-semibold" if I18n.locale == locale
+
+    "text-grey-600"
+  end
 end
