@@ -36,7 +36,8 @@ jobs:
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
-      # Add or replace test runners here
+      - name: compile assets
+        run: bundle exec rake assets:precompile
       - name: Run tests
         run: bundle exec rspec
 

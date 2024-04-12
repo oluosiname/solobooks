@@ -13,4 +13,8 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless # selenium when we need javascript
     # driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
   end
+  config.before(:each, :browser, :js, type: :system) do
+    driven_by :selenium_chrome # selenium when we need javascript
+    # driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  end
 end

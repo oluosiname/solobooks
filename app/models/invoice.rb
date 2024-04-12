@@ -49,6 +49,7 @@ class Invoice < ApplicationRecord
   }
 
   enum status: {
+    pending: 'pending',
     sent: 'sent',
     paid: 'paid',
     cancelled: 'cancelled',
@@ -92,6 +93,7 @@ class Invoice < ApplicationRecord
   def generate_invoice_number
     suffix = user.invoices.created_in_current_month.size + 1
     month = Date.today.month.to_s.rjust(2, '0')
+    suffix = suffix.to_s.rjust(2, '0')
     self.invoice_number = "INV-#{Time.zone.today.year}-#{month}-#{suffix}"
   end
 end
