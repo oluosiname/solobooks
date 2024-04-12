@@ -66,14 +66,14 @@ RSpec.describe Invoice, type: :model do
       filtered_records = create_list(:invoice, 3, status:)
       create(:invoice, status: 'sent') # Create a record with different status
 
-      expect(described_class.filtered({ status: })).to eq(filtered_records)
+      expect(described_class.filtered({ status: })).to match_array(filtered_records)
     end
 
     it 'filters by client_id when client_id param is provided' do
       filtered_records = create_list(:invoice, 3, client_id:)
       create(:invoice, client: create(:client)) # Create a record with different client_id
 
-      expect(described_class.filtered({ client_id: })).to eq(filtered_records)
+      expect(described_class.filtered({ client_id: })).to match_array(filtered_records)
     end
 
     it 'filters by both status and client_id when both params are provided' do
@@ -81,7 +81,7 @@ RSpec.describe Invoice, type: :model do
       create(:invoice, status:, client: create(:client)) # Create a record with same status but different client_id
       create(:invoice, client_id:, status: 'sent') # Create a record with same client_id but different status
       create(:invoice) # Create a record with different status and client_id
-      expect(described_class.filtered({ status:, client_id: })).to eq(filtered_records)
+      expect(described_class.filtered({ status:, client_id: })).to match_array(filtered_records)
     end
   end
 
@@ -90,12 +90,12 @@ RSpec.describe Invoice, type: :model do
       status = 'sent'
       filtered_records = create_list(:invoice, 3, status:)
       create(:invoice, status: 'paid') # Create a record with different status
-      expect(described_class.filter_by_status(status)).to eq(filtered_records)
+      expect(described_class.filter_by_status(status)).to match_array(filtered_records)
     end
 
     it 'returns all records when status is not present' do
       create_list(:invoice, 3)
-      expect(described_class.filter_by_status(nil)).to eq(described_class.all)
+      expect(described_class.filter_by_status(nil)).to match_array(described_class.all)
     end
   end
 
@@ -106,12 +106,12 @@ RSpec.describe Invoice, type: :model do
       client_id = client.id
       filtered_records = create_list(:invoice, 3, client_id:)
       create(:invoice, client: create(:client)) # Create a record with different client_id
-      expect(described_class.filter_by_client(client_id)).to eq(filtered_records)
+      expect(described_class.filter_by_client(client_id)).to match_array(filtered_records)
     end
 
     it 'returns all records when client_id is not present' do
       create_list(:invoice, 3)
-      expect(described_class.filter_by_client(nil)).to eq(described_class.all)
+      expect(described_class.filter_by_client(nil)).to match_array(described_class.all)
     end
   end
 end
