@@ -37,6 +37,11 @@ de:
           send: "Senden"
           send_reminder: "Erinnerung senden"
           view: "Anzeigen"
+        heading:
+          client: "Kunde"
+          date: "Datum"
+          due_date: "Fälligkeitsdatum"
+          invoice_number: "Rechnungsnummer"
+          status: "Status"
+          total_amount: "Gesamtbetrag"
       title: "Rechnungen"
-      action:
-        new: "Neue Rechnung"
