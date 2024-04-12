@@ -1,7 +1,7 @@
 <div class="flex justify-between mb-6">
   <h2 class="text-xl leading-6 font-semibold"><%= t("invoices.index.title") %></h2>
   <%= link_to new_invoice_path do %>
-    <button class="btn btn-success btn-sm">New Invoice</button>
+    <button class="btn btn-success btn-sm"><%= t("invoices.index.action.new") %></button>
   <% end %>
 </div>
 <section class="invoices-filter mb-4">
@@ -14,7 +14,7 @@
       <% Invoice.statuses.keys.each do |status| %>
         <span class="pill">
           <%= radio_button_tag :status, status, id: "status_#{status}", data: {action: "click->search#call"}, checked: params[:status] == status %>
-          <label for='status_<%= status %>'><%= t("invoices.statuses.#{status}") %></label>
+          <label for='status_<%= status %>'><%= t("activerecord.attributes.invoice.statuses.#{status}") %></label>
         </span>
       <% end %>
     </div>
@@ -30,12 +30,12 @@
             <label for="table-checkbox-all" class="sr-only">Checkbox</label>
           </div>
         </th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.invoice_number") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.client") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.date") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.due_date") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.total_amount") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("invoices.index.table.heading.status") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.invoice_number") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.client") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.date") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.due_date") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.total") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.status") %></th>
         <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
       </tr>
     </thead>

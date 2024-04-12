@@ -12,7 +12,7 @@
             <%= f.hidden_field :reset_password_token %>
           <div class="field mb-6">
             <%= f.label :password,  class: 'mb-2' %>
-            <%= f.password_field :password, autocomplete: "new-password", class: 'form-input', placeholder: "Enter your password" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-input', placeholder: t('forms.placeholders.user.password') %>
             <ul class="text-danger-700">
               <%= render partial: "devise/shared/field_error_messages", locals: {field: :password, messages: resource.errors.messages[:password] } %>
             </ul>
@@ -20,7 +20,7 @@
 
           <div class="field mb-6">
             <%= f.label :password_confirmation, class: 'mb-2' %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-input', placeholder: "Enter your password again" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-input', placeholder: t('forms.placeholders.user.password_confirmation') %>
             <ul class="text-danger-700">
                 <%= render partial: "devise/shared/field_error_messages", locals: {field: :password_confirmation, messages: resource.errors.messages[:password_confirmation] } %>
               </ul>

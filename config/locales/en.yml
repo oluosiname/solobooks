@@ -1,22 +1,23 @@
 ---
 en:
   all: All
-
-  errors:
-    messages:
-      not_saved: Not saved
-  hello: Hello world
-
+  menu:
+    clients: Clients
+    invoices: Invoices
+    logout: Logout
+    profile: Profile
+    settings: Settings
+    taxes: Taxes
+    transactions: Transactions
   record:
     create:
       error: "%{resource} could not be created."
       success: "%{resource} was successfully created."
-      form_error:
-        one: "Failed to save %{resource}: 1 error."
-        other: "Failed to save %{resource}: %{count} errors."
+    errors:
+      messages:
+        not_saved:
+          one: '1 error prohibited this %{resource} from being saved:'
+          other: "%{count} errors prohibited this %{resource} from being saved:"
     update:
       error: "%{resource} could not be updated."
       success: "%{resource} was successfully updated."
-      form_error:
-        one: "Failed to save %{resource}: 1 error."
-        other: "Failed to save %{resource}: %{count} errors."

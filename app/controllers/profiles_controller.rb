@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to profile_path, notice: I18n.t('record.update.success', resource: 'Profile')
+      redirect_to profile_path, notice: I18n.t('record.update.success', resource: @profile.class.model_name.human)
     else
       render :show, status: :unprocessable_entity
     end

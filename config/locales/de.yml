@@ -1,17 +1,23 @@
+---
 de:
+  all: Alle
+  menu:
+    clients: Kunden
+    invoices: Rechnungen
+    logout: Abmelden
+    profile: Profil
+    settings: Einstellungen
+    taxes: Steuern
+    transactions: Transaktionen
   record:
     create:
       error: "%{resource} konnte nicht erstellt werden."
       success: "%{resource} wurde erfolgreich erstellt."
-      form_error:
-        one: "Fehler beim Speichern des %{resource}: 1 Fehler."
-        other: "Fehler beim Speichern des %{resource}: %{count} Fehler."
+    errors:
+      messages:
+        not_saved:
+          one: '1 Fehler verhinderte das Speichern von %{resource}:'
+          other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
     update:
       error: "%{resource} konnte nicht aktualisiert werden."
       success: "%{resource} wurde erfolgreich aktualisiert."
-      form_error:
-        one: "Fehler beim Speichern des %{resource}: 1 Fehler."
-        other: "Fehler beim Speichern des %{resource}: %{count} Fehler."
-  errors:
-    messages:
-      not_saved: Nicht gespeichert

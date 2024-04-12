@@ -1,80 +1,93 @@
-# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+---
 de:
   devise:
     confirmations:
-      confirmed: "Ihr E-Mail-Adresse wurde bestätigt. Vielen Dank!"
-      send_instructions: "Sie erhalten in Kürze eine E-Mail mit Anweisungen, wie Sie Ihre E-Mail-Adresse bestätigen können."
-      send_paranoid_instructions: "Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in Kürze eine E-Mail mit Anweisungen, wie Sie Ihre E-Mail-Adresse bestätigen können."
-      instructions_sent: "Eine Bestätigungs-E-Mail wurde an Ihr Postfach gesendet. Bitte überprüfen Sie Ihre E-Mails und folgen Sie den Anweisungen, um den Vorgang abzuschließen."
+      confirmed: Ihr E-Mail-Adresse wurde bestätigt. Vielen Dank!
+      instructions_sent: Eine Bestätigungs-E-Mail wurde an Ihr Postfach gesendet. Bitte überprüfen Sie Ihre E-Mails und folgen Sie den Anweisungen, um den Vorgang abzuschließen.
+      send_instructions: Sie erhalten in Kürze eine E-Mail mit Anweisungen, wie Sie Ihre E-Mail-Adresse bestätigen können.
+      send_paranoid_instructions: Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in Kürze eine E-Mail mit Anweisungen, wie Sie Ihre E-Mail-Adresse bestätigen können.
     failure:
-      already_authenticated: "You are already signed in."
-      inactive: "Your account is not activated yet."
-      invalid: "Ungültige %{authentication_keys} oder Passwort."
-      locked: "Your account is locked."
-      last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "Ungültige %{authentication_keys} oder Passwort."
-      timeout: "Your session expired. Please sign in again to continue."
-      unauthenticated: "You need to sign in or sign up before continuing."
-      unconfirmed: "You have to confirm your email address before continuing."
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Ungültige %{authentication_keys} oder Passwort.
+      last_attempt: You have one more attempt before your account is locked.
+      locked: Your account is locked.
+      not_found_in_database: Ungültige %{authentication_keys} oder Passwort.
+      timeout: Your session expired. Please sign in again to continue.
+      unauthenticated: You need to sign in or sign up before continuing.
+      unconfirmed: You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
-        subject: "Anweisungen zur Bestätigung"
         body:
-          heading: "Bestätigen Sie Ihre E-Mail-Adresse"
-          greeting: "Guten Tag %{email}"
-          main: "Vielen Dank für Ihre Anmeldung bei %{app_name}! Bitte klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen."
-          button_text: "E-Mail-Adresse bestätigen"
-          ignore: "Wenn Sie sich nicht für diesen Dienst angemeldet haben, ignorieren Sie bitte diese E-Mail."
-          closing: "Vielen Dank, %{app_name} Team"
-      reset_password_instructions:
-        subject: "Anweisungen zum Zurücksetzen des Passworts"
-        body:
-          heading: "Setzen Sie Ihr Passwort zurück"
-          greeting: "Guten Tag %{email}"
-          main: "Jemand hat eine Anfrage gestellt, um Ihr Passwort zurückzusetzen. Sie können dies über den untenstehenden Link tun."
-          button_text: "Mein Passwort ändern"
-          ignore: "Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie bitte diese E-Mail."
-          closing: "Vielen Dank, %{app_name} Team"
-      unlock_instructions:
-        subject: "Unlock instructions"
+          button_text: E-Mail-Adresse bestätigen
+          closing: Vielen Dank, %{app_name} Team
+          greeting: Guten Tag %{email}
+          heading: Bestätigen Sie Ihre E-Mail-Adresse
+          ignore: Wenn Sie sich nicht für diesen Dienst angemeldet haben, ignorieren Sie bitte diese E-Mail.
+          main: Vielen Dank für Ihre Anmeldung bei %{app_name}! Bitte klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen.
+        subject: Anweisungen zur Bestätigung
       email_changed:
-        subject: "Email Changed"
+        subject: Email Changed
       password_change:
-        subject: "Password Changed"
+        subject: Password Changed
+      reset_password_instructions:
+        body:
+          button_text: Mein Passwort ändern
+          closing: Vielen Dank, %{app_name} Team
+          greeting: Guten Tag %{email}
+          heading: Setzen Sie Ihr Passwort zurück
+          ignore: Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie bitte diese E-Mail.
+          main: Jemand hat eine Anfrage gestellt, um Ihr Passwort zurückzusetzen. Sie können dies über den untenstehenden Link tun.
+        subject: Anweisungen zum Zurücksetzen des Passworts
+      unlock_instructions:
+        subject: Unlock instructions
     omniauth_callbacks:
-      failure: 'Could not authenticate you from %{kind} because "%{reason}".'
-      success: "Successfully authenticated from %{kind} account."
+      failure: Could not authenticate you from %{kind} because "%{reason}".
+      success: Successfully authenticated from %{kind} account.
     passwords:
-      no_token: "Sie können nicht auf diese Seite zugreifen, ohne von einer E-Mail zum Zurücksetzen des Passworts zu kommen. Wenn Sie von einer E-Mail zum Zurücksetzen des Passworts kommen, stellen Sie bitte sicher, dass Sie die vollständige bereitgestellte URL verwendet haben."
-      send_instructions: "Sie erhalten in wenigen Minuten eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts."
-      send_paranoid_instructions: "Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten einen Link zur Passwortwiederherstellung an Ihre E-Mail-Adresse."
-      updated: "Ihr Passwort wurde erfolgreich geändert. Sie sind jetzt angemeldet."
-      updated_not_active: "Ihr Passwort wurde erfolgreich geändert."
-      heading: "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts."
+      heading: Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts.
+      no_token: Sie können nicht auf diese Seite zugreifen, ohne von einer E-Mail zum Zurücksetzen des Passworts zu kommen. Wenn Sie von einer E-Mail zum Zurücksetzen des Passworts kommen, stellen Sie bitte sicher, dass Sie die vollständige bereitgestellte URL verwendet haben.
+      send_instructions: Sie erhalten in wenigen Minuten eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts.
+      send_paranoid_instructions: Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten einen Link zur Passwortwiederherstellung an Ihre E-Mail-Adresse.
+      updated: Ihr Passwort wurde erfolgreich geändert. Sie sind jetzt angemeldet.
+      updated_not_active: Ihr Passwort wurde erfolgreich geändert.
     registrations:
-      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
-      signed_up: "Welcome! You have signed up successfully."
-      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
-      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
-      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
-      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
-      updated: "Your account has been updated successfully."
-      updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
+      destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
+      signed_up: Welcome! You have signed up successfully.
+      signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
+      signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
+      signed_up_but_unconfirmed: A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.
+      update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address.
+      updated: Your account has been updated successfully.
+      updated_but_not_signed_in: Your account has been updated successfully, but since your password was changed, you need to sign in again.
     sessions:
-      signed_in: "Signed in successfully."
-      signed_out: "Signed out successfully."
-      already_signed_out: "Signed out successfully."
+      already_signed_out: Signed out successfully.
+      signed_in: Signed in successfully.
+      signed_out: Signed out successfully.
+    shared:
+      links:
+        already_have_an_account: Sie haben bereits ein Konto?
+        dont_have_an_account: Sie haben noch kein Konto?
+        forgot_your_password: Passwort vergessen?
+        sign_in: Anmelden
+        sign_out: Abmelden
+        sign_up: Registrieren
+        signed_in_as: Angemeldet als %{email}
+        signed_in_as_admin: Angemeldet als %{email} (Admin)
+      notices:
+        signed_in: Sie sind angemeldet.
+        signed_out: Sie sind abgemeldet.
     unlocks:
-      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
-      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
-      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
+      send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
+      unlocked: Your account has been unlocked successfully. Please sign in to continue.
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
-      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-      expired: "has expired, please request a new one"
-      not_found: "not found"
-      not_locked: "was not locked"
+      already_confirmed: was already confirmed, please try signing in
+      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
+      expired: has expired, please request a new one
+      not_found: not found
+      not_locked: was not locked
       not_saved:
-        one: "Registrierung fehlgeschlagen: 1 Fehler aufgetreten."
-        other: "Registrierung fehlgeschlagen: %{count} Fehler aufgetreten."
+        one: "%{resource} Registrierung fehlgeschlagen: 1 Fehler aufgetreten."
+        other: "%{resource} Registrierung fehlgeschlagen: %{count} Fehler aufgetreten."

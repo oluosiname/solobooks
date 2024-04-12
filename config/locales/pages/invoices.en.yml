@@ -1,47 +1,35 @@
+---
 en:
   invoices:
-    show:
-      title: "Client"
-      description: "Client details"
-      bill_to: "Bill To"
-      invoice_date: "Invoice Date"
-      invoice_due_date: "Due Date"
-      line_items_table:
-        heading:
-          item: "Item"
-          qty: "qty"
-          rate: "rate"
-          amount: "Amount"
-        total: "Total"
-        subtotal: "Subtotal"
-        vat: "Vat"
-      payment_terms: "Payment Terms"
-      notes: "Notes"
-      payment_details:
-        heading: "Payment Details"
-        bank_name: "Bank Name"
-        account_number: "Account Number"
-        sort_code: "Sort Code"
-        iban: "IBAN"
-        swift: "SWIFT"
-      thanks:
-        title: "Thank you!"
-        content: "Thank you for your business. If you have any questions concerning this invoice, use the following contact information:"
-      no_vat: "According to § 19 UStG no sales tax is charged."
-      reverse_vat: "Reverse VAT charge is applied (§13b Abs. 5 UStG)"
     index:
+      action:
+        new: New Invoice
       table:
         actions:
-          download: "Download"
-          mark_as_paid: "Mark as Paid"
-          send: "Send"
-          send_reminder: "Send Reminder"
-          view: "View"
+          download: Download
+          mark_as_paid: Mark as Paid
+          send: Send
+          send_reminder: Send Reminder
+          view: View
+      title: Invoices
+    new:
+      title: New Invoice
+    show:
+      bill_to: Bill To
+      description: Client details
+      line_items_table:
         heading:
-          client: "Client"
-          date: "Date"
-          due_date: "Due Date"
-          invoice_number: "Invoice Number"
-          status: "Status"
-          total_amount: "Total Amount"
-      title: "Invoices"
+          amount: Amount
+          item: Item
+          qty: qty
+          rate: rate
+          subtotal: Subtotal
+      no_vat: According to § 19 UStG no sales tax is charged.
+      notes: Notes
+      payment_details: Payment Details
+      payment_terms: Payment Terms
+      reverse_vat: Reverse VAT charge is applied (§13b Abs. 5 UStG)
+      thanks:
+        content: 'Thank you for your business. If you have any questions concerning this invoice, use the following contact information:'
+        title: Thank you!
+      title: Client

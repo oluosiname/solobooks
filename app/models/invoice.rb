@@ -10,7 +10,6 @@ class Invoice < ApplicationRecord
   validates :date, presence: true
   validates :due_date, presence: true
   validates :total_amount, presence: true
-  validates :status, presence: true
   validates_with InvoiceValidator::LineItemsValidator
   validates_with InvoiceValidator::DatesValidator
 
@@ -25,7 +24,7 @@ class Invoice < ApplicationRecord
   has_one_attached :pdf
 
   scope :created_in_current_month, -> {
-    where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
+    where(created_at: Time.zone.now.all_month)
   }
 
   scope :filtered, ->(params) {
@@ -50,8 +49,7 @@ class Invoice < ApplicationRecord
   }
 
   enum status: {
-    pending: 'pending',
-    # sent: 'sent',
+    sent: 'sent',
     paid: 'paid',
     cancelled: 'cancelled',
     refunded: 'refunded',

@@ -11,11 +11,11 @@
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="field mb-6">
               <%= f.label :email,  class: 'mb-2' %>
-              <%= f.email_field :email, autofocus: true, class: 'form-input', autocomplete: "email", placeholder: 'Enter your email' %>
+              <%= f.email_field :email, autofocus: true, class: 'form-input', autocomplete: "email", placeholder: t('forms.placeholders.user.email') %>
           </div>
 
           <div class="flex justify-center mb-3 actions">
-            <%= f.submit "Reset Password", class: "btn w-full text-white btn-primary" %>
+            <%= f.submit t('forms.buttons.reset_password'), class: "btn w-full text-white btn-primary" %>
           </div>
         </div>
       </div>
