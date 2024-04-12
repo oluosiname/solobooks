@@ -51,6 +51,7 @@ de:
       update: "Aktualisieren"
       next: "Weiter"
       cancel: "Abbrechen"
+      change_password: "Passwort ändern"
     errors:
       invoice:
         customer:
