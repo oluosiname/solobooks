@@ -1,9 +1,11 @@
 ---
 en:
   all: All
+
   errors:
     messages:
       not_saved: Not saved
+  hello: Hello world
 
   record:
     create:
@@ -18,9 +20,3 @@ en:
       form_error:
         one: "Failed to save %{resource}: 1 error."
         other: "Failed to save %{resource}: %{count} errors."
-  menu:
-    clients: Dashboard
-    invoices: Invoices
-    taxes: Settings
-    transactions: Logout
-    profile: Profile

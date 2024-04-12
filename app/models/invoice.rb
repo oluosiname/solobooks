@@ -25,7 +25,7 @@ class Invoice < ApplicationRecord
   has_one_attached :pdf
 
   scope :created_in_current_month, -> {
-    where(created_at: Time.zone.now.all_month)
+    where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
   }
 
   scope :filtered, ->(params) {
@@ -50,7 +50,8 @@ class Invoice < ApplicationRecord
   }
 
   enum status: {
-    sent: 'sent',
+    pending: 'pending',
+    # sent: 'sent',
     paid: 'paid',
     cancelled: 'cancelled',
     refunded: 'refunded',

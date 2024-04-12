@@ -6,13 +6,32 @@ de:
         password: "Passwort"
         password_confirmation: "Passwort bestätigen"
         current_password: "Aktuelles Passwort"
+      invoice:
+        number: "Rechnungsnummer"
+        date: "Rechnungsdatum"
+        due_date: "Fälligkeitsdatum"
+        customer: "Kunde"
+        total: "Gesamtsumme"
+        paid: "Bezahlt"
+        notes: "Notizen"
+      invoice_category:
+        name: "Name"
+        description: "Beschreibung"
+      invoice:
+        category: "Kategorie"
+        currency: "Währung"
+        language: "Sprache"
+        vat: "MwSt."
+        vat_included_in_price: "MwSt. im Preis enthalten"
+        due_date: "Fälligkeitsdatum"
+        date: "Rechnungsdatum"
+
     legends:
       profile:
         personal_information: "Persönliche Informationen"
         business_information: "Firmeninformationen"
         address: "Adresse"
         invoice_settings: "Rechnungseinstellungen"
-        tax_information: "Steuerinformationen"
     placeholders:
       user:
         email: "E-Mail-Adresse"
@@ -20,18 +39,31 @@ de:
         password_confirmation: "Passwort bestätigen"
         current_password: "Aktuelles Passwort"
       invoice:
+        number: "Rechnungsnummer"
         date: "DD-MM-YYYY"
         due_date: "DD-MM-YYYY"
-        select_client: "Kunde auswählen"
-      please_select: "Bitte auswählen"
+        total: "Gesamtsumme"
+        paid: "Bezahlt"
+        notes: "Notizen"
     buttons:
       save: "Speichern"
       create: "Erstellen"
       update: "Aktualisieren"
       next: "Weiter"
       cancel: "Abbrechen"
-      remove: "Entfernen"
-      new: "Neu"
-      close: "Schließen"
+    errors:
       invoice:
-        add_line_item: "Artikel hinzufügen"
+        customer:
+          blank: "Kunde darf nicht leer sein"
+        number:
+          blank: "Rechnungsnummer darf nicht leer sein"
+        date:
+          blank: "Rechnungsdatum darf nicht leer sein"
+        due_date:
+          blank: "Fälligkeitsdatum darf nicht leer sein"
+        total:
+          blank: "Gesamtsumme darf nicht leer sein"
+        paid:
+          blank: "Bezahlt darf nicht leer sein"
+        notes:
+          blank: "Notizen darf nicht leer sein"

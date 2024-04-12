@@ -37,6 +37,11 @@ en:
           send: "Send"
           send_reminder: "Send Reminder"
           view: "View"
+        heading:
+          client: "Client"
+          date: "Date"
+          due_date: "Due Date"
+          invoice_number: "Invoice Number"
+          status: "Status"
+          total_amount: "Total Amount"
       title: "Invoices"
-      action:
-        new: "New Invoice"

@@ -2,7 +2,7 @@
   <% if @modal %>
     <%= tag.div data: { controller: "turbo-modal", action: "turbo:submit-end->turbo-modal#submitEnd" }, class: "modal p-2" do %>
       <div class="modal-header flex justify-end">
-        <button  class=""  data-action="turbo-modal#hideModal" ><%= t("forms.buttons.close") %></button>
+        <button  class=""  data-action="turbo-modal#hideModal" >Close</button>
       </div>
       <div class="modal-body">
         <%= render "form", client: @client, formats: :html %>

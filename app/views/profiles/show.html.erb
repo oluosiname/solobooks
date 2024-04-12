@@ -2,12 +2,7 @@
   <%= form_with(model: @profile, url: create_profile_path, local: true) do |form| %>
     <% if  @profile.errors.any? %>
     <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
-      <h2 class="font-medium mb-2">
-        <% if @profile.id.present? %>
-          <%= t("record.update.form_error", count: @profile.errors.count, resource: 'Profile') %>
-        <% else %>
-          <%= t("record.create.form_error", count: @profile.errors.count, resource: 'Profile') %>
-        <% end %>
+      <h2 class="font-medium mb-2"><%= t("record.#{@profile.id.present?  ? 'update' : 'create'}.form_error", count: @profile.errors.count, resource: 'Profile') %></h2>
 
       <ul>
         <%  @profile.errors.each do |error| %>
@@ -109,7 +104,7 @@
 
         <div class="field w-full">
           <%= form.label :currency_id, class: "select" do %>
-            <%= t("activerecord.attributes.profile.currency") %>
+            <%= t("forms.labels.invoice.currency") %>
             <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id }, class: "leading-5 mt-1 px-3 h-9 py-2" %>
             <i class="fa-solid fa-angle-down"></i>
           <% end %>
@@ -145,7 +140,7 @@
 
           <div class="field  w-full">
             <%= address_form.label :country, class: "select !flex-2", style: "flex: 2 2 0%" do %>
-              <%= t("activerecord.attributes.address.country") %>
+              <%= t("forms.labels.address.country") %>
               <%= address_form.country_select :country, {priority_countries: ["DE"]}, {class: "leading-5 px-3 py-2 h-9 mt-1"}   %>
               <i class="fa-solid fa-angle-down"></i>
             <% end %>
