@@ -24,22 +24,23 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params.merge(user: current_user))
     respond_to do |format|
       if @client.save
-        @clients = current_user.clients
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             'invoice_client_id',
             partial: 'invoices/invoice_client_options',
-            locals: { clients: @clients, selected: @client.id },
+            locals: { clients: current_user.clients, selected: @client.id },
           )
         end
-        format.html { redirect_to client_url(@client), notice: i18n.t('record.create.success', object: 'Client') }
+        format.html do
+          redirect_to client_url(@client),
+            notice: i18n.t('record.create.success', resource: @client.class.model_name.human)
+        end
       else
-        @clients = current_user.clients
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             'client_errors',
             partial: 'clients/client_errors',
-            locals: { clients: @clients, client: @client },
+            locals: { clients: current_user.clients, client: @client },
           ),
             status: :unprocessable_entity
         end

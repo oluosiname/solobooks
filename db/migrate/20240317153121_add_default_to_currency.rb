@@ -2,6 +2,6 @@
 
 class AddDefaultToCurrency < ActiveRecord::Migration[7.1]
   def change
-    add_column :currencies, :default, :boolean, default: false
+    add_column :currencies, :default, :boolean, default: false, null: false
   end
 end

@@ -55,31 +55,5 @@ RSpec.describe 'Invoice Creation', type: :system do
       expect(last_invoice.status).to eq('pending')
       expect(last_invoice.pdf.attached?).to be(true)
     end
-
-    context 'when vat is applied' do
-    end
-  end
-
-  context 'when invalid data' do
-    context 'when no line items' do
-    end
-
-    context 'when no invoice category' do
-    end
-
-    context 'when no currency' do
-    end
-
-    context 'when no client' do
-    end
-
-    context 'when no date' do
-    end
-
-    context 'when no due date' do
-    end
-
-    context 'when no line item description' do
-    end
   end
 end

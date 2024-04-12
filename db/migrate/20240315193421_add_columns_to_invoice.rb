@@ -2,10 +2,12 @@
 
 class AddColumnsToInvoice < ActiveRecord::Migration[7.1]
   def change
-    add_column :invoices, :vat_id, :string
-    add_column :invoices, :invoice_number, :string
-    add_column :invoices, :tax_id, :string
+    change_table :invoices, bulk: true do |t|
+      t.column :vat_id, :string
+      t.column :invoice_number, :string
+      t.column :tax_id, :string
 
-    add_index :invoices, :invoice_number, unique: true
+      t.index :invoice_number, unique: true
+    end
   end
 end

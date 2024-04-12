@@ -25,7 +25,7 @@ module InvoiceService
       pdf.fill_color FONT_COLOUR
 
       last_measured_y = pdf.cursor
-      pdf.image "#{Rails.root.join("app/assets/images/logo-dark.png")}", position: :left, width: 80
+      pdf.image Rails.root.join('app/assets/images/logo-dark.png').to_s, position: :left, width: 80
       pdf.text_box 'Invoice #', size: 16, style: :semi_bold, at: [0, last_measured_y], align: :right
       last_measured_y = pdf.cursor - 7
       pdf.formatted_text_box [{ text: 'MyraStudio Inc.', color: '256094' }], style: :semi_bold, at: [0, last_measured_y]
@@ -46,7 +46,7 @@ module InvoiceService
       # Client Info
       last_measured_y = pdf.cursor
       pdf.text I18n.t('invoices.show.bill_to'), size: 12, style: :semi_bold
-      pdf.text "#{invoice.client.name}", size: 11, style: :semi_bold
+      pdf.text invoice.client.name.to_s, size: 11, style: :semi_bold
 
       pdf.move_down 10
       pdf.text client_address.street_address
@@ -74,7 +74,7 @@ module InvoiceService
       )
 
       # Line items Table
-      t = pdf.table line_items_table_data, line_items_table_props do
+      pdf.table line_items_table_data, line_items_table_props do
         column(3).style align: :right
         # row(0..-1).border_width = 0
         # row(1).border_width = 0

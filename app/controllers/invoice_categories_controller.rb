@@ -18,7 +18,10 @@ class InvoiceCategoriesController < ApplicationController
             locals: { categories: @categories, selected: @category.id },
           )
         end
-        format.html { redirect_to category_url(@category), notice: 'category was successfully created.' }
+        format.html do
+          redirect_to category_url(@category),
+            notice: i18n.t('record.create.success', resource: @category.class.model_name.human)
+        end
       end
     end
   end

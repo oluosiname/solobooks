@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Password Management', type: :system do
-  context 'requesting password reset' do
+  context 'when requesting password reset' do
     let!(:user) { create(:user, :confirmed, email: 'test@example.com', password: 'password') }
 
     it 'requests password change', :chrome, :js do
@@ -14,11 +14,12 @@ RSpec.describe 'Password Management', type: :system do
       fill_in 'user[email]', with: user.email
       click_on 'Reset password'
 
-      expect(page).to have_content('If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes')
+      expect(page).to have_content("If your email address exists in our database, you will receive \
+a password recovery link at your email address in a few minutes")
     end
   end
 
-  context 'updating password' do
+  context 'when updating password' do
     let!(:user) { create(:user, :confirmed, email: 'test@example.com', password: 'password') }
 
     it 'updates password' do

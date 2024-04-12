@@ -6,14 +6,16 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  class << self
+    def default_url_options
+      { locale: I18n.locale }
+    end
+  end
+
   private
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
-  end
-
-  def self.default_url_options
-    { locale: I18n.locale }
   end
 
   def layout_by_resource
