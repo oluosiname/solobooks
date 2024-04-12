@@ -6,8 +6,9 @@ en:
     invoices: Invoices
     logout: Logout
     profile: Profile
-    taxes: Settings
-    transactions: Logout
+    settings: Settings
+    taxes: Taxes
+    transactions: Transactions
   record:
     create:
       error: "%{resource} could not be created."

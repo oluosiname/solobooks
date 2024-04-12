@@ -12,6 +12,8 @@ en:
           send_reminder: Send Reminder
           view: View
       title: Invoices
+    new:
+      title: New Invoice
     show:
       bill_to: Bill To
       description: Client details

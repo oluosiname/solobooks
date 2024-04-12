@@ -12,6 +12,8 @@ de:
           send_reminder: Erinnerung senden
           view: Anzeigen
       title: Rechnungen
+    new:
+      title: Neue Rechnung
     show:
       bill_to: Rechnung an
       description: Kundendetails

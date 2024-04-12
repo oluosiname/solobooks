@@ -2,7 +2,7 @@
   <h2 class="text-xl font-semibold mb-4">New Client</h2>
   <%= form_with(model: client, url: clients_path, class: "contents") do |form| %>
     <div id="client_errors">
-      <%= render "clients/client_errors", client: @client %>
+      <%= render "partials/resource_error_messages", resource: @client %>
     </div>
    
     <div class="field mb-4">
@@ -38,7 +38,7 @@
     </div>
 
     <fieldset class ="mt-6">
-      <legend class="font-bold">Address</legend>
+      <legend class="font-bold"><%= t('forms.legends.client.address') %></legend>
 
       <div class="field mb-4">
         <%= form.fields_for :address do |address_form| %>

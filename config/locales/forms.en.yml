@@ -10,10 +10,13 @@ en:
       login: Login
       new: New
       remove: Remove
+      resend_confirmation: Resend confirmation
       reset_password: Reset password
       save: Save
       sign_up: Sign up
     legends:
+      client:
+        address: Address
       profile:
         address: Address
         invoice_settings: Invoice Settings

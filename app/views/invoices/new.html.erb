@@ -1,4 +1,4 @@
-<h4 class="mb-2 text-lg font-medium">New Invoice</h4>
+<h4 class="mb-2 text-lg font-medium"><%= t('invoices.new.title') %></h4>
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
   <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" }) do |form| %>
     <%= render partial: "partials/resource_error_messages", locals: { resource: @invoice } %>

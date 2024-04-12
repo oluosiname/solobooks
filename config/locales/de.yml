@@ -6,8 +6,9 @@ de:
     invoices: Rechnungen
     logout: Abmelden
     profile: Profil
-    taxes: Einstellungen
-    transactions: Abmelden
+    settings: Einstellungen
+    taxes: Steuern
+    transactions: Transaktionen
   record:
     create:
       error: "%{resource} konnte nicht erstellt werden."

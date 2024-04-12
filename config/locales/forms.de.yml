@@ -10,10 +10,13 @@ de:
       login: Anmelden
       new: Neu
       remove: Entfernen
+      resend_confirmation: Bestätigung erneut senden
       reset_password: Passwort zurücksetzen
       save: Speichern
       sign_up: Registrieren
     legends:
+      client:
+        address: Adresse
       profile:
         address: Adresse
         invoice_settings: Rechnungseinstellungen
