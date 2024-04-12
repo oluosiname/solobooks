@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Invoice Creation', type: :system do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, :with_profile) }
   let!(:client) { create(:client, user:) }
   let!(:invoice_category) { create(:invoice_category) }
   let!(:currency) { create(:currency, default: true) }
 
   context 'when valid data' do
-    it '', :js do
+    it 'creates invoice', :js do
       login_user(user)
       visit 'invoices/new'
       expect(user.invoices.size).to eq(0)

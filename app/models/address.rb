@@ -14,6 +14,6 @@ class Address < ApplicationRecord
 
   def country_name
     iso_country = ISO3166::Country[country]
-    iso_country&.translations&.[](I18n.locale.to_s) || iso_country.name
+    iso_country&.translations&.[](I18n.locale.to_s) || iso_country&.name || country
   end
 end

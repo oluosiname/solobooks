@@ -3,7 +3,7 @@
 class InvoiceValidator::LineItemsValidator < ActiveModel::Validator
   def validate(record)
     unless record.line_items.size.positive?
-      record.errors.add :base, 'Invoice must contain line items.'
+      record.errors.add :base, I18n.t('activerecord.errors.models.invoice.attributes.line_items.blank')
     end
   end
 end

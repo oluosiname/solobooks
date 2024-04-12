@@ -9,4 +9,10 @@ FactoryBot.define do
   trait :confirmed do
     confirmed_at { Time.zone.now }
   end
+
+  trait :with_profile do
+    after(:create) do |user|
+      create(:profile, user:)
+    end
+  end
 end

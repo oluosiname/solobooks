@@ -6,7 +6,7 @@ FactoryBot.define do
     date { Faker::Date.backward(days: 30) }
     due_date { Faker::Date.forward(days: 30) }
     total_amount { Faker::Number.decimal(l_digits: 5, r_digits: 2) }
-    status { 'pending' }
+    status { 'sent' }
     invoice_category
     vat_id { Faker::Lorem.word }
     tax_id { Faker::Lorem.word }

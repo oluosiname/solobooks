@@ -110,6 +110,8 @@ de:
               required: muss ausgefüllt werden
             language:
               inclusion: ist kein gültiger Wert
+            line_items:
+              blank: muss haben mindestens ein Element
         line_item:
           attributes:
             description:

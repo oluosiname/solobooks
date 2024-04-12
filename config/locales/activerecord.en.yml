@@ -73,6 +73,12 @@ en:
         password_digest: Password digest
         remember_me: Remember me
         reset_password_token: Reset password token
+    errors:
+      models:
+        invoice:
+          attributes:
+            line_items:
+              blank: must have at least one line item
     models:
       address:
         one: Address
