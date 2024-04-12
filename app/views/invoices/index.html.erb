@@ -1,15 +1,15 @@
-<div class="flex justify-between mb-6">
+<div class="flex justify-between mb-6 pt-4 pb-0 px-4 md:p-0">
   <h2 class="text-xl leading-6 font-semibold"><%= t("invoices.index.title") %></h2>
   <%= link_to new_invoice_path do %>
     <button class="btn btn-success btn-sm"><%= t("invoices.index.action.new") %></button>
   <% end %>
 </div>
 <section class="invoices-filter mb-4">
-  <%= form_with url: invoices_path, method: :get, class: 'bg-white py-2 px-2 rounded-md', data: {controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list",  search_fields_value: ["status"]} do %>
-    <div class="flex gap-4">
+  <%= form_with url: invoices_path, method: :get, class: 'bg-white py-2 px-2 rounded-none; md:rounded-md', data: {controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list",  search_fields_value: ["status"]} do %>
+    <div class="flex gap-4 justify-center md:justify-start">
       <span class="pill">
         <%= radio_button_tag :status, '', id: 'status_all', data: {action: "click->search#call"}, checked: params[:status] == '' %>
-        <label for='status_all'><%= t("all") %></label>
+        <label for='status_all p-0'><%= t("all") %></label>
       </span>
       <% Invoice.statuses.keys.each do |status| %>
         <span class="pill">
@@ -24,18 +24,18 @@
   <table class="min-w-full divide-y divide-gray-200 bg-white" data-controller="invoice-table">
     <thead class="bg-gray-50 ">
       <tr>
-        <th scope="col" class="py-3 ps-4">
+        <th scope="col" class="hidden py-3 ps-4">
           <div class="flex items-center h-5">
             <input id="table-checkbox-all" type="checkbox" class="form-checkbox rounded">
             <label for="table-checkbox-all" class="sr-only">Checkbox</label>
           </div>
         </th>
         <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.invoice_number") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.client") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.date") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.due_date") %></th>
+        <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.client") %></th>
+        <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.date") %></th>
+        <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.due_date") %></th>
         <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.total") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.status") %></th>
+        <th scope="col" class="hidden sm:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.status") %></th>
         <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
       </tr>
     </thead>
