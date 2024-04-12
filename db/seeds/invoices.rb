@@ -6,12 +6,12 @@ user = User.first
 Invoice.destroy_all
 
 100.times do
-  date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
+  date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
   due_date = date + Faker::Number.between(from: 1, to: 30).days
   Invoice.create!(
     user: user,
-    date: , 
-    due_date: ,
+    date:,
+    due_date:,
     total_amount: Faker::Number.decimal(l_digits: 3, r_digits: 2),
     status: Invoice.statuses.keys.sample,
     invoice_category: InvoiceCategory.all.sample,
@@ -31,4 +31,4 @@ Invoice.destroy_all
   )
 end
 
-puts 'Invoices created'
+Rails.logger.debug 'Invoices created'

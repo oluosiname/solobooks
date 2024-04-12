@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :profile do
-    association :user
+    user
     legal_status { rand(2) } # Randomly assign legal status
     full_name { Faker::Name.name }
     phone_number { Faker::PhoneNumber.phone_number }

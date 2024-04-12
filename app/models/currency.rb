@@ -8,15 +8,17 @@ class Currency < ApplicationRecord
   validates :symbol, presence: true
   validates :active, inclusion: { in: [true, false] }
 
-  def self.default_currency
-    find_by(default: true)
-  end
+  class << self
+    def default_currency
+      find_by(default: true)
+    end
 
-  def self.default_currency_code
-    default_currency&.code
-  end
+    def default_currency_code
+      default_currency&.code
+    end
 
-  def self.default_currency_symbol
-    default_currency&.symbol
+    def sdefault_currency_symbol
+      default_currency&.symbol
+    end
   end
 end

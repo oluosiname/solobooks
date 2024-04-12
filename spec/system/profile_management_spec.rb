@@ -3,12 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Profile management', type: :system do
-  let(:user) { create(:user) }
-  let!(:profile) { create(:profile, user:) }
-  let!(:invoice_category) { create(:invoice_category) }
-  let!(:currency) { create(:currency, default: true) }
+  let!(:user) { create(:user) }
+  let(:currency_code) { 'CODE' }
 
   before do
+    create(:invoice_category)
+    create(:currency, default: true, code: currency_code)
+    create(:profile, user: user)
     login_user(user)
   end
 
@@ -38,9 +39,9 @@ RSpec.describe 'Profile management', type: :system do
     end
 
     context 'when user does not have a profile' do
-      it 'creates a new profile' do
-        user.profile.destroy # Destroy existing profile
+      before { user.profile.destroy }
 
+      it 'creates a new profile' do
         visit profile_path
 
         expect(user.reload.profile).to be_nil
@@ -69,7 +70,7 @@ def fill_profile_form
   find(:select, 'profile[country]').first(:option, 'Germany').select_option
 
   select 'English', from: 'profile[language]'
-  select currency.code, from: 'profile[currency_id]'
+  select currency_code, from: 'profile[currency_id]'
 
   fill_in 'profile[address_attributes][street_address]', with: '123 Main Street'
   fill_in 'profile[address_attributes][city]', with: 'Lagos'

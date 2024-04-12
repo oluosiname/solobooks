@@ -11,6 +11,6 @@
 #   end
 
 Dir[Rails.root.join('db/seeds/*.rb').to_s].sort.each do |seed|
-  puts "Loading seed data from #{seed}"
+  Rails.logger.debug { "Loading seed data from #{seed}" }
   require seed
 end

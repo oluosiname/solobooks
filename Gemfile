@@ -59,8 +59,6 @@ gem 'rubocop-shopify', require: false
 gem 'prawn'
 gem 'prawn-table'
 
-
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: [:mri, :windows]
@@ -77,7 +75,7 @@ gem 'simplecov', require: false, group: :test
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
-  gem "letter_opener"
+  gem 'letter_opener'
   gem 'letter_opener_web', '~> 2.0'
   gem 'i18n-tasks', '~> 1.0.13'
   gem 'easy_translate'

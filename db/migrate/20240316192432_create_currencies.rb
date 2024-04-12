@@ -6,7 +6,7 @@ class CreateCurrencies < ActiveRecord::Migration[7.1]
       t.string :name, null: false
       t.string :code, null: false
       t.string :symbol, null: false
-      t.boolean :active, default: false
+      t.boolean :active, default: false, null: false
       t.index [:code], name: 'index_currencies_on_code', unique: true
       t.index [:active], name: 'index_currencies_on_active'
       t.timestamps
