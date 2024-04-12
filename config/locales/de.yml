@@ -1,4 +1,5 @@
 de:
+  all: "Alle"
   record:
     create:
       error: "%{resource} konnte nicht erstellt werden."
@@ -15,3 +16,9 @@ de:
   errors:
     messages:
       not_saved: Nicht gespeichert
+  menu:
+    clients: "Dashboard"
+    invoices: "Rechnungen"
+    taxes: "Einstellungen"
+    transactions: "Abmelden"
+    profile: "Profil"

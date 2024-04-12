@@ -6,27 +6,6 @@ en:
         password: "Password"
         password_confirmation: "Password confirmation"
         current_password: "Current password"
-      invoice:
-        number: "Invoice number"
-        date: "Invoice date"
-        due_date: "Due date"
-        customer: "Customer"
-        total: "Total"
-        paid: "Paid"
-        notes: "Notes"
-      invoice_category:
-        name: "Name"
-        description: "Description"
-      address:
-        country: "Country"
-      invoice:
-        category: "Category"
-        currency: "Currency"
-        language: "Language"
-        vat: "VAT"
-        vat_included_in_price: "VAT included in price"
-        due_date: "Due date"
-        date: "Date"
     placeholders:
       user:
         email: "Email"
@@ -40,12 +19,15 @@ en:
         total: "Total"
         paid: "Paid"
         notes: "Notes"
+        select_client: "Select client"
+      please_select: "Please select"
     legends:
       profile:
         address: "Address"
         invoice_settings: "Invoice Settings"
         personal_information: "Personal Information"
         tax_information: "Tax Information"
+        business_information: "Business Information"
     errors:
       invoice:
         number:
@@ -68,3 +50,8 @@ en:
       update: "Update"
       next: "Next"
       cancel: "Cancel"
+      remove: "Remove"
+      new: "New"
+      close: "Close"
+      invoice:
+        add_line_item: "Add line item"
