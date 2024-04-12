@@ -42,6 +42,13 @@ de:
         vat_charged: MwSt. berechnet?
         vat_included: MwSt. im Preis enthalten
         vat_rate: MwSt.-Satz
+      invoice/line_items:
+        description: Beschreibung
+        price: Preis
+        quantity: Menge
+        total_price: Gesamtpreis
+        unit: Einheit
+        unit_price: Einzelpreis
       invoice_category:
         description: Beschreibung
         name: Name
@@ -87,9 +94,29 @@ de:
               blank: muss ausgefüllt werden
             street_address:
               blank: muss ausgefüllt werden
+        invoice:
+          attributes:
+            client:
+              blank: muss ausgefüllt werden
+              required: muss ausgefüllt werden
+            currency:
+              inclusion: ist kein gültiger Wert
+            date:
+              blank: muss ausgefüllt werden
+            due_date:
+              blank: muss ausgefüllt werden
+            invoice_category:
+              blank: muss ausgefüllt werden
+              required: muss ausgefüllt werden
+            language:
+              inclusion: ist kein gültiger Wert
         line_item:
           attributes:
+            description:
+              blank: muss ausgefüllt werden
             total_price:
+              greater_than: muss größer als 0 sein
+            unit_price:
               greater_than: muss größer als 0 sein
         profile:
           attributes:
@@ -115,3 +142,25 @@ de:
             password_confirmation:
               blank: muss ausgefüllt werden
               confirmation: stimmt nicht mit dem Passwort überein
+    models:
+      address:
+        one: Adresse
+        other: Adressen
+      client:
+        one: Kunde
+        other: Kunden
+      invoice:
+        one: Rechnung
+        other: Rechnungen
+      invoice_category:
+        one: Kategorie
+        other: Kategorien
+      line_item:
+        one: Artikel
+        other: Artikel
+      profile:
+        one: Profil
+        other: Profile
+      user:
+        one: Benutzer
+        other: Benutzer

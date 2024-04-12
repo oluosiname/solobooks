@@ -73,3 +73,25 @@ en:
         password_digest: Password digest
         remember_me: Remember me
         reset_password_token: Reset password token
+    models:
+      address:
+        one: Address
+        other: Addresses
+      client:
+        one: Client
+        other: Clients
+      invoice:
+        one: Invoice
+        other: Invoices
+      invoice_category:
+        one: Invoice category
+        other: Invoice categories
+      line_item:
+        one: Line item
+        other: Line items
+      profile:
+        one: Profile
+        other: Profiles
+      user:
+        one: User
+        other: Users

@@ -1,21 +1,6 @@
 <div class="card p-6">
   <%= form_with(model: @profile, url: create_profile_path, local: true) do |form| %>
-    <% if  @profile.errors.any? %>
-    <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
-      <h2 class="font-medium mb-2">
-        <% if @profile.id.present? %>
-          <%= t("record.update.form_error", count: @profile.errors.count, resource: 'Profile') %>
-        <% else %>
-          <%= t("record.create.form_error", count: @profile.errors.count, resource: 'Profile') %>
-        <% end %>
-
-      <ul>
-        <%  @profile.errors.each do |error| %>
-          <li class="text-sm font-normal mb-1"><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "partials/resource_error_messages", locals: { resource: @profile } %>
     <!-- Full Name -->
     <div class="field mb-4">
       <%= form.label :full_name %>

@@ -2,7 +2,6 @@
 en:
   forms:
     buttons:
-      cancel: Cancel
       change_password: Change password
       close: Close
       create: Create
@@ -10,38 +9,13 @@ en:
         add_line_item: Add line item
       login: Login
       new: New
-      next: Next
       remove: Remove
       reset_password: Reset password
       save: Save
       sign_up: Sign up
-      update: Update
-    errors:
-      invoice:
-        customer:
-          blank: can't be blank
-        date:
-          blank: can't be blank
-        due_date:
-          blank: can't be blank
-        notes:
-          blank: can't be blank
-        number:
-          blank: can't be blank
-        paid:
-          blank: can't be blank
-        total:
-          blank: can't be blank
-    labels:
-      user:
-        current_password: Current password
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
     legends:
       profile:
         address: Address
-        business_information: Business Information
         invoice_settings: Invoice Settings
         personal_information: Personal Information
         tax_information: Tax Information
@@ -49,11 +23,7 @@ en:
       invoice:
         date: DD-MM-YYYY
         due_date: DD-MM-YYYY
-        notes: Notes
-        number: Invoice number
-        paid: Paid
         select_client: Select client
-        total: Total
       please_select: Please select
       user:
         current_password: Current password

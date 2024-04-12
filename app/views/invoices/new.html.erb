@@ -1,17 +1,7 @@
 <h4 class="mb-2 text-lg font-medium">New Invoice</h4>
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
   <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" }) do |form| %>
-    <% if  @invoice.errors.any? %>
-    <div id="error_explanation" class="bg-danger-50 text-danger-500 px-3 py-2 mb-4 rounded-lg mt-3">
-      <h2 class="font-medium mb-2"><%= pluralize( @invoice.errors.count, "error") %> prohibited this invoice from being created:</h2>
-
-      <ul>
-        <%  @invoice.errors.each do |error| %>
-          <li class="text-sm font-normal mb-1"><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= render partial: "partials/resource_error_messages", locals: { resource: @invoice } %>
     <div class="flex justify-between">
       <div>
         <div class="field invoice-field">

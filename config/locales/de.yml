@@ -11,13 +11,12 @@ de:
   record:
     create:
       error: "%{resource} konnte nicht erstellt werden."
-      form_error:
-        one: 'Fehler beim Speichern des %{resource}: 1 Fehler.'
-        other: 'Fehler beim Speichern des %{resource}: %{count} Fehler.'
       success: "%{resource} wurde erfolgreich erstellt."
+    errors:
+      messages:
+        not_saved:
+          one: '1 Fehler verhinderte das Speichern von %{resource}:'
+          other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
     update:
       error: "%{resource} konnte nicht aktualisiert werden."
-      form_error:
-        one: 'Fehler beim Speichern des %{resource}: 1 Fehler.'
-        other: 'Fehler beim Speichern des %{resource}: %{count} Fehler.'
       success: "%{resource} wurde erfolgreich aktualisiert."

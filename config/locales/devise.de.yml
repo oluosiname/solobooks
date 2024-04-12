@@ -64,25 +64,23 @@ de:
       already_signed_out: Signed out successfully.
       signed_in: Signed in successfully.
       signed_out: Signed out successfully.
+    shared:
+      links:
+        already_have_an_account: Sie haben bereits ein Konto?
+        dont_have_an_account: Sie haben noch kein Konto?
+        forgot_your_password: Passwort vergessen?
+        sign_in: Anmelden
+        sign_out: Abmelden
+        sign_up: Registrieren
+        signed_in_as: Angemeldet als %{email}
+        signed_in_as_admin: Angemeldet als %{email} (Admin)
+      notices:
+        signed_in: Sie sind angemeldet.
+        signed_out: Sie sind abgemeldet.
     unlocks:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please sign in to continue.
-    shared:
-      links:
-        signed_in_as: Angemeldet als %{email}
-        signed_in_as_admin: Angemeldet als %{email} (Admin)
-        # already_have_an_account: Sie haben bereits ein Konto? %{link}
-        # dont_have_an_account: Sie haben noch kein Konto? %{link}
-        already_have_an_account: Sie haben bereits ein Konto?
-        dont_have_an_account: Sie haben noch kein Konto?
-        forgot_your_password: Passwort vergessen?
-        sign_up: Registrieren
-        sign_in: Anmelden
-        sign_out: Abmelden
-      notices:
-        signed_in: Sie sind angemeldet.
-        signed_out: Sie sind abgemeldet.
   errors:
     messages:
       already_confirmed: was already confirmed, please try signing in

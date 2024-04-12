@@ -1,12 +1,5 @@
 ---
 de:
   clients:
-    edit:
-      description: Kundendetails bearbeiten
-      title: Kunden bearbeiten
     index:
-      description: Liste der Kunden
       title: Kunden
-    new:
-      description: Neuen Kunden anlegen
-      title: Neuer Kunde

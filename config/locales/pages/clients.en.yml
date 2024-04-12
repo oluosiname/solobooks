@@ -1,12 +1,5 @@
 ---
 en:
   clients:
-    edit:
-      description: Edit client details
-      title: Edit client
     index:
-      description: List of clients
       title: Clients
-    new:
-      description: Create a new client
-      title: New client

@@ -11,13 +11,12 @@ en:
   record:
     create:
       error: "%{resource} could not be created."
-      form_error:
-        one: 'Failed to save %{resource}: 1 error.'
-        other: 'Failed to save %{resource}: %{count} errors.'
       success: "%{resource} was successfully created."
+    errors:
+      messages:
+        not_saved:
+          one: '1 error prohibited this %{resource} from being saved:'
+          other: "%{count} errors prohibited this %{resource} from being saved:"
     update:
       error: "%{resource} could not be updated."
-      form_error:
-        one: 'Failed to save %{resource}: 1 error.'
-        other: 'Failed to save %{resource}: %{count} errors.'
       success: "%{resource} was successfully updated."

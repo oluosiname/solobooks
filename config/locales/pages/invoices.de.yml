@@ -15,8 +15,6 @@ de:
     show:
       bill_to: Rechnung an
       description: Kundendetails
-      invoice_date: Rechnungsdatum
-      invoice_due_date: Fälligkeitsdatum
       line_items_table:
         heading:
           amount: Gesamt
@@ -24,18 +22,9 @@ de:
           qty: Menge
           rate: Preis
           subtotal: Zwischensumme
-        subtotal: Zwischensumme
-        total: Gesamt
-        vat: MwSt.
       no_vat: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
       notes: Notizen
-      payment_details:
-        account_number: Kontonummer
-        bank_name: Bankname
-        heading: Zahlungsdetails
-        iban: IBAN
-        sort_code: Sort Code
-        swift: SWIFT
+      payment_details: Zahlungsdetails
       payment_terms: Zahlungsbedingungen
       reverse_vat: Steuerschuldnerschaft des Leistungsempfängers (§13b Abs. 5 UStG)
       thanks:

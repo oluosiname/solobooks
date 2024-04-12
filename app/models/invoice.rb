@@ -10,7 +10,6 @@ class Invoice < ApplicationRecord
   validates :date, presence: true
   validates :due_date, presence: true
   validates :total_amount, presence: true
-  validates :status, presence: true
   validates_with InvoiceValidator::LineItemsValidator
   validates_with InvoiceValidator::DatesValidator
 

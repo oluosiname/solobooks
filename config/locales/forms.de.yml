@@ -2,7 +2,6 @@
 de:
   forms:
     buttons:
-      cancel: Abbrechen
       change_password: Passwort ändern
       close: Schließen
       create: Erstellen
@@ -10,50 +9,21 @@ de:
         add_line_item: Artikel hinzufügen
       login: Anmelden
       new: Neu
-      next: Weiter
       remove: Entfernen
       reset_password: Passwort zurücksetzen
       save: Speichern
       sign_up: Registrieren
-      update: Aktualisieren
-    errors:
-      invoice:
-        customer:
-          blank: muss ausgefüllt werden
-        date:
-          blank: muss ausgefüllt werden
-        due_date:
-          blank: muss ausgefüllt werden
-        notes:
-          blank: muss ausgefüllt werden
-        number:
-          blank: muss ausgefüllt werden
-        paid:
-          blank: muss ausgefüllt werden
-        total:
-          blank: muss ausgefüllt werden
-    labels:
-      user:
-        current_password: Aktuelles Passwort
-        email: E-Mail-Adresse
-        password: Passwort
-        password_confirmation: Passwort bestätigen
     legends:
       profile:
         address: Adresse
-        business_information: Firmeninformationen
         invoice_settings: Rechnungseinstellungen
         personal_information: Persönliche Informationen
         tax_information: Steuerinformationen
     placeholders:
       invoice:
-        date: DD-MM-YYYY
-        due_date: DD-MM-YYYY
-        notes: Notizen
-        number: Rechnungsnummer
-        paid: Bezahlt
+        date: TT-MM-JJJJ
+        due_date: TT-MM-JJJJ
         select_client: Kunde auswählen
-        total: Gesamt
       please_select: Bitte auswählen
       user:
         current_password: Aktuelles Passwort

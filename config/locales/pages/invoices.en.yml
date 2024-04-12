@@ -15,8 +15,6 @@ en:
     show:
       bill_to: Bill To
       description: Client details
-      invoice_date: Invoice Date
-      invoice_due_date: Due Date
       line_items_table:
         heading:
           amount: Amount
@@ -24,18 +22,9 @@ en:
           qty: qty
           rate: rate
           subtotal: Subtotal
-        subtotal: Subtotal
-        total: Total
-        vat: Vat
       no_vat: According to § 19 UStG no sales tax is charged.
       notes: Notes
-      payment_details:
-        account_number: Account Number
-        bank_name: Bank Name
-        heading: Payment Details
-        iban: IBAN
-        sort_code: Sort Code
-        swift: SWIFT
+      payment_details: Payment Details
       payment_terms: Payment Terms
       reverse_vat: Reverse VAT charge is applied (§13b Abs. 5 UStG)
       thanks:
