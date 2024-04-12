@@ -2,21 +2,19 @@
 de:
   forms:
     buttons:
-      save: "Speichern"
-      create: "Erstellen"
-      update: "Aktualisieren"
-      next: "Weiter"
-      cancel: "Abbrechen"
-      change_password: "Passwort ändern"
       cancel: Abbrechen
+      change_password: Passwort ändern
       close: Schließen
       create: Erstellen
       invoice:
         add_line_item: Artikel hinzufügen
+      login: Anmelden
       new: Neu
       next: Weiter
       remove: Entfernen
+      reset_password: Passwort zurücksetzen
       save: Speichern
+      sign_up: Registrieren
       update: Aktualisieren
     errors:
       invoice:

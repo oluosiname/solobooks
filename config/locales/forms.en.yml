@@ -3,14 +3,18 @@ en:
   forms:
     buttons:
       cancel: Cancel
+      change_password: Change password
       close: Close
       create: Create
       invoice:
         add_line_item: Add line item
+      login: Login
       new: New
       next: Next
       remove: Remove
+      reset_password: Reset password
       save: Save
+      sign_up: Sign up
       update: Update
     errors:
       invoice:
@@ -21,14 +25,6 @@ en:
         due_date:
           blank: can't be blank
         notes:
-          blank: "can't be blank"
-    buttons:
-      save: "Save"
-      create: "Create"
-      update: "Update"
-      next: "Next"
-      cancel: "Cancel"
-      change_password: "Change password"
           blank: can't be blank
         number:
           blank: can't be blank
@@ -63,4 +59,4 @@ en:
         current_password: Current password
         email: Email
         password: Password
-        password_confirmation: Password confirmation
+        password_confirmation: Enter your password again

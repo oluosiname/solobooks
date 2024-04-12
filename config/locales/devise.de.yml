@@ -45,12 +45,12 @@ de:
       failure: Could not authenticate you from %{kind} because "%{reason}".
       success: Successfully authenticated from %{kind} account.
     passwords:
-      no_token: "Sie können nicht auf diese Seite zugreifen, ohne von einer E-Mail zum Zurücksetzen des Passworts zu kommen. Wenn Sie von einer E-Mail zum Zurücksetzen des Passworts kommen, stellen Sie bitte sicher, dass Sie die vollständige bereitgestellte URL verwendet haben."
-      send_instructions: "Sie erhalten in wenigen Minuten eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts."
-      send_paranoid_instructions: "Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten einen Link zur Passwortwiederherstellung an Ihre E-Mail-Adresse."
-      updated: "Ihr Passwort wurde erfolgreich geändert. Sie sind jetzt angemeldet."
-      updated_not_active: "Ihr Passwort wurde erfolgreich geändert."
-      heading: "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts."
+      heading: Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts.
+      no_token: Sie können nicht auf diese Seite zugreifen, ohne von einer E-Mail zum Zurücksetzen des Passworts zu kommen. Wenn Sie von einer E-Mail zum Zurücksetzen des Passworts kommen, stellen Sie bitte sicher, dass Sie die vollständige bereitgestellte URL verwendet haben.
+      send_instructions: Sie erhalten in wenigen Minuten eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts.
+      send_paranoid_instructions: Wenn Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten einen Link zur Passwortwiederherstellung an Ihre E-Mail-Adresse.
+      updated: Ihr Passwort wurde erfolgreich geändert. Sie sind jetzt angemeldet.
+      updated_not_active: Ihr Passwort wurde erfolgreich geändert.
     registrations:
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       signed_up: Welcome! You have signed up successfully.
@@ -68,6 +68,21 @@ de:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please sign in to continue.
+    shared:
+      links:
+        signed_in_as: Angemeldet als %{email}
+        signed_in_as_admin: Angemeldet als %{email} (Admin)
+        # already_have_an_account: Sie haben bereits ein Konto? %{link}
+        # dont_have_an_account: Sie haben noch kein Konto? %{link}
+        already_have_an_account: Sie haben bereits ein Konto?
+        dont_have_an_account: Sie haben noch kein Konto?
+        forgot_your_password: Passwort vergessen?
+        sign_up: Registrieren
+        sign_in: Anmelden
+        sign_out: Abmelden
+      notices:
+        signed_in: Sie sind angemeldet.
+        signed_out: Sie sind abgemeldet.
   errors:
     messages:
       already_confirmed: was already confirmed, please try signing in

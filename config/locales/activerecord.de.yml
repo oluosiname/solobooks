@@ -69,6 +69,10 @@ de:
         street: Straße
         tax_number: Steuernummer
         vat_id: USt-IdNr.
+      user:
+        email: E-Mail
+        password: Passwort
+        password_confirmation: Passwort bestätigen
     errors:
       models:
         address:
