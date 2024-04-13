@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
     resources :invoices, only: [:new, :create, :index]
     resources :invoice_categories, only: [:new, :create]
-    resources :clients, only: [:new, :create, :index]
+    resources :clients, only: [:new, :create, :index] do
+      get :new_modal, on: :collection
+    end
     resource :profile, only: [:show, :update]
     post :profile, to: 'profiles#create', as: :create_profile
 

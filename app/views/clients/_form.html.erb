@@ -1,8 +1,7 @@
 <div>
   <h2 class="text-xl font-semibold mb-4">New Client</h2>
-  <%= form_with(model: client, url: clients_path, class: "contents") do |form| %>
+  <%= form_with(model: client, class: "contents") do |form| %>
     <div id="client_errors">
-      <%= render "partials/resource_error_messages", resource: @client %>
     </div>
    
     <div class="field mb-4">
