@@ -18,10 +18,9 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 require 'capybara/rails'
-require_relative 'support/factory_bot'
-require_relative 'support/chrome'
 
 require_relative 'support/devise'
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
