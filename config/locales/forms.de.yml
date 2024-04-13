@@ -17,6 +17,8 @@ de:
     legends:
       client:
         address: Adresse
+      expense:
+        title: Ausgabe hinzufügen
       profile:
         address: Adresse
         invoice_settings: Rechnungseinstellungen

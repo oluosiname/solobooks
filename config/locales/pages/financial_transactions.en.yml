@@ -1,0 +1,7 @@
+---
+en:
+  financial_transactions:
+    index:
+      links:
+        new_expense: Add Expense
+      title: Transactions

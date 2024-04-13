@@ -19,6 +19,10 @@
   @apply relative flex h-fit flex-col break-words border border-grey-100 bg-white bg-clip-border border-solid;
 }
 
+.expense-form {
+  @apply border-0 md:border p-0 md:p-6;
+}
+
 /* Form */
 label {
   @apply inline-block cursor-pointer text-sm leading-5 font-semibold text-grey-600;
@@ -119,7 +123,8 @@ input.toggle {
 .menu-item:hover {
 }
 
-.menu-item a {
+.menu-item a,
+.menu-item form button {
   @apply text-grey-600 py-3 px-5 relative flex gap-3 items-center whitespace-nowrap bg-transparent transition-all ease-in-out rounded text-sm;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -287,6 +292,9 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
   @apply bg-danger-700 text-white;
 }
 
+.btn--icon {
+  @apply items-center justify-center gap-2;
+}
 /* form inputs */
 
 .form-input {
@@ -328,13 +336,15 @@ form {
 
 /* modal */
 .modal {
-  @apply fixed bg-white rounded-lg p-8  w-full md:w-5/12;
-  z-index: 2;
+  @apply fixed bg-white rounded-lg p-8 w-[95%]  md:w-5/12;
+  z-index: 100;
   /* width: 400px; */
   word-break: break-word;
   transform: translate(-50%, -50%);
-  top: 45%;
   left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 
