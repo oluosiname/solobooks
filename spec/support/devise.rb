@@ -7,7 +7,8 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Devise::Test::IntegrationHelpers, type: :system
 
-  def login_user(user)
+  def login_user(user = nil)
+    user ||= user || FactoryBot.create(:user, :confirmed)
     user.confirm
     sign_in(user, scope: :user)
   end
