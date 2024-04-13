@@ -20,7 +20,9 @@
       </section>
       <section class="app-content">
         <%= render "partials/header" %>
-        <%= render "partials/flash_messages" %>
+        <div id="flash">
+          <%= render "partials/flash_messages" %>
+        </div>
         <section class="app-main">
           <%= yield %>
         </section>
