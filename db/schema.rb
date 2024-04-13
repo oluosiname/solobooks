@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_12_152323) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_13_055231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_152323) do
     t.boolean "default", default: false, null: false
     t.index ["active"], name: "index_currencies_on_active"
     t.index ["code"], name: "index_currencies_on_code", unique: true
+  end
+
+  create_table "financial_transactions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.date "date", null: false
+    t.string "transaction_type", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transaction_type"], name: "index_financial_transactions_on_transaction_type"
+    t.index ["user_id"], name: "index_financial_transactions_on_user_id"
   end
 
   create_table "invoice_categories", force: :cascade do |t|
@@ -173,6 +185,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_152323) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clients", "users"
+  add_foreign_key "financial_transactions", "users"
   add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "currencies"
   add_foreign_key "invoices", "invoice_categories"
