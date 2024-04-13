@@ -17,11 +17,11 @@
         <% end %>
       </li>
       <li class="menu-item">
-        <a href="calendar.html" class="menu-link waves-effect">
+         <%= link_to clients_path, class: "menu-link waves-effect" do %>
           <i class="fa-regular fa-handshake"></i>
         
         <span class="menu-text">  <%= t("menu.clients") %> </span>
-        </a>
+        <% end %>
       </li>
       <li class="menu-item">
         <%= link_to transactions_path, class: "menu-link waves-effect" do %>

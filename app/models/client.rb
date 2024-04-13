@@ -10,6 +10,12 @@ class Client < ApplicationRecord
 
   validates_with ClientValidator::AddressValidator
 
+  validates :name, presence: true, if: -> { business_name.blank? }
+  validates :business_name, presence: true, if: -> { name.blank? }
+
+  validates :name, uniqueness: { scope: :user_id }, if: -> { name.present? }
+  validates :business_name, uniqueness: { scope: :user_id }, if: -> { business_name.present? }
+
   def display_name
     business_name.presence || name
   end

@@ -31,12 +31,16 @@ class ClientsController < ApplicationController
     respond_to do |format|
       if @client.save
         format.turbo_stream do
-  
+          if params[:client][:modal] == 'true'
             render turbo_stream: turbo_stream.update(
               'invoice_client_id',
               partial: 'invoices/invoice_client_options',
               locals: { clients: current_user.clients, selected: @client.id },
             )
+          else
+
+            redirect_to clients_url, notice: t('record.create.success', resource: @client.class.model_name.human)
+          end
         end
         format.html do
           redirect_to clients_url,

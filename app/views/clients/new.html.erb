@@ -1,17 +1,5 @@
-<%= turbo_frame_tag "modal" do %>
-  <% if @modal %>
-    <%= tag.div data: { controller: "turbo-modal", action: "turbo:submit-end->turbo-modal#submitEnd" }, class: "modal p-2" do %>
-      <div class="modal-header flex justify-end">
-        <button  class=""  data-action="turbo-modal#hideModal" ><%= t("forms.buttons.close") %></button>
-      </div>
-      <div class="modal-body">
-        <%= render "form", client: @client, formats: :html %>
-      </div>
-    <% end %>
-  <% else %>
-    <p>ss</p>
-  <% end %>
-<% end %>
 
-  <%# This way, whenever you send a GET request to the URL ivoice_categories/new with the data-turbo-frame="modal" attribute, instead of doing a full-page redirect, the request will fetch the content within the turbo_frame_tag inside posts/new.html.erb and render it within turbo_frame_tag "modal" in your layout on your current page.
-  %>
+<div class="card p-6">
+  <%= render "form", client: @client, formats: :html %>
+</div>
+
