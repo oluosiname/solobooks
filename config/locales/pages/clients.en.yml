@@ -2,6 +2,6 @@
 en:
   clients:
     index:
-      title: Clients
       actions:
         new: New Client
+      title: Clients

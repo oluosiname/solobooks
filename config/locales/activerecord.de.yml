@@ -98,6 +98,14 @@ de:
               blank: muss ausgefüllt werden
             street_address:
               blank: muss ausgefüllt werden
+        client:
+          attributes:
+            email:
+              blank: muss ausgefüllt werden
+              taken: ist bereits vergeben
+            name:
+              blank: muss ausgefüllt werden
+              taken: ist bereits vergeben
         expense:
           attributes:
             amount:
@@ -157,15 +165,6 @@ de:
             password_confirmation:
               blank: muss ausgefüllt werden
               confirmation: stimmt nicht mit dem Passwort überein
-        client:
-          attributes:
-            email:
-              taken: ist bereits vergeben
-              blank: muss ausgefüllt werden
-            name:
-              blank: muss ausgefüllt werden
-              taken: ist bereits vergeben
-
     models:
       address:
         one: Adresse

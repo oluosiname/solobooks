@@ -2,6 +2,6 @@
 de:
   clients:
     index:
+      actions:
+        new: Neuer Kunde
       title: Kunden
-    actions:
-      new: Neuer Kunde
