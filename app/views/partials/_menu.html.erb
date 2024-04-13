@@ -24,11 +24,11 @@
         </a>
       </li>
       <li class="menu-item">
-        <a href="calendar.html" class="menu-link waves-effect">
-        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        <%= link_to transactions_path, class: "menu-link waves-effect" do %>
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
         
-        <span class="menu-text"> <%= t("menu.transactions") %> </span>
-        </a>
+          <span class="menu-text"> <%= t("menu.transactions") %> </span>
+        <% end %>
       </li>
       <li class="menu-item">
         <a href="calendar.html" class="menu-link waves-effect">
@@ -49,12 +49,10 @@
     
        <li class="menu-item">
          <%= link_to profile_path, class: "menu-link waves-effect" do %>
-          <i class="fa-solid fa-file-invoice"></i>
-        
+          <i class="fa-solid fa-id-badge"></i>
           <span class="menu-text"> <%= t("menu.profile") %> </span>
         <% end %>
       </li>
-
 
       <li class="menu-item">
         <a href="calendar.html" class="menu-link waves-effect">
