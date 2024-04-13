@@ -17,8 +17,8 @@ module ApplicationHelper
   end
 
   def locale_selector_class(locale)
-    return  "text-grey-900 font-semibold" if I18n.locale == locale
+    return 'text-grey-900 font-semibold' if I18n.locale == locale
 
-    "text-grey-600"
+    'text-grey-600'
   end
 end

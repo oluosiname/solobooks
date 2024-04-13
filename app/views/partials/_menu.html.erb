@@ -63,7 +63,7 @@
         </a>
       </li>
       <li class="menu-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: "menu-link waves-effect",  data: { turbo_method: :delete} do %>
+        <%= button_to destroy_user_session_path, method: :delete, class: "menu-link waves-effect", data: { turbo: false } do %>
           <i class="fa-solid fa-power-off"></i>
           <span class="menu-text"><%= t('menu.logout') %> </span>
         <% end %>
