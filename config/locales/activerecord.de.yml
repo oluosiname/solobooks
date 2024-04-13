@@ -16,6 +16,10 @@ de:
         phone_number: Telefonnummer
         post_code: Postleitzahl
         vat_number: USt-IdNr.
+      expense:
+        amount: Betrag
+        date: Datum
+        description: Beschreibung
       invoice:
         client: Kunde
         currency: Währung
@@ -94,6 +98,15 @@ de:
               blank: muss ausgefüllt werden
             street_address:
               blank: muss ausgefüllt werden
+        expense:
+          attributes:
+            amount:
+              blank: muss ausgefüllt werden
+              greater_than: muss größer als 0 sein
+            date:
+              blank: muss ausgefüllt werden
+            description:
+              blank: muss ausgefüllt werden
         invoice:
           attributes:
             client:
@@ -151,6 +164,9 @@ de:
       client:
         one: Kunde
         other: Kunden
+      expense:
+        one: Ausgabe
+        other: Ausgaben
       invoice:
         one: Rechnung
         other: Rechnungen

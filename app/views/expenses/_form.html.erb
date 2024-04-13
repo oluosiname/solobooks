@@ -1,0 +1,28 @@
+<div class=" p-6 card expense-form">
+  <%= form_with(model: @expense) do |form| %>
+    <%= render partial: "partials/resource_error_messages", locals: { resource: @expense } %>
+    <!-- Amount -->
+    <div class="field mb-4">
+      <%= form.label :amount %>
+      <%= form.number_field :amount, class: "form-input w-full" %>
+    </div>
+
+    <!-- Date -->
+    <div class="field mb-4">
+      <%= form.label :date %>
+      <%= form.date_field :date, class: "form-input w-full" %>
+    </div>
+
+    <!-- Description -->
+    <div class="field mb-4">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form-input w-full" %>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-center mt-4 md:mt-6 flex-start gap-2">
+      <%= form.submit t('forms.buttons.save'), class: "btn btn-md btn-primary" %>
+      <button data-action="turbo-modal#hideModal" class="btn btn-md btn-secondary" ><%= t("forms.buttons.close") %></button>
+    </div>
+  <% end %>
+</div>

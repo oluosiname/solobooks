@@ -1,0 +1,7 @@
+
+<%= t("financial_transactions.index.title") %>
+<%= link_to new_expense_path, class: 'btn btn-primary btn--icon', data: { turbo_frame: 'modal' } do %>
+  <i class="fa-solid fa-plus"></i>
+  <span class="menu-text"> <%= t("financial_transactions.index.links.new_expense") %> </span>
+<% end %>
+

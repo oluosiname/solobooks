@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "modal" do %>
+  <%= tag.div data: { controller: "turbo-modal", action: "turbo:submit-end->turbo-modal#submitEnd" }, class: "modal p-2" do %>
+    <div class="modal-header flex justify-center mb-2">
+      <h3 class="font-semibold text-lg"><%= t('forms.legends.expense.title') %></h3>
+    </div>
+    <div class="modal-body">
+      <%= render "form", expense: @expense, formats: :html %>
+    </div>
+  <% end %>
+<% end %>

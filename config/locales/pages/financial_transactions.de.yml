@@ -1,0 +1,7 @@
+---
+de:
+  financial_transactions:
+    index:
+      links:
+        new_expense: Neue Ausgabe
+      title: Transaktionen
