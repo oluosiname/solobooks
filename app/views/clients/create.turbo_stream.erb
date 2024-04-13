@@ -1,0 +1,1 @@
+<%= turbo_stream.prepend "flash", partial: "partials/flash_messages" %>

@@ -3,3 +3,5 @@ de:
   clients:
     index:
       title: Kunden
+    actions:
+      new: Neuer Kunde

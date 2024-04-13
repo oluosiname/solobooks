@@ -1,4 +1,9 @@
-<h2 class="text-xl leading-6 font-semibold mb-6"><%= t("clients.index.title") %></h2>
+<div class="flex justify-between mb-6 pt-4 pb-0 px-4 md:p-0">
+  <h2 class="text-xl leading-6 font-semibold"><%= t("clients.index.title") %></h2>
+  <%= link_to new_client_path do %>
+    <button class="btn btn-success btn-sm"><%= t("clients.index.actions.new") %></button>
+  <% end %>
+</div>
 <div class="border rounded-lg overflow-hidden">
   <table class="min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50 ">
