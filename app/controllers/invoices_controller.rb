@@ -4,7 +4,10 @@ class InvoicesController < ApplicationController
   before_action :set_select_options, only: [:new, :create]
 
   def index
-    @invoices = current_user.invoices.filtered(filter_params).includes(:client, :currency)
+    @invoices = current_user
+      .invoices
+      .filtered(filter_params)
+      .includes(:client, :currency, :pdf_attachment)
   end
 
   # def show
