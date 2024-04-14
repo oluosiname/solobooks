@@ -1,6 +1,7 @@
 <div class=" p-6 card expense-form">
-  <%= form_with(model: @expense) do |form| %>
-    <%= render partial: "partials/resource_error_messages", locals: { resource: @expense } %>
+  <%= form_with(model: transaction) do |form| %>
+  
+    <%= render partial: "partials/resource_error_messages", locals: { resource:  transaction } %>
     <!-- Amount -->
     <div class="field mb-4">
       <%= form.label :amount %>
