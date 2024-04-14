@@ -26,12 +26,12 @@
     </div>
 
     <div class="flex gap-4">
-      <div class="field  mb-4">
+      <div class="field  mb-4 w-full">
         <%= form.label :business_tax_id %>
         <%= form.text_field :business_tax_id, class: 'form-input' %>
       </div>
 
-      <div class="field mb-4">
+      <div class="field mb-4 w-full">
         <%= form.label :vat_number %>
         <%= form.text_field :vat_number, class: 'form-input' %>
       </div>
@@ -39,48 +39,43 @@
 
     <fieldset class ="mt-6">
       <legend class="font-bold"><%= t('forms.legends.client.address') %></legend>
-
-      <div class="field mb-4">
-        <%= form.fields_for :address do |address_form| %>
+      <%= form.fields_for :address do |address_form| %>
+        <div class="field mb-4">
           <%= address_form.label :street_address %>
           <%= address_form.text_field :street_address, class: 'form-input' %>
-        <% end %>
-      </div>
-
-      <div class="flex gap-2">
-
-        <div class="field mb-4">
-          <%= form.fields_for :address do |address_form| %>
-            <%= address_form.label :city %>
-            <%= address_form.text_field :city, class: 'form-input' %>
-          <% end %>
         </div>
 
-        <div class="field mb-4">
-          <%= form.fields_for :address do |address_form| %>
-            <%= address_form.label :state %>
-            <%= address_form.text_field :state, class: 'form-input' %>
-          <% end %>
-        </div>
+        <div class="flex gap-2 md:flex-nowrap flex-wrap">
 
-        <%= form.fields_for :address do |address_form| %> 
-          <div class="field mb-4">
-              <%= address_form.label :postal_code %>
-              <%= address_form.text_field :postal_code, class: 'form-input' %>
-          
+          <div class="field mb-4 w-full ">
+            <%= form.fields_for :address do |address_form| %>
+              <%= address_form.label :city %>
+              <%= address_form.text_field :city, class: 'form-input' %>
+            <% end %>
           </div>
 
-          <div class="field  mb-4">
+          <div class="field mb-4 w-full">
+            <%= form.fields_for :address do |address_form| %>
+              <%= address_form.label :state %>
+              <%= address_form.text_field :state, class: 'form-input' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="flex gap-2 md:flex-nowrap flex-wrap">
+          <div class="field mb-4 w-full">
+              <%= address_form.label :postal_code %>
+              <%= address_form.text_field :postal_code, class: 'form-input' %>
+          </div>
+
+          <div class="field  mb-4 w-full">
             <%= address_form.label :country, class: "select !flex-2", style: "flex: 2 2 0%" do %>
               <%= t("activerecord.attributes.address.country") %>
               <%= address_form.country_select :country, priority_countries: ["DE"],  class: 'form-input'  %>
-              <svg >
-                <use xlink:href="#select-arrow-down"></use>
-              </svg>
+              <i class="fa-solid fa-angle-down  mt-[-3px]"></i>
             <% end %>
           </div>
-          
-         <% end %>
+        <% end %>
       </div>
     </fieldset>
 
