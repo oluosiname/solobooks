@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :clients, dependent: :destroy
   has_one :profile, dependent: :destroy
   has_many :expenses, dependent: :destroy
+  has_many :incomes, dependent: :destroy
   has_many :financial_transactions, dependent: :destroy
 
   # Include default devise modules. Others available are:
