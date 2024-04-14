@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
   private
 
   def build_transaction
-    @transaction = send("build_#{params[:transaction_type]}")
+    @transaction = params[:transaction_type] == 'income' ? build_income : build_expense
   end
 
   def build_expense
