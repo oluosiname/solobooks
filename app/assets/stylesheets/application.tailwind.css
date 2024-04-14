@@ -114,7 +114,7 @@ input.toggle {
 }
 
 .app-main {
-  @apply bg-grey w-full md:p-6;
+  @apply bg-grey w-full md:p-6 h-lvh;
 }
 
 .menu-item {

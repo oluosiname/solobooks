@@ -2,6 +2,7 @@
 de:
   forms:
     buttons:
+      cancel: Abbrechen
       change_password: Passwort ändern
       close: Schließen
       create: Erstellen
