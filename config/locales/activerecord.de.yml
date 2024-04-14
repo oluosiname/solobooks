@@ -16,11 +16,7 @@ de:
         phone_number: Telefonnummer
         post_code: Postleitzahl
         vat_number: USt-IdNr.
-      expense:
-        amount: Betrag
-        date: Datum
-        description: Beschreibung
-      income:
+      financial_transaction:
         amount: Betrag
         date: Datum
         description: Beschreibung

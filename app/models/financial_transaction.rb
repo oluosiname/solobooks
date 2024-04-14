@@ -7,4 +7,12 @@ class FinancialTransaction < ApplicationRecord
   validates :amount, presence: true
   validates :date, presence: true
   validates :transaction_type, presence: true
+
+  def income?
+    transaction_type == 'Income'
+  end
+
+  def expense?
+    transaction_type == 'Expense'
+  end
 end

@@ -16,11 +16,7 @@ en:
         phone_number: Phone number
         post_code: Zip code
         vat_number: VAT ID
-      expense:
-        amount: Amount
-        date: Date
-        description: Description
-      income:
+      financial_transaction:
         amount: Amount
         date: Date
         description: Description
