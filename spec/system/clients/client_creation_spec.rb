@@ -7,61 +7,110 @@ RSpec.describe 'Client Creation', type: :system do
 
   before { login_user(user) }
 
-  # context 'when valid data' do
-  #   it 'creates invoice', :js do
-  #     login_user(user)
-  #     visit 'invoices/new'
-  #     expect(user.invoices.size).to eq(0)
+  context 'when valid data' do
+    it 'creates client', :js do
+      visit 'clients/new'
+      expect(user.clients.count).to eq(0)
 
-  #     select invoice_category.name.capitalize, from: 'invoice[invoice_category_id]'
-  #     select currency.code, from: 'invoice[currency_id]'
-  #     select client.name.capitalize, from: 'invoice[client_id]'
-  #     find('.invoice_date_container').click
-  #     within('.dayContainer') do
-  #       find('span.today').click
-  #     end
-  #     find('.invoice_due_date_container').click
-  #     within('.dayContainer') do
-  #       first('span.flatpickr-day', text: Time.zone.today.day.to_i + 1, exact_text: true).click
-  #     end
+      expect(page).to have_content('New Client')
+      fill_in 'client[name]', with: 'John Doe'
+      fill_in 'client[email]', with: Faker::Internet.email
+      fill_in 'client[phone_number]', with: Faker::PhoneNumber.phone_number
+      fill_in 'client[business_name]', with: Faker::Company.name
+      fill_in 'client[business_tax_id]', with: Faker::Company.ein
+      fill_in 'client[vat_number]', with: Faker::Number.number(digits: 9)
+      fill_in 'client[address_attributes][street_address]', with: Faker::Address.street_address
+      fill_in 'client[address_attributes][city]', with: Faker::Address.city
+      fill_in 'client[address_attributes][postal_code]', with: Faker::Address.zip_code
+      find(:select, 'client[address_attributes][country]').first(:option, 'Germany').select_option
 
-  #     fill_in 'invoice[line_items_attributes][0][description]', with: 'First item description'
-  #     fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
-  #     fill_in 'invoice[line_items_attributes][0][unit_price]', with: 100
-  #     click_on 'Save'
+      click_on 'Create'
 
-  #     expect(page).to have_current_path(invoices_path)
-  #     # expect(page).to have_content('Invoice was successfully created.')
+      expect(page).to have_current_path(clients_path)
+      expect(page).to have_content('Client was successfully created.')
 
-  #     expect(user.invoices.reload.size).to eq(1)
-  #     last_invoice = user.invoices.last
+      expect(user.clients.reload.count).to eq(1)
+      last_client = user.clients.last
 
-  #     expect(last_invoice.invoice_category).to eq(invoice_category)
-  #     expect(last_invoice.currency).to eq(currency)
-  #     expect(last_invoice.client).to eq(client)
-  #     expect(last_invoice.vat_rate).to eq(0)
-  #     expect(last_invoice.vat).to eq(0)
-  #     expect(last_invoice.vat_included).to be(false)
-  #     expect(last_invoice.date).to eq(Time.zone.today)
-  #     expect(last_invoice.due_date).to eq(Time.zone.today + 1.day)
-  #     expect(last_invoice.line_items.size).to eq(1)
-  #     expect(last_invoice.line_items.first.description).to eq('First item description')
-  #     expect(last_invoice.line_items.first.quantity).to eq(2)
-  #     expect(last_invoice.line_items.first.unit_price).to eq(100)
-  #     expect(last_invoice.line_items.first.total_price).to eq(200)
-  #     expect(last_invoice.subtotal).to eq(200)
-  #     expect(last_invoice.total_amount).to eq(200)
-  #     expect(last_invoice.status).to eq('pending')
-  #     expect(last_invoice.pdf.attached?).to be(true)
-  #   end
-  # end
+      expect(last_client.name).to eq('John Doe')
+    end
+  end
 
   context 'when invalid data' do
     it 'does not create client', :js do
       visit clients_path
 
       expect(page).to have_content('New Client')
-      click_on 'New Client'
+      within('.page-heading') do
+        click_button 'New Client' # rubocop:disable Capybara/ClickLinkOrButtonStyle
+      end
+
+      fill_in 'client[name]', with: ''
+      fill_in 'client[email]', with: ''
+      fill_in 'client[phone_number]', with: ''
+      fill_in 'client[business_name]', with: ''
+      fill_in 'client[business_tax_id]', with: ''
+      fill_in 'client[vat_number]', with: ''
+      click_on 'Create'
+
+      expect(page).to have_content("Name can't be blank")
+    end
+  end
+
+  context 'when creating from new invoice page' do
+    before do
+      create(:invoice_category)
+      create(:currency, default: true)
+    end
+
+    it 'creates client', :js do
+      visit new_invoice_path
+
+      expect(page).to have_content('New')
+      expect(page).to have_no_select('invoice[client_id]', with_options: ['John Doe'])
+      click_on 'New'
+
+      within('.modal') do
+        fill_in 'client[name]', with: 'John Doe'
+        fill_in 'client[email]', with: Faker::Internet.email
+        fill_in 'client[phone_number]', with: Faker::PhoneNumber.phone_number
+        fill_in 'client[business_name]', with: Faker::Company.name
+        fill_in 'client[business_tax_id]', with: Faker::Company.ein
+        fill_in 'client[vat_number]', with: Faker::Number.number(digits: 9)
+        fill_in 'client[address_attributes][street_address]', with: Faker::Address.street_address
+        fill_in 'client[address_attributes][city]', with: Faker::Address.city
+        fill_in 'client[address_attributes][postal_code]', with: Faker::Address.zip_code
+        find(:select, 'client[address_attributes][country]').first(:option, 'Germany').select_option
+
+        click_on 'Create'
+      end
+      expect(page).to have_no_css('.modal')
+      expect(page).to have_select('invoice[client_id]', with_options: ['John Doe'], selected: 'John Doe')
+      expect(page).to have_current_path(new_invoice_path)
+    end
+
+    context 'when invalid data' do
+      it 'displays error', :js do
+        visit new_invoice_path
+
+        click_on 'New'
+
+        within('.modal') do
+          fill_in 'client[name]', with: 'John Doe'
+          fill_in 'client[email]', with: Faker::Internet.email
+          fill_in 'client[phone_number]', with: Faker::PhoneNumber.phone_number
+          fill_in 'client[business_name]', with: Faker::Company.name
+          fill_in 'client[business_tax_id]', with: Faker::Company.ein
+          fill_in 'client[vat_number]', with: Faker::Number.number(digits: 9)
+          fill_in 'client[address_attributes][street_address]', with: Faker::Address.street_address
+
+          click_on 'Create'
+        end
+
+        expect(page).to have_content("City can't be blank")
+        expect(page).to have_content("Zip code can't be blank")
+        expect(page).to have_current_path(new_invoice_path)
+      end
     end
   end
 end
