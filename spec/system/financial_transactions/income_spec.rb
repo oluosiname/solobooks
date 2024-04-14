@@ -10,6 +10,8 @@ RSpec.describe 'Income', type: :system do
       login_user(user)
     end
 
+    it_behaves_like 'Financial Transaction Creation', 'income'
+
     it 'allows users to Login' do
       visit transactions_path
 

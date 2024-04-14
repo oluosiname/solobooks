@@ -5,9 +5,12 @@ require 'rails_helper'
 RSpec.describe 'Expense', type: :system do
   describe 'creating expense' do
     before do
-      create(:user, :confirmed)
-      login_user
+      user = create(:user, :confirmed)
+      create(:profile, user:)
+      login_user(user)
     end
+
+    it_behaves_like 'Financial Transaction Creation', 'expense'
 
     it 'allows users to Login' do
       visit transactions_path
