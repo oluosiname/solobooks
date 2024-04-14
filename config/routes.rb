@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     post :profile, to: 'profiles#create', as: :create_profile
 
     resources :expenses, only: [:new, :create]
+    resources :incomes, only: [:new, :create]
     resources :transactions, only: [:new, :index], as: :transactions
 
     devise_scope :user do
