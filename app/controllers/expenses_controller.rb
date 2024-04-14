@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 class ExpensesController < ApplicationController
-  def new
-    @expense = current_user.expenses.build
-  end
-
   def create
-    @expense = current_user.expenses.build(expense_params)
+    @transaction = current_user.expenses.build(expense_params)
 
-    if @expense.save
+    if @transaction.save
       respond_to do |format|
         format.html do
           redirect_to transactions_path, notice: t('record.create.success', resource: Expense.model_name.human)
@@ -16,7 +12,7 @@ class ExpensesController < ApplicationController
         format.turbo_stream { flash.now[:notice] = t('record.create.success', resource: Expense.model_name.human) }
       end
     else
-      render :new, status: :unprocessable_entity
+      render 'transactions/new', status: :unprocessable_entity
     end
   end
 

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     post :profile, to: 'profiles#create', as: :create_profile
 
     resources :expenses, only: [:new, :create]
-    resources :transactions, only: [:index], as: :transactions
+    resources :transactions, only: [:new, :index], as: :transactions
 
     devise_scope :user do
       get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
