@@ -6,6 +6,6 @@ module InvoicesHelper
   end
 
   def client_options(clients)
-    clients.map { |c| [c.name.capitalize, c.id] }
+    clients.map { |c| [c.name, c.id] }
   end
 end

@@ -16,7 +16,7 @@ RSpec.describe 'Invoice Creation', type: :system do
 
       select invoice_category.name.capitalize, from: 'invoice[invoice_category_id]'
       select currency.code, from: 'invoice[currency_id]'
-      select client.name.capitalize, from: 'invoice[client_id]'
+      select client.name, from: 'invoice[client_id]'
       find('.invoice_date_container').click
       within('.dayContainer') do
         find('span.today').click
