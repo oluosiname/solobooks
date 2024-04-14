@@ -4,4 +4,5 @@ de:
     index:
       links:
         new_expense: Neue Ausgabe
+        new_income: Neue Einnahme
       title: Transaktionen

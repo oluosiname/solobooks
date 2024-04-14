@@ -20,6 +20,10 @@ de:
         amount: Betrag
         date: Datum
         description: Beschreibung
+      income:
+        amount: Betrag
+        date: Datum
+        description: Beschreibung
       invoice:
         client: Kunde
         currency: Währung
@@ -115,6 +119,15 @@ de:
               blank: muss ausgefüllt werden
             description:
               blank: muss ausgefüllt werden
+        income:
+          attributes:
+            amount:
+              blank: muss ausgefüllt werden
+              greater_than: muss größer als 0 sein
+            date:
+              blank: muss ausgefüllt werden
+            description:
+              blank: muss ausgefüllt werden
         invoice:
           attributes:
             client:
@@ -175,6 +188,9 @@ de:
       expense:
         one: Ausgabe
         other: Ausgaben
+      income:
+        one: Einnahme
+        other: Einnahmen
       invoice:
         one: Rechnung
         other: Rechnungen

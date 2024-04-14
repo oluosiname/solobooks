@@ -19,6 +19,8 @@ en:
         address: Address
       expense:
         title: Add Expense
+      income:
+        title: Add Income
       profile:
         address: Address
         invoice_settings: Invoice Settings

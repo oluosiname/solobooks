@@ -19,6 +19,8 @@ de:
         address: Adresse
       expense:
         title: Ausgabe hinzufügen
+      income:
+        title: Einnahme hinzufügen
       profile:
         address: Adresse
         invoice_settings: Rechnungseinstellungen
