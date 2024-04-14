@@ -5,8 +5,9 @@ require 'rails_helper'
 RSpec.describe 'Income', type: :system do
   describe 'creating income' do
     before do
-      create(:user, :confirmed)
-      login_user
+      user = create(:user, :confirmed)
+      create(:profile, user:)
+      login_user(user)
     end
 
     it 'allows users to Login' do
