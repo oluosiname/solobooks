@@ -5,4 +5,7 @@ de:
       links:
         new_expense: Neue Ausgabe
         new_income: Neue Einnahme
+      table:
+        actions:
+          delete_confirmation: Löschbestätigung
       title: Transaktionen
