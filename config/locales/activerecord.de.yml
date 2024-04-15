@@ -63,6 +63,14 @@ de:
         total_price: Gesamtpreis
         unit: Einheit
         unit_price: Einzelpreis
+      payment_detail:
+        account_holder: Kontoinhaber
+        account_number: Kontonummer
+        bank_name: Bankname
+        iban: IBAN
+        routing_number: Routing-Nummer
+        sort_code: Sort-Code
+        swift: SWIFT
       profile:
         address: Adresse
         business_name: Firmenname

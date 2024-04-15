@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_055231) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_153526) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -141,6 +141,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_055231) do
     t.index ["invoice_id"], name: "index_line_items_on_invoice_id"
   end
 
+  create_table "payment_details", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "bank_name"
+    t.string "iban"
+    t.string "swift"
+    t.string "account_number"
+    t.string "sort_code"
+    t.string "routing_number"
+    t.string "account_holder"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payment_details_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "legal_status", null: false
@@ -191,5 +205,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_055231) do
   add_foreign_key "invoices", "invoice_categories"
   add_foreign_key "invoices", "users"
   add_foreign_key "line_items", "invoices"
+  add_foreign_key "payment_details", "users"
   add_foreign_key "profiles", "users"
 end
