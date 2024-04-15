@@ -1,5 +1,5 @@
-<div class="flex justify-between mb-6 pt-4 pb-0 px-4 md:p-0 page-heading">
-  <h2 class="text-xl font-semibold"><%= t("financial_transactions.index.title") %></h2>
+<div class="flex justify-between mb-6 pt-4 pb-0 px-4 md:p-0 page-heading flex-wrap md:flex-nowrap gap-y-2 ">
+  <h2 class="text-xl font-semibold w-full md:w-fit"><%= t("financial_transactions.index.title") %></h2>
   <div class="flex justify-end gap-2">
     <%= link_to new_transaction_path(transaction_type: "expense"), class: 'btn btn-primary btn-sm btn--icon', data: { turbo_frame: 'modal' } do %>
       <i class="fa-solid fa-plus"></i>
@@ -22,9 +22,9 @@
             <label for="table-checkbox-all" class="sr-only">Checkbox</label>
           </div>
         </th>
-        <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.description") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.date") %></th>
-        <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.amount") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.description") %></th>
+        <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.date") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.amount") %></th>
         <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
       </tr>
     </thead>
