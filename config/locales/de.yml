@@ -13,6 +13,9 @@ de:
     create:
       error: "%{resource} konnte nicht erstellt werden."
       success: "%{resource} wurde erfolgreich erstellt."
+    destroy:
+      error: "%{resource} konnte nicht gelöscht werden."
+      success: "%{resource} wurde erfolgreich gelöscht."
     errors:
       messages:
         not_saved:

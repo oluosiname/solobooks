@@ -9,7 +9,20 @@ class TransactionsController < ApplicationController
 
   def new; end
 
+  def destroy
+    @transaction = current_user.financial_transactions.find(params[:id])
+    if @transaction.destroy
+      redirect_to transactions_path, notice: t('record.destroy.success', resource: resource)
+    else
+      redirect_to transactions_path, alert: t('record.destroy.error', resource: resource)
+    end
+  end
+
   private
+
+  def resource
+    @transaction.transaction_type.constantize.model_name.human
+  end
 
   def build_transaction
     @transaction = params[:transaction_type] == 'income' ? build_income : build_expense

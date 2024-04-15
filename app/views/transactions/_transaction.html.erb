@@ -1,7 +1,7 @@
- <tr>
+ <tr id="transaction-<%= transaction.id %>" class="hover:bg-gray-50">
   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= transaction.description %></td>
   <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= transaction.date %></td>
-  <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-sm  <%= color_transaction_amount(transaction) %>"><%= format_transaction_amount(transaction) %></td>
+  <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-sm <%= color_transaction_amount(transaction) %>"><%= format_transaction_amount(transaction) %></td>
 
   <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex gap-6 justify-end">
     <%= link_to '#', class: 'text-primary-500 hover:text-primary-900' do %>
@@ -10,7 +10,7 @@
     <%= link_to '#', class: 'text-tertiary-600 hover:text-tertiary-900' do %>
       <i class="fa-solid fa-eye mr-2"></i>View
     <% end %>
-    <%= link_to '#', method: :delete, data: { confirm: t('financial_transactions.index.table.actions.delete_confirmation') }, class: 'text-danger-700 hover:text-danger-900' do %>
+    <%= button_to transaction_path(transaction), method: :delete, data: {turbo: false}, class: 'text-danger-700 hover:text-danger-900' do %>
       <i class="fa-solid fa-trash mr-2"></i>Delete
     <% end %>
   </td>

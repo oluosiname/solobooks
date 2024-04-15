@@ -33,4 +33,38 @@ RSpec.describe 'Transactions', type: :system do
       expect(page).to have_link('Add Expense', href: new_transaction_path(transaction_type: 'expense'))
     end
   end
+
+  describe 'deleting financial_transaction' do
+    before { login_user(user) }
+
+    let(:user) { create(:user, :with_profile) }
+    let!(:financial_transaction) { create(:expense, user:) }
+
+    it 'deletes a financial_transaction' do
+      visit transactions_path
+
+      within("#transaction-#{financial_transaction.id}") do
+        click_on 'Delete'
+      end
+
+      expect(page).to have_current_path(transactions_path)
+      expect(page).to have_content('Expense was successfully deleted')
+    end
+
+    context 'when financial_transaction is not deleted' do
+      before do
+        allow(financial_transaction).to receive(:destroy).and_return(false)
+      end
+
+      it 'displays an error message' do
+        visit transactions_path
+
+        within("#transaction-#{financial_transaction.id}") do
+          click_on 'Delete'
+        end
+
+        expect(page).to have_content('Expense was successfully deleted')
+      end
+    end
+  end
 end

@@ -5,7 +5,4 @@ en:
       links:
         new_expense: Add Expense
         new_income: Add Income
-      table:
-        actions:
-          delete_confirmation: Delete confirmation
       title: Transactions

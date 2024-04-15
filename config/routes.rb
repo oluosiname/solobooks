@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
     resources :expenses, only: [:new, :create]
     resources :incomes, only: [:new, :create]
-    resources :transactions, only: [:new, :index], as: :transactions
+    resources :transactions, only: [:new, :index, :destroy], as: :transactions
 
     devise_scope :user do
       get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
