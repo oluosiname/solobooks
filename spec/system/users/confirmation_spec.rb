@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Confirmation', type: :system do
   context 'with valid credentials' do
-    let!(:user) { create(:user, email: 'test@example.com', password: 'password') }
+    let!(:user) { create(:user, :unconfirmed, email: 'test@example.com', password: 'password') }
 
     it 'confirms user' do
       visit user_confirmation_path(confirmation_token: user.confirmation_token)
