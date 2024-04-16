@@ -158,6 +158,16 @@ de:
               greater_than: muss größer als 0 sein
             unit_price:
               greater_than: muss größer als 0 sein
+        payment_detail:
+          attributes:
+            account_holder:
+              blank: muss ausgefüllt werden
+            account_number:
+              blank: muss ausgefüllt werden
+            bank_name:
+              blank: muss ausgefüllt werden
+            iban:
+              blank: muss ausgefüllt werden
         profile:
           attributes:
             business_type:
@@ -204,6 +214,9 @@ de:
       line_item:
         one: Artikel
         other: Artikel
+      payment_detail:
+        one: Zahlungsdetails
+        other: Zahlungsdetails
       profile:
         one: Profil
         other: Profile

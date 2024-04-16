@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(profile_params.merge(user: current_user))
-    if @profile.update(profile_params)
+    if @profile.save
       redirect_to profile_path, notice: I18n.t('record.create.success', resource: @profile.class.model_name.human)
     else
       render :show, status: :unprocessable_entity

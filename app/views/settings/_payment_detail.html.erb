@@ -1,0 +1,40 @@
+<h2 class="font-semibold text-lg mb-4">Payment Settings </h2>
+  <%= form_with(model: payment_detail) do |form| %>
+    <%= render partial: "partials/resource_error_messages", locals: { resource: payment_detail } %>
+    <!-- Full Name -->
+    <div class="field mb-4">
+      <%= form.label :account_holder %>
+      <%= form.text_field :account_holder, class: "form-input w-full" %>
+    </div>
+    <div class="field mb-4">
+      <%= form.label :bank_name %>
+      <%= form.text_field :bank_name, class: "form-input w-full" %>
+    </div>
+    <div class="field mb-4">
+      <%= form.label :account_number %>
+      <%= form.text_field :account_number, class: "form-input w-full" %>
+    </div>
+    <div class="field mb-4">
+      <%= form.label :iban %>
+      <%= form.text_field :iban, class: "form-input w-full" %>
+    </div>
+    <div class="field mb-4">
+      <%= form.label :swift %>
+      <%= form.text_field :swift, class: "form-input w-full" %>
+    </div>
+    <div class="field mb-4">
+      <%= form.label :sort_code %>
+      <%= form.text_field :sort_code, class: "form-input w-full" %>
+    </div>
+    <div class="field mb-4">
+      <%= form.label :routing_number %>
+      <%= form.text_field :routing_number, class: "form-input w-full" %>
+    </div>
+
+
+    <div class="flex items-center mt-4 md:mt-6">
+      <%= form.submit t('forms.buttons.save'), class: "btn btn-md btn-primary"%>
+    </div>
+  <% end %>
+
+  
