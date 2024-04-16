@@ -165,12 +165,12 @@ module InvoiceService
     end
 
     def payments_details_table_data
-      [
-        ['Bank Name:', 'Deutsche Bank'],
-        ['Account Number:', '1234567890'],
-        ['IBAN:', 'DE12345678901234567890'],
-        ['SWIFT/BIC:', 'DEUTDEFFXXX'],
-      ]
+      [:bank_name, :account_holder, :account_number, :iban, :swift].map do |key|
+        value = payment_details.send(key)
+        next if value.blank?
+
+        [I18n.t("activerecord.attributes.payment_detail.#{key}"), value]
+      end.compact
     end
 
     def payment_details_table_props
@@ -224,7 +224,7 @@ module InvoiceService
           pdf.text I18n.t('invoices.show.thanks.content')
           pdf.move_down 5
           pdf.text "Email Address: #{@invoice.user.email}"
-          pdf.text 'Telephone No: +4915222456466'
+          pdf.text "Telephone No: #{user_profile.phone_number}"
         end
       end
     end
@@ -264,6 +264,10 @@ module InvoiceService
 
     def user_address
       @user_address ||= user_profile.address
+    end
+
+    def payment_details
+      @payment_details ||= user.payment_detail
     end
 
     attr_reader :invoice, :pdf
