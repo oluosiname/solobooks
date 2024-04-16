@@ -108,6 +108,9 @@ en:
       line_item:
         one: Line item
         other: Line items
+      payment_detail:
+        one: Payment detail
+        other: Payment details
       profile:
         one: Profile
         other: Profiles
