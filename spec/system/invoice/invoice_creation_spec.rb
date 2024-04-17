@@ -8,6 +8,10 @@ RSpec.describe 'Invoice Creation', type: :system do
   let!(:invoice_category) { create(:invoice_category) }
   let!(:currency) { create(:currency, default: true) }
 
+  before do
+    create(:payment_detail, user:)
+  end
+
   context 'when valid data' do
     it 'creates invoice', :js do
       login_user(user)

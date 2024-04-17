@@ -7,7 +7,7 @@ FactoryBot.define do
     iban { Faker::Bank.iban }
     swift { Faker::Bank.swift_bic }
     account_number { Faker::Bank.account_number(digits: 10) }
-    sort_code { Faker::Bank.uk_account_number }
+    sort_code { Faker::Bank.account_number }
     routing_number { Faker::Bank.routing_number }
     account_holder { Faker::Name.name }
   end

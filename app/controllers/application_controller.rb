@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  helper_method :profile
+
   class << self
     def default_url_options
       { locale: I18n.locale }
@@ -16,10 +18,14 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def profile
+    current_user&.profile
+  end
+
   private
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || profile&.language&.to_sym || I18n.default_locale
   end
 
   def layout_by_resource
