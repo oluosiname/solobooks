@@ -2,7 +2,7 @@
 
 module TransactionsHelper
   def format_transaction_amount(transaction)
-    amount = number_to_currency(transaction.amount, unit: current_user.profile.currency.symbol)
+    amount = number_to_currency(transaction.amount, unit: profile.currency.symbol)
     transaction.income? ? "+ #{amount}" : "- #{amount}"
   end
 

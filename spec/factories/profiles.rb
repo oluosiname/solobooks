@@ -13,11 +13,15 @@ FactoryBot.define do
     tax_number { Faker::Number.number(digits: 8) }
     vat_id { Faker::Number.number(digits: 9) }
     currency_id { create(:currency).id }
-    language { ['en', 'de'].sample }
+    language { 'en' }
 
     # Define nested attributes for Address
     after(:build) do |profile|
       profile.address ||= build(:address, addressable: profile)
+    end
+
+    trait :german do
+      language { 'de' }
     end
   end
 end
