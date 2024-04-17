@@ -128,6 +128,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     docile (1.4.0)
+    dotenv (3.1.0)
+    dotenv-rails (3.1.0)
+      dotenv (= 3.1.0)
+      railties (>= 6.1)
     drb (2.2.1)
     easy_translate (0.5.1)
       thread
@@ -405,6 +409,7 @@ DEPENDENCIES
   country_select (~> 8.0)
   debug
   devise
+  dotenv-rails
   easy_translate
   factory_bot_rails (~> 6.2.0)
   faker (~> 2.18.0)
