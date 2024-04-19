@@ -209,7 +209,7 @@ module InvoiceService
       invoice.line_items.map do |line_item|
         [
           line_item.description,
-          line_item.quantity,
+          "#{line_item.quantity} #{line_item.unit}",
           number_to_currency(line_item.unit_price, unit: invoice.currency_symbol),
           number_to_currency(line_item.total_price, unit: invoice.currency_symbol),
         ]

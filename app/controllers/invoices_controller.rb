@@ -70,7 +70,7 @@ class InvoicesController < ApplicationController
   end
 
   def line_items_attributes
-    [:description, :quantity, :unit_price, :total_price, :_destroy]
+    [:description, :quantity, :unit, :unit_price, :total_price, :_destroy]
   end
 
   def set_select_options
