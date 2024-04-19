@@ -11,6 +11,6 @@ class Profile < ApplicationRecord
   validates :date_of_birth, presence: true
 
   def complete?
-    (full_name.present? && business_name.present?) && address.present?
+    (full_name.present? || business_name.present?) && address.present?
   end
 end

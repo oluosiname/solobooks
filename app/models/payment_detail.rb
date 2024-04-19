@@ -3,5 +3,5 @@
 class PaymentDetail < ApplicationRecord
   belongs_to :user
 
-  validates :bank_name, :iban, :account_number, :account_holder, presence: true
+  validates  :account_number, :account_holder, presence: true
 end

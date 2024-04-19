@@ -27,6 +27,10 @@ class InvoicesController < ApplicationController
   # end
 
   def new
+    unless current_user.can_create_invoice?
+      return redirect_to invoices_path, warning: I18n.t('invoices.new.profile_missing')
+    end
+
     @invoice = Invoice.new
     @invoice.line_items.build
   end

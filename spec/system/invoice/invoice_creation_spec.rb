@@ -12,6 +12,43 @@ RSpec.describe 'Invoice Creation', type: :system do
     create(:payment_detail, user:)
   end
 
+  describe 'visiting invoice creation page' do
+    before { login_user(user) }
+
+    context 'when user has complete profile and payment detail' do
+      it 'shows invoice creation form' do
+        visit 'invoices/new'
+
+        expect(page).to have_current_path('/invoices/new')
+        expect(page).to have_content('New Invoice')
+      end
+    end
+
+    context 'when user has no profile' do
+      let(:user) { create(:user) } # user without profile
+
+      it 'redirects back to invoice page' do
+        visit 'invoices/new'
+
+        expect(page).to have_current_path(invoices_path)
+        expect(page).to have_content('Please fill out your profile and payment detail before creating an invoice')
+      end
+    end
+
+    context "when user's profile is incomplete" do
+      before do
+        allow(user.profile).to receive(:complete?).and_return(false)
+      end
+
+      it 'redirects back to invoice page' do
+        visit 'invoices/new'
+
+        expect(page).to have_current_path(invoices_path)
+        expect(page).to have_content('Please fill out your profile and payment detail before creating an invoice')
+      end
+    end
+  end
+
   context 'when valid data' do
     it 'creates invoice', :js do
       login_user(user)
