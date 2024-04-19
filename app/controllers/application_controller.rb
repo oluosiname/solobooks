@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :profile
 
+  add_flash_types :warning
+
   class << self
     def default_url_options
       { locale: I18n.locale }
