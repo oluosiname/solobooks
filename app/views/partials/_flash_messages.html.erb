@@ -8,8 +8,9 @@
     <%= flash[:alert] %>
   </div>
 <% end %>
-<%- if flash[:error] %>
-  <div class="text-danger-600 bg-danger-100 text-sm  py-4 px-3" role="alert">
-    <%= flash[:error] %>
+<%- if flash[:warning] %>
+  <div class="bg-[rgb(239,181,64,0.20)] text-[#efb540]  text-sm py-4 px-3" role="alert">
+      <%# <span class="font-bold">Warning</span> alert! You should check in on some of those fields below. %>
+    <%= flash[:warning] %>
   </div>
 <% end %>
