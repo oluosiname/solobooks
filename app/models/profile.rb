@@ -13,4 +13,8 @@ class Profile < ApplicationRecord
   def complete?
     (full_name.present? || business_name.present?) && address.present?
   end
+
+  def vat_exempted?
+    vat_id.blank?
+  end
 end

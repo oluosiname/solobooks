@@ -114,4 +114,48 @@ RSpec.describe Invoice, type: :model do
       expect(described_class.filter_by_client(nil)).to match_array(described_class.all)
     end
   end
+
+  describe '#vat_technique' do
+    let(:invoice) { create(:invoice, user: create(:user, :ready)) }
+    let(:client_country_code) { 'DE' } # Germany
+    let(:user_country_code) { 'DE' } # United States
+
+    context 'when the user is VAT exempted' do
+      before { allow(invoice.user.profile).to receive(:vat_exempted?).and_return(true) }
+
+      it "returns 'None'" do
+        expect(invoice.vat_technique(client_country_code, user_country_code)).to eq(Invoice::VAT_TECHNIQUES[:none])
+      end
+    end
+
+    context 'when the client country is not in EU VAT zone' do
+      let(:client_country_code) { 'US' }
+
+      it "returns 'Non-EU'" do
+        expect(invoice.vat_technique(client_country_code, user_country_code)).to eq(Invoice::VAT_TECHNIQUES[:non_eu])
+      end
+    end
+
+    context 'when the client country is in EU VAT zone' do
+      context 'when the client and user countries are the same' do # rubocop:disable RSpec/NestedGroups
+        it "returns 'Standard'" do
+          expect(invoice.vat_technique(
+            client_country_code,
+            client_country_code,
+          )).to eq(Invoice::VAT_TECHNIQUES[:standard])
+        end
+      end
+
+      context 'when the client and user countries are different' do # rubocop:disable RSpec/NestedGroups
+        let(:client_country_code) { 'FR' }
+
+        it "returns 'Reverse Charge'" do
+          expect(invoice.vat_technique(
+            client_country_code,
+            user_country_code,
+          )).to eq(Invoice::VAT_TECHNIQUES[:reverse_charge])
+        end
+      end
+    end
+  end
 end
