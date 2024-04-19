@@ -37,7 +37,7 @@ RSpec.describe Profile, type: :model do
     end
 
     context 'when any required attribute is missing' do
-      let(:profile) { build(:profile, full_name: nil, phone_number: nil, address: nil) }
+      let(:profile) { build(:profile, full_name: nil, business_name: nil) }
 
       it 'returns false' do
         expect(profile.complete?).to be false

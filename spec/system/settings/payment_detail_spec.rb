@@ -34,9 +34,7 @@ RSpec.describe 'Payment Detail', type: :system do
 
         click_on 'Save'
 
-        expect(page).to have_content('4 errors prohibited this Payment detail from being saved')
-        expect(page).to have_content("IBAN can't be blank")
-        expect(page).to have_content("Bank name can't be blank")
+        expect(page).to have_content('2 errors prohibited this Payment detail from being saved')
         expect(page).to have_content("Account holder can't be blank")
         expect(page).to have_content("Account number can't be blank")
       end

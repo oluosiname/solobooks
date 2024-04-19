@@ -13,6 +13,7 @@ de:
           view: Anzeigen
       title: Rechnungen
     new:
+      profile_missing: Bitte füllen Sie Ihr Profil und Ihre Zahlungsdetails aus, bevor Sie eine Rechnung erstellen.
       title: Neue Rechnung
     show:
       bill_to: Rechnung an

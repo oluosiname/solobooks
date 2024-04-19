@@ -20,4 +20,11 @@ FactoryBot.define do
       create(:profile, user:)
     end
   end
+
+  trait :ready do
+    after(:create) do |user|
+      create(:profile, user:)
+      create(:payment_detail, user: user)
+    end
+  end
 end

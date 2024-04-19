@@ -13,6 +13,7 @@ en:
           view: View
       title: Invoices
     new:
+      profile_missing: Please fill out your profile and payment detail before creating an invoice.
       title: New Invoice
     show:
       bill_to: Bill To

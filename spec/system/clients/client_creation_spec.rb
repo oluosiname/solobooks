@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Client Creation', type: :system do
-  let(:user) { create(:user, :confirmed) }
+  let(:user) { create(:user, :ready, :confirmed) }
 
   before { login_user(user) }
 
@@ -68,7 +68,9 @@ RSpec.describe 'Client Creation', type: :system do
 
       expect(page).to have_content('New')
       expect(page).to have_no_select('invoice[client_id]', with_options: ['John Doe'])
-      click_on 'New'
+      within('.new-client') do
+        click_on 'New'
+      end
 
       within('.modal') do
         fill_in 'client[name]', with: 'John Doe'
@@ -93,7 +95,9 @@ RSpec.describe 'Client Creation', type: :system do
       it 'displays error', :js do
         visit new_invoice_path
 
-        click_on 'New'
+        within('.new-client') do
+          click_on 'New'
+        end
 
         within('.modal') do
           fill_in 'client[name]', with: 'John Doe'
