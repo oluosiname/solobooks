@@ -18,4 +18,8 @@ class User < ApplicationRecord
     :rememberable,
     :validatable,
     :trackable
+
+  def can_create_invoice?
+    profile.present? && profile.complete? && payment_detail.present?
+  end
 end
