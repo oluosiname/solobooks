@@ -23,7 +23,7 @@ FactoryBot.define do
 
   trait :ready do
     after(:create) do |user|
-      create(:profile, user:)
+      create(:profile, user:) if user.profile.blank?
       create(:payment_detail, user: user)
     end
   end

@@ -82,20 +82,6 @@ class Invoice < ApplicationRecord
     self.invoice_number = generate_invoice_number
   end
 
-  def vat_technique(client_country_code, user_country_code)
-    return VAT_TECHNIQUES[:none] if user.profile.vat_exempted?
-
-    client_country = ISO3166::Country.new(client_country_code)
-    user_country = ISO3166::Country.new(user_country_code)
-    return VAT_TECHNIQUES[:non_eu] unless client_country.in_eu_vat?
-
-    if client_country.alpha2 == user_country.alpha2
-      VAT_TECHNIQUES[:standard]
-    else
-      VAT_TECHNIQUES[:reverse_charge]
-    end
-  end
-
   private
 
   def set_total_amount
