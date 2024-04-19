@@ -26,6 +26,7 @@ namespace :ombulabs do
           description: "Development services for #{from_date} - #{to_date}",
           quantity: hours.to_i,
           unit_price: 55.0,
+          unit: 'hr',
         },
       ],
     )
