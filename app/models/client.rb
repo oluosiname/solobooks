@@ -16,6 +16,8 @@ class Client < ApplicationRecord
   validates :name, uniqueness: { scope: :user_id }, if: -> { name.present? }
   validates :business_name, uniqueness: { scope: :user_id }, if: -> { business_name.present? }
 
+  delegate :country, to: :address, allow_nil: true
+
   def display_name
     business_name.presence || name
   end
@@ -24,7 +26,22 @@ class Client < ApplicationRecord
     address&.full_address
   end
 
+  def vat_strategy
+    return Invoice::VAT_TECHNIQUES[:none] if user.profile.vat_exempted?
+
+    return Invoice::VAT_TECHNIQUES[:non_eu] unless in_eu_vat?
+
+    return Invoice::VAT_TECHNIQUES[:reverse_charge] unless country.downcase == user.profile.country.downcase
+
+    Invoice::VAT_TECHNIQUES[:standard]
+  end
+
   private
+
+  def in_eu_vat?
+    iso_country = ISO3166::Country.new(country)
+    iso_country.in_eu_vat?
+  end
 
   def name_xor_business_name
     if name.blank? && business_name.blank?
