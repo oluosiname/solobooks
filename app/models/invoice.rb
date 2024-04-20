@@ -49,11 +49,11 @@ class Invoice < ApplicationRecord
   }
 
   VAT_TECHNIQUES = {
-    standard: 'Standard',
-    reverse_charge: 'Reverse Charge',
-    exempt: 'Exempt',
-    non_eu: 'Non-EU',
-    none: 'None',
+    standard: 'standard',
+    reverse_charge: 'reverse_charge',
+    exempt: 'exempt',
+    non_eu: 'non_eu',
+    none: 'none',
   }
 
   enum status: {

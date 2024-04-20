@@ -15,6 +15,12 @@ de:
     new:
       profile_missing: Bitte füllen Sie Ihr Profil und Ihre Zahlungsdetails aus, bevor Sie eine Rechnung erstellen.
       title: Neue Rechnung
+      vat_messages:
+        reverse_charge: Steuerschuldnerschaft des Leistungsempfängers (§13b Abs. 5 UStG)
+        standard: Umsatzsteuer wird berechnet
+        none: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
+        non_eu: Sie können für Nicht-EU-Kunden keine Umsatzsteuer berechnen.
+        exempt: Sie sind von der Umsatzsteuer befreit.
     show:
       bill_to: Rechnung an
       description: Kundendetails
@@ -31,6 +37,6 @@ de:
       payment_terms: Zahlungsbedingungen
       reverse_vat: Steuerschuldnerschaft des Leistungsempfängers (§13b Abs. 5 UStG)
       thanks:
-        content: 'Vielen Dank für Ihr Geschäft. Wenn Sie Fragen zu dieser Rechnung haben, verwenden Sie die folgenden Kontaktdaten:'
+        content: "Vielen Dank für Ihr Geschäft. Wenn Sie Fragen zu dieser Rechnung haben, verwenden Sie die folgenden Kontaktdaten:"
         title: Vielen Dank!
       title: Kunde
