@@ -66,6 +66,15 @@ export default class extends Controller {
 
   //called when  any line item total field is changed
 
+  handleLineItemPriceChange(e) {
+    console.log(e);
+    if (e.target.value == "") {
+      e.target.classList.add("invalid");
+    }
+
+    this.calculateTotal();
+  }
+
   calculateTotal() {
     const locale = this.data.get("locale");
     const lineItems = this.element.querySelectorAll(
@@ -75,10 +84,10 @@ export default class extends Controller {
     let total = 0;
     lineItems.forEach((lineItem) => {
       const lineItemPrice = parseFloat(
-        lineItem.querySelector(".line-item-price").value
+        lineItem.querySelector(".line-item-price").value || 0
       );
       const lineItemQuantity = parseFloat(
-        lineItem.querySelector(".line-item-quantity").value
+        lineItem.querySelector(".line-item-quantity").value || 0
       );
       const lineItemTotalField = lineItem.querySelector(".line-item-total");
 
