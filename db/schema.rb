@@ -119,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_150427) do
     t.string "language"
     t.decimal "subtotal", precision: 10, scale: 2
     t.bigint "client_id", null: false
+    t.string "vat_technique", default: "exempt", null: false
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["currency_id"], name: "index_invoices_on_currency_id"
     t.index ["date"], name: "index_invoices_on_date"

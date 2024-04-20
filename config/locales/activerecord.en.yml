@@ -47,6 +47,12 @@ en:
         vat_charged: VAT charged?
         vat_included: VAT included in price
         vat_rate: VAT Rate
+        vat_techniques:
+          exempt: According to § 19 UStG no sales tax is charged.
+          non_eu: You can not charge VAT for non-EU clients.
+          none: According to § 19 UStG no sales tax is charged.
+          reverse_charge: Reverse VAT charge is applied (§13b Abs. 5 UStG)
+          standard: VAT charge is applied
       invoice_category:
         description: Description
         name: Name

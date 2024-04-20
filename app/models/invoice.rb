@@ -48,13 +48,14 @@ class Invoice < ApplicationRecord
     'Deutsch' => 'de',
   }
 
-  VAT_TECHNIQUES = {
-    standard: 'standard',
-    reverse_charge: 'reverse_charge',
-    exempt: 'exempt',
-    non_eu: 'non_eu',
-    none: 'none',
-  }
+  enum vat_technique: {
+         standard: 'standard',
+         reverse_charge: 'reverse_charge',
+         exempt: 'exempt',
+         non_eu: 'non_eu',
+         none: 'none',
+       },
+    _prefix: :vat
 
   enum status: {
     pending: 'pending',

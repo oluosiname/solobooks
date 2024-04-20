@@ -27,13 +27,13 @@ class Client < ApplicationRecord
   end
 
   def vat_strategy
-    return Invoice::VAT_TECHNIQUES[:none] if user.profile.vat_exempted?
+    return Invoice.vat_techniques[:exempt] if user.profile.vat_exempted?
 
-    return Invoice::VAT_TECHNIQUES[:non_eu] unless in_eu_vat?
+    return Invoice.vat_techniques[:non_eu] unless in_eu_vat?
 
-    return Invoice::VAT_TECHNIQUES[:reverse_charge] unless country.downcase == user.profile.country.downcase
+    return Invoice.vat_techniques[:reverse_charge] unless country.downcase == user.profile.country.downcase
 
-    Invoice::VAT_TECHNIQUES[:standard]
+    Invoice.vat_techniques[:standard]
   end
 
   private
