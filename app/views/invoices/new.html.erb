@@ -18,7 +18,7 @@
         <div class="field invoice-field">
           <%= form.label :currency_id, class: "select" do %>
              <%= t("activerecord.attributes.invoice.currency") %>
-            <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id } %>
+            <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id }, {data: {invoice_target: 'invoiceCurrency',  action: "change->invoice#calculateTotal"}} %>
             <svg  >
               <use xlink:href="#select-arrow-down"></use>
             </svg>

@@ -12,6 +12,7 @@ export default class extends Controller {
     "vat",
     "vatFieldsWrapper",
     "vatFieldsMessage",
+    "invoiceCurrency",
   ];
 
   connect() {
@@ -66,6 +67,7 @@ export default class extends Controller {
   //called when  any line item total field is changed
 
   calculateTotal() {
+    const locale = this.data.get("locale");
     const lineItems = this.element.querySelectorAll(
       "[data-controller='line-item']"
     );
@@ -101,11 +103,22 @@ export default class extends Controller {
       this.vatTarget.value = 0;
       total = subtotal;
     }
-
-    this.subTotalTarget.innerHTML = new Intl.NumberFormat("de").format(
-      subtotal
-    );
-    this.totalTarget.innerHTML = new Intl.NumberFormat("de").format(total);
+    const currency =
+      this.invoiceCurrencyTarget.options[
+        this.invoiceCurrencyTarget.selectedIndex
+      ].text;
+    const currencyStyle = {
+      style: "currency",
+      currency: currency,
+    };
+    this.subTotalTarget.innerHTML = new Intl.NumberFormat(
+      locale,
+      currencyStyle
+    ).format(subtotal);
+    this.totalTarget.innerHTML = new Intl.NumberFormat(
+      locale,
+      currencyStyle
+    ).format(total);
   }
 
   calculateLineItemTotal(lineItemPrice, lineItemQuantity, lineItemTotalField) {
