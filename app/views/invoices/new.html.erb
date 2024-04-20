@@ -62,7 +62,7 @@
         <div class="field invoice-field">
           <div class="flex justify-start gap-x-2">
             <%= form.label :client_id, class: "select !flex-2" do %>
-              <%= form.select :client_id, {}, {prompt: t("forms.placeholders.invoice.select_client")}, {data: {action: "change->invoice#handleClientChange"}}  do %>
+              <%= form.select :client_id, {}, {prompt: t("forms.placeholders.invoice.select_client")}, {data: {action: "invoice#handleClientChange"}}  do %>
                 <%= render "invoice_client_options", clients: @clients, selected: @invoice.client_id %> 
               <% end %>
               <svg style="top: calc(50% - 3px)">
@@ -123,7 +123,7 @@
           <div data-invoice-target ="subTotal">0.00</div>
         </div>
 
-        <div data-invoice-target="vatFieldsWrapper" id="invoice-vat-fields">
+        <div data-invoice-target="vatFieldsWrapper" id="invoice-vat-fields" class="hidden">
           <div class="mb-4 vat-fields">
             <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex" do %>
               <%= t("activerecord.attributes.invoice.vat_included") %>

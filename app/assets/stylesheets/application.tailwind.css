@@ -48,7 +48,7 @@ label {
 }
 
 .field_with_errors > input,
-input.invalid {
+input.invalid-feedback {
   @apply border-red-500;
 }
 

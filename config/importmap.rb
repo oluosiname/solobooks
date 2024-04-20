@@ -14,3 +14,4 @@ pin 'flatpickr/dist/themes/dark.css', to: 'flatpickr--dist--themes--dark.css.js'
 pin 'flatpickr/dist/l10n/de.js', to: 'flatpickr--dist--l10n--de.js.js' # @4.6.13
 pin 'flatpickr/dist/l10n/default.js', to: 'flatpickr--dist--l10n--default.js.js' # @4.6.13
 pin '@fortawesome/fontawesome-free', to: '@fortawesome--fontawesome-free.js' # @6.5.1
+pin '@rails/request.js', to: '@rails--request.js.js' # @0.0.9

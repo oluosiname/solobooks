@@ -97,3 +97,5 @@ gem 'tailwindcss-rails', '~> 2.3'
 gem 'noko', '~> 1.7'
 
 gem 'countries', '~> 5.7'
+
+gem 'rack-cors', '~> 2.0'

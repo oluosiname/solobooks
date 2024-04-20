@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 // import Rails from "rails-ujs";
+import { get, post, put, patch, destroy } from "@rails/request.js";
 
 // Connects to data-controller="invoice"
 export default class extends Controller {
@@ -21,29 +22,49 @@ export default class extends Controller {
 
   getMetaValue(name) {
     const element = document.head.querySelector(`meta[name="${name}"]`);
+    if (!element) return;
     return element.getAttribute("content");
   }
 
-  async handleClientChange(e) {
-    const { vat_technique, message } = await this.getVatTechnique(
-      e.target.value
-    );
-    console.log({ vat_technique, message });
-    if (vat_technique == "standard") {
-      this.vatFieldsWrapperTarget.style.display = "block";
-      this.vatFieldsMessageTarget.style.display = "none";
-      this.vatIncludedTarget.disabled = false;
-      this.vatTarget.disabled = false;
-      this.vatRateTarget.disabled = false;
-    } else {
-      this.vatIncludedTarget.disabled = true;
-      this.vatTarget.disabled = true;
-      this.vatRateTarget.disabled = true;
-      this.vatFieldsWrapperTarget.style.display = "none";
-      this.vatFieldsMessageTarget.style.display = "block";
-      this.vatFieldsMessageTarget.innerHTML = message;
-    }
-    this.calculateTotal();
+  handleClientChange(e) {
+    // get("/example_endpoint")
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     } else {
+    //       throw new Error("Failed to fetch data");
+    //     }
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error.message);
+    //   });
+
+    const locale = this.data.get("locale");
+    const clientId = e.target.value;
+    get(
+      `http://localhost:3000/${locale}/invoices/vat_technique?client_id=${clientId}`
+    )
+      .then((response) => response.json)
+      .then(({ vat_technique, message }) => {
+        if (vat_technique == "standard") {
+          this.vatFieldsWrapperTarget.style.display = "block";
+          this.vatFieldsMessageTarget.style.display = "none";
+          this.vatIncludedTarget.disabled = false;
+          this.vatTarget.disabled = false;
+          this.vatRateTarget.disabled = false;
+        } else {
+          this.vatIncludedTarget.disabled = true;
+          this.vatTarget.disabled = true;
+          this.vatRateTarget.disabled = true;
+          this.vatFieldsWrapperTarget.style.display = "none";
+          this.vatFieldsMessageTarget.style.display = "block";
+          this.vatFieldsMessageTarget.innerHTML = message;
+        }
+        this.calculateTotal();
+      });
   }
 
   async getVatTechnique(client_id) {
@@ -67,9 +88,8 @@ export default class extends Controller {
   //called when  any line item total field is changed
 
   handleLineItemPriceChange(e) {
-    console.log(e);
     if (e.target.value == "") {
-      e.target.classList.add("invalid");
+      e.target.classList.add("invalid-feedback");
     }
 
     this.calculateTotal();
