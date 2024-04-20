@@ -16,11 +16,11 @@ en:
       profile_missing: Please fill out your profile and payment detail before creating an invoice.
       title: New Invoice
       vat_messages:
+        exempt: You are exempt from VAT.
+        non_eu: You can not charge VAT for non-EU clients.
+        none: According to § 19 UStG no sales tax is charged.
         reverse_charge: Reverse VAT charge is applied (§13b Abs. 5 UStG)
         standard: VAT charge is applied
-        none: According to § 19 UStG no sales tax is charged.
-        non_eu: You can not charge VAT for non-EU clients.
-        exempt: You are exempt from VAT.
     show:
       bill_to: Bill To
       description: Client details
@@ -37,6 +37,6 @@ en:
       payment_terms: Payment Terms
       reverse_vat: Reverse VAT charge is applied (§13b Abs. 5 UStG)
       thanks:
-        content: "Thank you for your business. If you have any questions concerning this invoice, use the following contact information:"
+        content: 'Thank you for your business. If you have any questions concerning this invoice, use the following contact information:'
         title: Thank you!
       title: Client

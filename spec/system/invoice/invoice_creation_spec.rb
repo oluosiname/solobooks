@@ -6,10 +6,11 @@ RSpec.describe 'Invoice Creation', type: :system do
   let!(:user) { create(:user, :with_profile) }
   let!(:client) { create(:client, user:) }
   let!(:invoice_category) { create(:invoice_category) }
-  let!(:currency) { create(:currency, default: true) }
+  let!(:currency) { create(:currency, :default) }
 
   before do
     create(:payment_detail, user:)
+    client.address.update(country: 'DE')
     login_user(user)
   end
 
@@ -98,62 +99,99 @@ RSpec.describe 'Invoice Creation', type: :system do
     end
   end
 
-  # describe 'vat calculation' do
-  #   before do
-  #     client.address.update(country: client_country )
+  describe 'vat calculation' do
+    let(:user) { create(:user) }
+    let(:client_country) { 'DE' }
+    let(:user_country) { 'DE' }
 
-  #   end
-  #   context 'when vat is chargeable' do
-  #     let(:client_country) { 'DE'}
-  #     it 'displays VAT field' do
-  #       select client.name, from: 'invoice[client_id]'
+    before do
+      client.address.update(country: client_country)
+      create(:profile, country: user_country, user:)
+      visit new_invoice_path
+    end
 
-  #       expect(page).to have_field(id: 'invoice_vat_rate')
-  #       expect(page).to have_field('invoice[vat_included]')
-  #       expect(page).to have_field('invoice[vat]')
-  #     end
+    context 'when vat is chargeable' do
+      it 'displays VAT field', :js do
+        select client.name, from: 'invoice[client_id]'
 
-  #     context 'when vat is included in price' do
-  #       it 'separates VAT from subtotal', :js do
-  #       end
-  #     end
+        expect(page).to have_field(id: 'invoice_vat_rate')
+        expect(page).to have_field(id: 'invoice_vat')
+        expect(page).to have_field(id: 'invoice_vat')
+      end
 
-  #     context 'when VAT is not included in price' do
-  #       it 'adds VAT to subtotal', :js do
-  #       end
-  #     end
-  #   end
+      context 'when vat is included in price' do
+        it 'separates VAT from subtotal', :js do
+          select client.name, from: 'invoice[client_id]'
+          fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
+          fill_in 'invoice[line_items_attributes][0][unit_price]', with: 100
 
-  #   context 'when VAT is not chargeable' do
-  #     context 'when EU country' do
-  #       let(:client_country) { 'FR'}
-  #       it 'does not display VAT field', :js do
-  #       end
+          find('label', text: 'VAT included in price').click
 
-  #       it 'displays VAT message', :js do
+          select '19%', from: 'invoice[vat_rate]'
 
-  #         select client.name, from: 'invoice[client_id]'
+          expect(page).to have_text(/Subtotal\s*€162\.00/)
+          expect(page).to have_field('invoice[vat]', with: '38')
+          expect(page).to have_text(/Total\s*€200\.00/)
+        end
+      end
 
-  #         expect(page).to have_content('VAT is not chargeable for this client')
-  #       end
-  #     end
+      context 'when VAT is not included in price' do
+        it 'adds VAT to subtotal', :js do
+          select client.name, from: 'invoice[client_id]'
+          fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
+          fill_in 'invoice[line_items_attributes][0][unit_price]', with: 100
 
-  #     context 'when non-EU country' do
-  #       it 'does not display VAT field', :js do
-  #       end
-  #       it 'displays VAT message', :js do
-  #       end
-  #     end
+          select '19%', from: 'invoice[vat_rate]'
 
-  #     context 'when tax exempt' do
-  #       it 'does not display VAT field', :js do
-  #       end
-  #       it 'displays VAT message', :js do
-  #       end
+          expect(page).to have_text(/Subtotal\s*€200\.00/)
+          expect(page).to have_field('invoice[vat]', with: '38')
+          expect(page).to have_text(/Total\s*€238\.00/)
+        end
+      end
+    end
 
-  #     end
-  #   end
-  # end
+    context 'when VAT is not chargeable' do
+      let(:client_country) { 'FR' }
+
+      it 'does not display VAT field', :js do
+        select client.name, from: 'invoice[client_id]'
+
+        expect(page).to have_no_field(id: 'invoice_vat_rate')
+        expect(page).to have_no_field(id: 'invoice_vat')
+        expect(page).to have_no_field(id: 'invoice_vat')
+      end
+
+      context 'when EU country' do
+        let(:client_country) { 'FR' }
+
+        it 'displays VAT message', :js do
+          select client.name, from: 'invoice[client_id]'
+
+          expect(page).to have_content('Reverse VAT charge is applied (§13b Abs. 5 UStG)')
+        end
+      end
+
+      context 'when non-EU country' do
+        let(:client_country) { 'US' }
+
+        it 'displays VAT message', :js do
+          select client.name, from: 'invoice[client_id]'
+          expect(page).to have_content('You can not charge VAT for non-EU clients')
+        end
+      end
+
+      context 'when tax exempt' do
+        before do
+          user.profile.update(vat_id: nil)
+        end
+
+        it 'displays VAT message', :js do
+          select client.name, from: 'invoice[client_id]'
+          expect(page).to have_content('According to § 19 UStG no sales tax is charged.')
+        end
+      end
+    end
+  end
 
   describe 'filling in line items' do
     context 'when filling in line item price' do
@@ -165,7 +203,7 @@ RSpec.describe 'Invoice Creation', type: :system do
         expect(page).to have_field('invoice[line_items_attributes][0][total_price]', with: '200')
       end
 
-      context 'when invalid price' do # rubocop:disable RSpec/NestedGroups
+      context 'when invalid price' do
         it 'shows field as invalid', :js do
           visit 'invoices/new'
 

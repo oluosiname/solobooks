@@ -120,12 +120,12 @@
         <em data-invoice-target="vatFieldsMessage" class="mb-2 text-grey-500 text-sm"></em>
         <div class="flex justify-between items-center mb-4 gap-60">
           <label><%= t("activerecord.attributes.invoice.subtotal") %></label>
-          <div data-invoice-target ="subTotal">0.00</div>
+          <div data-invoice-target ="subTotal" id="invoice-subtotal">0.00</div>
         </div>
 
         <div data-invoice-target="vatFieldsWrapper" id="invoice-vat-fields" class="hidden">
           <div class="mb-4 vat-fields">
-            <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex" do %>
+            <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex", id: 'invoice_vat_included_label' do %>
               <%= t("activerecord.attributes.invoice.vat_included") %>
               <%= form.check_box :vat_included, class: "toggle", disabled: true, data: { invoice_target: "vatIncluded", action: "invoice#calculateTotal"} %>
             <% end %>

@@ -44,9 +44,7 @@ export default class extends Controller {
 
     const locale = this.data.get("locale");
     const clientId = e.target.value;
-    get(
-      `http://localhost:3000/${locale}/invoices/vat_technique?client_id=${clientId}`
-    )
+    get(`/${locale}/invoices/vat_technique?client_id=${clientId}`)
       .then((response) => response.json)
       .then(({ vat_technique, message }) => {
         if (vat_technique == "standard") {
