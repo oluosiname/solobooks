@@ -10,6 +10,7 @@ RSpec.describe 'Invoice Creation', type: :system do
 
   before do
     create(:payment_detail, user:)
+    login_user(user)
   end
 
   describe 'visiting invoice creation page' do
@@ -51,7 +52,6 @@ RSpec.describe 'Invoice Creation', type: :system do
 
   context 'when valid data' do
     it 'creates invoice', :js do
-      login_user(user)
       visit 'invoices/new'
       expect(user.invoices.size).to eq(0)
 
@@ -95,6 +95,89 @@ RSpec.describe 'Invoice Creation', type: :system do
       expect(last_invoice.total_amount).to eq(200)
       expect(last_invoice.status).to eq('pending')
       expect(last_invoice.pdf.attached?).to be(true)
+    end
+  end
+
+  # describe 'vat calculation' do
+  #   before do
+  #     client.address.update(country: client_country )
+
+  #   end
+  #   context 'when vat is chargeable' do
+  #     let(:client_country) { 'DE'}
+  #     it 'displays VAT field' do
+  #       select client.name, from: 'invoice[client_id]'
+
+  #       expect(page).to have_field(id: 'invoice_vat_rate')
+  #       expect(page).to have_field('invoice[vat_included]')
+  #       expect(page).to have_field('invoice[vat]')
+  #     end
+
+  #     context 'when vat is included in price' do
+  #       it 'separates VAT from subtotal', :js do
+  #       end
+  #     end
+
+  #     context 'when VAT is not included in price' do
+  #       it 'adds VAT to subtotal', :js do
+  #       end
+  #     end
+  #   end
+
+  #   context 'when VAT is not chargeable' do
+  #     context 'when EU country' do
+  #       let(:client_country) { 'FR'}
+  #       it 'does not display VAT field', :js do
+  #       end
+
+  #       it 'displays VAT message', :js do
+
+  #         select client.name, from: 'invoice[client_id]'
+
+  #         expect(page).to have_content('VAT is not chargeable for this client')
+  #       end
+  #     end
+
+  #     context 'when non-EU country' do
+  #       it 'does not display VAT field', :js do
+  #       end
+  #       it 'displays VAT message', :js do
+  #       end
+  #     end
+
+  #     context 'when tax exempt' do
+  #       it 'does not display VAT field', :js do
+  #       end
+  #       it 'displays VAT message', :js do
+  #       end
+
+  #     end
+  #   end
+  # end
+
+  describe 'filling in line items' do
+    context 'when filling in line item price' do
+      it 'calucates total price', :js do
+        visit 'invoices/new'
+        fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
+        fill_in 'invoice[line_items_attributes][0][unit_price]', with: 100
+
+        expect(page).to have_field('invoice[line_items_attributes][0][total_price]', with: '200')
+      end
+
+      context 'when invalid price' do # rubocop:disable RSpec/NestedGroups
+        it 'shows field as invalid', :js do
+          visit 'invoices/new'
+
+          fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
+          fill_in 'invoice[line_items_attributes][0][unit_price]', with: '100.'
+
+          expect(page).to have_field('invoice[line_items_attributes][0][unit_price]', with: '')
+          within '.invoice-line-item-fields-wrapper' do
+            expect(page).to have_css('.invalid-feedback')
+          end
+        end
+      end
     end
   end
 end
