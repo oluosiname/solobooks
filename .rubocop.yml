@@ -24,5 +24,9 @@ RSpec/Rails/InferredSpecType:
   Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
 Lint/MissingSuper:
   Enabled: false

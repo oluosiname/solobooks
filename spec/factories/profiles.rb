@@ -8,7 +8,7 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     date_of_birth { Faker::Date.birthday(min_age: 18, max_age: 65) }
     nationality { Faker::Nation.nationality }
-    country { Faker::Address.country }
+    country { Faker::Address.country_code }
     business_name { Faker::Company.name }
     tax_number { Faker::Number.number(digits: 8) }
     vat_id { Faker::Number.number(digits: 9) }

@@ -13,6 +13,8 @@ FactoryBot.define do
 
     trait :default do
       default { true }
+      symbol { '€' }
+      code { 'EUR' }
     end
 
     trait :inactive do
