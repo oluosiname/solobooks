@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+// import Rails from "rails-ujs";
 
 // Connects to data-controller="invoice"
 export default class extends Controller {
@@ -9,10 +10,57 @@ export default class extends Controller {
     "vatIncluded",
     "vatRate",
     "vat",
+    "vatFieldsWrapper",
+    "vatFieldsMessage",
   ];
 
   connect() {
     console.log("Connected to invoice controller");
+  }
+
+  getMetaValue(name) {
+    const element = document.head.querySelector(`meta[name="${name}"]`);
+    return element.getAttribute("content");
+  }
+
+  async handleClientChange(e) {
+    const { vat_technique, message } = await this.getVatTechnique(
+      e.target.value
+    );
+    console.log({ vat_technique, message });
+    if (vat_technique == "standard") {
+      this.vatFieldsWrapperTarget.style.display = "block";
+      this.vatFieldsMessageTarget.style.display = "none";
+      this.vatIncludedTarget.disabled = false;
+      this.vatTarget.disabled = false;
+      this.vatRateTarget.disabled = false;
+    } else {
+      this.vatIncludedTarget.disabled = true;
+      this.vatTarget.disabled = true;
+      this.vatRateTarget.disabled = true;
+      this.vatFieldsWrapperTarget.style.display = "none";
+      this.vatFieldsMessageTarget.style.display = "block";
+      this.vatFieldsMessageTarget.innerHTML = message;
+    }
+    this.calculateTotal();
+  }
+
+  async getVatTechnique(client_id) {
+    const locale = this.data.get("locale");
+    return fetch(`/${locale}/invoices/vat_technique?client_id=${client_id}`, {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        Accept: "text/vnd.turbo-stream.html",
+        "X-CSRF-Token": this.getMetaValue("csrf-token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        return json;
+      });
   }
 
   //called when  any line item total field is changed
@@ -39,7 +87,7 @@ export default class extends Controller {
       );
     });
 
-    if (this.vatChargedTarget.checked) {
+    if (this.vatFieldsWrapperTarget.style.display != "none") {
       const vatRate = parseFloat(this.vatRateTarget.value);
       const vat = (subtotal * vatRate) / 100;
       this.vatTarget.value = vat;
@@ -64,17 +112,5 @@ export default class extends Controller {
     const lineItemTotal = lineItemPrice * lineItemQuantity;
     lineItemTotalField.value = lineItemTotal;
     return lineItemTotal;
-  }
-
-  toggleVatFields() {
-    if (this.vatChargedTarget.checked) {
-      this.vatIncludedTarget.disabled = false;
-      this.vatTarget.disabled = false;
-      this.vatRateTarget.disabled = false;
-    } else {
-      this.vatIncludedTarget.disabled = true;
-      this.vatTarget.disabled = true;
-      this.vatRateTarget.disabled = true;
-    }
   }
 }

@@ -52,6 +52,14 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def vat_technique
+    client_id = params[:client_id]
+    client = current_user.clients.find(client_id)
+    vat_strategy = client.vat_strategy
+
+    render json: { vat_technique: vat_strategy, message: I18n.t("invoices.new.vat_messages.#{vat_strategy}") }.to_json
+  end
+
   private
 
   def invoice_params

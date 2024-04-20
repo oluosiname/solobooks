@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
     root 'home#index'
 
-    resources :invoices, only: [:new, :create, :index]
+    resources :invoices, only: [:new, :create, :index] do
+      get :vat_technique, on: :collection
+    end
     resources :invoice_categories, only: [:new, :create]
     resources :clients, only: [:new, :create, :index] do
       get :new_modal, on: :collection

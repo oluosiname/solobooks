@@ -1,6 +1,6 @@
 <h4 class="mb-2 text-lg font-medium"><%= t('invoices.new.title') %></h4>
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
-  <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" }) do |form| %>
+  <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" , invoice_locale: I18n.locale}) do |form| %>
     <%= render partial: "partials/resource_error_messages", locals: { resource: @invoice } %>
     <div class="flex justify-between flex-wrap md:flex-nowrap">
       <div class="w-full md:w-2/5">
@@ -62,7 +62,7 @@
         <div class="field invoice-field">
           <div class="flex justify-start gap-x-2">
             <%= form.label :client_id, class: "select !flex-2" do %>
-              <%= form.select :client_id, {}, prompt: t("forms.placeholders.invoice.select_client") do %>
+              <%= form.select :client_id, {}, {prompt: t("forms.placeholders.invoice.select_client")}, {data: {action: "change->invoice#handleClientChange"}}  do %>
                 <%= render "invoice_client_options", clients: @clients, selected: @invoice.client_id %> 
               <% end %>
               <svg style="top: calc(50% - 3px)">
@@ -117,33 +117,31 @@
 
     <section class="flex justify-end mt-6">
       <div class="totals w-full md:w-fit">
-        <div class="flex justify-between items-center mb-4">
+        <em data-invoice-target="vatFieldsMessage" class="mb-2 text-grey-500 text-sm"></em>
+        <div class="flex justify-between items-center mb-4 gap-60">
           <label><%= t("activerecord.attributes.invoice.subtotal") %></label>
           <div data-invoice-target ="subTotal">0.00</div>
         </div>
-        <div class="mb-4  ">
-          <label class="toggle-label !flex flex-row items-center justify-between"  style="display: flex" for="one">
-            <span><%= t("activerecord.attributes.invoice.vat_charged") %></span>
-            <input id="one" type="checkbox" class="toggle" data-invoice-target="vatCharged" data-action="invoice#toggleVatFields" />
-          </label>
-        </div>
-        <div class="mb-4 vat-fields">
-          <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex" do %>
-             <%= t("activerecord.attributes.invoice.vat_included") %>
-            <%= form.check_box :vat_included, class: "toggle", disabled: true, data: { invoice_target: "vatIncluded", action: "invoice#calculateTotal"} %>
-          <% end %>
-        </div>
-        <div class="flex flex-row items-center justify-between mb-4 gap-2 vat-fields">
-          
-          <%= form.label :vat, class: "select !flex-2 flex-row flex items-center gap-4", style: "flex: 2 2 0%" do %>
-          <%= t("activerecord.attributes.invoice.vat_rate") %>
-            <%= form.select :vat_rate, options_for_select(Invoice::VAT_RATES, @invoice.vat_rate || 0), {}, disabled: true, data: {action: "invoice#calculateTotal", invoice_target: "vatRate" } %>
-            <svg style="top: calc(50% - 3px)">
-              <use xlink:href="#select-arrow-down"></use>
-            </svg>
-          <% end %>
-          <div>
-            <%= form.number_field :vat, class: 'form-input basis-2/5 text-right pr-0', data: {invoice_target: 'vat'}, readonly: true %>
+
+        <div data-invoice-target="vatFieldsWrapper" id="invoice-vat-fields">
+          <div class="mb-4 vat-fields">
+            <%= form.label :vat_included, class: "toggle-label !flex flex-row items-center justify-between", style: "display: flex" do %>
+              <%= t("activerecord.attributes.invoice.vat_included") %>
+              <%= form.check_box :vat_included, class: "toggle", disabled: true, data: { invoice_target: "vatIncluded", action: "invoice#calculateTotal"} %>
+            <% end %>
+          </div>
+          <div class="flex flex-row items-center justify-between mb-4 gap-2 vat-fields">
+            
+            <%= form.label :vat, class: "select !flex-2 flex-row flex items-center gap-4", style: "flex: 2 2 0%" do %>
+            <%= t("activerecord.attributes.invoice.vat_rate") %>
+              <%= form.select :vat_rate, options_for_select(Invoice::VAT_RATES, @invoice.vat_rate || 0), {}, disabled: true, data: {action: "invoice#calculateTotal", invoice_target: "vatRate" } %>
+              <svg style="top: calc(50% - 3px)">
+                <use xlink:href="#select-arrow-down"></use>
+              </svg>
+            <% end %>
+            <div>
+              <%= form.number_field :vat, class: 'form-input basis-2/5 text-right pr-0', data: {invoice_target: 'vat'}, readonly: true %>
+            </div>
           </div>
         </div>
 
