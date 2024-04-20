@@ -29,7 +29,6 @@ en:
       notes: Notes
       payment_details: Payment Details
       payment_terms: Payment Terms
-      reverse_vat: Reverse VAT charge is applied (§13b Abs. 5 UStG)
       thanks:
         content: 'Thank you for your business. If you have any questions concerning this invoice, use the following contact information:'
         title: Thank you!

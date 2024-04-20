@@ -207,13 +207,14 @@ RSpec.describe 'Invoice Creation', type: :system do
         it 'shows field as invalid', :js do
           visit 'invoices/new'
 
-          fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
           fill_in 'invoice[line_items_attributes][0][unit_price]', with: '100.'
+          fill_in 'invoice[line_items_attributes][0][quantity]', with: 2
+          find_by_id('invoice_line_items_attributes_0_unit').click
 
-          expect(page).to have_field('invoice[line_items_attributes][0][unit_price]', with: '')
           within '.invoice-line-item-fields-wrapper' do
             expect(page).to have_css('.invalid-feedback')
           end
+          expect(page).to have_field('invoice[line_items_attributes][0][unit_price]', with: '')
         end
       end
     end

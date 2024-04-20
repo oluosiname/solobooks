@@ -107,7 +107,9 @@ module InvoiceService
         cells[2, 1].style font_style: :semi_bold, size: 11
       end
       pdf.move_down 20
-      pdf.text I18n.t('invoices.show.reverse_vat'), color: '727d92', align: :right
+      pdf.text I18n.t("activerecord.attributes.invoice.vat_techniques.#{invoice.vat_technique}"),
+        color: '727d92',
+        align: :right
 
       pdf.move_down 40
 
@@ -159,8 +161,6 @@ module InvoiceService
           "#{I18n.t("activerecord.attributes.invoice.total")}:",
           number_to_currency(invoice.total_amount, unit: invoice.currency_symbol),
         ],
-        # ['Amount Due', number_to_currency(invoice.total, unit: invoice.currency_symbol)],
-        # ['Amount Paid', number_to_currency(0, unit: invoice.currency_symbol)],
       ]
     end
 

@@ -37,7 +37,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @invoice = Invoice.new(invoice_params.merge(user: current_user))
+    @invoice = Invoice.new(invoice_params.merge(user: current_user, **vat_technique_params))
     if @invoice.save
 
       prev_locale = I18n.locale
@@ -79,6 +79,14 @@ class InvoicesController < ApplicationController
       :vat_included,
       line_items_attributes:,
     )
+  end
+
+  def vat_technique_params
+    client_id = params[:invoice][:client_id]
+    client = current_user.clients.find(client_id)
+    vat_strategy = client.vat_strategy
+
+    { vat_technique: vat_strategy }
   end
 
   def filter_params
