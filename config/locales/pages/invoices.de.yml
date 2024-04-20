@@ -15,12 +15,6 @@ de:
     new:
       profile_missing: Bitte füllen Sie Ihr Profil und Ihre Zahlungsdetails aus, bevor Sie eine Rechnung erstellen.
       title: Neue Rechnung
-      vat_messages:
-        exempt: Sie sind von der Umsatzsteuer befreit.
-        non_eu: Sie können für Nicht-EU-Kunden keine Umsatzsteuer berechnen.
-        none: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
-        reverse_charge: Steuerschuldnerschaft des Leistungsempfängers (§13b Abs. 5 UStG)
-        standard: Umsatzsteuer wird berechnet
     show:
       bill_to: Rechnung an
       description: Kundendetails

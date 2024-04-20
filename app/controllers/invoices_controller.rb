@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
       .invoices
       .filtered(filter_params)
       .includes(:client, :currency, :pdf_attachment)
+      .order(created_at: :desc)
   end
 
   # def show
@@ -57,7 +58,10 @@ class InvoicesController < ApplicationController
     client = current_user.clients.find(client_id)
     vat_strategy = client.vat_strategy
 
-    render json: { vat_technique: vat_strategy, message: I18n.t("invoices.new.vat_messages.#{vat_strategy}") }.to_json
+    render json: {
+      vat_technique: vat_strategy,
+      message: I18n.t("activerecord.attributes.invoice.vat_techniques.#{vat_strategy}"),
+    }.to_json
   end
 
   private

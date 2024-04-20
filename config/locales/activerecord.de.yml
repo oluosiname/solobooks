@@ -46,6 +46,12 @@ de:
         vat_charged: MwSt. berechnet?
         vat_included: MwSt. im Preis enthalten
         vat_rate: MwSt.-Satz
+        vat_techniques:
+          exempt: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
+          non_eu: Sie können für Nicht-EU-Kunden keine Umsatzsteuer berechnen.
+          none: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
+          reverse_charge: Reverse-Charge-Verfahren wird angewendet (§13b Abs. 5 UStG)
+          standard: Umsatzsteuer wird berechnet
       invoice/line_items:
         description: Beschreibung
         price: Preis

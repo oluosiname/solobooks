@@ -68,8 +68,8 @@ RSpec.describe Client, type: :model do
         allow(user.profile).to receive(:vat_exempted?).and_return(true)
       end
 
-      it 'returns VAT_TECHNIQUES[:none]' do
-        expect(client.vat_strategy).to eq(Invoice::VAT_TECHNIQUES[:none])
+      it 'returns VAT_TECHNIQUES[:exempt]' do
+        expect(client.vat_strategy).to eq(Invoice.vat_techniques[:exempt])
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe Client, type: :model do
       let(:client_country) { 'US' }
 
       it 'returns VAT_TECHNIQUES[:none]' do
-        expect(client.vat_strategy).to eq(Invoice::VAT_TECHNIQUES[:non_eu])
+        expect(client.vat_strategy).to eq(Invoice.vat_techniques[:non_eu])
       end
     end
 
@@ -85,7 +85,7 @@ RSpec.describe Client, type: :model do
       let(:client_country) { 'FR' }
 
       it 'returns VAT_TECHNIQUES[:reverse_charge]' do
-        expect(client.vat_strategy).to eq(Invoice::VAT_TECHNIQUES[:reverse_charge])
+        expect(client.vat_strategy).to eq(Invoice.vat_techniques[:reverse_charge])
       end
     end
 
@@ -93,7 +93,7 @@ RSpec.describe Client, type: :model do
       let(:client_country) { 'DE' }
 
       it 'returns VAT_TECHNIQUES[:standard]' do
-        expect(client.vat_strategy).to eq(Invoice::VAT_TECHNIQUES[:standard])
+        expect(client.vat_strategy).to eq(Invoice.vat_techniques[:standard])
       end
     end
   end
@@ -107,7 +107,7 @@ end
 #       before { allow(invoice.user.profile).to receive(:vat_exempted?).and_return(true) }
 
 #       it "returns 'None'" do
-#         expect(invoice.vat_technique(client_country_code, user_country_code)).to eq(Invoice::VAT_TECHNIQUES[:none])
+#         expect(invoice.vat_technique(client_country_code, user_country_code)).to eq(Invoice.vat_techniques[:none])
 #       end
 #     end
 
@@ -115,7 +115,7 @@ end
 #       let(:client_country_code) { 'US' }
 
 #       it "returns 'Non-EU'" do
-#         expect(invoice.vat_technique(client_country_code, user_country_code)).to eq(Invoice::VAT_TECHNIQUES[:non_eu])
+#         expect(invoice.vat_technique(client_country_code, user_country_code)).to eq(Invoice.vat_techniques[:non_eu])
 #       end
 #     end
 
@@ -125,7 +125,7 @@ end
 #           expect(invoice.vat_technique(
 #             client_country_code,
 #             client_country_code,
-#           )).to eq(Invoice::VAT_TECHNIQUES[:standard])
+#           )).to eq(Invoice.vat_techniques[:standard])
 #         end
 #       end
 
@@ -136,7 +136,7 @@ end
 #           expect(invoice.vat_technique(
 #             client_country_code,
 #             user_country_code,
-#           )).to eq(Invoice::VAT_TECHNIQUES[:reverse_charge])
+#           )).to eq(Invoice.vat_techniques[:reverse_charge])
 #         end
 #       end
 #     end
