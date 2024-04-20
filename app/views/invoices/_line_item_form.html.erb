@@ -1,6 +1,6 @@
 <div class="flex invoice-line-item-fields-wrapper nested-form-wrapper" data-new-record="<%= f.object.new_record?  %>" data-controller='line-item'>
   <div><%= f.text_field :description, class: 'form-input' %></div>
-  <div><%= f.number_field :unit_price, class: 'form-input line-item-price', lang: I18n.locale, data: { action: "invoice#calculateTotal"} %></div>
+  <div><%= f.number_field :unit_price, class: 'form-input line-item-price', lang: I18n.locale, data: { action: "blur->invoice#handleLineItemPriceChange"} %></div>
   <div>
     <%# <label class="select" for="slct"> %>
       <%= f.label :unit, class:"select" do %>
