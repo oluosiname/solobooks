@@ -1,0 +1,14 @@
+<%== pagy_info(pagy) %>
+  <%# <%==  pagy_nav(pagy, size: [], prev: 'Previous', next: 'Next')  if pagy.pages > 1 %> 
+<% if pagy.pages > 1 %>
+  <% if pagy.prev %>
+    <%== pagy_anchor(pagy).call(pagy.prev, '<i class="fa-solid text-grey-500 fa-chevron-left"></i>') %>
+  <% else %>
+    <span><i class="fa-solid text-grey-200 fa-chevron-left"></i></span>
+  <% end %>
+  <% if pagy.next %>
+    <%== pagy_anchor(pagy).call(pagy.next, '<i class="fa-solid text-grey-600 fa-chevron-right"></i>') %>
+  <% else %>
+    <span><i class="fa-solid text-grey-200 fa-chevron-right"></i></span>
+  <% end %>
+<% end %>

@@ -3,12 +3,14 @@
 class InvoicesController < ApplicationController
   before_action :set_select_options, only: [:new, :create]
 
+  include Pagy::Backend
+
   def index
-    @invoices = current_user
+    @pagy, @invoices = pagy(current_user
       .invoices
       .filtered(filter_params)
       .includes(:client, :currency, :pdf_attachment)
-      .order(created_at: :desc)
+      .order(created_at: :desc))
   end
 
   # def show
