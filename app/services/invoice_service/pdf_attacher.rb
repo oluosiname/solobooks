@@ -10,7 +10,7 @@ module InvoiceService
     def call
       invoice.pdf.attach(
         io: pdf,
-        filename: "Invoice - #{@invoice.invoice_number}",
+        filename: "Invoice - #{@invoice.invoice_number}.pdf",
         content_type: 'application/pdf',
       )
     end
