@@ -99,3 +99,5 @@ gem 'noko', '~> 1.7'
 gem 'countries', '~> 5.7'
 
 gem 'rack-cors', '~> 2.0'
+
+gem 'pagy', '~> 8.2'
