@@ -28,12 +28,12 @@
   <table class="min-w-full divide-y divide-gray-200 bg-white" data-controller="invoice-table">
     <thead class="bg-gray-50 ">
       <tr>
-        <th scope="col" class="hidden py-3 ps-4">
+        <%# <th scope="col" class="hidden py-3 ps-4">
           <div class="flex items-center h-5">
             <input id="table-checkbox-all" type="checkbox" class="form-checkbox rounded">
             <label for="table-checkbox-all" class="sr-only">Checkbox</label>
           </div>
-        </th>
+        </th> %>
         <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.invoice_number") %></th>
         <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.client") %></th>
         <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.invoice.date") %></th>

@@ -4,4 +4,9 @@ en:
     index:
       actions:
         new: New Client
+      table:
+        actions:
+          delete: Delete
+          invoices: Invoices
+          view: View
       title: Clients

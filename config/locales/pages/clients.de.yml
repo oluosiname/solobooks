@@ -4,4 +4,9 @@ de:
     index:
       actions:
         new: Neuer Kunde
+      table:
+        actions:
+          delete: Löschen
+          invoices: Rechnungen
+          view: Anzeigen
       title: Kunden
