@@ -65,6 +65,22 @@ class ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    @client = current_user.clients.find(params[:id])
+
+    if @client.destroy
+      redirect_back fallback_location: clients_url,
+        notice: t('record.destroy.success', resource: @client.class.model_name.human)
+    else
+
+      redirect_back fallback_location: clients_url,
+        alert: "#{t(
+          "record.destroy.error",
+          resource: @client.class.model_name.human,
+        )} \n #{@client.errors.full_messages.join(", ")}"
+    end
+  end
+
   private
 
   def set_client

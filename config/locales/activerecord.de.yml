@@ -12,6 +12,7 @@ de:
         address: Adresse
         business_tax_id: Steuernummer
         email: E-Mail
+        invoices: Rechnungen
         name: Name
         phone_number: Telefonnummer
         post_code: Postleitzahl
@@ -121,6 +122,8 @@ de:
             name:
               blank: muss ausgefüllt werden
               taken: ist bereits vergeben
+          restrict_dependent_destroy:
+            has_many: Kann nicht gelöscht werden, da es %{record} zugeordnet ist
         expense:
           attributes:
             amount:

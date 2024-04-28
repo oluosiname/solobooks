@@ -19,9 +19,9 @@
       <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown r-full">
           <%= link_to t('clients.index.table.actions.view'), '#', class: 'dropdown-item',  target: '_blank',  rel: "noreferrer"  %>
           <%= link_to t('clients.index.table.actions.invoices'), invoices_path(client_id: client.id), class: 'dropdown-item'   %>
-          <a class="dropdown-item" href="#">
-            <%= t('clients.index.table.actions.delete') %>
-          </a>
+          <%= button_to client_path(client), method: :delete, class: "dropdown-item", data: { turbo: false } do %>
+            <span class=""><%= t('clients.index.table.actions.delete') %> </span>
+          <% end %>
       </div>
     </div>
   </td>

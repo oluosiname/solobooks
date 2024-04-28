@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       get :vat_technique, on: :collection
     end
     resources :invoice_categories, only: [:new, :create]
-    resources :clients, only: [:new, :create, :index] do
+    resources :clients, only: [:new, :create, :index, :destroy] do
       get :new_modal, on: :collection
     end
     resource :profile, only: [:show, :update]
