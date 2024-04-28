@@ -4,22 +4,23 @@
     <button class="btn btn-success btn-sm"><%= t("clients.index.actions.new") %></button>
   <% end %>
 </div>
-<div class="border rounded-lg overflow-hidden">
-  <table class="min-w-full divide-y divide-gray-200">
+ <section class="page-numbers flex justify-end gap-4 flex-nowrap items-center">
+  <%= render partial: 'partials/pagination', locals: {pagy: @pagy} %>
+</section>
+<div class="border rounded-lg mb-4">
+  <table class="min-w-full divide-y divide-gray-200 bg-white" data-controller="invoice-table">
     <thead class="bg-gray-50 ">
       <tr>
-        <th scope="col" class="py-3 ps-4">
+        <%# <th scope="col" class="py-3 ps-4">
           <div class="flex items-center h-5">
             <input id="table-checkbox-all" type="checkbox" class="form-checkbox rounded">
             <label for="table-checkbox-all" class="sr-only">Checkbox</label>
           </div>
-        </th>
+        </th> %>
         <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.name") %></th>
         <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.email") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.vat_number") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.business_tax_id") %></th>
         <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.phone_number") %></th>
-        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.address") %></th>
+        <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.client.vat_number") %></th>
         <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
       </tr>
     </thead>
