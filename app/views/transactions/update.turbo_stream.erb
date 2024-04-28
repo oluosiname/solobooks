@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "flash", partial: "partials/flash_messages" %>
+<turbo-stream action="replace" target="transaction-<%= @transaction.id %>">
+  <template>
+    <%= render partial: "transactions/transaction", locals: { transaction: @transaction}%>
+  </template>
+</turbo-stream>

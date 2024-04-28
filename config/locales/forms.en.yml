@@ -19,9 +19,13 @@ en:
       client:
         address: Address
       expense:
-        title: Add Expense
+        title:
+          edit: Edit Expense
+          new: Add Expense
       income:
-        title: Add Income
+        title:
+          edit: Edit Income
+          new: Add Income
       profile:
         address: Address
         invoice_settings: Invoice Settings

@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     resources :expenses, only: [:new, :create]
     resources :incomes, only: [:new, :create]
-    resources :transactions, only: [:new, :index, :destroy], as: :transactions
+    resources :transactions, only: [:new, :edit, :update, :index, :destroy], as: :transactions
 
     resources :payment_details, only: [:update, :create]
 

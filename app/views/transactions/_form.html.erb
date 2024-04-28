@@ -1,5 +1,5 @@
 <div class=" p-6 card expense-form">
-  <%= form_with(model: transaction) do |form| %>
+  <%= form_with(model: transaction, url: transaction.id.present? ? transaction_path : transaction) do |form| %>
   
     <%= render partial: "partials/resource_error_messages", locals: { resource:  transaction } %>
     <!-- Amount -->
