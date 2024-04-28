@@ -37,6 +37,7 @@ en:
           draft: Draft
           due: Overdue
           paid: Paid
+          pending: Pending
           refunded: Refunded
           sent: Sent
         subtotal: Subtotal

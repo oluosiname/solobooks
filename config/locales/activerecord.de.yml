@@ -36,6 +36,7 @@ de:
           draft: Entwurf
           due: Überfällig
           paid: Bezahlt
+          pending: Ausstehend
           refunded: Erstattet
           sent: Gesendet
         subtotal: Zwischensumme
