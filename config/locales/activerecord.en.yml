@@ -95,6 +95,9 @@ en:
         reset_password_token: Reset password token
     errors:
       models:
+        client:
+          restrict_dependent_destroy:
+            has_many: Cannot delete client because it has %{record} associated with it
         invoice:
           attributes:
             line_items:
