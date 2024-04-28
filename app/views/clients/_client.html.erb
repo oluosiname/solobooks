@@ -1,18 +1,28 @@
  <tr>
-  <td class="py-3 ps-4">
+  <%# <td class="py-3 ps-4">
     <div class="flex items-center h-5">
       <input id="table-checkbox-1" type="checkbox" class="form-checkbox rounded">
       <label for="table-checkbox-1" class="sr-only">Checkbox</label>
     </div>
-  </td>
+  </td> %>
   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= client.display_name %></td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.email %></td>
-  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.vat_number %></td>
-  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.business_tax_id %></td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.phone_number %></td>
-  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.full_address %></td>
-  <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex gap-6">
-    <a class="text-danger-400 hover:text-danger-700" href="#">Delete</a>
-    <a class="text-primary hover:text-sky-700" href="#">View</a>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.vat_number %></td>
+  <%# <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.business_tax_id %>
+  <%# <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= client.full_address %>
+  <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex gap-6 justify-end">
+    <div class="flex flex-wrap gap-2 relative dropdown" data-controller="dropdown" data-dropdown-target="dropdownContainer">
+      <button class="fa-solid fa-ellipsis-vertical cursor-pointer text-xl" data-fc-type="dropdown" data-action="dropdown#actionToggle" data-dropdown-target="dropdownButton" ></button>
+      <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
+
+      <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown r-full">
+          <%= link_to t('clients.index.table.actions.view'), '#', class: 'dropdown-item',  target: '_blank',  rel: "noreferrer"  %>
+          <%= link_to t('clients.index.table.actions.invoices'), invoices_path(client_id: client.id), class: 'dropdown-item'   %>
+          <a class="dropdown-item" href="#">
+            <%= t('clients.index.table.actions.delete') %>
+          </a>
+      </div>
+    </div>
   </td>
 </tr>

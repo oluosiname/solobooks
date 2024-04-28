@@ -3,8 +3,13 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:edit, :show]
 
+  include Pagy::Backend
+
   def index
-    @clients = current_user.clients.includes(:address)
+    @clients = current_user
+    @pagy, @clients = pagy(current_user
+    .clients.includes(:address)
+      .order(created_at: :desc))
   end
 
   def show
