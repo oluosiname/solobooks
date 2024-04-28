@@ -1,10 +1,10 @@
  <tr>
-  <td class="hidden py-3 ps-4">
+  <%# <td class="hidden py-3 ps-4">
     <div class="flex items-center h-5">
       <input id="table-checkbox-1" type="checkbox" class="form-checkbox rounded">
       <label for="table-checkbox-1" class="sr-only">Checkbox</label>
     </div>
-  </td>
+  </td> %>
   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= invoice.invoice_number %></td>
   <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= invoice.client_name %></td>
   <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= invoice.date %></td>
@@ -21,17 +21,17 @@
       <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
 
       <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown">
-          <%= link_to t('invoices.index.table.actions.view'), '#', class: 'flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100',  target: '_blank',  rel: "noreferrer"  %>
+          <%= link_to t('invoices.index.table.actions.view'), '#', class: 'dropdown-item',  target: '_blank',  rel: "noreferrer"  %>
            <% if invoice.pdf.attached? %>
-            <%= link_to t('invoices.index.table.actions.download'), rails_blob_path(invoice.pdf, disposition: "inline"),  target: '_blank',  rel: "noreferrer", class: 'flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100' %>
+            <%= link_to t('invoices.index.table.actions.download'), rails_blob_path(invoice.pdf, disposition: "inline"),  target: '_blank',  rel: "noreferrer", class: 'dropdown-item' %>
           <% end %>
-          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+          <a class="dropdown-item" href="#">
                <%= t('invoices.index.table.actions.mark_as_paid') %>
           </a>
-          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+          <a class="dropdown-item" href="#">
               <%= t('invoices.index.table.actions.send') %>
           </a>
-          <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+          <a class="dropdown-item" href="#">
                <%= t('invoices.index.table.actions.send_reminder') %>
           </a>
       </div>
