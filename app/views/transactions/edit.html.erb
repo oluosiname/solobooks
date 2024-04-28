@@ -2,7 +2,7 @@
   <%= tag.div data: { controller: "turbo-modal", action: "turbo:submit-end->turbo-modal#submitEnd" }, class: "modal p-2" do %>
     <div class="modal-header flex justify-center mb-2">
       <h3 class="font-semibold text-lg">
-        <%= @transaction.transaction_type == 'Income' ? t("forms.legends.income.title.new") : t("forms.legends.expense.title.new") %>
+        <%= @transaction.transaction_type == 'Income' ? t("forms.legends.income.title.edit") : t("forms.legends.expense.title.edit") %>
       </h3>
     </div>
     <div class="modal-body">

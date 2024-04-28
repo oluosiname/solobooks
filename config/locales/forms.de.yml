@@ -19,9 +19,13 @@ de:
       client:
         address: Adresse
       expense:
-        title: Ausgabe hinzufügen
+        title:
+          edit: Ausgabe bearbeiten
+          new: Ausgabe hinzufügen
       income:
-        title: Einnahme hinzufügen
+        title:
+          edit: Einnahme bearbeiten
+          new: Einnahme hinzufügen
       profile:
         address: Adresse
         invoice_settings: Rechnungseinstellungen

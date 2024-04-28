@@ -9,6 +9,29 @@ class TransactionsController < ApplicationController
 
   def new; end
 
+  def edit
+    @transaction = current_user.financial_transactions.find_by(id: params[:id])
+  end
+
+  def update
+    @transaction = current_user.financial_transactions.find_by(id: params[:id])
+
+    if @transaction.update(transaction_params)
+      respond_to do |format|
+        format.html do
+          redirect_to transactions_path, notice: t('record.update.success', resource: @transaction.model_name.human)
+        end
+        format.turbo_stream do
+          # TODO: Decide if we are replacing the whole list or just adding the new record
+          # @transactions = current_user.financial_transactions.order(date: :desc)
+          flash.now[:notice] = t('record.update.success', resource: @transaction.model_name.human)
+        end
+      end
+    else
+      render 'transactions/edit', status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @transaction = current_user.financial_transactions.find(params[:id])
     if @transaction.destroy
@@ -34,5 +57,9 @@ class TransactionsController < ApplicationController
 
   def build_income
     current_user.incomes.build
+  end
+
+  def transaction_params
+    params.require(@transaction.transaction_type.downcase.to_sym).permit(:amount, :date, :description)
   end
 end
