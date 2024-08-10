@@ -3,12 +3,13 @@
 return unless Rails.env.development?
 
 user = User.first
+
 Invoice.destroy_all
 
 100.times do
   date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
   due_date = date + Faker::Number.between(from: 1, to: 30).days
-  Invoice.create!(
+  invoice = Invoice.create!(
     user: user,
     date:,
     due_date:,
@@ -29,6 +30,11 @@ Invoice.destroy_all
       )
     end,
   )
+
+  I18n.locale = invoice.language.to_sym
+  pdf_file = InvoiceService::PdfGenerator.call(invoice: invoice)
+
+  InvoiceService::PdfAttacher.call(invoice: invoice, pdf: StringIO.new(pdf_file.render))
 end
 
 Rails.logger.debug 'Invoices created'

@@ -14,7 +14,7 @@
     city: Faker::Address.city,
     state: Faker::Address.state,
     postal_code: Faker::Address.zip_code,
-    country: 'Germany',
+    country: ['FR', 'DE', 'IT', 'DE', 'GB'].sample,
   )
 
   client.address = address
