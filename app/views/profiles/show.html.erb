@@ -87,7 +87,7 @@
         <div class="field w-full">
           <%= form.label :language, class: "select"  do %>
             <%= t('activerecord.attributes.profile.language') %>
-            <%= form.select :language, options_for_select(Invoice::LANGUAGES, 'en'), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
+            <%= form.select :language, options_for_select(Invoice::LANGUAGES, profile.language), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
              <i class="fa-solid fa-angle-down"></i>
           <% end %>
         </div>
@@ -95,7 +95,7 @@
         <div class="field w-full">
           <%= form.label :currency_id, class: "select" do %>
             <%= t("activerecord.attributes.profile.currency") %>
-            <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: Currency.default_currency.id }, class: "leading-5 mt-1 px-3 h-9 py-2" %>
+            <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: profile.currency_id || Currency.default_currency.id }, class: "leading-5 mt-1 px-3 h-9 py-2" %>
             <i class="fa-solid fa-angle-down"></i>
           <% end %>
         </div>
