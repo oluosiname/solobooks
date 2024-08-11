@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :setting do
     profile
-    language { Setting.languages.keys.sample }
+    language { Setting::LANGUAGES.keys.sample }
     currency_id { create(:currency).id }
   end
 end

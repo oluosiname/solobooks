@@ -5,7 +5,7 @@
     <div class="field mb-4">
       <%= form.label :language, class: "select"  do %>
         <%= t('activerecord.attributes.setting.language') %>
-        <%= form.select :language, options_for_select(Invoice::LANGUAGES, setting&.language), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
+        <%= form.select :language, options_for_select(Setting::LANGUAGES, setting&.language), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
           <i class="fa-solid fa-angle-down"></i>
       <% end %>
     </div>
