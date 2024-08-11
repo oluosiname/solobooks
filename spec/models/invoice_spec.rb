@@ -23,6 +23,14 @@ RSpec.describe Invoice, type: :model do
     let(:invoice) { create(:invoice, user:) }
     let(:user) { create(:user) }
 
+    before do
+      Timecop.freeze('2024-04-01')
+    end
+
+    after do
+      Timecop.return
+    end
+
     it "combines 'INV', year date of the invoice, and the id of the invoice" do
       expect(invoice.invoice_number).to eq('INV-2024-04-01')
     end

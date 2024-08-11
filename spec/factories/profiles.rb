@@ -12,8 +12,8 @@ FactoryBot.define do
     business_name { Faker::Company.name }
     tax_number { Faker::Number.number(digits: 8) }
     vat_id { Faker::Number.number(digits: 9) }
-    currency_id { create(:currency).id }
-    language { 'en' }
+    invoice_currency_id { create(:currency).id }
+    invoice_language { 'en' }
 
     # Define nested attributes for Address
     after(:build) do |profile|

@@ -6,7 +6,7 @@ RSpec.describe Profile, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_one(:address).dependent(:destroy) }
-    it { is_expected.to belong_to(:currency) }
+    it { is_expected.to belong_to(:invoice_currency).class_name('Currency') }
   end
 
   describe 'nested attributes' do

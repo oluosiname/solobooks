@@ -69,8 +69,8 @@ def fill_profile_form
   fill_in 'profile[vat_id]', with: '1234567890'
   find(:select, 'profile[country]').first(:option, 'Germany').select_option
 
-  select 'English', from: 'profile[language]'
-  select currency_code, from: 'profile[currency_id]'
+  select 'English', from: 'profile[invoice_language]'
+  select currency_code, from: 'profile[invoice_currency_id]'
 
   fill_in 'profile[address_attributes][street_address]', with: '123 Main Street'
   fill_in 'profile[address_attributes][city]', with: 'Lagos'
