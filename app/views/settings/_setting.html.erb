@@ -1,0 +1,27 @@
+<h2 class="font-semibold text-lg mb-4"><%= t('settings.index.settings.title') %> </h2>
+  <%= form_with(model: setting) do |form| %>
+    <%= render partial: "partials/resource_error_messages", locals: { resource: setting } %>
+
+    <div class="field mb-4">
+      <%= form.label :language, class: "select"  do %>
+        <%= t('activerecord.attributes.setting.language') %>
+        <%= form.select :language, options_for_select(Invoice::LANGUAGES, setting.language), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
+          <i class="fa-solid fa-angle-down"></i>
+      <% end %>
+    </div>
+
+    <div class="field w-full">
+      <%= form.label :currency_id, class: "select" do %>
+        <%= t("activerecord.attributes.setting.currency") %>
+        <%= form.collection_select :currency_id, Currency.active, :id, :code, {selected: setting.currency_id || Currency.default_currency.id }, class: "leading-5 mt-1 px-3 h-9 py-2" %>
+        <i class="fa-solid fa-angle-down"></i>
+      <% end %>
+    </div>
+
+
+    <div class="flex items-center mt-4 md:mt-6">
+      <%= form.submit t('forms.buttons.save'), class: "btn btn-md btn-primary"%>
+    </div>
+  <% end %>
+
+  

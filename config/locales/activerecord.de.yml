@@ -96,6 +96,9 @@ de:
         street: Straße
         tax_number: Steuernummer
         vat_id: USt-IdNr.
+      setting:
+        currency: Währung
+        language: Sprache
       user:
         email: E-Mail
         password: Passwort

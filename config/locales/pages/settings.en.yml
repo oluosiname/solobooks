@@ -1,0 +1,8 @@
+---
+en:
+  settings:
+    index:
+      payment_details:
+        title: Payment Details
+      settings:
+        title: App Settings

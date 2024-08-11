@@ -37,8 +37,7 @@ Rails.application.routes.draw do
     resources :transactions, only: [:new, :edit, :update, :index, :destroy], as: :transactions
 
     resources :payment_details, only: [:update, :create]
-
-    get 'settings', to: 'settings#index'
+    resources :settings, only: [:index, :update, :create]
 
     devise_scope :user do
       get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
