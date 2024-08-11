@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_11_060858) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_11_061244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -166,11 +166,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_060858) do
     t.string "business_name"
     t.string "tax_number"
     t.string "vat_id"
-    t.bigint "currency_id"
-    t.string "language"
+    t.bigint "invoice_currency_id"
+    t.string "invoice_language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["currency_id"], name: "index_profiles_on_currency_id"
+    t.index ["invoice_currency_id"], name: "index_profiles_on_invoice_currency_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
