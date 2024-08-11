@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :clients, dependent: :destroy
   has_one :profile, dependent: :destroy
   has_one :payment_detail, dependent: :destroy
+  has_one :setting, through: :profile
   has_many :expenses, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :financial_transactions, dependent: :destroy
