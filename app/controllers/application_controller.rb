@@ -24,10 +24,14 @@ class ApplicationController < ActionController::Base
     current_user&.profile
   end
 
+  def setting
+    current_user&.setting
+  end
+
   private
 
   def set_locale
-    I18n.locale = params[:locale] || profile&.language&.to_sym || I18n.default_locale
+    I18n.locale = params[:locale] || setting&.language&.to_sym || I18n.default_locale
   end
 
   def layout_by_resource

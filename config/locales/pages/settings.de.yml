@@ -1,0 +1,8 @@
+---
+de:
+  settings:
+    index:
+      payment_details:
+        title: Zahlungsdetails
+      settings:
+        title: App-Einstellungen

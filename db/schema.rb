@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_11_061244) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_11_063052) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -176,10 +176,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_061244) do
 
   create_table "settings", force: :cascade do |t|
     t.string "language"
-    t.string "currency"
     t.bigint "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "currency_id"
+    t.index ["currency_id"], name: "index_settings_on_currency_id"
     t.index ["profile_id"], name: "index_settings_on_profile_id"
   end
 
@@ -216,5 +217,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_061244) do
   add_foreign_key "line_items", "invoices"
   add_foreign_key "payment_details", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "settings", "currencies"
   add_foreign_key "settings", "profiles"
 end

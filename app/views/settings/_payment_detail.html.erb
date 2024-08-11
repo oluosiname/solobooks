@@ -1,4 +1,4 @@
-<h2 class="font-semibold text-lg mb-4">Payment Settings </h2>
+<h2 class="font-semibold text-lg mb-4"><%= t('settings.index.payment_detail.title') %></h2>
   <%= form_with(model: payment_detail) do |form| %>
     <%= render partial: "partials/resource_error_messages", locals: { resource: payment_detail } %>
     <!-- Full Name -->
