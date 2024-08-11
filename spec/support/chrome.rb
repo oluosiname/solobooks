@@ -7,7 +7,7 @@ Capybara.register_driver :selenium_chrome_headless do |app|
     opts.add_argument('--headless')
     opts.add_argument('--disable-gpu') if Gem.win_platform?
     opts.add_argument('--disable-site-isolation-trials')
-    opts.add_argument('--remote-debugging-port=9222')
+    # opts.add_argument('--remote-debugging-port=9222')
     opts.add_argument('--window-size=1400,1400')
   end
   ENV.fetch('GOOGLE_CHROME_SHIM', nil)
