@@ -2,7 +2,7 @@
 en:
   settings:
     index:
-      payment_details:
+      payment_detail:
         title: Payment Details
       settings:
         title: App Settings

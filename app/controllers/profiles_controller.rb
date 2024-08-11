@@ -41,8 +41,8 @@ class ProfilesController < ApplicationController
       :business_name,
       :tax_number,
       :vat_id,
-      :currency_id,
-      :language,
+      :invoice_currency_id,
+      :invoice_language,
       address_attributes: [:id, :street_address, :city, :state, :postal_code, :country],
     )
   end

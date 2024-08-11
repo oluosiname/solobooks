@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Payment Detail', type: :system do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, :with_profile) }
 
   before do
     login_user(user)
@@ -22,7 +22,9 @@ RSpec.describe 'Payment Detail', type: :system do
         fill_in 'payment_detail[sort_code]', with: Faker::Bank.account_number
         fill_in 'payment_detail[routing_number]', with: Faker::Bank.routing_number
 
-        click_on 'Save'
+        within '#payment-details-card' do
+          click_on 'Save'
+        end
 
         expect(page).to have_content('Payment Detail was created successfully')
       end
@@ -32,7 +34,9 @@ RSpec.describe 'Payment Detail', type: :system do
       it 'displays error messages' do
         visit '/settings'
 
-        click_on 'Save'
+        within '#payment-details-card' do
+          click_on 'Save'
+        end
 
         expect(page).to have_content('2 errors prohibited this Payment detail from being saved')
         expect(page).to have_content("Account holder can't be blank")
@@ -52,7 +56,9 @@ RSpec.describe 'Payment Detail', type: :system do
         fill_in 'payment_detail[sort_code]', with: Faker::Bank.account_number
         fill_in 'payment_detail[routing_number]', with: Faker::Bank.routing_number
 
-        expect { click_on 'Save' }.to change { user.reload.payment_detail }.from(nil).to(PaymentDetail)
+        within '#payment-details-card' do
+          expect { click_on 'Save' }.to change { user.reload.payment_detail }.from(nil).to(PaymentDetail)
+        end
       end
     end
 
@@ -68,7 +74,9 @@ RSpec.describe 'Payment Detail', type: :system do
         fill_in 'payment_detail[sort_code]', with: Faker::Bank.account_number
         fill_in 'payment_detail[routing_number]', with: Faker::Bank.routing_number
 
-        expect { click_on 'Save' }.not_to change(user, :payment_detail)
+        within '#payment-details-card' do
+          expect { click_on 'Save' }.not_to change(user, :payment_detail)
+        end
       end
     end
   end
