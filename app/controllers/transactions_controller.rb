@@ -60,6 +60,6 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(@transaction.transaction_type.downcase.to_sym).permit(:amount, :date, :description)
+    params.require(@transaction.transaction_type.downcase.to_sym).permit(:amount, :date, :description, :receipt)
   end
 end

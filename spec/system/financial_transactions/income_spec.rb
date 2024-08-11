@@ -3,13 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Income', type: :system do
-  describe 'creating income' do
-    before do
-      user = create(:user, :confirmed)
-      create(:profile, user:)
-      login_user(user)
-    end
+  let(:user) { create(:user, :confirmed) }
 
+  before do
+    create(:profile, user:)
+    login_user(user)
+  end
+
+  describe 'creating income' do
     it_behaves_like 'Financial Transaction Creation', 'income'
 
     it 'allows users to Login' do
@@ -39,5 +40,9 @@ RSpec.describe 'Income', type: :system do
         expect(page).to have_content("Date can't be blank")
       end
     end
+  end
+
+  describe 'updating income' do
+    it_behaves_like 'Financial Transaction Update', 'income'
   end
 end
