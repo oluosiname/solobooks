@@ -58,7 +58,7 @@ gem 'rubocop-shopify', require: false
 
 gem 'prawn'
 gem 'prawn-table'
-gem "i18n", "1.14.1"
+gem 'i18n', '1.14.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -103,4 +103,4 @@ gem 'rack-cors', '~> 2.0'
 
 gem 'pagy', '~> 8.2'
 
-gem "timecop", "~> 0.9.10"
+gem 'timecop', '~> 0.9.10'
