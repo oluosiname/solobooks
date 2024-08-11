@@ -40,3 +40,6 @@
 !/app/assets/builds/.keep
 coverage
 .env
+
+config/i18n-tasks.yml
+/config/i18n-tasks.yml

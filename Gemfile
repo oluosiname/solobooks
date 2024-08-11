@@ -46,6 +46,7 @@ gem 'tzinfo-data', platforms: [:windows, :jruby]
 gem 'bootsnap', require: false
 gem 'capybara'
 gem 'selenium-webdriver'
+gem 'active_storage_validations'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -79,8 +80,9 @@ group :development do
   gem 'web-console'
   gem 'letter_opener'
   gem 'letter_opener_web', '~> 2.0'
-  gem 'i18n-tasks', '~> 1.0.13'
+  gem 'i18n-tasks', '~> 1.0.14'
   gem 'easy_translate'
+  gem "deepl-rb", "~> 2.5"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -104,3 +106,5 @@ gem 'rack-cors', '~> 2.0'
 gem 'pagy', '~> 8.2'
 
 gem 'timecop', '~> 0.9.10'
+
+gem "ruby-openai", "~> 7.1"

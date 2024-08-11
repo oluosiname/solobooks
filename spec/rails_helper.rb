@@ -20,6 +20,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 
 require_relative 'support/devise'
+require 'active_storage_validations/matchers'
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -78,6 +79,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include ActiveStorageValidations::Matchers
 end
 
 Shoulda::Matchers.configure do |config|
