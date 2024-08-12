@@ -2,6 +2,13 @@
   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= transaction.description %></td>
   <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= transaction.date %></td>
   <td class="md:table-cell px-6 py-4 whitespace-nowrap text-sm <%= color_transaction_amount(transaction) %>"><%= format_transaction_amount(transaction) %></td>
+  <td class="md:table-cell px-6 py-4 whitespace-nowrap text-lg text-gray-700 ">
+    <%  if transaction.receipt.attached? %>
+      <%= link_to rails_blob_path(transaction.receipt, disposition: "inline"),  target: '_blank',  rel: "noreferrer" do %>
+        <i class="fa-solid <%= transaction_receipt_icon(transaction.receipt.content_type) %> mr-2"></i>
+      <% end %>
+    <% end %>
+  </td>
 
   <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex gap-6 justify-end">
     <%= link_to edit_transaction_path(transaction), class: 'text-primary-600 hover:text-primary-900', data: { turbo_frame: 'modal' } do %>

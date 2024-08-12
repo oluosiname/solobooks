@@ -9,4 +9,15 @@ module TransactionsHelper
   def color_transaction_amount(transaction)
     transaction.income? ? 'text-green-600' : 'text-danger-700'
   end
+
+  def transaction_receipt_icon(content_type)
+    case content_type
+    when 'image/jpeg', 'image/png'
+      'fa-file-image'
+    when 'application/pdf'
+      'fa-file-pdf'
+    else
+      'fa-file'
+    end
+  end
 end
