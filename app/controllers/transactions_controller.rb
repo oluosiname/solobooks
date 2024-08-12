@@ -4,7 +4,9 @@ class TransactionsController < ApplicationController
   before_action :build_transaction, only: [:new]
 
   def index
-    @transactions = current_user.financial_transactions
+    @grouped_transactions = current_user.financial_transactions
+      .order(date: :desc)
+      .group_by { |transaction| transaction.date.strftime('%B %Y') }
   end
 
   def new; end
