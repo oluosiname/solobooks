@@ -24,15 +24,27 @@
      <div class="field mb-4">
       <%= form.label :receipt, class: "block text-sm font-medium text-gray-700 mb-1" %>
       <div class="flex items-center justify-center w-full">
-        <label class="flex flex-col items-center w-full h-32 border-4 border-dashed border-gray-300 hover:border-gray-400 bg-gray-50 rounded-lg cursor-pointer">
-          <div class="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16c0 1.104-.896 2-2 2s-2-.896-2-2V6a2 2 0 014 0v10zm0 0v1a2 2 0 004 0v-1M7 16h10m-5 2v1a2 2 0 004 0v-1m4-2v4a2 2 0 01-4 0v-4m0-4V6a2 2 0 014 0v10zM9 10V6a2 2 0 014 0v4m0 4v4a2 2 0 01-4 0v-4m0-4V6a2 2 0 014 0v4m0 4v4a2 2 0 01-4 0v-4m0-4V6a2 2 0 014 0v4m0 4v4a2 2 0 01-4 0v-4z"></path></svg>
-            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-            <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
-          </div>
-          <%= form.file_field :receipt, class: "hidden" %>
+        <label class="flex flex-col justify-center items-center w-full h-32 border-4 border-dashed border-gray-300 hover:border-gray-400 bg-gray-50 rounded-lg cursor-pointer">
+        <div id="upload-icon-text" class="flex flex-col items-center justify-center pt-5 pb-6">
+          <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16c0 1.104-.896 2-2 2s-2-.896-2-2V6a2 2 0 014 0v10zm0 0v1a2 2 0 004 0v-1M7 16h10m-5 2v1a2 2 0 004 0v-1m4-2v4a2 2 0 01-4 0v-4m0-4V6a2 2 0 014 0v10zM9 10V6a2 2 0 014 0v4m0 4v4a2 2 0 01-4 0v-4z"></path>
+          </svg>
+          <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+          <p class="text-xs text-gray-500">JPG, PNG or PDF (max. 1MB)</p>
+        </div>
+
+        <!-- Success SVG Icon and Text (Initially Hidden) -->
+        <div id="success-icon-text" class="hidden flex flex-col items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mb-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <p class="mb-2 text-sm text-green-500"><span class="font-semibold">File selected!</span></p>
+        </div>
+          <%= form.file_field :receipt, class: "hidden", id: "file-upload" %>
         </label>
       </div>
+      <!-- File Name Display -->
+      <p id="file-name" class="mt-2 text-sm text-gray-500"></p>
     </div>
 
     <!-- Submit Button -->
@@ -42,3 +54,18 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.getElementById('file-upload').addEventListener('change', function(){
+    var file = this.files[0];
+    var fileName = file.name;
+    document.getElementById('file-name').textContent = 'Selected file: ' + fileName;;
+
+    // Hide the upload icon and text
+    document.getElementById('upload-icon-text').classList.add('hidden');
+
+    // Show the success icon and text
+    document.getElementById('success-icon-text').classList.remove('hidden');
+  });
+</script>
+

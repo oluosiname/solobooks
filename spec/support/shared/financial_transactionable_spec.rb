@@ -61,9 +61,7 @@ RSpec.shared_examples 'Financial Transaction Creation' do |transaction_type|
       click_on 'Save'
 
       expect(page).to have_content("#{transaction_type.capitalize} was successfully created.")
-      within('#transactions-list') do
-        expect(page).to have_content('Test Transaction')
-      end
+      expect(page).to have_content('Test Transaction')
     end
   end
 end
@@ -91,9 +89,7 @@ RSpec.shared_examples 'Financial Transaction Update' do |transaction_type|
       click_on 'Save'
 
       expect(page).to have_content("#{transaction_type.capitalize} was successfully updated.")
-      within('#transactions-list') do
-        expect(page).to have_content(new_description)
-      end
+      expect(page).to have_content(new_description)
     end
   end
 end

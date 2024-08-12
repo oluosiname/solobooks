@@ -343,7 +343,6 @@ form {
   word-break: break-word;
   transform: translate(-50%, -50%);
   left: 50%;
-  position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
