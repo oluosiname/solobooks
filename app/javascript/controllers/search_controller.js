@@ -37,4 +37,13 @@ export default class extends Controller {
     //     document.getElementById(displayContainerId).innerHTML = res;
     //   });
   }
+
+  reset() {
+    this.formTarget.reset();
+    const url = new URL(window.location.href);
+    url.search = ""; // Remove all query parameters
+
+    // Use the Turbo library to navigate to the cleared URL
+    Turbo.visit(url.toString(), { action: "replace" });
+  }
 }

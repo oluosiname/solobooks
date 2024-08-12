@@ -8,8 +8,8 @@
   <%= form_with url: invoices_path, method: :get, class: '', data: {controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list",  search_fields_value: ["status"]} do %>
     <div class="flex gap-4 justify-center md:justify-start">
       <span class="pill">
-        <%= radio_button_tag :status, '', id: 'status_all', data: {action: "click->search#call"}, checked: params[:status] == '' %>
-        <label for='status_all p-0'><%= t("all") %></label>
+        <%= radio_button_tag :status, '', id: 'status_all', data: {action: "click->search#reset"}, checked: params[:status] == '' %>
+        <label for='status_all'><%= t("all") %></label>
       </span>
       <% Invoice.statuses.keys.each do |status| %>
         <span class="pill">
