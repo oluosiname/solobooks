@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Invoice < ApplicationRecord
+  include AASM
+
   belongs_to :invoice_category
   belongs_to :user
   belongs_to :client
@@ -64,6 +66,30 @@ class Invoice < ApplicationRecord
     cancelled: 'cancelled',
     overdue: 'overdue',
   }
+
+  aasm column: 'status' do
+    state :draft
+    state :sent
+    state :paid
+    state :cancelled
+    state :overdue
+
+    event :send_invoice do
+      transitions from: :draft, to: :sent
+    end
+
+    event :pay do
+      transitions from: [:sent, :overdue], to: :paid
+    end
+
+    event :cancel do
+      transitions from: [:draft, :sent, :overdue], to: :cancelled
+    end
+
+    event :mark_overdue do
+      transitions from: :sent, to: :overdue
+    end
+  end
 
   def client_name
     client.display_name

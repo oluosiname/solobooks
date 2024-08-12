@@ -21,19 +21,32 @@
       <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
 
       <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown">
-          <%= link_to t('invoices.index.table.actions.view'), '#', class: 'dropdown-item',  target: '_blank',  rel: "noreferrer"  %>
-           <% if invoice.pdf.attached? %>
-            <%= link_to t('invoices.index.table.actions.download'), rails_blob_path(invoice.pdf, disposition: "inline"),  target: '_blank',  rel: "noreferrer", class: 'dropdown-item' %>
+        <% if invoice.pdf.attached? %>
+          <%= link_to rails_blob_path(invoice.pdf, disposition: "inline"),  target: '_blank',  rel: "noreferrer", class: 'dropdown-item' do %>
+            <i class="fa-solid fa-eye mr-2"></i> <%= t('invoices.index.table.actions.view') %>
           <% end %>
-          <a class="dropdown-item" href="#">
-               <%= t('invoices.index.table.actions.mark_as_paid') %>
-          </a>
-          <a class="dropdown-item" href="#">
-              <%= t('invoices.index.table.actions.send') %>
-          </a>
-          <a class="dropdown-item" href="#">
-               <%= t('invoices.index.table.actions.send_reminder') %>
-          </a>
+          <%= link_to rails_blob_path(invoice.pdf, disposition: "attachment"), class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %>
+            <i class="fa-solid fa-download mr-2"></i> <%= t('invoices.index.table.actions.download') %>
+          <% end %>
+        <% end %>
+        <% if invoice.may_send_invoice? %>
+          <%= link_to "#", class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %>
+            <i class="fa-solid fa-paper-plane mr-2"></i> <%= t('invoices.index.table.actions.send') %>
+          <% end %>
+        <% end %>
+        <% if invoice.may_pay? %>
+          <%= link_to "#", class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %>
+            <i class="fa-solid fa-check mr-2"></i> <%= t('invoices.index.table.actions.mark_as_paid') %>
+          <% end %>
+        <% end %>
+        <% if invoice.may_cancel? %>
+          <%= link_to "#", class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %> 
+            <i class="fa-solid fa-xmark mr-2"></i> <%= t('invoices.index.table.actions.cancel') %>
+          <% end %>
+        <% end %>
+        <%= link_to "#", class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %> 
+          <i class="fa-solid fa-bell mr-2"></i> <%= t('invoices.index.table.actions.send_reminder') %>
+        <% end %>
       </div>
     </div>
   </td>
