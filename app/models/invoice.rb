@@ -58,12 +58,11 @@ class Invoice < ApplicationRecord
     _prefix: :vat
 
   enum status: {
-    pending: 'pending',
+    draft: 'draft',
     sent: 'sent',
     paid: 'paid',
     cancelled: 'cancelled',
-    refunded: 'refunded',
-    due: 'due',
+    overdue: 'overdue',
   }
 
   def client_name
