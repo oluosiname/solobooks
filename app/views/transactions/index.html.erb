@@ -31,7 +31,7 @@
           <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-200" id="transactions-list">
+      <tbody class="divide-y divide-gray-200" id="transactions-list-<%= month_year.gsub(' ', '-') %>">
         <%= render partial: "transaction", collection: transactions %>
       </tbody>
     </table>

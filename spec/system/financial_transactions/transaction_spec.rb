@@ -10,16 +10,30 @@ RSpec.describe 'Transactions', type: :system do
     end
 
     let(:user) { create(:user, :confirmed) }
-    let!(:income) { create(:income, user:) }
-    let!(:expense) { create(:expense, user:) }
+    let!(:income) { create(:income, user:, date: '2024-08-08') }
+    let!(:expense) { create(:expense, user:, date: '2024-07-07') }
 
     it 'displays incomes and expenses' do
       visit transactions_path
 
-      within('#transactions-list') do
+      expect(page).to have_content(income.description)
+      expect(page).to have_content(income.amount)
+      expect(page).to have_content(income.date)
+      expect(page).to have_content(expense.description)
+      expect(page).to have_content(expense.amount)
+      expect(page).to have_content(expense.date)
+    end
+
+    it 'groups transactions by month' do
+      visit transactions_path
+
+      within('#transactions-list-August-2024') do
         expect(page).to have_content(income.description)
         expect(page).to have_content(income.amount)
         expect(page).to have_content(income.date)
+      end
+
+      within('#transactions-list-July-2024') do
         expect(page).to have_content(expense.description)
         expect(page).to have_content(expense.amount)
         expect(page).to have_content(expense.date)
