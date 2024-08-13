@@ -6,8 +6,10 @@ de:
         new: Neue Rechnung
       table:
         actions:
+          cancel: Abbrechen
           download: Herunterladen
           mark_as_paid: Als bezahlt markieren
+          send: Als gesendet markieren
           send_reminder: Erinnerung senden
           view: Anzeigen
       title: Rechnungen
@@ -29,6 +31,6 @@ de:
       payment_details: Zahlungsdetails
       payment_terms: Zahlungsbedingungen
       thanks:
-        content: "Vielen Dank für Ihr Geschäft. Wenn Sie Fragen zu dieser Rechnung haben, verwenden Sie die folgenden Kontaktdaten:"
+        content: 'Vielen Dank für Ihr Geschäft. Wenn Sie Fragen zu dieser Rechnung haben, verwenden Sie die folgenden Kontaktdaten:'
         title: Vielen Dank!
       title: Kunde
