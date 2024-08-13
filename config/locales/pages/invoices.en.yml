@@ -6,6 +6,7 @@ en:
         new: New Invoice
       table:
         actions:
+          cancel: Cancel
           download: Download
           mark_as_paid: Mark as Paid
           send: Mark as Sent
@@ -30,6 +31,6 @@ en:
       payment_details: Payment Details
       payment_terms: Payment Terms
       thanks:
-        content: "Thank you for your business. If you have any questions concerning this invoice, use the following contact information:"
+        content: 'Thank you for your business. If you have any questions concerning this invoice, use the following contact information:'
         title: Thank you!
       title: Client
