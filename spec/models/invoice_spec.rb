@@ -122,4 +122,99 @@ RSpec.describe Invoice, type: :model do
       expect(described_class.filter_by_client(nil)).to match_array(described_class.all)
     end
   end
+
+  describe 'AASM State Transitions' do
+    let(:invoice) { create(:invoice, status: 'draft') }
+
+    describe '#send_invoice' do
+      it 'transitions from draft to sent' do
+        invoice.send_invoice
+        expect(invoice.status).to eq('sent')
+      end
+    end
+
+    describe '#pay' do
+      it 'transitions from sent to paid' do
+        invoice.update!(status: 'sent')
+        invoice.pay
+        expect(invoice.status).to eq('paid')
+      end
+
+      it 'transitions from draft to paid' do
+        invoice.pay
+        expect(invoice.status).to eq('paid')
+      end
+
+      it 'transitions from overdue to paid' do
+        invoice.update!(status: 'overdue')
+        invoice.pay
+        expect(invoice.status).to eq('paid')
+      end
+    end
+
+    describe '#cancel' do
+      it 'transitions from draft to cancelled' do
+        invoice.cancel
+        expect(invoice.status).to eq('cancelled')
+      end
+
+      it 'transitions from sent to cancelled' do
+        invoice.update!(status: 'sent')
+        invoice.cancel
+        expect(invoice.status).to eq('cancelled')
+      end
+
+      it 'transitions from overdue to cancelled' do
+        invoice.update!(status: 'overdue')
+        invoice.cancel
+        expect(invoice.status).to eq('cancelled')
+      end
+    end
+
+    describe '#mark_overdue' do
+      it 'transitions from sent to overdue' do
+        invoice.update!(status: 'sent')
+        invoice.mark_overdue
+        expect(invoice.status).to eq('overdue')
+      end
+    end
+
+    describe '#send_reminder' do
+      it 'transitions from overdue to sent' do
+        invoice.update!(status: 'overdue')
+        invoice.send_reminder
+        expect(invoice.status).to eq('sent')
+      end
+    end
+  end
+
+  describe '#client_name' do
+    let(:client) { create(:client) }
+    let(:invoice) { build(:invoice, client:) }
+
+    before { allow(client).to receive(:display_name).and_return('Test Client') }
+
+    it 'returns the display name of the client' do
+      expect(invoice.client_name).to eq('Test Client')
+    end
+  end
+
+  describe '#currency_symbol' do
+    let!(:currency) { create(:currency, symbol: '$') }
+
+    context 'when currency is present' do
+      it 'returns the symbol of the currency' do
+        invoice = build(:invoice, currency:)
+        expect(invoice.currency_symbol).to eq('$')
+      end
+    end
+
+    context 'when currency is nil' do
+      it 'returns the default currency symbol' do
+        allow(Currency).to receive(:default_currency).and_return(currency)
+        invoice = build(:invoice, currency: nil)
+        expect(invoice.currency_symbol).to eq('$')
+      end
+    end
+  end
 end
