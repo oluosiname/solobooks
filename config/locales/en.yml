@@ -4,7 +4,8 @@ en:
   errors:
     messages:
       content_type_invalid: format must be one of %{authorized_types}
-      file_size_not_less_than_or_equal_to: file size must be less than or equal to %{max_size} (current size is %{file_size})
+      file_size_not_less_than_or_equal_to: file size must be less than or equal to
+        %{max_size} (current size is %{file_size})
   menu:
     clients: Clients
     invoices: Invoices

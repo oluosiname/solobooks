@@ -8,7 +8,7 @@ en:
         actions:
           download: Download
           mark_as_paid: Mark as Paid
-          send: Send
+          send: Mark as Sent
           send_reminder: Send Reminder
           view: View
       title: Invoices
@@ -30,6 +30,6 @@ en:
       payment_details: Payment Details
       payment_terms: Payment Terms
       thanks:
-        content: 'Thank you for your business. If you have any questions concerning this invoice, use the following contact information:'
+        content: "Thank you for your business. If you have any questions concerning this invoice, use the following contact information:"
         title: Thank you!
       title: Client

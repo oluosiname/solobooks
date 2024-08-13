@@ -368,7 +368,7 @@ form {
 }
 
 .dropdown-body {
-  @apply opacity-100 absolute hidden text-grey-800 bg-white rounded-lg shadow-lg mt-1 top-0 right-4 text-base font-normal  border border-grey-100;
+  @apply opacity-100 absolute hidden text-grey-800 bg-white rounded-lg shadow-lg mt-1 top-0 right-6 text-base font-normal  border border-grey-100;
   overflow-wrap: break-word;
   z-index: 50;
   transition-property: all;

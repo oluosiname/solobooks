@@ -79,7 +79,7 @@ class Invoice < ApplicationRecord
     end
 
     event :pay do
-      transitions from: [:sent, :overdue], to: :paid
+      transitions from: [:sent, :draft, :overdue], to: :paid
     end
 
     event :cancel do
@@ -88,6 +88,10 @@ class Invoice < ApplicationRecord
 
     event :mark_overdue do
       transitions from: :sent, to: :overdue
+    end
+
+    event :send_reminder do
+      transitions from: :overdue, to: :sent
     end
   end
 

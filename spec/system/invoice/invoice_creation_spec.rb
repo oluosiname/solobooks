@@ -94,7 +94,7 @@ RSpec.describe 'Invoice Creation', type: :system do
       expect(last_invoice.line_items.first.total_price).to eq(200)
       expect(last_invoice.subtotal).to eq(200)
       expect(last_invoice.total_amount).to eq(200)
-      expect(last_invoice.status).to eq('pending')
+      expect(last_invoice.status).to eq('draft')
       expect(last_invoice.pdf.attached?).to be(true)
     end
   end
