@@ -116,7 +116,6 @@ translation:
 # Do not consider these keys missing:
 ignore_missing:
   - "errors.messages.{accepted,blank,invalid,too_short,too_long}"
-  - "errors.messages.{wrong_length,not_a_number,not_an_integer,greater_than,greater_than_or_equal_to}"
   - "{devise,simple_form}.*"
   - "activerecord.*"
 
@@ -124,6 +123,7 @@ ignore_missing:
 ignore_unused:
   - "activerecord.*"
   - "{devise,kaminari,will_paginate}.*"
+  - "errors.messages.{content_type_invalid,not_a_number,not_an_integer,greater_than,greater_than_or_equal_to,file_size_not_less_than_or_equal_to}"
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
 # - 'simple_form.{error_notification,required}.:'

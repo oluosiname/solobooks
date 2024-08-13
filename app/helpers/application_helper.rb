@@ -7,12 +7,13 @@ module ApplicationHelper
   LABEL_TOKEN = '__pagy_label__'
 
   BADGE_STATUS = {
-    'sent' => 'bg-grey-600',
-    'paid' => 'bg-green-700',
-    'due' => 'bg-danger-700',
-    'cancelled' => 'bg-tertiary-700',
-    'refunded' => 'bg-tertiary-700',
+    'draft' => 'bg-grey-400 text-grey-900',
+    'sent' => 'bg-grey-600 text-white',
+    'paid' => 'bg-green-700 text-white',
+    'overdue' => 'bg-danger-700 text-white',
+    'cancelled' => 'bg-tertiary-700 text-white',
   }
+
   def display_status(status)
     content_tag(
       :span,
