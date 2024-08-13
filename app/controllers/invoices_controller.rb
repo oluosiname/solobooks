@@ -2,6 +2,7 @@
 
 class InvoicesController < ApplicationController
   before_action :set_select_options, only: [:new, :create]
+  before_action :set_invoice, only: [:send_invoice, :pay, :cancel, :mark_overdue]
 
   include Pagy::Backend
 
@@ -12,22 +13,6 @@ class InvoicesController < ApplicationController
       .includes(:client, :currency, :pdf_attachment)
       .order(created_at: :desc))
   end
-
-  # def show
-  #   @invoice = current_user.invoices.includes(:client, :currency, :line_items).find(params[:id])
-
-  #   prev_locale = I18n.locale
-  #   # I18n.locale = @invoice.language.to_sym
-  #   I18n.locale = :en
-  #   pdf = InvoiceService::PdfGenerator.call(invoice: @invoice)
-  #   I18n.locale = prev_locale
-  #   send_data(
-  #     pdf.render,
-  #     file_name: "Invoice - #{@invoice.invoice_number}",
-  #     type: 'application/pdf',
-  #     disposition: 'inline',
-  #   )
-  # end
 
   def new
     unless current_user.can_create_invoice?
@@ -66,6 +51,51 @@ class InvoicesController < ApplicationController
     }.to_json
   end
 
+  def send_invoice
+    if @invoice.may_send_invoice?
+      @invoice.send_invoice!
+      redirect_back fallback_location: invoices_path, notice: I18n.t('invoices_controller.send_invoice.success')
+    else
+      redirect_back fallback_location: invoices_path, alert: I18n.t('invoices_controller.send_invoice.failure')
+    end
+  end
+
+  def pay
+    if @invoice.may_pay?
+      @invoice.pay!
+      redirect_back fallback_location: invoices_path, notice: I18n.t('invoices_controller.pay.success')
+    else
+      redirect_back fallback_location: invoices_path, alert: I18n.t('invoices_controller.pay.failure')
+    end
+  end
+
+  def cancel
+    if @invoice.may_cancel?
+      @invoice.cancel!
+      redirect_back fallback_location: invoices_path, notice: I18n.t('invoices_controller.cancel.success')
+    else
+      redirect_back fallback_location: invoices_path, alert: I18n.t('invoices_controller.cancel.failure')
+    end
+  end
+
+  def mark_overdue
+    if @invoice.may_mark_overdue?
+      @invoice.mark_overdue!
+      redirect_back fallback_location: invoices_path, notice: I18n.t('invoices_controller.mark_overdue.success')
+    else
+      redirect_back fallback_location: invoices_path, alert: I18n.t('invoices_controller.mark_overdue.failure')
+    end
+  end
+
+  def send_reminder
+    if @invoice.may_send_reminder?
+      @invoice.send_reminder!
+      redirect_back fallback_location: invoices_path, notice: I18n.t('invoices_controller.send_reminder.success')
+    else
+      redirect_back fallback_location: invoices_path, alert: I18n.t('invoices_controller.send_reminder.failure')
+    end
+  end
+
   private
 
   def invoice_params
@@ -102,5 +132,9 @@ class InvoicesController < ApplicationController
   def set_select_options
     @categories = InvoiceCategory.all
     @clients = current_user.clients
+  end
+
+  def set_invoice
+    @invoice = current_user.invoices.find(params[:id])
   end
 end

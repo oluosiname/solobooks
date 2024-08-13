@@ -1,0 +1,18 @@
+---
+de:
+  invoices_controller:
+    cancel:
+      failure: Rechnung konnte nicht storniert werden.
+      success: Die Rechnung wurde storniert.
+    mark_overdue:
+      failure: Die Rechnung konnte nicht als überfällig markiert werden.
+      success: Die Rechnung wurde als überfällig markiert.
+    pay:
+      failure: Die Rechnung konnte nicht als bezahlt markiert werden.
+      success: Die Rechnung wurde als bezahlt markiert.
+    send_invoice:
+      failure: Rechnung konnte nicht gesendet werden.
+      success: Rechnung erfolgreich gesendet.
+    send_reminder:
+      failure: Die Erinnerung konnte nicht gesendet werden.
+      success: Erinnerung erfolgreich gesendet.

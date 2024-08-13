@@ -24,6 +24,13 @@ Rails.application.routes.draw do
 
     resources :invoices, only: [:new, :create, :index] do
       get :vat_technique, on: :collection
+      member do
+        patch :send_invoice
+        patch :pay
+        patch :cancel
+        patch :mark_overdue
+        patch :send_reminder
+      end
     end
     resources :invoice_categories, only: [:new, :create]
     resources :clients, only: [:new, :create, :index, :destroy] do
