@@ -36,6 +36,7 @@ de:
           cancelled: Storniert
           draft: Entwurf
           due: Überfällig
+          overdue: Überfällig
           paid: Bezahlt
           pending: Ausstehend
           refunded: Erstattet
