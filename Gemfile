@@ -109,4 +109,4 @@ gem 'timecop', '~> 0.9.10'
 
 gem 'ruby-openai', '~> 7.1'
 
-gem "aasm", "~> 5.5"
+gem 'aasm', '~> 5.5'
