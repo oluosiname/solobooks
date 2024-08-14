@@ -1,4 +1,4 @@
- <tr>
+ <tr id="invoice-<%=invoice.invoice_number %>">
   <%# <td class="hidden py-3 ps-4">
     <div class="flex items-center h-5">
       <input id="table-checkbox-1" type="checkbox" class="form-checkbox rounded">
@@ -17,7 +17,7 @@
     <%# <button data-fc-type="dropdown" type="button" class="btn btn-primary btn-sm ff" data-action="dropdown#actionToggle" data-dropdown-target="dropdownButton">
           Actions <i class="fa-solid fa-chevron-down text-base ms-1"></i>
       </button> %>
-      <button class="fa-solid fa-ellipsis-vertical cursor-pointer text-xl px-2" data-fc-type="dropdown" data-action="dropdown#actionToggle" data-dropdown-target="dropdownButton" ></button>
+      <button class="fa-solid fa-ellipsis-vertical cursor-pointer text-xl px-2 invoice-action-dropdown" data-fc-type="dropdown" data-action="dropdown#actionToggle" data-dropdown-target="dropdownButton" ></button>
       <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
 
       <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown">

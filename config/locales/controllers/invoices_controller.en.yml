@@ -1,17 +1,18 @@
+---
 en:
   invoices_controller:
-    send_invoice:
-      success: "Invoice sent successfully."
-      failure: "Failed to send invoice."
-    send_reminder:
-      success: "Reminder sent successfully."
-      failure: "Failed to send reminder."
-    pay:
-      success: "Invoice marked as paid."
-      failure: "Failed to mark invoice as paid."
     cancel:
-      success: "Invoice canceled."
-      failure: "Failed to cancel invoice."
+      failure: Failed to cancel invoice.
+      success: Invoice cancelled.
     mark_overdue:
-      success: "Invoice marked as overdue."
-      failure: "Failed to mark invoice as overdue."
+      failure: Failed to mark invoice as overdue.
+      success: Invoice marked as overdue.
+    pay:
+      failure: Failed to mark invoice as paid.
+      success: Invoice was successfully marked as paid.
+    send_invoice:
+      failure: Failed to send invoice.
+      success: Invoice sent successfully.
+    send_reminder:
+      failure: Failed to send reminder.
+      success: Reminder sent successfully.
