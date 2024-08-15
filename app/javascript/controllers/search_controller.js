@@ -8,9 +8,7 @@ export default class extends Controller {
   connect() {}
 
   call() {
-    const path = location.pathname;
     const fields = this.fieldsValue;
-    const displayContainerId = this.containerValue;
     const query = {};
 
     const formElements = this.formTarget.elements;
@@ -21,21 +19,12 @@ export default class extends Controller {
     });
 
     const formData = new FormData(this.formTarget);
-    for (const [key, value] of formData) {
-      console.log(`${key}: ${value}\n`);
-    }
+    // for (const [key, value] of formData) {
+    //   console.log(`${key}: ${value}\n`);
+    // }
 
     // this.formTarget.submit();
     Turbo.navigator.submitForm(this.formTarget);
-
-    // fetch(`${path}?query=${query}`, {
-    //   contentType: "application/json",
-    //   hearders: "application/json",
-    // })
-    //   .then((response) => response.text())
-    //   .then((res) => {
-    //     document.getElementById(displayContainerId).innerHTML = res;
-    //   });
   }
 
   reset() {

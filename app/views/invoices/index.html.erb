@@ -5,24 +5,13 @@
   <% end %>
 </div>
 <section class="table-actions">
-  <%= form_with url: invoices_path, method: :get, class: '', data: {controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list",  search_fields_value: ["status"]} do %>
-    <div class="flex gap-4 justify-center md:justify-start">
-      <span class="pill">
-        <%= radio_button_tag :status, '', id: 'status_all', data: {action: "click->search#reset"}, checked: params[:status] == '' %>
-        <label for='status_all'><%= t("all") %></label>
-      </span>
-      <% Invoice.statuses.keys.each do |status| %>
-        <span class="pill">
-          <%= radio_button_tag :status, status, id: "status_#{status}", data: {action: "click->search#call"}, checked: params[:status] == status %>
-          <label for='status_<%= status %>'><%= t("activerecord.attributes.invoice.statuses.#{status}") %></label>
-        </span>
-      <% end %>
-    </div>
-  <% end %>
-  <section class="page-numbers flex justify-end gap-4 flex-nowrap items-center">
+  <%= render 'search_form' %>
+
+  <section class="page-numbers flex justify-end gap-4 flex-nowrap items-center md:mt-0 mt-4">
     <%= render partial: 'partials/pagination', locals: {pagy: @pagy} %>
   </section>
 </section>
+
 
 <div class="border rounded-lg mb-4">
   <table class="min-w-full divide-y divide-gray-200 bg-white" data-controller="invoice-table">
@@ -44,7 +33,10 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200" id="invoices-list">
-      <%= render @invoices %>
+      <turbo-frame id="invoices-list-turbo">
+        <!-- Invoices List Rendering Here -->
+        <%= render @invoices %>
+      </turbo-frame>
     </tbody>
   </table>
 </div>

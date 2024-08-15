@@ -32,11 +32,14 @@ class Invoice < ApplicationRecord
   scope :filtered, ->(params) {
     return unless params
 
-    filter_by_status(params[:status]).filter_by_client(params[:client_id])
+    filter_by_status(params[:status])
+      .filter_by_client(params[:client_id])
+      .filter_by_date(params[:start_date], params[:end_date])
   }
 
   scope :filter_by_status, ->(status) { where(status: status) if status.present? }
   scope :filter_by_client, ->(client_id) { where(client_id: client_id) if client_id.present? }
+  scope :filter_by_date, ->(from, to) { where(date: from..to) if from.present? && to.present? }
 
   VAT_RATES = {
     '0%' => 0,
