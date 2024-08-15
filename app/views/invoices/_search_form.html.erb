@@ -1,63 +1,72 @@
-<%= form_with url: invoices_path, method: :get, class: 'flex flex-wrap md:flex-nowrap md:flex-row gap-2 items-center justify-center md:justify-between md:w-[87%] w-full', data: {turbo_stream: true, controller: 'search', search_target: 'form', search_container_value: "invoices-list", search_fields_value: ["status", "start_date", "end_date"]} do %>
+<%= form_with url: invoices_path, method: :get, class: 'flex flex-wrap md:flex-nowrap md:flex-row gap-2 items-center justify-center md:justify-between md:w-[87%] w-full', data: {turbo_stream: true, controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list", search_fields_value: ["status", "start_date", "end_date", "query", "client"]} do %>
 
-<!-- Status Filter Pills -->
-  <div class="gap-2 flex-wrap hidden md:flex">
-    <span class="pill">
-      <%= radio_button_tag :status, '', id: 'status_all', class: 'hidden', data: {action: "click->search#reset"}, checked: params[:status].blank? %>
-      <label for='status_all' class="cursor-pointer px-3 py-1 bg-gray-200 rounded-full">All</label>
-    </span>
-    <% Invoice.statuses.keys.each do |status| %>
+  <!-- Status Filter Pills -->
+    <div class="gap-2 flex-wrap hidden md:flex">
       <span class="pill">
-        <%= radio_button_tag :status, status, id: "status_#{status}", class: 'hidden', data: {action: "click->search#call"}, checked: params[:status] == status %>
-        <label for='status_<%= status %>' class="cursor-pointer px-3 py-1 bg-gray-200 rounded-full"><%= status.capitalize %></label>
+        <%= radio_button_tag :status, '', id: 'status_all', class: 'hidden', data: {action: "click->search#reset"}, checked: params[:status].blank? %>
+        <label for='status_all' class="cursor-pointer px-3 py-1 bg-gray-200 rounded-full">All</label>
       </span>
-    <% end %>
-  </div>
-
-  <!-- Date Fields -->
-  <div class="flex flex-col md:flex-row gap-2 items-center w-full md:w-auto">
-    <div class="field invoice-field invoice_date_container w-full">
-      <%= text_field_tag :start_date, params[:start_date],
-        placeholder: "Start Date",
-        class: "form-input border border-gray-300 rounded px-3 py-2",
-        data: {
-          controller: "flatpickr",
-          flatpickr_min_date_value: Time.zone.now.strftime('%Y-%m-%d'),
-          flatpickr_locale_value: I18n.locale,
-          flatpickr_date_format_value: "d-m-Y",
-          action: "change->search#call"
-          
-        } %>
+      <% Invoice.statuses.keys.each do |status| %>
+        <span class="pill">
+          <%= radio_button_tag :status, status, id: "status_#{status}", class: 'hidden', data: {action: "click->search#call"}, checked: params[:status] == status %>
+          <label for='status_<%= status %>' class="cursor-pointer px-3 py-1 bg-gray-200 rounded-full"><%= status.capitalize %></label>
+        </span>
+      <% end %>
     </div>
 
-    <div class="field invoice-field invoice_date_container w-full">
-      <%= text_field_tag :end_date, params[:end_date],
-        placeholder: "End Date",
-        class: "form-input border border-gray-300 rounded px-3 py-2",
-        data: {
-          controller: "flatpickr",
-          flatpickr_min_date_value: Time.zone.now.strftime('%Y-%m-%d'),
-          flatpickr_locale_value: I18n.locale,
-          flatpickr_date_format_value: "d-m-Y",
-          action: "change->search#call"
-        } %>
+    <!-- Date Fields -->
+    <div class="flex flex-col md:flex-row gap-2 items-center w-full md:w-auto">
+      <div class="field invoice-field invoice_date_container w-full">
+        <%= text_field_tag :start_date, params[:start_date],
+          placeholder: "Start Date",
+          class: "form-input border border-gray-300 rounded px-3 py-2",
+          data: {
+            controller: "flatpickr",
+            flatpickr_min_date_value: Time.zone.now.strftime('%Y-%m-%d'),
+            flatpickr_locale_value: I18n.locale,
+            flatpickr_date_format_value: "d-m-Y",
+            action: "change->search#call"
+            
+          } %>
+      </div>
+
+      <div class="field invoice-field invoice_date_container w-full">
+        <%= text_field_tag :end_date, params[:end_date],
+          placeholder: "End Date",
+          class: "form-input border border-gray-300 rounded px-3 py-2",
+          data: {
+            controller: "flatpickr",
+            flatpickr_min_date_value: Time.zone.now.strftime('%Y-%m-%d'),
+            flatpickr_locale_value: I18n.locale,
+            flatpickr_date_format_value: "d-m-Y",
+            action: "change->search#call"
+          } %>
+      </div>
+
+    
     </div>
 
-  
-  </div>
 
+    <!-- Client Select Option -->
+    
+    <div class="flex gap-2 items-center  w-full md:w-auto">
+      <%= label_tag :client_id, "", class: "select !flex-2" do %>
+        <%= select_tag :client_id, options_for_select(Client.all.map { |client| [client.name, client.id] }, params[:client_id]), 
+              {prompt: "Select Client", class: "select2 form-select block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md", 
+              data: {action: "input->search#call"}} %>
+        <%# <i class="fa-solid fa-angle-down  mt-[-13px]"></i> %>
+      <% end %>
+    </div>
 
-  <!-- Submit Button (Optional, can be hidden if using auto-submit via JavaScript) -->
-  <div class="flex gap-2 items-center  w-full md:w-auto justify-start md:hidden">
-    <%= link_to invoices_path, class: 'w-full' do %>
-      <button type="button" role="button" class="btn btn-sm btn-secondary w-full">Clear </button>
-    <% end %>
-  </div>
-  <div class="hidden gap-2 items-center  w-full md:w-auto justify-start md:flex">
-    <%= link_to invoices_path, class: 'w-full' do %>
-      <button type="button" role="button" class="w-full"><i class="fa-solid fa-rotate-left text-grey-500"></i> </button>
-    <% end %>
-  </div>
-  
-
-<% end %>
+    <!-- Submit Button (Optional, can be hidden if using auto-submit via JavaScript) -->
+    <div class="flex gap-2 items-center  w-full md:w-auto justify-start md:hidden">
+      <%= link_to invoices_path, class: 'w-full' do %>
+        <button type="button" role="button" class="btn btn-sm btn-secondary w-full">Clear </button>
+      <% end %>
+    </div>
+    <div class="hidden gap-2 items-center  w-full md:w-auto justify-start md:flex">
+      <%= link_to invoices_path, class: 'w-full' do %>
+        <button type="button" role="button" class="w-full"><i class="fa-solid fa-rotate-left text-grey-500"></i> </button>
+      <% end %>
+    </div>
+  <% end %>

@@ -437,3 +437,20 @@ form {
 .table-actions {
   @apply mb-4 bg-white py-2 px-2 rounded-none md:rounded-md flex justify-between items-center flex-wrap md:flex-nowrap w-full;
 }
+
+/* Select2 */
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__rendered {
+  @apply text-sm !text-grey-500 font-normal !py-[3px];
+}
+
+.select2-container--default .select2-selection--single {
+  @apply !h-auto !border !border-gray-300 !rounded;
+}
+
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__arrow {
+  @apply !top-1;
+}
