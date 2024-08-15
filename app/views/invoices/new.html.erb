@@ -1,6 +1,6 @@
 <h4 class="mb-2 text-lg font-medium"><%= t('invoices.new.title') %></h4>
 <div class="invoice-form-wrapper card p-6 rounded-0 md:rounded-md">
-  <%= form_with(model: @invoice, local: true, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" , invoice_locale: I18n.locale}) do |form| %>
+  <%= form_with(model: @invoice, data: {controller: 'nested-form invoice', nested_form_wrapper_selector_value: '.nested-form-wrapper', action:"line-item-removed@window->invoice#calculateTotal" , invoice_locale: I18n.locale, turbo_stream: false, turbo: false}) do |form| %>
     <%= render partial: "partials/resource_error_messages", locals: { resource: @invoice } %>
     <div class="flex justify-between flex-wrap md:flex-nowrap">
       <div class="w-full md:w-2/5">
