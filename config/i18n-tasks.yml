@@ -107,7 +107,7 @@ translation:
   #   google_translate_api_key: "AbC-dEf5"
   #   # DeepL Pro Translate
   #   # Get an API key and subscription at https://www.deepl.com/pro to use DeepL Pro
-  deepl_api_key: "xxx"
+  deepl_api_key: 1d9ae260-fd87-4b61-9555-c00297ff1fec:fx
   deepl_host: "https://api-free.deepl.com"
 #   # deepl_version: "v2"
 #   # add additional options to the DeepL.translate call: https://www.deepl.com/docs-api/translate-text/translate-text/

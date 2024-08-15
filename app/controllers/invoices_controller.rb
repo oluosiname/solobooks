@@ -12,6 +12,11 @@ class InvoicesController < ApplicationController
       .filtered(filter_params)
       .includes(:client, :currency, :pdf_attachment)
       .order(created_at: :desc))
+
+    respond_to do |format|
+      format.html # For normal HTML requests
+      format.turbo_stream # For Turbo Stream requests
+    end
   end
 
   def new
@@ -122,7 +127,7 @@ class InvoicesController < ApplicationController
   end
 
   def filter_params
-    params.permit(:status, :client_id)
+    params.permit(:status, :client_id, :start_date, :end_date)
   end
 
   def line_items_attributes
