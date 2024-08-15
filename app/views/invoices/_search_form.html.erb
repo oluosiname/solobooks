@@ -1,11 +1,8 @@
 <%= form_with url: invoices_path, method: :get, class: 'flex flex-wrap md:flex-nowrap md:flex-row gap-2 items-center justify-center md:justify-between md:w-[87%] w-full', data: {turbo_stream: true, controller: 'search', displayContainerId: "invoices-list", search_target: 'form', search_container_value: "invoices-list", search_fields_value: ["status", "start_date", "end_date", "query", "client"]} do %>
+      <!-- Textbox for Invoice Number or Search Query -->
 
   <!-- Status Filter Pills -->
     <div class="gap-2 flex-wrap hidden md:flex">
-      <span class="pill">
-        <%= radio_button_tag :status, '', id: 'status_all', class: 'hidden', data: {action: "click->search#reset"}, checked: params[:status].blank? %>
-        <label for='status_all' class="cursor-pointer px-3 py-1 bg-gray-200 rounded-full">All</label>
-      </span>
       <% Invoice.statuses.keys.each do |status| %>
         <span class="pill">
           <%= radio_button_tag :status, status, id: "status_#{status}", class: 'hidden', data: {action: "click->search#call"}, checked: params[:status] == status %>
@@ -14,6 +11,9 @@
       <% end %>
     </div>
 
+        <div class="flex gap-2 items-center w-full md:w-[15rem]">
+      <input type="text" name="query" data-action =  "input->search#call" class="form-input border border-gray-300 rounded px-3 py-2" placeholder="Search Invoice Number" value="<%= params[:query] %>">
+    </div>
     <!-- Date Fields -->
     <div class="flex flex-col md:flex-row gap-2 items-center w-full md:w-auto">
       <div class="field invoice-field invoice_date_container w-full">
@@ -57,6 +57,8 @@
         <%# <i class="fa-solid fa-angle-down  mt-[-13px]"></i> %>
       <% end %>
     </div>
+
+
 
     <!-- Submit Button (Optional, can be hidden if using auto-submit via JavaScript) -->
     <div class="flex gap-2 items-center  w-full md:w-auto justify-start md:hidden">

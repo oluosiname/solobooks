@@ -35,11 +35,15 @@ class Invoice < ApplicationRecord
     filter_by_status(params[:status])
       .filter_by_client(params[:client_id])
       .filter_by_date(params[:start_date], params[:end_date])
+      .filter_by_invoice_number(params[:query])
   }
 
   scope :filter_by_status, ->(status) { where(status: status) if status.present? }
   scope :filter_by_client, ->(client_id) { where(client_id: client_id) if client_id.present? }
   scope :filter_by_date, ->(from, to) { where(date: from..to) if from.present? && to.present? }
+  scope :filter_by_invoice_number, ->(query) do
+    where('invoice_number ILIKE ?', "%#{query}%") if query.present? && query.length > 3
+  end
 
   VAT_RATES = {
     '0%' => 0,

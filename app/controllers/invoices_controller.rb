@@ -127,7 +127,7 @@ class InvoicesController < ApplicationController
   end
 
   def filter_params
-    params.permit(:status, :client_id, :start_date, :end_date)
+    params.permit(:status, :client_id, :start_date, :end_date, :query)
   end
 
   def line_items_attributes
