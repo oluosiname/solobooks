@@ -39,7 +39,10 @@ class InvoicesController < ApplicationController
 
       InvoiceService::PdfAttacher.call(invoice: @invoice, pdf: StringIO.new(pdf_file.render))
 
-      redirect_to invoices_path, notice: I18n.t('record.create.success', resource: @invoice.class.model_name.human)
+      redirect_to invoices_path,
+        notice: I18n.t('record.create.success', resource: @invoice.class.model_name.human),
+        turbo: false,
+        turbo_stream: false
     else
       render :new, status: :unprocessable_entity
     end

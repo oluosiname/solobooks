@@ -1,6 +1,5 @@
 ---
 de:
-  all: Alle
   errors:
     messages:
       content_type_invalid: format muss eines der folgenden sein %{authorized_types}
@@ -23,7 +22,7 @@ de:
     errors:
       messages:
         not_saved:
-          one: '1 Fehler verhinderte das Speichern von %{resource}:'
+          one: "1 Fehler verhinderte das Speichern von %{resource}:"
           other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
     update:
       error: "%{resource} konnte nicht aktualisiert werden."
