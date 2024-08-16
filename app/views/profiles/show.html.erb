@@ -1,6 +1,17 @@
 <div class="card p-6">
   <%= form_with(model: @profile, url: create_profile_path, local: true) do |form| %>
   <%= render partial: "partials/resource_error_messages", locals: { resource: @profile } %>
+
+    <fieldset class="flex mb-4 gap-4 justify-between md:flex-nowrap flex-wrap">
+      <legend class="font-bold mb-3"><%= t('forms.legends.profile.logo') %></legend>
+      <div class="flex items-center field mb-4">
+        <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg"
+             alt="Avatar"
+             class="w-12 h-12 rounded-full">
+        <%= form.file_field :logo, class: "ml-4 p-1 w-full text-slate-500 text-sm rounded-full leading-6 file:bg-violet-200 file:text-violet-700 file:font-semibold file:border-none file:px-4 file:py-1 file:mr-6 file:rounded-full hover:file:bg-violet-100 border border-gray-300" %>
+
+      </div>
+    </fieldset>
     <!-- Full Name -->
     <div class="field mb-4">
       <%= form.label :full_name %>
@@ -23,6 +34,8 @@
         <%= form.text_field :business_name, class: "form-input w-full" %>
       </div>
     </fieldset>
+    <!-- Business Logo -->
+
 
     <!-- Personal Info -->
     <fieldset class="flex mb-4 gap-4 justify-between md:flex-nowrap flex-wrap">

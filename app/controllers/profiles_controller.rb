@@ -43,6 +43,7 @@ class ProfilesController < ApplicationController
       :vat_id,
       :invoice_currency_id,
       :invoice_language,
+      :logo,
       address_attributes: [:id, :street_address, :city, :state, :postal_code, :country],
     )
   end
