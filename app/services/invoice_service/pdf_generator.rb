@@ -28,27 +28,30 @@ module InvoiceService
       last_measured_y = pdf.cursor
 
       if user_profile.logo.attached?
-
         logo_url = Rails.application.routes.url_helpers.rails_blob_url(user_profile.logo, only_path: false)
         logo_image = URI.open(logo_url) # rubocop:disable Security/Open
         pdf.image logo_image, position: :left, width: 80
       end
-      pdf.text_box 'Invoice #', size: 16, style: :semi_bold, at: [0, last_measured_y], align: :right
+      old_last_measured_y = last_measured_y
       last_measured_y = pdf.cursor - 7
       pdf.formatted_text_box [{ text: user_profile.name, color: '256094' }], style: :semi_bold, at: [0, last_measured_y]
+
+      pdf.text_box 'Invoice #', size: 16, style: :semi_bold, at: [0, old_last_measured_y], align: :right
+
+      last_measured_y = old_last_measured_y - 25
       pdf.formatted_text_box [{ text: invoice.invoice_number, color: '727d92' }],
         at: [0, last_measured_y],
         align: :right
-      pdf.move_down 40
+      # pdf.move_down 20
 
-      # User Address
-      last_measured_y = pdf.cursor
-      pdf.formatted_text_box [{ text: user_address.street_address }], align: :right, at: [0, last_measured_y]
+      # # User Address
+      # last_measured_y = pdf.cursor
+      pdf.formatted_text_box [{ text: user_address.street_address }], align: :right, at: [0, last_measured_y - 30]
       pdf.formatted_text_box [{ text: [user_address.city, user_address.state, user_address.postal_code].join(', ') }],
-        at: [0, last_measured_y - 17],
+        at: [0, last_measured_y - 47],
         align: :right
-      pdf.formatted_text_box [{ text: user_address.country_name }], at: [480, last_measured_y - 34], align: :right
-      pdf.move_down 60
+      pdf.formatted_text_box [{ text: user_address.country_name }], at: [480, last_measured_y - 64], align: :right
+      pdf.move_down 40
 
       # Client Info
       last_measured_y = pdf.cursor
