@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'open-uri'
 module InvoiceService
   class PdfGenerator < ApplicationService
     include ActionView::Helpers::NumberHelper
@@ -25,10 +26,16 @@ module InvoiceService
       pdf.fill_color FONT_COLOUR
 
       last_measured_y = pdf.cursor
-      pdf.image Rails.root.join('app/assets/images/logo-dark.png').to_s, position: :left, width: 80
+
+      if user_profile.logo.attached?
+
+        logo_url = Rails.application.routes.url_helpers.rails_blob_url(user_profile.logo, only_path: false)
+        logo_image = URI.open(logo_url) # rubocop:disable Security/Open
+        pdf.image logo_image, position: :left, width: 80
+      end
       pdf.text_box 'Invoice #', size: 16, style: :semi_bold, at: [0, last_measured_y], align: :right
       last_measured_y = pdf.cursor - 7
-      pdf.formatted_text_box [{ text: 'MyraStudio Inc.', color: '256094' }], style: :semi_bold, at: [0, last_measured_y]
+      pdf.formatted_text_box [{ text: user_profile.name, color: '256094' }], style: :semi_bold, at: [0, last_measured_y]
       pdf.formatted_text_box [{ text: invoice.invoice_number, color: '727d92' }],
         at: [0, last_measured_y],
         align: :right
