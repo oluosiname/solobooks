@@ -1,4 +1,4 @@
-<header class="app-header flex items-center px-5 gap-4">
+<header class="app-header flex items-center px-5 gap-6">
   <!-- Brand Logo -->
   <%# <a class="logo-box" href="/lunoz-tailwind/layouts/">
   <img src="assets/images/logo-sm.png" class="h-6" alt="Small logo">
@@ -10,16 +10,6 @@
   <i class="fa-solid fa-bars"></i>
   </span>
   </button>
-  <!-- Topbar Search -->
-  <div class="md:flex hidden items-center relative">
-    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-      <i class="ph ph-magnifying-glass text-base"></i>
-    </div>
-    <input type="search" class="form-input px-8 rounded-full  bg-gray-500/10 border-transparent focus:border-transparent" placeholder="Search...">
-    <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
-    <i class="ph ph-microphone text-base hover:text-black"></i>
-    </button>
-  </div>
   <!-- Language selector -->
   <div class="flex gap-2">
     <%- I18n.available_locales.each do |locale| %>
@@ -28,19 +18,16 @@
   </div>
   <!-- Fullscreen Toggle Button -->
   <div class="md:flex hidden">
-    <button data-toggle="fullscreen" type="button" class="nav-link p-2 waves-effect">
-    <span class="sr-only">Fullscreen Mode</span>
-    <span class="flex items-center justify-center h-6 w-6">
-    <i class="ph ph-arrows-out text-2xl"></i>
-    </span>
-    </button>
+    <%# <i class="fa-solid fa-bell"></i> %>
+    <i class="fa-regular fa-bell"></i>
   </div>
   <!-- Profile Dropdown Button -->
   <div class="relative">
     <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 waves-effect p-2 fc-dropdown">
-    <img src="assets/images/users/avatar-6.jpg" alt="user-image" class="rounded-full h-8 w-8">
+    <%= image_tag current_user.profile.logo,  alt: "user-image", class: "rounded-full h-8 w-8" %>
+    <%# <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg" alt="user-image" class="rounded-full h-8 w-8"> %>
     <span class="md:flex items-center hidden">
-    <span class="font-medium text-base">Jamie D.</span>
+    <span class="font-medium text-base"><%= current_user.profile.name %></span>
     <i class="ph ph-chevron-down"></i>
     </span>
     </button>
