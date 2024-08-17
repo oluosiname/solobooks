@@ -3,18 +3,20 @@
 transaction_types = ['Income', 'Expense']
 
 # Set the date range
-start_date = Date.new(2024, 1, 1)
-end_date = Date.new(2024, 8, 12)
+start_date = Date.new(2023, 12, 12)
+end_date = Date.new(2024, 8, 17)
 
 # Create 50 FinancialTransaction records
 100.times do
   has_receipt = [true, false].sample
+  transaction_type = transaction_types.sample
   transaction = FinancialTransaction.create!(
     user: User.all.sample, # Assuming there are existing users in the database
     amount: Faker::Number.decimal(l_digits: 2),
     description: Faker::Lorem.sentence(word_count: 5),
     date: Faker::Date.between(from: start_date, to: end_date),
-    transaction_type: transaction_types.sample,
+    transaction_type:,
+    category: FinancialCategory.send(transaction_type.downcase).sample,
   )
 
   next unless has_receipt
