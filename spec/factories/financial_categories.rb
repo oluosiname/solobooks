@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :financial_category do
-    name { "MyString" }
-    category_type { "MyString" }
+    name { Faker::Lorem.word }
+    category_type { FinancialCategory.category_types.keys.sample }
   end
 end

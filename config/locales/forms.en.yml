@@ -22,6 +22,8 @@ en:
         title:
           edit: Edit Expense
           new: Add Expense
+      financial_transaction:
+        select_category: Select category
       income:
         title:
           edit: Edit Income

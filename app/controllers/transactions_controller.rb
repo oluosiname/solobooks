@@ -2,6 +2,7 @@
 
 class TransactionsController < ApplicationController
   before_action :build_transaction, only: [:new]
+  before_action :set_categories, only: %i[new]
 
   def index
     @grouped_transactions = current_user.financial_transactions
@@ -13,6 +14,7 @@ class TransactionsController < ApplicationController
 
   def edit
     @transaction = current_user.financial_transactions.find_by(id: params[:id])
+    @categories = FinancialCategory.send(@transaction.transaction_type.downcase).order(:name)
   end
 
   def update
@@ -62,6 +64,10 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(@transaction.transaction_type.downcase.to_sym).permit(:amount, :date, :description, :receipt)
+    params.require(@transaction.transaction_type.downcase.to_sym).permit(:amount, :date, :description, :receipt, :financial_category_id)
+  end
+
+  def set_categories
+    @categories = FinancialCategory.send(params[:transaction_type]).order(:name)
   end
 end
