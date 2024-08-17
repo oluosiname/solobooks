@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_17_140418) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_17_183108) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_17_140418) do
     t.string "category_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "category_type"], name: "index_financial_categories_on_name_and_category_type", unique: true
   end
 
   create_table "financial_transactions", force: :cascade do |t|

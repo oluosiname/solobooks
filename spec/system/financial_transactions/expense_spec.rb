@@ -9,7 +9,9 @@ RSpec.describe 'Expense', type: :system do
   before do
     create(:profile, user:)
     login_user(user)
+    # rubocop:disable RSpec/MessageChain
     allow(FinancialCategory).to receive_message_chain(:expense, :order).and_return([category])
+    # rubocop:enable RSpec/MessageChain
     allow(category).to receive(:translated_name).and_return('Test Category')
   end
 
