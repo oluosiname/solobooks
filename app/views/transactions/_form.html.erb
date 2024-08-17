@@ -20,6 +20,14 @@
       <%= form.text_area :description, class: "form-input w-full" %>
     </div>
 
+    <!-- Category -->
+    <div class="field mb-4">
+      <%= label_tag :financial_category_id, class: "select !flex-2" do %>
+        <%= select_tag :financial_category_id, options_for_select(@categories.map { |cat| [cat.translated_name, cat.id] }, transaction.financial_category_id), 
+              {prompt: t('forms.legends.financial_transaction.select_category'), class: "select2 form-select block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"} %>
+      <% end %>
+    </div>
+
      <!-- File Upload -->
      <div class="field mb-4">
       <%= form.label :receipt, class: "block text-sm font-medium text-gray-700 mb-1" %>

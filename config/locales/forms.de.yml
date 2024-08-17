@@ -22,6 +22,8 @@ de:
         title:
           edit: Ausgabe bearbeiten
           new: Ausgabe hinzufügen
+      financial_transaction:
+        select_category: Kategorie auswählen
       income:
         title:
           edit: Einnahme bearbeiten

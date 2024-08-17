@@ -27,7 +27,7 @@ RSpec.describe 'Profile management', type: :system do
     end
 
     context 'with invalid data' do
-      it 'displays errors when required fields are blank' do
+      it 'displays errors when required fields are blank', :js do
         visit profile_path
         # Submit form with blank fields
         fill_in 'profile[full_name]', with: ''

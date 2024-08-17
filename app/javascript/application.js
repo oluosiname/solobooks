@@ -15,3 +15,12 @@ document.addEventListener("turbo:load", () => {
     e.target.dispatchEvent(event);
   });
 });
+document.addEventListener("turbo:frame-load", () => {
+  // Initialize Select2 on your select elements loaded by turbo-frame like in a modal
+  $(".select2").select2();
+
+  $(".select2").on("select2:select", function (e) {
+    const event = new Event("input", { bubbles: true });
+    e.target.dispatchEvent(event);
+  });
+});
