@@ -24,10 +24,12 @@
   <!-- Profile Dropdown Button -->
   <div class="relative">
     <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 waves-effect p-2 fc-dropdown">
-    <%= image_tag current_user.profile.logo,  alt: "user-image", class: "rounded-full h-8 w-8" %>
-    <%# <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg" alt="user-image" class="rounded-full h-8 w-8"> %>
-    <span class="md:flex items-center hidden">
-    <span class="font-medium text-base"><%= current_user.profile.name %></span>
+    <% if current_user.profile.present? %>
+      <%= image_tag current_user.profile.logo,  alt: "user-image", class: "rounded-full h-8 w-8"  if  current_user.profile.logo.attached?  %>
+      <%# <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg" alt="user-image" class="rounded-full h-8 w-8"> %>
+      <span class="md:flex items-center hidden">
+      <span class="font-medium text-base"><%= current_user.profile.name %></span>
+    <% end %>
     <i class="ph ph-chevron-down"></i>
     </span>
     </button>
