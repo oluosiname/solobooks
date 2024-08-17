@@ -2,7 +2,7 @@
 
 class TransactionsController < ApplicationController
   before_action :build_transaction, only: [:new]
-  before_action :set_categories, only: %i[new]
+  before_action :set_categories, only: [:new]
 
   def index
     @grouped_transactions = current_user.financial_transactions
@@ -65,7 +65,13 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(@transaction.transaction_type.downcase.to_sym).permit(:amount, :date, :description, :receipt, :financial_category_id)
+    params.require(@transaction.transaction_type.downcase.to_sym).permit(
+      :amount,
+      :date,
+      :description,
+      :receipt,
+      :financial_category_id,
+    )
   end
 
   def set_categories

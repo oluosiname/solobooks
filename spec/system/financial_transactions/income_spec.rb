@@ -4,10 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Income', type: :system do
   let(:user) { create(:user, :confirmed) }
+  let(:category) { create(:financial_category, category_type: 'income') }
 
   before do
     create(:profile, user:)
     login_user(user)
+    allow(FinancialCategory).to receive_message_chain(:income, :order).and_return([category])
+    allow(category).to receive(:translated_name).and_return('Test Category')
   end
 
   describe 'creating income' do

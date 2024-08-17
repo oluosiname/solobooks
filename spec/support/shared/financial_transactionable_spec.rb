@@ -50,6 +50,10 @@ RSpec.shared_examples 'Financial Transaction Creation' do |transaction_type|
     let(:receipt_path) { Rails.root.join('spec/fixtures/files/test_receipt.pdf') }
     let!(:category) { create(:financial_category, category_type: transaction_type) }
 
+    before do
+      allow(category).to receive(:translated_name).and_return('Test Category')
+    end
+
     it 'creates a new financial transaction' do
       visit transactions_path
 
@@ -57,13 +61,17 @@ RSpec.shared_examples 'Financial Transaction Creation' do |transaction_type|
       fill_in "#{transaction_type}[amount]", with: Faker::Number.decimal(l_digits: 2)
       fill_in "#{transaction_type}[description]", with: description
       fill_in "#{transaction_type}[date]", with: Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
-      select category.translated_name, from: "#{transaction_type}[financial_category_id]"
+      select 'Test Category', from: "#{transaction_type}[financial_category_id]"
       attach_file "#{transaction_type}[receipt]", receipt_path
 
       click_on 'Save'
 
       expect(page).to have_content("#{transaction_type.capitalize} was successfully created.")
       expect(page).to have_content('Test Transaction')
+      expect(FinancialTransaction.last.description).to eq('Test Transaction')
+      expect(FinancialTransaction.last.category).to eq(category)
+      expect(FinancialTransaction.last.receipt).to be_attached
+      expect(FinancialTransaction.last.receipt.filename).to eq('test_receipt.pdf')
     end
   end
 end
