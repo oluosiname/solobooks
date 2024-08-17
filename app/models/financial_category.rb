@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FinancialCategory < ApplicationRecord
   has_many :financial_transactions
 
