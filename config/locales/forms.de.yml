@@ -29,6 +29,7 @@ de:
       profile:
         address: Adresse
         invoice_settings: Rechnungseinstellungen
+        logo: Logo
         personal_information: Persönliche Informationen
         tax_information: Steuerinformationen
     placeholders:

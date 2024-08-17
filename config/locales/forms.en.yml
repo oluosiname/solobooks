@@ -29,6 +29,7 @@ en:
       profile:
         address: Address
         invoice_settings: Invoice Settings
+        logo: Logo
         personal_information: Personal Information
         tax_information: Tax Information
     placeholders:
