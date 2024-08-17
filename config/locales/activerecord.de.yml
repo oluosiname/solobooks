@@ -17,11 +17,51 @@ de:
         phone_number: Telefonnummer
         post_code: Postleitzahl
         vat_number: USt-IdNr.
+      financial_category:
+        expense:
+          accommodation_business_trips: Unterkunft für Geschäftsreisen
+          back_payment_corona_aid: Nachzahlung der Corona-Beihilfe
+          bank_fees: Bankgebühren
+          client_entertainment: Kunde Unterhaltung
+          depreciation: Abschreibung
+          freelance_subcontractors: Freiberufliche Unterauftragnehmer
+          gifts: Geschenke
+          insurance: Versicherung
+          licenses_permits: Lizenzen und Genehmigungen
+          marketing_advertising: Marketing und Werbung
+          materials_used_products: Für Produkte verwendete Materialien
+          meals_business_trips: Mahlzeiten für Geschäftsreisen
+          membership_fees: Mitgliedsbeiträge
+          miscellaneous_expenses: Verschiedene Ausgaben
+          office_furniture_equipment: Büromöbel und Ausstattung
+          office_supplies: Bürobedarf
+          private_car_usage: Private Pkw-Nutzung
+          private_expenses: Private Ausgaben (nicht-geschäftsbezogen)
+          professional_fees: Honorare
+          rent_office_space: Miete / Büroflächen
+          software_tools: Software und Werkzeuge
+          taxes_social_contributions: Steuern und Sozialabgaben
+          telecommunication_costs: Telekommunikationskosten
+          training_education: Ausbildung und Schulung
+          transportation_business_trips: Transport für Geschäftsreisen
+          travel_expenses: Reisekosten
+          utilities: Versorgungsunternehmen
+        income:
+          commissions: Provisionen
+          miscellaneous_income: Verschiedene Einnahmen
+          product_sales: Produktverkäufe
+          project_based_income: Projektbezogenes Einkommen
+          rental_income: Mieteinnahmen (geschäftsbezogen)
+          royalties: Lizenzgebühren
+          service_fees: Dienstleistungsgebühren / Beratungsgebühren
+          subsidies_grants: Subventionen / Zuschüsse
       financial_transaction:
         amount: Betrag
+        category: Kategorie
         date: Datum
         description: Beschreibung
       invoice:
+        category: Kategorie
         client: Kunde
         currency: Währung
         date: Rechnungsdatum
@@ -77,6 +117,7 @@ de:
         account_number: Kontonummer
         bank_name: Bankname
         iban: IBAN
+        name: Name
         routing_number: Routing-Nummer
         sort_code: Sort-Code
         swift: SWIFT
@@ -101,9 +142,13 @@ de:
         currency: Währung
         language: Sprache
       user:
+        current_password: Aktuelles Passwort
         email: E-Mail
         password: Passwort
         password_confirmation: Passwort bestätigen
+        password_digest: Passwort-Digest
+        remember_me: Erinnern Sie sich an mich
+        reset_password_token: Passwort-Token zurücksetzen
     errors:
       models:
         address:
