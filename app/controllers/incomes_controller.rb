@@ -16,6 +16,7 @@ class IncomesController < ApplicationController
         end
       end
     else
+      @categories = FinancialCategory.income.order(:name)
       render 'transactions/new', status: :unprocessable_entity
     end
   end
