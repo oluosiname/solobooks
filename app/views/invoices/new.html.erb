@@ -70,7 +70,7 @@
               </svg>
             <% end %>
             <div class=" flex-col justify-end flex-1 hidden md:flex new-client">
-              <%= link_to new_modal_clients_path, class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal' } do %>
+              <%= link_to new_modal_clients_path, class: "btn btn-xs btn-primary", data: { turbo_frame: 'modal', turbo: true, trubo_stream: true } do %>
                 <%= t("forms.buttons.new") %>
               <% end %>
             </div>
