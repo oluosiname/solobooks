@@ -4,6 +4,8 @@ class Profile < ApplicationRecord
   ACCEPTABLE_LOGO_FORMATS = ['image/jpeg', 'image/png'].freeze
   MAX_LOGO_SIZE = 1.megabyte
 
+  encrypts :vat_id, :tax_number
+
   belongs_to :user
   belongs_to :invoice_currency, class_name: 'Currency'
   has_one :setting, dependent: :destroy

@@ -18,6 +18,10 @@ class Client < ApplicationRecord
 
   delegate :country, to: :address, allow_nil: true
 
+  encrypts :business_tax_id, :vat_number
+
+  encrypts :email_address, deterministic: true
+
   def display_name
     business_name.presence || name
   end
