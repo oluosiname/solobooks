@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FinancialCategory < ApplicationRecord
-  has_many :financial_transactions
+  has_many :financial_transactions, dependent: :restrict_with_error
 
   validates :name, presence: true, uniqueness: { scope: :category_type }
   validates :category_type, presence: true

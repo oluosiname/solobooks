@@ -7,7 +7,11 @@ class FinancialTransaction < ApplicationRecord
   MAX_RECEIPT_SIZE = 1.megabyte
 
   belongs_to :user
-  belongs_to :category, class_name: 'FinancialCategory', foreign_key: 'financial_category_id', optional: true
+  belongs_to :category,
+    class_name: 'FinancialCategory',
+    foreign_key: 'financial_category_id',
+    optional: true,
+    inverse_of: :financial_transactions
 
   validates :amount, presence: true
   validates :date, presence: true
