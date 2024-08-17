@@ -5,6 +5,6 @@ FactoryBot.define do
     amount { Faker::Number.decimal(l_digits: 2) }
     description { Faker::Lorem.sentence }
     date { Faker::Date.between(from: 1.year.ago, to: Time.zone.today) }
-    category
+    category factory: :financial_category
   end
 end

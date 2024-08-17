@@ -32,6 +32,7 @@ class TransactionsController < ApplicationController
         end
       end
     else
+      @categories = FinancialCategory.income.order(:name)
       render 'transactions/edit', status: :unprocessable_entity
     end
   end

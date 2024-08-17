@@ -12,6 +12,7 @@ class ExpensesController < ApplicationController
         format.turbo_stream { flash.now[:notice] = t('record.create.success', resource: Expense.model_name.human) }
       end
     else
+      @categories = FinancialCategory.expense.order(:name)
       render 'transactions/new', status: :unprocessable_entity
     end
   end
