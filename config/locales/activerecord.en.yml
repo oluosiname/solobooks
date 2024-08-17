@@ -12,7 +12,6 @@ en:
         address: Address
         business_tax_id: Tax number
         email: Email
-        invoices: Rechnungen
         name: Name
         phone_number: Phone number
         post_code: Zip code
@@ -78,7 +77,6 @@ en:
           due: Overdue
           overdue: Overdue
           paid: Paid
-          pending: Ausstehend
           refunded: Refunded
           sent: Sent
         subtotal: Subtotal
@@ -95,13 +93,6 @@ en:
           none: According to § 19 UStG no sales tax is charged.
           reverse_charge: Reverse VAT charge is applied (§13b Abs. 5 UStG)
           standard: VAT charge is applied
-      invoice/line_items:
-        description: Beschreibung
-        price: Preis
-        quantity: Menge
-        total_price: Gesamtpreis
-        unit: Einheit
-        unit_price: Einzelpreis
       invoice_category:
         description: Description
         name: Name
@@ -125,22 +116,14 @@ en:
         address: Address
         business_name: Business name
         business_type: Business type
-        city: Stadt
         country: Country of residence
         currency: Invoice currency
         date_of_birth: Date of birth
         full_name: Full name
         language: Invoice language
-        nationality: Nationalität
         phone_number: Phone number
         post_code: Zip code
-        state: Bundesland
-        street: Straße
         tax_number: Tax number
-        vat_id: USt-IdNr.
-      setting:
-        currency: Währung
-        language: Sprache
       user:
         current_password: Current password
         email: Email
@@ -151,106 +134,13 @@ en:
         reset_password_token: Reset password token
     errors:
       models:
-        address:
-          attributes:
-            city:
-              blank: muss ausgefüllt werden
-            country:
-              blank: muss ausgefüllt werden
-            postal_code:
-              blank: muss ausgefüllt werden
-            state:
-              blank: muss ausgefüllt werden
-            street_address:
-              blank: muss ausgefüllt werden
         client:
-          attributes:
-            email:
-              blank: muss ausgefüllt werden
-              taken: ist bereits vergeben
-            name:
-              blank: muss ausgefüllt werden
-              taken: ist bereits vergeben
           restrict_dependent_destroy:
             has_many: Cannot delete client because it has %{record} associated with it
-        expense:
-          attributes:
-            amount:
-              blank: muss ausgefüllt werden
-              greater_than: muss größer als 0 sein
-            date:
-              blank: muss ausgefüllt werden
-            description:
-              blank: muss ausgefüllt werden
-        income:
-          attributes:
-            amount:
-              blank: muss ausgefüllt werden
-              greater_than: muss größer als 0 sein
-            date:
-              blank: muss ausgefüllt werden
-            description:
-              blank: muss ausgefüllt werden
         invoice:
           attributes:
-            client:
-              blank: muss ausgefüllt werden
-              required: muss ausgefüllt werden
-            currency:
-              inclusion: ist kein gültiger Wert
-            date:
-              blank: muss ausgefüllt werden
-            due_date:
-              blank: muss ausgefüllt werden
-            invoice_category:
-              blank: muss ausgefüllt werden
-              required: muss ausgefüllt werden
-            language:
-              inclusion: ist kein gültiger Wert
             line_items:
               blank: must have at least one line item
-        line_item:
-          attributes:
-            description:
-              blank: muss ausgefüllt werden
-            total_price:
-              greater_than: muss größer als 0 sein
-            unit_price:
-              greater_than: muss größer als 0 sein
-        payment_detail:
-          attributes:
-            account_holder:
-              blank: muss ausgefüllt werden
-            account_number:
-              blank: muss ausgefüllt werden
-            bank_name:
-              blank: muss ausgefüllt werden
-            iban:
-              blank: muss ausgefüllt werden
-        profile:
-          attributes:
-            business_type:
-              blank: muss ausgefüllt werden
-            country:
-              blank: muss ausgefüllt werden
-            date_of_birth:
-              blank: muss ausgefüllt werden
-            full_name:
-              blank: muss ausgefüllt werden
-            phone_number:
-              blank: muss ausgefüllt werden
-        user:
-          attributes:
-            current_password:
-              invalid: ist nicht korrekt
-            email:
-              blank: muss ausgefüllt werden
-            password:
-              blank: muss ausgefüllt werden
-              too_short: ist zu kurz (mindestens 6 Zeichen)
-            password_confirmation:
-              blank: muss ausgefüllt werden
-              confirmation: stimmt nicht mit dem Passwort überein
     models:
       address:
         one: Address
@@ -258,12 +148,6 @@ en:
       client:
         one: Client
         other: Clients
-      expense:
-        one: Ausgabe
-        other: Ausgaben
-      income:
-        one: Einnahme
-        other: Einnahmen
       invoice:
         one: Invoice
         other: Invoices
