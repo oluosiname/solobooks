@@ -48,6 +48,10 @@ gem 'capybara'
 gem 'selenium-webdriver'
 gem 'active_storage_validations'
 
+# Sub dependencies bumped forcefully to avoid security vulnerabilities
+gem 'rexml', '~> 3.3.3'
+gem 'nokogiri', '~> 1.16.5'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 gem 'devise'
