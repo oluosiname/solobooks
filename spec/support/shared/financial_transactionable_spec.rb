@@ -70,7 +70,7 @@ RSpec.shared_examples 'Financial Transaction' do |_parameter|
           transaction_type: 'Expense',
           start_date: '2023-07-01',
           end_date: '2023-07-02',
-          description: 'Gro'
+          description: 'Gro',
         }
 
         result = FinancialTransaction.filtered(params)
