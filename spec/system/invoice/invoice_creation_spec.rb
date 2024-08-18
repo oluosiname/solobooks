@@ -63,6 +63,7 @@ RSpec.describe 'Invoice Creation', type: :system do
       within('.dayContainer') do
         first('span.flatpickr-day', text: Time.zone.today.day.to_i + 1, exact_text: true).click
       end
+
       find('.invoice_date_container').click
       within('.dayContainer') do
         find('span.today').click
