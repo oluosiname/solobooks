@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_17_183108) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_051629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_17_183108) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "financial_category_id"
+    t.decimal "vat_rate", precision: 5, scale: 2, default: "0.0"
     t.index ["financial_category_id"], name: "index_financial_transactions_on_financial_category_id"
     t.index ["transaction_type"], name: "index_financial_transactions_on_transaction_type"
     t.index ["user_id"], name: "index_financial_transactions_on_user_id"

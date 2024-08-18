@@ -2,7 +2,7 @@
   <h2 class="text-xl font-semibold w-full md:w-fit"><%= t("financial_transactions.index.title") %></h2>
   <div class="flex justify-end gap-2">
     <%= link_to new_transaction_path(transaction_type: "expense"), class: 'btn btn-primary btn-sm btn--icon', data: { turbo_frame: 'modal' } do %>
-      <i class="fa-solid fa-plus"></i>
+      <i class="fa-solid fa-minus"></i>
       <span class="menu-text"> <%= t("financial_transactions.index.links.new_expense") %> </span>
     <% end %>
     <%= link_to new_transaction_path(transaction_type: "income"), class: 'btn btn-dark btn-sm btn--icon', data: { turbo_frame: 'modal' } do %>

@@ -71,6 +71,7 @@ class TransactionsController < ApplicationController
       :description,
       :receipt,
       :financial_category_id,
+      :vat_rate
     )
   end
 
