@@ -41,7 +41,6 @@ en:
         due_date: DD-MM-YYYY
         end_date: End date
         invoice_number: Invoice number
-        select_category: Category
         select_client: Select client
         start_date: Start date
       please_select: Please select
