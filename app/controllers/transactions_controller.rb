@@ -76,6 +76,7 @@ class TransactionsController < ApplicationController
   end
 
   def set_categories
-    @categories = FinancialCategory.send(params[:transaction_type]).order(:name)
+    transaction_type = params[:transaction_type] == 'income' ? 'income' : 'expense'
+    @categories = FinancialCategory.send(transaction_type).order(:name)
   end
 end
