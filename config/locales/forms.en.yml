@@ -43,6 +43,9 @@ en:
         invoice_number: Invoice number
         select_client: Select client
         start_date: Start date
+      search:
+        start_date: Start date
+        end_date: End date
       please_select: Please select
       user:
         current_password: Current password

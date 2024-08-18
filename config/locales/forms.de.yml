@@ -44,6 +44,9 @@ de:
         select_client: Kunde auswählen
         start_date: Datum des Beginns
       please_select: Bitte auswählen
+      search:
+        end_date: Datum des Endes
+        start_date: Datum des Beginns
       user:
         current_password: Aktuelles Passwort
         email: E-Mail-Adresse
