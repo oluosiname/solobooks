@@ -59,13 +59,13 @@ RSpec.describe 'Invoice Creation', type: :system do
       select invoice_category.name.capitalize, from: 'invoice[invoice_category_id]'
       select currency.code, from: 'invoice[currency_id]'
       select client.name, from: 'invoice[client_id]'
-      find('.invoice_date_container').click
-      within('.dayContainer') do
-        find('span.today').click
-      end
       find('.invoice_due_date_container').click
       within('.dayContainer') do
         first('span.flatpickr-day', text: Time.zone.today.day.to_i + 1, exact_text: true).click
+      end
+      find('.invoice_date_container').click
+      within('.dayContainer') do
+        find('span.today').click
       end
 
       fill_in 'invoice[line_items_attributes][0][description]', with: 'First item description'
