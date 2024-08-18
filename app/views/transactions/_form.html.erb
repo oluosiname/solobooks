@@ -22,18 +22,35 @@
 
     <!-- Category -->
     <div class="field mb-4">
-    <%= form.label :financial_category_id, class: "select !flex-2" do %>
-      <%= t('forms.legends.financial_transaction.select_category') %>
-    <% end %>
+      <%= form.label :financial_category_id, class: "select !flex-2" do %>
+        <%= t('forms.legends.financial_transaction.select_category') %>
+      <% end %>
 
-    <%= form.select :financial_category_id,
-                    options_for_select(@categories.map { |cat| [cat.translated_name, cat.id] }, transaction.financial_category_id),
-                    { prompt: t('forms.legends.financial_transaction.select_category') },
-                    { class: "select2 form-select block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" } %>
-  </div>
+      <%= form.select :financial_category_id,
+                      options_for_select(@categories.map { |cat| [cat.translated_name, cat.id] }, transaction.financial_category_id),
+                      { prompt: t('forms.legends.financial_transaction.select_category') },
+                      { class: "select2 form-select block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" } %>
+    </div>
+
+
+
+
+    <fieldset class="space-y-1 mb-4">
+          <!--- VAT -->
+      <%= form.label :vat %>
+    
+      <div class="gap-4 flex-wrap flex">
+        <% Invoice::VAT_RATES.each do |key, value| %>
+          <span class="pill">
+            <%= form.radio_button :vat_rate, value, id: "vat_rate-#{value}", class: 'hidden', checked: transaction.vat_rate == value %>
+            <label for="vat_rate-<%= value %>" class="cursor-pointer !px-6 !py-2 bg-gray-200 rounded-full"> <%= key %></label>
+          </span>
+        <% end %>
+      </div>
+    </fieldset>
 
      <!-- File Upload -->
-     <div class="field mb-4">
+    <div class="field mb-4">
       <%= form.label :receipt, class: "block text-sm font-medium text-gray-700 mb-1" %>
       <div class="flex items-center justify-center w-full">
         <label class="flex flex-col justify-center items-center w-full h-32 border-4 border-dashed border-gray-300 hover:border-gray-400 bg-gray-50 rounded-lg cursor-pointer">
