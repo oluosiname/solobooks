@@ -6,5 +6,7 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     date { Faker::Date.between(from: 1.year.ago, to: Time.zone.today) }
     category factory: :financial_category
+    transaction_type { 'Income' }
+    user
   end
 end
