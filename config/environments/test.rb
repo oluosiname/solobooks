@@ -66,4 +66,9 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   routes.default_url_options[:locale] = :en
+
+  config.active_record.encryption.primary_key = ENV['ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY'] || 'secret'
+  config.active_record.encryption.deterministic_key = ENV['ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY'] || 'secret'
+  config.active_record.encryption.key_derivation_salt = ENV['ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT'] || 'secret'
+  config.active_record.encryption.support_unencrypted_data = ENV['ACTIVE_RECORD_ENCRYPTION_SUPPORT_UNENCRYPTED_DATA'] == 'true'
 end
