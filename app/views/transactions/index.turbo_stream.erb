@@ -1,0 +1,4 @@
+<%= turbo_stream.update 'grouped-transactions' do %>
+   <%= render 'grouped_transactions', {grouped_transactions: @grouped_transactions} %>
+<% end %>
+<%= turbo_stream.prepend "flash", partial: "partials/flash_messages" %>

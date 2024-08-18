@@ -1,0 +1,25 @@
+<% grouped_transactions.each do |month_year, transactions| %>
+  <div class="border rounded-lg overflow-hidden mb-6">
+    <h3 class="text-lg font-semibold px-6 py-3 <%= month_year == Date.today.strftime('%B %Y') ? 'bg-tertiary-100' : 'bg-primary-100' %>"><%= month_year %></h3>
+    <table class="min-w-full divide-y divide-gray-200 bg-white" data-controller="transaction-table">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="hidden py-3 ps-4">
+            <div class="flex items-center h-5">
+              <input id="table-checkbox-all" type="checkbox" class="form-checkbox rounded">
+              <label for="table-checkbox-all" class="sr-only">Checkbox</label>
+            </div>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.description") %></th>
+          <th scope="col" class="hidden md:table-cell px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.date") %></th>
+          <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.amount") %></th>
+          <th scope="col" class="px-6 py-3 text-start text-sm text-gray-500 font-semibold"><%= t("activerecord.attributes.financial_transaction.receipt") %></th>
+          <th scope="col" class="px-6 py-3 text-end text-sm text-gray-500"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200" id="transactions-list-<%= month_year.gsub(' ', '-') %>">
+        <%= render partial: "transaction", collection: transactions %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
