@@ -41,7 +41,6 @@ de:
         due_date: TT-MM-JJJJ
         end_date: Datum des Endes
         invoice_number: Rechnungsnummer
-        select_category: Kategorie
         select_client: Kunde auswählen
         start_date: Datum des Beginns
       please_select: Bitte auswählen
