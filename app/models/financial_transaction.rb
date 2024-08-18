@@ -27,6 +27,24 @@ class FinancialTransaction < ApplicationRecord
     size: { less_than_or_equal_to: MAX_RECEIPT_SIZE },
     if: -> { receipt.attached? }
 
+  scope :filtered, ->(params) {
+    by_transaction_type(params[:transaction_type])
+      .by_date(params[:start_date], params[:end_date])
+      .by_description(params[:description])
+  }
+
+  scope :by_transaction_type, ->(transaction_type) {
+    where(transaction_type: transaction_type.capitalize) if transaction_type.present?
+  }
+
+  scope :by_date, ->(start_date, end_date) {
+    where(date: start_date..end_date) if start_date.present? && end_date.present?
+  }
+
+  scope :by_description, ->(description) {
+    where('LOWER(description) LIKE ?', "%#{description.downcase}%") if description.present?
+  }
+
   def income?
     transaction_type == 'Income'
   end

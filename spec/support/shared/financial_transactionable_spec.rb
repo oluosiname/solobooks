@@ -19,6 +19,72 @@ RSpec.shared_examples 'Financial Transaction' do |_parameter|
     end
   end
 
+  describe 'scopes' do
+    let!(:income_transaction) { create(:income, date: '2023-06-01', description: 'Salary') }
+    let!(:expense_transaction) { create(:expense, date: '2023-07-01', description: 'Groceries') }
+
+    describe '.by_transaction_type' do
+      it 'returns transactions of the specified type' do
+        result = FinancialTransaction.by_transaction_type('income')
+        expect(result).to contain_exactly(income_transaction)
+      end
+
+      it 'returns all transactions if no type is specified' do
+        result = FinancialTransaction.by_transaction_type(nil)
+        expect(result).to contain_exactly(income_transaction, expense_transaction)
+      end
+    end
+
+    describe '.by_date' do
+      it 'returns transactions within the specified date range' do
+        result = FinancialTransaction.by_date('2023-06-01', '2023-06-30')
+        expect(result).to contain_exactly(income_transaction)
+      end
+
+      it 'returns all transactions if no date range is specified' do
+        result = FinancialTransaction.by_date(nil, nil)
+        expect(result).to contain_exactly(income_transaction, expense_transaction)
+      end
+
+      it 'returns all transactions if only one date is specified' do
+        result = FinancialTransaction.by_date('2023-06-01', nil)
+        expect(result).to contain_exactly(income_transaction, expense_transaction)
+      end
+    end
+
+    describe '.by_description' do
+      it 'returns transactions matching the description (case insensitive)' do
+        result = FinancialTransaction.by_description('salary')
+        expect(result).to contain_exactly(income_transaction)
+      end
+
+      it 'returns all transactions if no description is specified' do
+        result = FinancialTransaction.by_description(nil)
+        expect(result).to contain_exactly(income_transaction, expense_transaction)
+      end
+    end
+
+    describe '.filtered' do
+      it 'applies all filters correctly' do
+        params = {
+          transaction_type: 'Expense',
+          start_date: '2023-07-01',
+          end_date: '2023-07-02',
+          description: 'Gro'
+        }
+
+        result = FinancialTransaction.filtered(params)
+        expect(result).to contain_exactly(expense_transaction)
+      end
+
+      it 'returns all transactions when no filters are applied' do
+        params = {}
+        result = FinancialTransaction.filtered(params)
+        expect(result).to contain_exactly(income_transaction, expense_transaction)
+      end
+    end
+  end
+
   describe '#income?' do
     it 'returns true if transaction_type is Income' do
       subject.transaction_type = 'Income'
