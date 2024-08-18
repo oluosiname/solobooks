@@ -6,8 +6,14 @@ class TransactionsController < ApplicationController
 
   def index
     @grouped_transactions = current_user.financial_transactions
+      .filtered(filter_params)
       .order(date: :desc)
       .group_by { |transaction| transaction.date.strftime('%B %Y') }
+
+    respond_to do |format|
+      format.html # For normal HTML requests
+      format.turbo_stream # For Turbo Stream requests
+    end
   end
 
   def new; end
@@ -78,5 +84,9 @@ class TransactionsController < ApplicationController
   def set_categories
     transaction_type = params[:transaction_type] == 'income' ? 'income' : 'expense'
     @categories = FinancialCategory.send(transaction_type).order(:name)
+  end
+
+  def filter_params
+    params.permit(:transaction_type, :start_date, :end_date, :description)
   end
 end
