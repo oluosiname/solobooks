@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return unless Rails.env.development?
+
 transaction_types = ['Income', 'Expense']
 
 # Set the date range
