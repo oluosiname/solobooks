@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+return unless Rails.env.development?
+
+# Create 10 clients
 10.times do
   client = Client.new(
     name: Faker::Company.name,
