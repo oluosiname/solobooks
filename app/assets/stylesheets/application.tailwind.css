@@ -266,7 +266,7 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
 }
 
 .btn-lg {
-  @apply text-lg;
+  @apply text-lg px-6 py-3;
 }
 
 .btn-primary {
@@ -300,6 +300,10 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
 
 .form-input {
   @apply block w-full rounded border-grey-100 bg-white text-sm leading-5 font-normal focus:ring-offset-0 focus:ring-0;
+}
+
+.form-input--auth {
+  @apply px-[20px] pt-[11px] pb-[9px] text-base outline-none h-[50px] text-[#535353] rounded-[3px] border border-transparent bg-white;
 }
 
 .invoice-form-wrapper {

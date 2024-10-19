@@ -30,6 +30,7 @@ module.exports = {
         },
         tertiary: {
           DEFAULT: "#DCD6F7",
+          25: "#EFEAFB",
           50: "#DCD6F7",
           100: "#C8BFF2",
           200: "#A090E9",

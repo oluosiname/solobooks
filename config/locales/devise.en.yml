@@ -51,8 +51,12 @@ en:
       send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
       updated: Your password has been changed successfully. You are now signed in.
       updated_not_active: Your password has been changed successfully.
+      new:
+        title: Recover Your Password
     registrations:
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
+      new:
+        title: Create your account
       signed_up: Welcome! You have signed up successfully.
       signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
       signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
@@ -62,14 +66,28 @@ en:
       updated_but_not_signed_in: Your account has been updated successfully, but since your password was changed, you need to sign in again.
     sessions:
       already_signed_out: Signed out successfully.
+      new:
+        title: Sign into your account
       signed_in: Signed in successfully.
       signed_out: Signed out successfully.
     shared:
       links:
+        already_have_an_account: Already have an account?
         already_signed_up: Already have an account? Sign in
+        dont_have_an_account: Don't have an account yet?
         forgot_your_password: Forgot your password?
+        sign_in: Log in
+        sign_out: Log out
         sign_up: Don't have an account? Sign up
+        signed_in_as: Registered as %{email}
+        signed_in_as_admin: Logged in as %{email} (Admin)
         signed_up: Have an account? Sign in
+      not_saved:
+        one: "%{resource} Registration failed: 1 error occurred."
+        other: "%{resource} Registration failed: %{count} Error occurred."
+      notices:
+        signed_in: You are logged in.
+        signed_out: You are logged off.
     unlocks:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
@@ -82,5 +100,5 @@ en:
       not_found: not found
       not_locked: was not locked
       not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
+        one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
