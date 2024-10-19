@@ -25,7 +25,7 @@
       <div class="field  w-full">
         <%= form.label :legal_status, class: "select" do %>
             <%= t('activerecord.attributes.profile.business_type') %>
-            <%= form.select :legal_status, options_for_select([['Individual', 0], ['Business', 1]]), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
+           <%= form.select :legal_status, options_for_select(Profile.legal_statuses.keys.map { |status| [status.humanize, status] }, profile.legal_status), {}, class: "leading-5 px-3 py-2 h-9 mt-1" %>
             <i class="fa-solid fa-angle-down" style="top: calc(50% + 5px)"></i>
           <% end %>
       </div>

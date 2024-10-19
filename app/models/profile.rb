@@ -24,6 +24,8 @@ class Profile < ApplicationRecord
     size: { less_than_or_equal_to: MAX_LOGO_SIZE },
     if: -> { logo.attached? }
 
+  enum legal_status: { individual: 'individual', business: 'business' }
+
   def complete?
     (full_name.present? || business_name.present?) && address.present?
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_18_051629) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,6 +114,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_051629) do
   create_table "invoices", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "date"
+    t.date "due_date"
     t.decimal "total_amount", precision: 10, scale: 2
     t.string "status", default: "draft"
     t.datetime "created_at", null: false
@@ -130,10 +131,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_051629) do
     t.decimal "subtotal", precision: 10, scale: 2
     t.bigint "client_id", null: false
     t.string "vat_technique", default: "exempt", null: false
-    t.date "due_date"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["currency_id"], name: "index_invoices_on_currency_id"
     t.index ["date"], name: "index_invoices_on_date"
+    t.index ["due_date"], name: "index_invoices_on_due_date"
     t.index ["invoice_category_id"], name: "index_invoices_on_invoice_category_id"
     t.index ["invoice_number", "user_id"], name: "index_invoices_on_invoice_number_and_user_id", unique: true
     t.index ["status"], name: "index_invoices_on_status"
@@ -168,7 +169,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_051629) do
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "legal_status", null: false
+    t.string "legal_status", null: false
     t.string "full_name", null: false
     t.string "phone_number"
     t.date "date_of_birth"
