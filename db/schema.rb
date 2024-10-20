@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_20_123457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
     t.datetime "updated_at", null: false
     t.bigint "financial_category_id"
     t.decimal "vat_rate", precision: 5, scale: 2, default: "0.0"
+    t.decimal "vat_amount", precision: 10, scale: 2, default: "0.0", null: false
     t.index ["financial_category_id"], name: "index_financial_transactions_on_financial_category_id"
     t.index ["transaction_type"], name: "index_financial_transactions_on_transaction_type"
     t.index ["user_id"], name: "index_financial_transactions_on_user_id"
@@ -196,6 +197,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
     t.index ["profile_id"], name: "index_settings_on_profile_id"
   end
 
+  create_table "user_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "service", null: false
+    t.string "access_token", null: false
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_tokens_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -232,4 +244,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
   add_foreign_key "profiles", "users"
   add_foreign_key "settings", "currencies"
   add_foreign_key "settings", "profiles"
+  add_foreign_key "user_tokens", "users"
 end

@@ -45,12 +45,26 @@ class FinancialTransaction < ApplicationRecord
     where('LOWER(description) LIKE ?', "%#{description.downcase}%") if description.present?
   }
 
+  before_save :calculate_vat
+
   def income?
     transaction_type == 'Income'
   end
 
   def expense?
     transaction_type == 'Expense'
+  end
+
+  private
+
+  def calculate_vat
+    return if vat_rate.blank? || amount.blank?
+
+    if income?
+      self.vat_amount = amount * (vat_rate / 100)
+    elsif expense?
+      self.vat_amount = amount * (vat_rate / (100 + vat_rate))
+    end
   end
 
   # private
