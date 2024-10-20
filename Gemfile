@@ -52,7 +52,7 @@ gem 'active_storage_validations'
 gem 'rexml', '~> 3.3.3'
 gem 'nokogiri', '~> 1.16.5'
 
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

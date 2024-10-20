@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :profile do
     user
-    legal_status { rand(2) } # Randomly assign legal status
+    legal_status { Profile.legal_statuses.keys.sample }
     full_name { Faker::Name.name }
     phone_number { Faker::PhoneNumber.phone_number }
     date_of_birth { Faker::Date.birthday(min_age: 18, max_age: 65) }

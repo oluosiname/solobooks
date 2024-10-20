@@ -46,13 +46,13 @@ en:
       success: Successfully authenticated from %{kind} account.
     passwords:
       heading: Enter your email address and we'll send you an email with instructions to reset your password.
+      new:
+        title: Recover Your Password
       no_token: You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.
       send_instructions: You will receive an email with instructions on how to reset your password in a few minutes.
       send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
       updated: Your password has been changed successfully. You are now signed in.
       updated_not_active: Your password has been changed successfully.
-      new:
-        title: Recover Your Password
     registrations:
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       new:
@@ -100,5 +100,5 @@ en:
       not_found: not found
       not_locked: was not locked
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
+        one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
