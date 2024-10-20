@@ -60,11 +60,7 @@ class FinancialTransaction < ApplicationRecord
   def calculate_vat
     return if vat_rate.blank? || amount.blank?
 
-    if income?
-      self.vat_amount = amount * (vat_rate / 100)
-    elsif expense?
-      self.vat_amount = amount * (vat_rate / (100 + vat_rate))
-    end
+    self.vat_amount = amount * (vat_rate.to_f / (100 + vat_rate))
   end
 
   # private

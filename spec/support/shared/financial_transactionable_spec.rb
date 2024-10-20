@@ -5,6 +5,14 @@ RSpec.shared_examples 'Financial Transaction' do |_parameter|
     it { is_expected.to belong_to(:user) }
   end
 
+  describe 'callbacks' do
+    it 'calculates VAT before saving' do
+      transaction = build(:financial_transaction, amount: 60, vat_rate: 19)
+      transaction.save
+      expect(transaction.vat_amount).to eq(9.58)
+    end
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:amount) }
     it { is_expected.to validate_presence_of(:date) }
