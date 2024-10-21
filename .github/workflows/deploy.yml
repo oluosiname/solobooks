@@ -28,6 +28,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # SSH key stored in GitHub Secrets
           KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }} # Known hosts to avoid strict host key checking
         run: |
+          mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
