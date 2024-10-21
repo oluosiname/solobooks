@@ -14,14 +14,7 @@ set :pty, true
 # set :linked_files, ['config/database.yml', '.env']
 # set :linked_dirs, ['log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system']
 
-if ENV['GITHUB_ACTIONS']
-  set :ssh_options, {
-    forward_agent: true,
-    user: 'deploy',
-    auth_methods: ['publickey'], # Assuming a public key is being used in GitHub Actions
-    keys: ['~/.ssh/github_action_key'], # GitHub Actions private key path
-  }
-else
+if ENV['LOCAL_DEPLOYMENT']
   set :ssh_options, {
     forward_agent: true,
     user: 'deploy',

@@ -7,3 +7,6 @@ set :rails_env, :production
 set :application, 'solobooks'
 
 set :keep_releases, 5
+
+set :format, :pretty
+set :log_level, :debug
