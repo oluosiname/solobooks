@@ -1,31 +1,38 @@
-name: Deploy via SSH
+name: Deploy Rails App with Capistrano
 
 on:
   push:
     branches:
-      - main
+      - main # Trigger deployment on push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout the code
+        uses: actions/checkout@v3
 
-      - name: Set up SSH and deploy
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.2"
+
+      - name: Install dependencies
         run: |
-          apt-get update && apt-get install -y openssh-client
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          echo "$SSH_PRIVATE_KEY"
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan 188.245.106.45 >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa deploy@188.245.106.45 "echo ssh connection established"
+          gem install bundler
           bundle install
-          cd /var/www/solobooks
-          ls 
-          bundle install
-          bundle exec cap production deploy
+
+      - name: Deploy using Capistrano
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # SSH key stored in GitHub Secrets
+          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }} # Known hosts to avoid strict host key checking
+        run: |
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+          ls -al ~/.ssh/  
+
+          # Run Capistrano deployment
+          bundle exec cap production deploy
