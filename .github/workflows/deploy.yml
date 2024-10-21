@@ -15,10 +15,17 @@ jobs:
 
       - name: Set up SSH and deploy
         run: |
+          apt-get update && apt-get install -y openssh-client
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY"
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 188.245.106.45 >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa deploy@188.245.106.45 "cd /var/www/solobooks && bundle exec cap production deploy"
+          ssh -i ~/.ssh/id_rsa deploy@188.245.106.45 "echo ssh connection established"
+          bundle install
+          cd /var/www/solobooks
+          ls 
+          bundle install
+          bundle exec cap production deploy
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
