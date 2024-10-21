@@ -83,6 +83,11 @@ gem 'simplecov', require: false, group: :test
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'capistrano', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-sidekiq', require: false   # For Sidekiq
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-puma', require: false     # For Puma (if you're using Puma)
   gem 'web-console'
   gem 'letter_opener'
   gem 'letter_opener_web', '~> 2.0'
@@ -96,6 +101,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
 
 group :test do
   gem 'shoulda-matchers', '~> 6.0'
