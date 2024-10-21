@@ -20,5 +20,6 @@ jobs:
 
       - name: Deploy using Capistrano
         run: |
+          gem install bundler
           bundle install
           bundle exec cap production deploy
