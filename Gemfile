@@ -95,6 +95,11 @@ group :development do
   gem 'easy_translate'
   gem 'deepl-rb', '~> 2.5'
 
+
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+  gem 'ed25519', '>= 1.2', '< 2.0'
+
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
