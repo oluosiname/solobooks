@@ -41,3 +41,5 @@
 coverage
 .env
 
+
+/config/credentials/production.key
