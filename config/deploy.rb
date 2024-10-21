@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'capistrano/puma'
-
 set :application, 'solobooks'
 set :repo_url, 'git@github.com:oluosiname/solobooks.git'
 set :deploy_to, '/var/www/solobooks'
@@ -26,4 +24,7 @@ if ENV['LOCAL_DEPLOYMENT']
 end
 
 # Restart Puma after deployment
-after 'deploy:publishing', 'puma:restart'
+namespace :deploy do
+  after :finishing, 'deploy:cleanup'
+  after :finishing, 'puma:restart'
+end
