@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy via SSH
 
 on:
   push:
@@ -13,13 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install SSH key
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy using Capistrano
+      - name: Set up SSH and deploy
         run: |
-          gem install bundler
-          bundle install
-          bundle exec cap production deploy
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 188.245.106.45 >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_rsa deploy@188.245.106.45 "cd /var/www/solobooks && bundle exec cap production deploy"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
