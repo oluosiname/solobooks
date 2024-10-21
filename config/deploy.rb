@@ -13,6 +13,8 @@ set :pty, true
 # Linked files and directories
 # set :linked_files, ['config/database.yml', '.env']
 # set :linked_dirs, ['log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system']
+#
+append :linked_files, 'config/credentials/production.key'
 
 if ENV['LOCAL_DEPLOYMENT']
   set :ssh_options, {
