@@ -83,7 +83,7 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Deploy using Capistrano
+      - name: Deploy to production
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # SSH key stored in GitHub Secrets
           KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }} # Known hosts to avoid strict host key checking
