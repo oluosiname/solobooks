@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_22_200845) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
     t.datetime "updated_at", null: false
     t.bigint "financial_category_id"
     t.decimal "vat_rate", precision: 5, scale: 2, default: "0.0"
+    t.decimal "vat_amount", precision: 10, scale: 2, default: "0.0", null: false
     t.index ["financial_category_id"], name: "index_financial_transactions_on_financial_category_id"
     t.index ["transaction_type"], name: "index_financial_transactions_on_transaction_type"
     t.index ["user_id"], name: "index_financial_transactions_on_user_id"
@@ -196,6 +197,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
     t.index ["profile_id"], name: "index_settings_on_profile_id"
   end
 
+  create_table "user_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "service", null: false
+    t.string "access_token", null: false
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_tokens_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -218,6 +230,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vat_statuses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.boolean "vat_registered", default: true
+    t.string "declaration_period", default: "monthly"
+    t.date "starts_on"
+    t.boolean "kleinunternehmer", default: false
+    t.string "tax_exempt_reason"
+    t.string "vat_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_vat_statuses_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clients", "users"
@@ -232,4 +257,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_091656) do
   add_foreign_key "profiles", "users"
   add_foreign_key "settings", "currencies"
   add_foreign_key "settings", "profiles"
+  add_foreign_key "user_tokens", "users"
+  add_foreign_key "vat_statuses", "users"
 end
