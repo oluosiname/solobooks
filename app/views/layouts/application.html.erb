@@ -12,6 +12,7 @@
     <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" %>
 
     <%= javascript_importmap_tags %>
+    <%= Sentry.get_trace_propagation_meta.html_safe %>
   </head>
 
   <body class="font-body">
