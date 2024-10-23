@@ -10,3 +10,7 @@ set :keep_releases, 5
 
 set :format, :pretty
 set :log_level, :debug
+
+set :default_env, {
+  'SOLOBOOKS_DATABASE_PASSWORD' => ENV['SOLOBOOKS_DATABASE_PASSWORD'],
+}
