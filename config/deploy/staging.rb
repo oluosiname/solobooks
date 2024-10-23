@@ -3,7 +3,7 @@
 server '116.203.61.105', user: 'deploy', roles: ['app', 'db', 'web']
 
 set :branch, 'dev'
-set :rails_env, :staging
+set :rails_env, :production
 set :application, 'solobooks'
 
 set :keep_releases, 5
