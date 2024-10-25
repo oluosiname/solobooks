@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - dev
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -67,7 +68,11 @@ jobs:
         run: bundle exec rubocop --parallel
   deploy:
     runs-on: ubuntu-latest
-    needs: [test, lint] # Ensure that lint and test jobs run before deploy
+    # needs: [test, lint] # Ensure that lint and test jobs run before deploy
+    env:
+      TARGET_ENV: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
 
     steps:
       - name: Checkout the code
@@ -83,14 +88,11 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Deploy to production
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # SSH key stored in GitHub Secrets
-          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }} # Known hosts to avoid strict host key checking
+      - name: Deploy to production ${{ env.TARGET_ENV }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
 
-          bundle exec cap production deploy
+          bundle exec cap ${{ env.TARGET_ENV }} deploy

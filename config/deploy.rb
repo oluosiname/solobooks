@@ -11,7 +11,8 @@ set :rvm_ruby_version, 'ruby-3.2.2' # Specify the Ruby version you want to use w
 set :pty, true
 
 # Linked files and directories
-set :linked_files, ['config/credentials/production.key', '.env', 'config/master.key', 'config/database.yml']
+set :linked_files,
+  ['config/credentials/production.key', '.env', 'config/master.key', 'config/database.yml', '.env.production']
 
 # set :linked_dirs, ['log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system']
 #
