@@ -21,6 +21,8 @@ class User < ApplicationRecord
     :validatable,
     :trackable
 
+  delegate :charges_vat?, to: :vat_status, allow_nil: true
+
   def can_create_invoice?
     profile.present? && profile.complete? && payment_detail.present?
   end
