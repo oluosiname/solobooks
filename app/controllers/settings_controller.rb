@@ -2,8 +2,8 @@
 
 class SettingsController < ApplicationController
   def index
-    unless 2 == 1
-      return redirect_to profile_path, warning: I18n.t('errors.messages.profile_missing')
+    unless current_user.profile
+      return redirect_back(fallback_location: root_path), warning: I18n.t('errors.messages.profile_missing')
     end
 
     @payment_detail = current_user.payment_detail || current_user.build_payment_detail
