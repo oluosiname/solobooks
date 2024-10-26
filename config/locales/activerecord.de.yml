@@ -149,6 +149,13 @@ de:
         password_digest: Passwort-Digest
         remember_me: Erinnern Sie sich an mich
         reset_password_token: Passwort-Token zurücksetzen
+      vat_status:
+        declaration_period: Erklärungszeitraum
+        kleinunternehmer: Kleinunternehmer
+        starts_on: Beginnt am
+        tax_exempt_reason: Steuerbefreiungsgrund
+        vat_number: Umsatzsteueridentifikationsnummer
+        vat_registered: Umsatzsteuerlich registriert
     errors:
       models:
         address:

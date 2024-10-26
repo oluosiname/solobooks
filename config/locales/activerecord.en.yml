@@ -132,6 +132,13 @@ en:
         password_digest: Password digest
         remember_me: Remember me
         reset_password_token: Reset password token
+      vat_status:
+        declaration_period: Declaration period
+        kleinunternehmer: Kleinunternehmer
+        starts_on: Starts on
+        tax_exempt_reason: Tax exempt reason
+        vat_number: VAT number
+        vat_registered: VAT registered
     errors:
       models:
         client:
