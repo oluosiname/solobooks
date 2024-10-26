@@ -151,11 +151,17 @@ de:
         reset_password_token: Passwort-Token zurücksetzen
       vat_status:
         declaration_period: Erklärungszeitraum
+        declaration_periods:
+          annually: Jährlich
+          monthly: Monatlich
+          quarterly: Vierteljährlich
         kleinunternehmer: Kleinunternehmer
         starts_on: Beginnt am
         tax_exempt_reason: Steuerbefreiungsgrund
         vat_number: Umsatzsteueridentifikationsnummer
-        vat_registered: Umsatzsteuerlich registriert
+        vat_registered:
+          'false': Ich bin nicht mehrwertsteuerlich registriert
+          'true': Ich bin mehrwertsteuerlich registriert
     errors:
       models:
         address:
