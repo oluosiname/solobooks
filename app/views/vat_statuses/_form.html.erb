@@ -55,8 +55,8 @@
 
   <!-- Submit Buttons -->
   <div class="field flex justify-end gap-2">
-    <%= f.submit "Save", class: "btn btn-success" %>
-    <%= button_tag "Cancel", data: { action: "turbo-modal#hideModal" }, type: "button", class: "btn btn-secondary" %>
+    <%= f.submit t('forms.buttons.save'), class: "btn btn-success" %>
+    <%= button_tag t("forms.buttons.cancel"), data: { action: "turbo-modal#hideModal" }, type: "button", class: "btn btn-secondary" %>
   </div>
 
 <% end %>
