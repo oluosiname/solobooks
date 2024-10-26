@@ -2,6 +2,9 @@
 
 class SettingsController < ApplicationController
   def index
+    unless current_user.profile
+      return redirect_back(fallback_location: root_path), warning: I18n.t('invoices.new.profile_missing')
+    end
     @payment_detail = current_user.payment_detail || current_user.build_payment_detail
     @setting = current_user.setting || current_user.profile.build_setting
   end
