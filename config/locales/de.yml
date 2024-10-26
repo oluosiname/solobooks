@@ -4,6 +4,7 @@ de:
     messages:
       content_type_invalid: format muss eines der folgenden sein %{authorized_types}
       file_size_not_less_than_or_equal_to: die Dateigröße muss kleiner oder gleich %{max_size} sein (die aktuelle Größe ist %{file_size})
+      profile_missing: Bitte vervollständigen Sie Ihr Profil
   menu:
     clients: Kunden
     invoices: Rechnungen
