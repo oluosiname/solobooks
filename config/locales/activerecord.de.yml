@@ -149,6 +149,19 @@ de:
         password_digest: Passwort-Digest
         remember_me: Erinnern Sie sich an mich
         reset_password_token: Passwort-Token zurücksetzen
+      vat_status:
+        declaration_period: Erklärungszeitraum
+        declaration_periods:
+          annually: Jährlich
+          monthly: Monatlich
+          quarterly: Vierteljährlich
+        kleinunternehmer: Kleinunternehmer
+        starts_on: Erster offener Mehrwertsteuerbericht
+        tax_exempt_reason: Steuerbefreiungsgrund
+        vat_number: Umsatzsteueridentifikationsnummer
+        vat_registered:
+          'false': Ich bin nicht mehrwertsteuerlich registriert
+          'true': Ich bin mehrwertsteuerlich registriert
     errors:
       models:
         address:

@@ -132,6 +132,19 @@ en:
         password_digest: Password digest
         remember_me: Remember me
         reset_password_token: Reset password token
+      vat_status:
+        declaration_period: Declaration Period
+        declaration_periods:
+          annually: Annually
+          monthly: Monthly
+          quarterly: Quarterly
+        kleinunternehmer: Kleinunternehmer
+        starts_on: First Open VAT Report
+        tax_exempt_reason: Tax exempt reason
+        vat_number: VAT number
+        vat_registered:
+          'false': I am not VAT registered
+          'true': I am VAT registered
     errors:
       models:
         client:

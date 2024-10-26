@@ -1,0 +1,62 @@
+<%= form_with(model: @vat_status, url: vat_status_path, local: true) do |f| %>
+  
+  <div id="vat_status_errors">
+    <%= render partial: "partials/resource_error_messages", locals: { resource: @vat_status } %>
+  </div>
+
+  <div class="mb-6">
+
+    <!-- VAT Registered Status -->
+    <fieldset class="mb-4">
+     <div class="mb-4">
+        <%= f.radio_button :vat_registered, true, id: "vat_registered_true", class: 'mr-2' %>
+        <%= f.label :vat_registered, t("activerecord.attributes.vat_status.vat_registered.true"), for: "vat_registered_true", class: "form-input-label" %>
+        <br>
+        <%= f.radio_button :vat_registered, false, id: "vat_registered_false", class: 'mr-2' %>
+        <%= f.label :vat_registered, t("activerecord.attributes.vat_status.vat_registered.false"), for: "vat_registered_false", class: "form-input-label" %>
+      </div>
+    </fieldset>
+
+    <!-- Declaration Period -->
+    <div class="field w-full mb-4">
+      <%= f.label :declaration_period, class: "select" do %>
+        <%= t('activerecord.attributes.vat_status.declaration_period') %>
+        <%= f.select :declaration_period, VatStatus.declaration_periods.keys.map { |key| [t("activerecord.attributes.vat_status.declaration_periods.#{key}"), key] }, {}, class: 'form-input' %>
+        <i class="fa-solid fa-angle-down" style="top: calc(50% + 5px)"></i>
+      <% end %>
+    </div>
+
+
+    <!-- VAT Number -->
+    <div class="field mb-4">
+      <%= f.label :vat_number %>
+      <%= f.text_field :vat_number, class: 'form-input' %>
+    </div>
+
+    <!-- First Open VAT Report (starts_on) -->
+    <div class="field mb-4">
+      <%= f.label :starts_on %>
+      <%= f.date_field :starts_on, class: 'form-input' %>
+    </div>
+
+    <!-- Kleinunternehmer Status -->
+    <div class="field mb-4">
+      <%= f.check_box :kleinunternehmer, class: 'mr-2' %>
+      <%= f.label :kleinunternehmer, class: 'form-input-label' %>
+    </div>
+
+    <!-- Tax Exempt Reason -->
+    <div class="field mb-4">
+      <%= f.label :tax_exempt_reason %>
+      <%= f.text_field :tax_exempt_reason, class: 'form-input' %>
+    </div>
+
+  </div>
+
+  <!-- Submit Buttons -->
+  <div class="field flex justify-end gap-2">
+    <%= f.submit t('forms.buttons.save'), class: "btn btn-success" %>
+    <%= button_tag t("forms.buttons.cancel"), data: { action: "turbo-modal#hideModal" }, type: "button", class: "btn btn-secondary" %>
+  </div>
+
+<% end %>

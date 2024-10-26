@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_one :payment_detail, dependent: :destroy
   has_one :setting, through: :profile
+  has_one :vat_status, dependent: :destroy
   has_many :expenses, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :financial_transactions, dependent: :destroy
@@ -19,6 +20,8 @@ class User < ApplicationRecord
     :rememberable,
     :validatable,
     :trackable
+
+  delegate :charges_vat?, to: :vat_status, allow_nil: true
 
   def can_create_invoice?
     profile.present? && profile.complete? && payment_detail.present?
