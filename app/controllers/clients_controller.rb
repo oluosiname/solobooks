@@ -49,7 +49,7 @@ class ClientsController < ApplicationController
         end
         format.html do
           redirect_to clients_url,
-            notice: i18n.t('record.create.success', resource: @client.class.model_name.human)
+            notice: I18n.t('record.create.success', resource: @client.class.model_name.human)
         end
       else
         format.turbo_stream do
