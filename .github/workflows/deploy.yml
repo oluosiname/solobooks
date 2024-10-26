@@ -1,4 +1,4 @@
-name: Deploy to production
+name: Deploy
 
 on:
   push:
@@ -20,7 +20,6 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      TARGET_ENV: staging # Default value
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -71,17 +70,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test, lint] # Ensure that lint and test jobs run before deploy
     env:
+      TARGET_ENV: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
 
     steps:
-      - name: Set TARGET_ENV for production
-        if: ${{ github.ref_name == 'main' }}
-        run: echo "TARGET_ENV=production" >> $GITHUB_ENV
-
-      - name: Display TARGET_ENV
-        run: echo "TARGET_ENV is ${{ env.TARGET_ENV }}"
-
       - name: Checkout the code
         uses: actions/checkout@v3
 
