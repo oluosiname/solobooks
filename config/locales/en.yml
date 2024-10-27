@@ -23,8 +23,12 @@ en:
     errors:
       messages:
         not_saved:
-          one: '1 error prohibited this %{resource} from being saved:'
+          one: "1 error prohibited this %{resource} from being saved:"
           other: "%{count} errors prohibited this %{resource} from being saved:"
     update:
       error: "%{resource} could not be updated."
       success: "%{resource} was successfully updated."
+  tink:
+    auth:
+      error: "Failed to authenticate with Tink"
+      success: Successfully authenticated

@@ -51,6 +51,9 @@ Rails.application.routes.draw do
     devise_scope :user do
       get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
     end
+
+    get 'tink/connect', to: 'tink#connect'
+    get 'tink/callback', to: 'tink#callback'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
