@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class InvoicesController < ApplicationController
+  include ActiveStorage::SetCurrent
+
   before_action :set_select_options, only: [:new, :create]
   before_action :set_invoice, only: [:send_invoice, :pay, :cancel, :mark_overdue]
 

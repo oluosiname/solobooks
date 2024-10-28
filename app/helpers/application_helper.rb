@@ -31,4 +31,8 @@ module ApplicationHelper
   def pagy_info(pagy, id: nil, item_name: nil)
     %(<span#{id} class="pagy info">#{pagy.from}-#{pagy.to} of #{pagy.count}</span>)
   end
+
+  def presigned_url(blob, disposition: 'attachment', expires_in: 10.minutes)
+    blob.url(disposition: disposition, expires_in:)
+  end
 end

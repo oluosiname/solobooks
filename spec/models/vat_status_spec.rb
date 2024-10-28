@@ -66,7 +66,7 @@ RSpec.describe VatStatus, type: :model do
       let(:kleinunternehmer) { false }
       let(:vat_registered) { false }
 
-      it { is_expected.to be(true) }
+      it { is_expected.to be(false) }
     end
   end
 end
