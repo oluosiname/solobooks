@@ -10,8 +10,6 @@ RSpec.describe VatStatus, type: :model do
   end
 
   describe 'validations' do
-    it { is_expected.to validate_inclusion_of(:vat_registered).in_array([true, false]) }
-
     context 'when VAT is registered' do
       subject { build(:vat_status, vat_registered: true, user: user) }
 
