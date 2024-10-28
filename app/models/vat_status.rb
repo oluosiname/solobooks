@@ -3,8 +3,6 @@
 class VatStatus < ApplicationRecord
   belongs_to :user
 
-  validates :vat_registered, inclusion: { in: [true, false] }
-
   enum declaration_period: { monthly: 'monthly', quarterly: 'quarterly', annually: 'annually' }
 
   validates :starts_on, presence: true, if: -> { vat_registered? }

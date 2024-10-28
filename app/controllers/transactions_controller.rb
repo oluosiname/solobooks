@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TransactionsController < ApplicationController
+  include ActiveStorage::SetCurrent
+
   before_action :build_transaction, only: [:new]
   before_action :set_categories, only: [:new]
 

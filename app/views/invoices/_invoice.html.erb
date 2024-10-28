@@ -22,10 +22,10 @@
 
       <div class="dropdown-body fc-dropdown-open:opacity-100 opacity-0 z-50 transition-all duration-300 bg-white border shadow-md rounded-lg p-2 fc-dropdown">
         <% if invoice.pdf.attached? %>
-          <%= link_to rails_blob_path(invoice.pdf, disposition: "inline"),  target: '_blank',  rel: "noreferrer", class: 'dropdown-item' do %>
-            <i class="fa-solid fa-eye mr-2"></i> <%= t('invoices.index.table.actions.view') %>
+          <%= link_to presigned_url(invoice.pdf.blob, disposition: 'inline'), target: '_blank',  rel: "noreferrer", class: 'dropdown-item' do %>
+            <i class="fa-solid fa-download mr-2"></i> <%= t('invoices.index.table.actions.view') %>
           <% end %>
-          <%= link_to rails_blob_path(invoice.pdf, disposition: "attachment"), class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %>
+          <%= link_to presigned_url(invoice.pdf.blob, disposition: 'inline'), class: 'dropdown-item',  target: '_blank',  rel: "noreferrer" do %>
             <i class="fa-solid fa-download mr-2"></i> <%= t('invoices.index.table.actions.download') %>
           <% end %>
         <% end %>
