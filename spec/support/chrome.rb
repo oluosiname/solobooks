@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+DEFAULT_HOST = 'example.local'
+DEFAULT_PORT = 9887
+DEFAULT_SUBDOMAIN = 'app'
+
 Capybara.register_driver :selenium_chrome_headless do |app|
   version = Capybara::Selenium::Driver.load_selenium
   options_key = Capybara::Selenium::Driver::CAPS_VERSION.satisfied_by?(version) ? :capabilities : :options
@@ -17,6 +21,8 @@ end
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
+    Capybara.app_host = "http://#{DEFAULT_SUBDOMAIN}.example.local"
+
     if ENV['SHOW_BROWSER'] == 'true'
       driven_by :selenium_chrome
     else
@@ -25,6 +31,10 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :js, type: :system) do
+    Capybara.default_host = "http://#{DEFAULT_HOST}"
+    Capybara.server_port = DEFAULT_PORT
+    Capybara.app_host = "http://#{DEFAULT_SUBDOMAIN}.#{DEFAULT_HOST}:#{Capybara.server_port}"
+
     if ENV['SHOW_BROWSER'] == 'true'
       driven_by :selenium_chrome
     else
