@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         }
 
       root 'home#index'
+      resource :vat_status, only: [:create, :update, :show]
 
       resources :invoices, only: [:new, :create, :index] do
         get :vat_technique, on: :collection
@@ -53,13 +54,8 @@ Rails.application.routes.draw do
       resources :payment_details, only: [:update, :create]
       resources :settings, only: [:index, :update, :create]
 
-      resource :vat_status, only: [:create, :update, :show]
-
       devise_scope :user do
         get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
-        devise_scope :user do
-          get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
-        end
       end
     end
   end
