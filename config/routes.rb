@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :site do
+    get 'landing_pages/show'
+  end
   # Defines the root path route ("/")
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   constraints subdomain: '' do
     scope '(:locale)', locale: /en|de/ do
-      get 'landing', to: 'landing_pages#show'
+      root 'site/landing_pages#show'
     end
   end
 
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
           registrations: 'users/registrations',
         }
 
-      root 'home#index'
+      root 'home#index', as: :app_root
       resource :vat_status, only: [:create, :update, :show]
 
       resources :invoices, only: [:new, :create, :index] do
