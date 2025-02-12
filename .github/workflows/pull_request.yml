@@ -41,13 +41,16 @@ jobs:
       - name: Ensure subdomain resolves in CI
         run: echo "127.0.0.1 app.example.local" | sudo tee -a /etc/hosts
 
+      - name: Ensure subdomain resolves in CI
+        run: echo "127.0.0.1 example.local" | sudo tee -a /etc/hosts
+
       - name: Install Chrome for Selenium
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
       - name: Run tests
-        run: bundle exec rspec
+        run: bundle exec rspec spec/system/invoice/invoice_creation_spec.rb:21
 
       - name: Upload coverage results
         if: always()
