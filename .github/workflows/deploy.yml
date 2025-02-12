@@ -20,6 +20,9 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      DEFAULT_HOST: "example.local"
+      DEFAULT_SUBDOMAIN: "app"
+      DEFAULT_PORT: "3001"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,6 +36,18 @@ jobs:
         run: bin/rails db:schema:load
       - name: compile assets
         run: bundle exec rake assets:precompile
+
+      - name: Ensure subdomain resolves in CI
+        run: echo "127.0.0.1 app.example.local" | sudo tee -a /etc/hosts
+
+      - name: Ensure subdomain resolves in CI
+        run: echo "127.0.0.1 example.local" | sudo tee -a /etc/hosts
+
+      - name: Install Chrome for Selenium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
       - name: Run tests
         run: bundle exec rspec
 
