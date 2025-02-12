@@ -16,9 +16,9 @@ Capybara.register_driver :selenium_chrome_headless do |app|
 end
 
 RSpec.configure do |config|
-  DEFAULT_HOST = ENV.fetch('DEFAULT_HOST', 'example.local') # Use localhost for CI
+  DEFAULT_HOST = ENV.fetch('DEFAULT_HOST', 'example.local') # Change from example.local to localhost
   DEFAULT_SUBDOMAIN = ENV.fetch('DEFAULT_SUBDOMAIN', 'app')
-  DEFAULT_PORT = ENV.fetch('DEFAULT_PORT', '9887')
+  DEFAULT_PORT = ENV.fetch('DEFAULT_PORT', '3001')
 
   config.before(:each, type: :system) do
     Capybara.app_host = "http://#{DEFAULT_SUBDOMAIN}.#{DEFAULT_HOST}"
@@ -33,7 +33,7 @@ RSpec.configure do |config|
   config.before(:each, :js, type: :system) do
     Capybara.server_host = DEFAULT_HOST
     Capybara.server_port = DEFAULT_PORT.to_i
-    Capybara.app_host = "http://#{DEFAULT_SUBDOMAIN}.#{DEFAULT_HOST}:#{Capybara.server_port}"
+    Capybara.app_host = "http://#{DEFAULT_SUBDOMAIN}.#{DEFAULT_HOST}:#{DEFAULT_PORT}"
 
     if ENV['SHOW_BROWSER'] == 'true'
       driven_by :selenium_chrome

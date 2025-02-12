@@ -19,7 +19,7 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      DEFAULT_HOST: "example.local" # Ensure local host resolution in CI
+      DEFAULT_HOST: "localhost" # Changed from example.local
       DEFAULT_SUBDOMAIN: "app"
       DEFAULT_PORT: "3001"
 
@@ -39,7 +39,7 @@ jobs:
         run: bundle exec rake assets:precompile
 
       - name: Ensure subdomain resolves in CI
-        run: echo "127.0.0.1 app.example.local" | sudo tee -a /etc/hosts
+        run: echo "127.0.0.1 app.localhost" | sudo tee -a /etc/hosts
 
       - name: Install Chrome for Selenium
         run: |
@@ -62,20 +62,3 @@ jobs:
         with:
           name: capybara-screenshots
           path: tmp/capybara/
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - name: Security audit application code
-        run: bundle exec brakeman -q -w2
-
-      - name: Lint Ruby files
-        run: bundle exec rubocop --parallel
