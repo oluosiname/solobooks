@@ -19,7 +19,7 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      DEFAULT_HOST: "localhost" # Changed from example.local
+      DEFAULT_HOST: "example.local" # Changed from example.local
       DEFAULT_SUBDOMAIN: "app"
       DEFAULT_PORT: "3001"
 
@@ -39,7 +39,7 @@ jobs:
         run: bundle exec rake assets:precompile
 
       - name: Ensure subdomain resolves in CI
-        run: echo "127.0.0.1 app.localhost" | sudo tee -a /etc/hosts
+        run: echo "127.0.0.1 app.example.local" | sudo tee -a /etc/hosts
 
       - name: Install Chrome for Selenium
         run: |
