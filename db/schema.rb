@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_22_200845) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_16_133112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_22_200845) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+  end
+
+  create_table "bank_connections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "institution_id"
+    t.string "requisition_id"
+    t.string "account_id"
+    t.string "connection_service"
+    t.string "status"
+    t.datetime "last_sync_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "bank_name"
+    t.string "account_number"
+    t.index ["account_id"], name: "index_bank_connections_on_account_id"
+    t.index ["last_sync_at"], name: "index_bank_connections_on_last_sync_at"
+    t.index ["requisition_id"], name: "index_bank_connections_on_requisition_id", unique: true
+    t.index ["user_id"], name: "index_bank_connections_on_user_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -197,14 +215,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_22_200845) do
     t.index ["profile_id"], name: "index_settings_on_profile_id"
   end
 
-  create_table "user_tokens", force: :cascade do |t|
+  create_table "synced_transactions", force: :cascade do |t|
+    t.string "creditor_name"
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.date "booked_at", null: false
+    t.string "transaction_id", null: false
+    t.string "currency", null: false
     t.bigint "user_id", null: false
-    t.string "service", null: false
-    t.string "access_token", null: false
-    t.string "refresh_token"
-    t.datetime "expires_at"
+    t.string "status", default: "pending", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["transaction_id"], name: "index_synced_transactions_on_transaction_id", unique: true
+    t.index ["user_id"], name: "index_synced_transactions_on_user_id"
+  end
+
+  create_table "user_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.string "service"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service", "user_id"], name: "index_user_tokens_on_service_and_user_id", unique: true
     t.index ["user_id"], name: "index_user_tokens_on_user_id"
   end
 
@@ -245,6 +278,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_22_200845) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bank_connections", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "financial_transactions", "financial_categories"
   add_foreign_key "financial_transactions", "users"
@@ -257,6 +291,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_22_200845) do
   add_foreign_key "profiles", "users"
   add_foreign_key "settings", "currencies"
   add_foreign_key "settings", "profiles"
+  add_foreign_key "synced_transactions", "users"
   add_foreign_key "user_tokens", "users"
   add_foreign_key "vat_statuses", "users"
 end

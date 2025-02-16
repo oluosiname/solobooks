@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :expenses, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :financial_transactions, dependent: :destroy
+  has_many :bank_connections, dependent: :destroy
+  has_many :synced_transactions, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

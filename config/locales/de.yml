@@ -1,11 +1,45 @@
 ---
 de:
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: etwa eine Stunde
+        other: etwa %{count} Stunden
+      about_x_months:
+        one: etwa ein Monat
+        other: etwa %{count} Monate
+      about_x_years:
+        one: etwa ein Jahr
+        other: etwa %{count} Jahre
+      half_a_minute: eine halbe Minute
+      less_than_x_minutes:
+        one: weniger als eine Minute
+        other: weniger als %{count} Minuten
+      less_than_x_seconds:
+        one: weniger als eine Sekunde
+        other: weniger als %{count} Sekunden
+      over_x_years:
+        one: mehr als ein Jahr
+        other: mehr als %{count} Jahre
+      x_days:
+        one: ein Tag
+        other: "%{count} Tage"
+      x_minutes:
+        one: eine Minute
+        other: "%{count} Minuten"
+      x_months:
+        one: ein Monat
+        other: "%{count} Monate"
+      x_seconds:
+        one: eine Sekunde
+        other: "%{count} Sekunden"
   errors:
     messages:
       content_type_invalid: format muss eines der folgenden sein %{authorized_types}
       file_size_not_less_than_or_equal_to: die Dateigröße muss kleiner oder gleich %{max_size} sein (die aktuelle Größe ist %{file_size})
       profile_missing: Bitte vervollständigen Sie Ihr Profil
   menu:
+    bank_connections: Bankverbindungen
     clients: Kunden
     invoices: Rechnungen
     logout: Abmelden

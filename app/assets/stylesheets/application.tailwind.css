@@ -293,8 +293,20 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
   @apply bg-danger-700 text-white;
 }
 
+.btn-danger-outline {
+  @apply text-danger-700 bg-white border-danger-700 border;
+}
+
 .btn--icon {
   @apply items-center justify-center gap-2;
+}
+
+.btn-muted {
+  @apply bg-grey-100 text-grey-700;
+}
+
+.btn-muted:hover {
+  @apply bg-grey-200 text-grey-700;
 }
 /* form inputs */
 
@@ -457,4 +469,8 @@ form {
   .select2-selection--single
   .select2-selection__arrow {
   @apply !top-1;
+}
+
+#select2-bank-select-results {
+  max-height: 350px !important;
 }

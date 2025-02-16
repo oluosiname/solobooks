@@ -15,6 +15,10 @@ en:
       reset_password: Reset password
       save: Save
       sign_up: Sign up
+      submit: Submit
+    labels:
+      bank_connections:
+        select_bank: Select Bank
     legends:
       client:
         address: Address
@@ -35,6 +39,8 @@ en:
         personal_information: Personal Information
         tax_information: Tax Information
     placeholders:
+      bank_connections:
+        select_bank: Choose a Bank
       invoice:
         client: Client
         date: DD-MM-YYYY

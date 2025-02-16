@@ -1,0 +1,13 @@
+---
+en:
+  bank_connections:
+    index:
+      actions:
+        new: Connect A Bank Account
+    show:
+      actions:
+        last_synced_at: Last Synced At
+        no_unchecked_transactions: No Unchecked Transactions
+        reconnect: Reconnect
+        sync: Sync Now
+      unchecked_transactions: " %{unchecked} Unchecked Transactions"

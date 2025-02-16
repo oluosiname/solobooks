@@ -51,6 +51,13 @@ Rails.application.routes.draw do
     devise_scope :user do
       get 'instructions_sent', to: 'users/confirmations#instructions_sent', as: :confirmation_instructions_sent
     end
+
+    resources :bank_connections, only: [:new, :index, :create] do
+      collection do
+        get :ppp
+        get :callback
+      end
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

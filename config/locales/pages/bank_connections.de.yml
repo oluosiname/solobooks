@@ -1,0 +1,13 @@
+---
+de:
+  bank_connections:
+    index:
+      actions:
+        new: Neue Bankverbindung
+    show:
+      actions:
+        last_synced_at: Zuletzt synchronisiert am
+        no_unchecked_transactions: Keine ungeprüften Transaktionen
+        reconnect: Neu verbinden
+        sync: Jetzt synchronisieren
+      unchecked_transactions: " %{unchecked} Nicht geprüfte Transaktionen"

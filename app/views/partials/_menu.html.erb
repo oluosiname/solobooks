@@ -36,16 +36,16 @@
         <span class="menu-text">  <%= t("menu.taxes") %> </span>
         </a>
       </li>
-    
+
       <li class="menu-item">
-        <a href="javascript:void(0)" class="menu-link">
-        <span class="menu-icon">
-        <i class="ph-duotone ph-seal-check"></i>
-        </span>
-        <span class="menu-text"> Badge Items </span>
-        <span class="badge bg-danger rounded ms-auto">Hot</span>
-        </a>
+        <%= link_to bank_connections_path, class: "menu-link waves-effect" do %>
+         <i class="fa-solid fa-building-columns"></i>
+        
+          <span class="menu-text"> <%= t("menu.bank_connections") %> </span>
+          <span class="badge bg-danger rounded ms-auto">New </span>
+        <% end %>
       </li>
+    
     
        <li class="menu-item">
          <%= link_to profile_path, class: "menu-link waves-effect" do %>
