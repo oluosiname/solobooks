@@ -4,10 +4,12 @@ original_locale = Faker::Config.locale
 Faker::Config.locale = 'de'
 
 7.times do
-  BankConnection.create(
+  BankConnection.create!(
     bank_name: Faker::Bank.name,
     account_id: SecureRandom.hex(8),
-    account_number: Faker::Bank.account_number,
+    account_number: Faker::Bank.iban,
+    requisition_id: SecureRandom.hex(8),
+    institution_id: SecureRandom.hex(4),
     status: 'active',
     connection_service: 'gocardless',
     last_sync_at: Faker::Time.between(from: 4.days.ago, to: Time.current),

@@ -27,6 +27,28 @@ class BankConnectionsController < ApplicationController
     redirect_to new_bank_connection_path, alert: e.message
   end
 
+  def callback
+    accounts = bank_service.account_id(session[:bank_requisition_id])
+
+    accounts.each do |account_id|
+      current_user.bank_connections.create!(
+        requisition_id: session[:bank_requisition_id],
+        institution_id: session[:bank_institution_id],
+        account_id: account_id,
+        status: 'active',
+        connection_service: 'gocardless',
+      )
+    end
+
+    session.delete(:bank_requisition_id)
+    session.delete(:bank_institution_id)
+
+    redirect_to bank_connections_path,
+      notice: I18n.t('record.create.success', resource: BankConnection.model_name.human)
+  rescue => e
+    redirect_to root_path, alert: e.message
+  end
+
   private
 
   def bank_service

@@ -34,6 +34,20 @@ module GoCardlessService
       raise BankConnectionError, 'Failed to fetch banks'
     end
 
+    def accounts(requisition_id)
+      requisition_data = @client.requisition.get_requisition_by_id(requisition_id)
+
+      requisition_data['accounts']
+
+      # To get things like currency acocunt name etc
+      # account = @client.account(account_id(requisition_id))
+
+      # account.get_details
+    rescue StandardError => e
+      Rails.logger.error("Failed to fetch account data: #{e.message}")
+      raise BankConnectionError, 'Failed to fetch account data'
+    end
+
     private
 
     def ensure_token
