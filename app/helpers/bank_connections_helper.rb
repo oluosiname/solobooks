@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
 module BankConnectionsHelper
-  def bank_connection_status_tag(bank_connection)
-    icon_class = bank_connection.active? ? 'fa-regular fa-circle-check' : 'fa-regular fa-circle-xmark'
-    text_color = bank_connection.active? ? 'text-green-400' : 'text-danger-400'
-    status_text = bank_connection.active? ? 'Connected' : 'Disconnected'
+  CONNECTION_ICONS_CSS = {
+    active: 'fa-regular fa-circle-check text-green-400',
+    inactive: 'fa-solid fa-triangle-exclamation text-yellow-400',
+    error: 'fa-regular fa-circle-xmark text-danger-400',
+    disconnected: 'fa-regular fa-circle-xmark text-danger-400',
+  }.freeze
 
+
+  def bank_connection_status_tag(bank_connection)
     content_tag(:div, class: 'flex gap-2') do
-      content_tag(:i, nil, class: "#{icon_class} #{text_color}") +
-        content_tag(:span, status_text, class: 'text-sm text-gray-600 capitalize')
+      content_tag(:i, nil, class: CONNECTION_ICONS_CSS[bank_connection.status.to_sym]) +
+        content_tag(:span, bank_connection.status, class: 'text-sm text-gray-600 capitalize')
     end
   end
 end

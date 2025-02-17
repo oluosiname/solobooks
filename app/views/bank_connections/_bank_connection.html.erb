@@ -1,0 +1,82 @@
+<div id="bank-connection-<%= bank_connection.id %>" 
+     class="bg-white rounded-lg shadow-sm p-6 flex flex-col gap-4 border border-gray-100 
+     <%= 'opacity-50' if !bank_connection.sync_enabled %>">
+  
+  <div class="flex items-start justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+        <i class="fa-solid fa-building-columns"></i>
+      </div>
+      <div>
+        <h3 class="font-medium text-gray-900"><%= bank_connection.bank_name %></h3>
+        <p class="text-sm text-gray-500"><%= bank_connection.account_number %></p>
+      </div>
+    </div>
+
+    <!-- Toggle Switch -->
+    <div>
+
+      <%= form_with model: bank_connection, url: toggle_bank_connection_path(bank_connection), method: :patch, remote: true, data: { controller: "bank-connection", turbo_frame: "bank-connection-#{bank_connection.id}" } do |f| %>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <%= f.check_box :active, checked: bank_connection.sync_enabled, class: "sr-only peer", data: { action: "change->bank-connection#update" } %>
+  
+          <!-- Toggle Container -->
+          <div class="block relative bg-gray-300 w-8 h-4 pt-[2px] rounded-full 
+                      before:absolute before:bg-white before:w-3 before:h-3 before:rounded-full 
+                      before:transition-all before:duration-200 before:left-1 peer-checked:before:left-4 peer-checked:bg-tertiary-400">
+          </div>
+        </label>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <% unchecked = [0, 1, 2, 3, 0, 4, 5].sample %>
+    <% if unchecked.zero? %>
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <i class="fa-solid fa-check text-green-600"></i>
+        <span><%= t("bank_connections.show.no_unchecked_transactions") %></span>
+      </div>
+    <% else %>
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <i class="fa-solid fa-circle-exclamation text-[#eba20d]"></i>
+        <%= link_to '/', class: 'text-primary-800' do %>
+          <%= t("bank_connections.show.unchecked_transactions", unchecked: unchecked) %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="flex items-center gap-2 text-sm text-gray-600">
+      <i class="fa-solid fa-rotate"></i>
+      <% if bank_connection.last_sync_at.present? %>
+        <span><%= t("bank_connections.show.last_sync") %> <%= time_ago_in_words(bank_connection.last_sync_at) %> ago</span>
+      <% else %>
+        <span><%= t("bank_connections.show.never_synced") %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <% if bank_connection.sync_enabled %>
+    <div class="flex flex-col gap-3 pt-2 border-t border-gray-100">
+      <div class="flex items-center justify-between">
+        <%= bank_connection_status_tag(bank_connection) %>
+        <span class="text-sm text-gray-500"><%= bank_connection.created_at.strftime("%b %e, %Y") %></span>
+      </div>
+
+      <div class="flex gap-2">
+        <% if bank_connection.active? %>
+          <button class="btn btn-muted btn-sm btn--icon text-gray-700">
+            <i class="fa-solid fa-rotate"></i>
+            <%= t("bank_connections.show.actions.sync") %>
+          </button>
+        <% else %>
+            <button class="btn btn-dark btn-sm btn--icon">
+              <%= t("bank_connections.show.actions.reconnect") %>
+            </button>
+
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

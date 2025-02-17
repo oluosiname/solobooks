@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BankConnectionsController < ApplicationController
+  before_action :set_bank_connection, only: [:toggle]
+
   def index
     @bank_connections = current_user.bank_connections
   end
@@ -46,9 +48,28 @@ class BankConnectionsController < ApplicationController
     redirect_to root_path, alert: e.message
   end
 
+  def toggle
+    @bank_connection.update(sync_enabled: !@bank_connection.sync_enabled)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "bank-connection-#{@bank_connection.id}",
+          partial: 'bank_connections/bank_connection',
+          locals: { bank_connection: @bank_connection },
+        )
+      end
+      format.html { redirect_to bank_connections_path, notice: t('bank_connections.updated') }
+    end
+  end
+
   private
 
   def bank_service
     @bank_service ||= GoCardlessService::BankConnection.new
+  end
+
+  def set_bank_connection
+    @bank_connection = BankConnection.find(params[:id])
   end
 end

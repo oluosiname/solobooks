@@ -474,3 +474,8 @@ form {
 #select2-bank-select-results {
   max-height: 350px !important;
 }
+
+/* Toggle Switch */
+input:checked ~ .switch {
+  @apply left-[18px];
+}

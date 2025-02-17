@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_17_204525) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_17_210703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_17_204525) do
     t.datetime "updated_at", null: false
     t.string "bank_name"
     t.string "account_number"
+    t.boolean "sync_enabled", default: true
     t.index ["account_id"], name: "index_bank_connections_on_account_id"
     t.index ["last_sync_at"], name: "index_bank_connections_on_last_sync_at"
     t.index ["requisition_id"], name: "index_bank_connections_on_requisition_id", unique: true

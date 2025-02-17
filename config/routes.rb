@@ -54,8 +54,10 @@ Rails.application.routes.draw do
 
     resources :bank_connections, only: [:new, :index, :create] do
       collection do
-        get :ppp
         get :callback
+      end
+      member do
+        patch :toggle
       end
     end
   end
