@@ -7,6 +7,7 @@ class BankConnection < ApplicationRecord
   validates :institution_id, presence: true
   validates :account_id, presence: true
 
+
   after_create :sync
 
   after_create_commit :clean_up_deleted_accounts
@@ -33,6 +34,15 @@ class BankConnection < ApplicationRecord
     def bank_name(institution_id)
       bank = banks.find { |bank| bank['id'] == institution_id }
       bank['name'] if bank
+    end
+
+    def bank_logos(country = 'DE')
+      result = {}
+      banks.each do |bank|
+        result[bank['id']] = bank['logo']
+      end
+
+      result
     end
   end
 

@@ -5,6 +5,8 @@ class BankConnectionsController < ApplicationController
 
   def index
     @bank_connections = current_user.bank_connections
+
+    @bank_logos = BankConnection.bank_logos
   end
 
   def new
@@ -36,6 +38,7 @@ class BankConnectionsController < ApplicationController
         account_id: account_id,
         status: 'active',
         connection_service: 'gocardless',
+        account_number: account['iban'],
         bank_name: BankConnection.bank_name(account['institution_id']),
       )
     end
