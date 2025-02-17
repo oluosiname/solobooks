@@ -36,16 +36,31 @@ module GoCardlessService
 
     def accounts(requisition_id)
       requisition_data = @client.requisition.get_requisition_by_id(requisition_id)
+      account_ids = requisition_data['accounts']
 
-      requisition_data['accounts']
-
-      # To get things like currency acocunt name etc
-      # account = @client.account(account_id(requisition_id))
-
-      # account.get_details
+      account_ids.map {|account_id| @client.account(account_id).get }
     rescue StandardError => e
       Rails.logger.error("Failed to fetch account data: #{e.message}")
       raise BankConnectionError, 'Failed to fetch account data'
+    end
+
+    def account(account_id)
+      @client.account(account_id).get_details
+    rescue StandardError => e
+      Rails.logger.error("Failed to fetch account: #{e.message}")
+      raise BankConnectionError, "Failed to fetch account: #{e.message}"
+    end
+
+    def transactions(account_id, date_from, date_to)
+      return unless account_id
+
+      account = @client.account(account_id)
+
+      account.get_transactions(date_from:, date_to:)
+    rescue StandardError => e
+      Rails.logger.error("Failed to sync transactions: #{e.message}")
+      bank_connection.update!(active: false) if connection_expired?(e)
+      raise BankConnectionError, 'Failed to sync transactions'
     end
 
     private

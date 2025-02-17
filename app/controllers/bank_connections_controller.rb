@@ -7,9 +7,7 @@ class BankConnectionsController < ApplicationController
 
   def new
     @bank_connection = current_user.bank_connections.new
-    @banks = Rails.cache.fetch('banks', expires_in: 24.hours) do
-      bank_service.banks
-    end
+    @banks = BankConnection.banks
   end
 
   def create
@@ -20,7 +18,6 @@ class BankConnectionsController < ApplicationController
     )
 
     session[:bank_requisition_id] = result['id']
-    session[:bank_institution_id] = params[:bank_connection][:institution_id]
 
     redirect_to result['link'], allow_other_host: true
   rescue => e
@@ -28,20 +25,20 @@ class BankConnectionsController < ApplicationController
   end
 
   def callback
-    accounts = bank_service.account_id(session[:bank_requisition_id])
+    accounts = bank_service.accounts(session[:bank_requisition_id])
 
-    accounts.each do |account_id|
+    accounts.each do |account|
       current_user.bank_connections.create!(
         requisition_id: session[:bank_requisition_id],
-        institution_id: session[:bank_institution_id],
+        institution_id: account['institution_id'],
         account_id: account_id,
         status: 'active',
         connection_service: 'gocardless',
+        bank_name: BankConnection.bank_name(account['institution_id']),
       )
     end
 
     session.delete(:bank_requisition_id)
-    session.delete(:bank_institution_id)
 
     redirect_to bank_connections_path,
       notice: I18n.t('record.create.success', resource: BankConnection.model_name.human)
