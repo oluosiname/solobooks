@@ -7,6 +7,8 @@ class BankConnection < ApplicationRecord
   validates :institution_id, presence: true
   validates :account_id, presence: true
 
+  after_create :sync
+
   after_create_commit :clean_up_deleted_accounts
 
   enum status: {
@@ -35,6 +37,10 @@ class BankConnection < ApplicationRecord
   end
 
   private
+
+  def sync
+    BankTransactionsSyncJob.perform_async(id)
+  end
 
   def clean_up_deleted_accounts
     BankConnectionEnrichJob.perform_async(id)

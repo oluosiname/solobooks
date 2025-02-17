@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_16_133112) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_17_204525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -225,6 +225,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_16_133112) do
     t.string "status", default: "pending", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
     t.index ["transaction_id"], name: "index_synced_transactions_on_transaction_id", unique: true
     t.index ["user_id"], name: "index_synced_transactions_on_user_id"
   end
