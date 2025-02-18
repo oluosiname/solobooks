@@ -1,0 +1,30 @@
+
+<div class="bg-gray-100 py-10">
+  <div class="max-w-4xl mx-auto text-center">
+    <!-- Illustration -->
+    <div class="flex justify-center mb-6">
+      <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center shadow-md">
+        <i class="fa-solid fa-link text-blue-600 text-4xl"></i>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-xl font-semibold text-gray-900">
+      <%= @bank_connections.empty? ? 'You have not connected any Bank Account': 'Your Bank Accounts Are Connected' %>
+    </h2>
+
+    <!-- Description -->
+    <p class="text-gray-600 mt-2 max-w-lg mx-auto">
+      Monitor and manage your bank connections effortlessly. Keep track of your transactions and sync them for the latest updates.
+    </p>
+
+    <!-- Action Button -->
+    <div class="mt-6">
+      <%= link_to new_bank_connection_path do %>
+        <button class="btn btn-primary btn-md btn-icon ">
+          <i class="fa-solid fa-building-columns me-2"></i>
+          <%= t("bank_connections.index.actions.new") %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

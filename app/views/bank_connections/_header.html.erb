@@ -1,0 +1,9 @@
+<div class="md:p-6" %>
+  <% if @bank_connections.empty? %>
+    <!-- Show Empty State -->
+    <%= render "bank_connections/empty_state" %>
+  <% else %>
+    <!-- Show Header for Connected Accounts -->
+    <%= render "bank_connections/existing_connections" %>
+  <% end %>
+</div>

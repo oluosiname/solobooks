@@ -1,15 +1,12 @@
-
-<div class="flex justify-center mb-4 pt-4 pb-0 px-4 md:p-0">
-  <%= link_to new_bank_connection_path do %>
-    <button class="btn btn-primary btn-md btn-icon ">
-      <i class="fa-solid fa-building-columns me-2"></i>
-      <%= t("bank_connections.index.actions.new") %></button>
-  <% end %>
+<div class="hidden md:block">
+  <%= render "header" %>
+</div>
+<div class="md:hidden">
+  <%= render "header_mobile" %>
 </div>
 
-
 <div class="w-full mx-auto p-2 md:p-6">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-10">
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-10">
     <%= render @bank_connections %>
   </div>
 </div>

@@ -1,0 +1,57 @@
+<div class="card p-6 flex flex-col">
+  <h2 class="text-2xl font-semibold text-gray-800">Connect Your Bank Account</h2>
+  <div class="flex flex-col-reverse md:flex-row">
+    <div class="flex-1 pr-6 flex justify-center flex-col">
+
+    <p class="text-gray-600 mt-2">
+      Securely connect your bank to automatically retrieve your transactions and categorize your finances efficiently.
+    </p>
+
+    <!-- Step-by-step instructions -->
+    <div class="mt-4 space-y-4">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 flex items-center justify-center bg-tertiary-400 text-white rounded-full font-semibold">
+          1
+        </div>
+        <p class="text-gray-700">
+          Choose your bank from the list and grant permission to connect.
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 flex items-center justify-center bg-tertiary-400 text-white rounded-full font-semibold">
+          2
+        </div>
+        <p class="text-gray-700">
+          We will securely retrieve your recent transactions for analysis.
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 flex items-center justify-center bg-tertiary-400 text-white rounded-full font-semibold">
+          3
+        </div>
+        <p class="text-gray-700">
+          You can review and categorize transactions as needed.
+        </p>
+      </div>
+    </div>
+
+    <!-- Legal Disclaimer -->
+    <p class="text-xs text-gray-500 mt-6">
+      By proceeding, you agree to our <a href="#" class="text-tertiary-500 underline">Terms of Service</a> and 
+      <a href="#" class="text-tertiary-500 underline">Privacy Policy</a>. We do not store your banking credentials.
+    </p>
+    </div>
+
+    <!-- Right Section: Form & Illustration -->
+    <div class="flex-1 flex flex-col justify-center items-center">
+      <%# <img src="https://via.placeholder.com/250" alt="Bank connection illustration" class="mb-6"> %>
+      <%= image_tag "bank.svg", class: "w-[10rem]" %>
+
+      <%# <%= image_tag "bank.svg", class: "w-[10rem]" %>
+
+      <%= render "form", banks: @banks, formats: :html %>
+    </div>
+  </div>
+</div>

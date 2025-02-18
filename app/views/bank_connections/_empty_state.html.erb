@@ -1,0 +1,44 @@
+
+
+<div class="w-full md:max-w-3xl mx-auto p-2 md:p-8">
+<!-- Main Banner -->
+  <div class="relative overflow-hidden bg-gradient-to-br from-primary-600 to-tertiary-700 rounded-2xl p-8 text-center">
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 left-0 w-full h-full">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
+        <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 space-y-6">
+        <!-- Icon -->
+        <div class="inline-flex items-center justify-center p-3 bg-white/10 backdrop-blur-sm rounded-xl">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 16v-4a8 8 0 0 0-16 0v4m16 0v4H4v-4m16 0h-4a2 2 0 0 1-4 0h-4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <!-- Text -->
+        <div class="space-y-3">
+            <h2 class="text-2xl font-semibold text-white">
+                Simplify Your Financial Tracking
+            </h2>
+            <p class="text-blue-100 max-w-md mx-auto">
+                Connect your accounts to automatically track and categorize all your transactions in one place
+            </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <%= link_to new_bank_connection_path do %>
+              <button class="btn btn-white btn-md btn-icon ">
+                <i class="fa-solid fa-building-columns me-2"></i>
+                <%= t("bank_connections.index.actions.new") %></button>
+            <% end %>
+            <button class="btn btn-dark btn-md hidden md:block">
+                Learn More
+            </button>
+        </div>
+    </div>
+  </div>
+</div>

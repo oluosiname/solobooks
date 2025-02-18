@@ -285,6 +285,10 @@ transition-all ease-in-out px-3 py-1.5 border-transparent font-normal;
   @apply bg-tertiary-400 text-white;
 }
 
+.btn-white {
+  @apply bg-white text-tertiary-400;
+}
+
 .btn-success {
   @apply bg-green-500 text-white;
 }

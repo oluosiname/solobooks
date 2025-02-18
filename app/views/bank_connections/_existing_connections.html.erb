@@ -1,0 +1,24 @@
+<div class="flex justify-between items-center bg-tertiary-400 text-white p-4 rounded-lg shadow-md">
+  <!-- Left Side: Status Message -->
+  <div>
+    <h2 class="text-lg font-semibold">Manage Your Bank Connections</h2>
+    <p class="text-sm text-indigo-200">Sync, update, or connect new accounts easily.</p>
+  </div>
+
+  <!-- Right Side: Action Buttons -->
+  <div class="flex gap-3">
+    <!-- Sync All Accounts -->
+    <%# <button class="bg-white text-indigo-600 px-4 py-2 rounded-lg shadow-md hover:bg-indigo-100 transition">
+      <i class="fa-solid fa-rotate mr-2"></i> Sync All
+    </button> %>
+
+    <div class="flex justify-center pt-4 pb-0 px-4 md:p-0">
+      <%= link_to new_bank_connection_path do %>
+        <button class="btn btn-white btn-md btn-icon ">
+          <i class="fa-solid fa-building-columns me-2"></i>
+          <%= t("bank_connections.index.actions.new") %></button>
+      <% end %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,59 @@
+
+
+<div class="flex md:justify-center md:items-center min-h-screen bg-gray-100">
+  <div class="bg-white md:shadow-lg md:rounded-lg p-2 md:p-8 w-full max-w-4xl flex flex-col gap-6 md:gap-0">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center md:text-start">Connect Your Bank Account</h2>
+    <div class=" flex flex-col-reverse md:flex-row">
+      <!-- Left Section: Instructions -->
+      <div class="flex-1 pr-6 mt-6 md:mt-0">
+
+        <p class="text-gray-600 mt-2">
+          Securely connect your bank to automatically retrieve your transactions and categorize your finances efficiently.
+        </p>
+
+        <!-- Step-by-step instructions -->
+        <div class="mt-4 space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 flex items-center justify-center bg-tertiary-500 text-white rounded-full font-semibold">
+              1
+            </div>
+            <p class="text-gray-700">
+              Choose your bank from the list and grant permission to connect.
+            </p>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 flex items-center justify-center bg-tertiary-500 text-white rounded-full font-semibold">
+              2
+            </div>
+            <p class="text-gray-700">
+              We will securely retrieve your recent transactions for analysis.
+            </p>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 flex items-center justify-center bg-tertiary-500 text-white rounded-full font-semibold">
+              3
+            </div>
+            <p class="text-gray-700">
+              You can review and categorize transactions as needed.
+            </p>
+          </div>
+        </div>
+
+        <!-- Legal Disclaimer -->
+        <p class="text-xs text-gray-500 mt-6">
+          By proceeding, you agree to our <a href="#" class="text-tertiary-500 underline">Terms of Service</a> and 
+          <a href="#" class="text-tertiary-500 underline">Privacy Policy</a>. We do not store your banking credentials.
+        </p>
+      </div>
+
+      <!-- Right Section: Form & Illustration -->
+      <div class="flex-1 flex flex-col justify-center items-center">
+        <%= image_tag "bank.svg", class: "mb-6 w-[10rem]" %>
+
+        <%= render "form", banks: @banks, formats: :html %>
+      </div>
+    </div>
+  </div>
+</div>
