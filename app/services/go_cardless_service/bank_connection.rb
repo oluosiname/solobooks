@@ -38,7 +38,7 @@ module GoCardlessService
       requisition_data = @client.requisition.get_requisition_by_id(requisition_id)
       account_ids = requisition_data['accounts']
 
-      account_ids.map {|account_id| @client.account(account_id).get }
+      account_ids.map { |account_id| @client.account(account_id).get }
     rescue StandardError => e
       Rails.logger.error("Failed to fetch account data: #{e.message}")
       raise BankConnectionError, 'Failed to fetch account data'

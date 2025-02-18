@@ -3,6 +3,13 @@
     process_overdue_invoices_job:
       cron: "0 0 0 * * *" # Runs once per day at midnight
       class: ProcessOverdueInvoicesJob
+    check_bank_connection_job:
+      cron: "0 3 * * *"
+      class: CheckExpiredBankConnectionsJob
+    bulk_bank_connection_sync:
+      cron: "0 1 * * *"
+      class: "BulkBankTransactionsSyncJob"
+      queue: default
 # *    *    *    *    *    *
 # |    |    |    |    |    |
 # |    |    |    |    |    +--- Day of the week (0 - 7) (Sunday=0 or 7)

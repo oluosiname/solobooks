@@ -72,15 +72,14 @@
 
       <div class="flex gap-2">
         <% if bank_connection.active? %>
-          <button class="btn btn-muted btn-sm btn--icon text-gray-700">
+         <%= button_to sync_bank_connection_path(bank_connection), method: :patch, form: { data: { turbo_frame: "bank-connection-#{bank_connection.id}" } }, class: "btn btn-muted btn-sm btn--icon text-gray-700" do %>
             <i class="fa-solid fa-rotate"></i>
             <%= t("bank_connections.show.actions.sync") %>
-          </button>
+          <% end %>
         <% else %>
             <button class="btn btn-dark btn-sm btn--icon">
               <%= t("bank_connections.show.actions.reconnect") %>
             </button>
-
         <% end %>
       </div>
     </div>

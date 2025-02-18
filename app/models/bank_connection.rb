@@ -3,10 +3,15 @@
 class BankConnection < ApplicationRecord
   belongs_to :user
 
-  validates :requisition_id, presence: true, uniqueness: true
+  validates :account_number, presence: true, uniqueness: true
   validates :institution_id, presence: true
   validates :account_id, presence: true
 
+  scope :needs_sync, -> {
+    active
+      .where('last_sync_at < ? OR last_sync_at IS NULL', 24.hours.ago)
+      .where(sync_enabled: true)
+  }
 
   after_create :sync
 
@@ -16,6 +21,7 @@ class BankConnection < ApplicationRecord
     active: 'active',
     inactive: 'inactive',
     error: 'error',
+    expired: 'expired',
     disconnected: 'disconnected',
   }
 
@@ -53,6 +59,6 @@ class BankConnection < ApplicationRecord
   end
 
   def clean_up_deleted_accounts
-    BankConnectionEnrichJob.perform_async(id)
+    BankConnectionDeletedAccountCleanUpJob.perform_async(id)
   end
 end

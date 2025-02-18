@@ -15,6 +15,8 @@ module BankConnectionService
         date_to,
       )
 
+      raise TransactionsSyncerError, result['detail'] unless result && result['transactions']
+
       transactions = result['transactions']['booked']
 
       store_transactions(connection.user, transactions)
@@ -22,7 +24,7 @@ module BankConnectionService
       connection.update!(last_sync_at: Time.current)
     rescue => e
       connection.update!(status: :error)
-      Rails.logger.error("Failed to sync transactions for connection #{connection.id}: #{e.message}")
+      Rails.logger.error("Failed to sync transactions for connection_id #{connection.id}: #{e.message}")
       Sentry.capture_exception(e)
     end
 
@@ -49,4 +51,7 @@ module BankConnectionService
       }
     end
   end
+
+  class TransactionsSyncerError < StandardError; end
 end
+

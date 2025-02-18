@@ -8,7 +8,6 @@ module BankConnectionsHelper
     disconnected: 'fa-regular fa-circle-xmark text-danger-400',
   }.freeze
 
-
   def bank_connection_status_tag(bank_connection)
     content_tag(:div, class: 'flex gap-2') do
       content_tag(:i, nil, class: CONNECTION_ICONS_CSS[bank_connection.status.to_sym]) +
